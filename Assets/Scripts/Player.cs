@@ -5,6 +5,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	public float speed = 6000f;
+    public float rotateSpeed = 10f;
 
 	public InputDevice Device { get; set; }
 
@@ -58,6 +59,17 @@ public class Player : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		rigidbody.velocity = new Vector3(Device.LeftStickX * speed , 0.0f, Device.LeftStickY * speed);
+        var direction = new Vector2(Device.LeftStickX, Device.LeftStickY);
+        RotateTowardsDirection(direction);
+		rigidbody.velocity = new Vector3(direction.x * speed , 0.0f, direction.y * speed);
 	}
+
+    public void RotateTowardsDirection(Vector3 direction)
+    {
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction),
+                Time.deltaTime * rotateSpeed);
+        }
+    }
 }

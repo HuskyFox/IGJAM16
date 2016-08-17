@@ -4,8 +4,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-	public float speed = 10000f;
-	public float maxSpeed = 4f;
+	public float speed = 6000f;
 
 	public InputDevice Device { get; set; }
 

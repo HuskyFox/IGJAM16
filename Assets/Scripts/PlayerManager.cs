@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		numberOfPlayersText = GameObject.Find ("NumberOfPlayersText").GetComponent<Text> ();
+		//numberOfPlayersText = GameObject.Find ("NumberOfPlayersText").GetComponent<Text> ();
 		playerPositions = new List<Vector3>() {
 			GameObject.Find("Plane1").transform.position,
 			GameObject.Find("Plane2").transform.position,
@@ -138,10 +138,10 @@ public class PlayerManager : MonoBehaviour {
 			player.name = "Player_"+nextPlayer;
 			player.Device = inputDevice;
 			Vector3 pos = player.transform.position;
-			pos.y = 1;
+			//pos.y = 1;
 			player.transform.position = pos;
 			players.Add( player );
-			numberOfPlayersText.text = "Number of players: " + players.Count;
+			//numberOfPlayersText.text = "Number of players: " + players.Count;
 		}
 
 	}

@@ -15,14 +15,17 @@ public class Player : MonoBehaviour {
 
 	public bool isWolf { get; set; }
 
+	private Vector3 faceDirection;
 	private Vector3 hitDirection;
 	private float attackRange = 0.5f;
 
 	private int hittableMask = 1 << 8;
 
+	private bool isKilled = false;
+
 	// Use this for initialization
 	void Start () {
-		MakeWolf ();
+	//	MakeWolf ();
 		rigidbody = GetComponent<Rigidbody> ();
 	}
 
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour {
 				Attack ();
 			}
 		}
+
 	}
 
 	public void MakeWolf() {
@@ -39,9 +43,15 @@ public class Player : MonoBehaviour {
 		tag = "Wolf";
 	}
 
+	public void MakeSheep() {
+		isWolf = false;
+		tag = "Player";
+	}
+
 	void Attack() {
 		Vector3 attackPos = transform.position;
-		hitDirection = Vector3.zero;
+		hitDirection = faceDirection;
+	//	print (faceDirection);
 		attackPos += hitDirection * (attackRange/1.5f);
 		Collider[] hitColliders = Physics.OverlapSphere(attackPos, attackRange, hittableMask);
 		for(int i = 0; i < hitColliders.Length; i++){
@@ -53,15 +63,19 @@ public class Player : MonoBehaviour {
 	}
 
 	void TakeDamage() {
+		isKilled = true;
 		print ("You killed a sheep!");
 		//Destroy ( this.gameObject );
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
-        var direction = new Vector2(Device.LeftStickX, Device.LeftStickY);
-        RotateTowardsDirection(direction);
-		rigidbody.velocity = new Vector3(direction.x * speed , 0.0f, direction.y * speed);
+		if (!isKilled) {
+			faceDirection = new Vector3(Device.LeftStickX, 0.0f, Device.LeftStickY);
+			RotateTowardsDirection(faceDirection);
+			rigidbody.velocity = new Vector3(faceDirection.x * speed , 0.0f, faceDirection.z * speed);
+		}
+
 	}
 
     public void RotateTowardsDirection(Vector3 direction)

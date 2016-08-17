@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour {
 
-	const int maxPlayers = 4;
+	const int maxPlayers = 3;
 
 	List<Player> players = new List<Player>( maxPlayers );
 
@@ -16,7 +16,8 @@ public class PlayerManager : MonoBehaviour {
 
 	public bool isGameStarted = false;
 	private Text numberOfPlayersText;
-
+	public int currentWolfIndex;
+	public bool isWolfCreated = false;
 
 	// Use this for initialization
 	void Start () {
@@ -43,15 +44,36 @@ public class PlayerManager : MonoBehaviour {
 				}
 			}
 		} else {
-			CreateRandomWolf ();
+			if(!isWolfCreated)
+				CreateRandomWolf ();
 		}
 
+		if (Input.GetKey (KeyCode.Space)) {
+			CreateRandomWolf ();
+		}
 	}
 
 	void CreateRandomWolf() {
-		int randomPlayerIndex = Random.Range (1, 4);
-		var wolf = GameObject.Find("Player_"+randomPlayerIndex).GetComponent<Player>();
+		MakeEveryoneASheep ();
+		currentWolfIndex = CreateNewRandomNumber ();
+		var wolf = GameObject.Find("Player_"+currentWolfIndex).GetComponent<Player>();
 		wolf.MakeWolf ();
+		isWolfCreated = true;
+	}
+
+	void MakeEveryoneASheep() {
+		for(int i=1;i<=maxPlayers;i++) {
+			GameObject.Find("Player_"+i).GetComponent<Player>().MakeSheep();
+		}
+	}
+
+	int CreateNewRandomNumber() {
+		int randomPlayerIndex = 0;
+		do {
+			randomPlayerIndex = Random.Range (1, 4);
+		} while( randomPlayerIndex==currentWolfIndex );
+
+		return randomPlayerIndex;
 	}
 
 
@@ -112,7 +134,8 @@ public class PlayerManager : MonoBehaviour {
 
 			var gameObject = (GameObject) Instantiate( playerPrefab, playerPosition, Quaternion.identity );
 			var player = gameObject.GetComponent<Player>();
-			player.name = "Player_"+players.Count;
+			int nextPlayer = players.Count + 1;
+			player.name = "Player_"+nextPlayer;
 			player.Device = inputDevice;
 			Vector3 pos = player.transform.position;
 			pos.y = 1;

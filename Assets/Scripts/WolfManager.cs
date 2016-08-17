@@ -1,15 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
-public class WolfManager : MonoBehaviour {
+public class WolfManager : MonoBehaviour 
+{
+	public float minTimeBetweenWolfSwitch = 10f;
+	public float maxTimeBetweenWolfSwitch = 30f;
 
-	// Use this for initialization
-	void Start () {
-	
+	float timer;
+
+//	void Start()
+//	{
+//		GenerateRandomTimeBetweenSwitch ();
+//	}
+
+	void Update()
+	{
+		timer += Time.DeltaTime;
+		float timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch);
+
+		if (timer >= timeBetweenSwitch)
+			WolfSwitch ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	void WolfSwitch()
+	{
+		timer = 0f;
+
 	}
+
+//	void GenerateRandomTimeBetweenSwitch()
+//	{
+//		float timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch);
+//		Debug.Log (timeBetweenSwitch);
+//	}
 }

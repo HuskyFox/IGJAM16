@@ -255,7 +255,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 110094402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.46, y: 0, z: -6.79}
+  m_LocalPosition: {x: 12.46, y: 0, z: -6.79}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -618,6 +618,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 1000010789061800, guid: a28830997b7e14703a66871af0b2fbe5,
     type: 2}
   isGameStarted: 0
+  currentWolfIndex: 0
+  isWolfCreated: 0
 --- !u!4 &760308289
 Transform:
   m_ObjectHideFlags: 0
@@ -1796,7 +1798,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1780679948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.46, y: 0, z: -6.79}
+  m_LocalPosition: {x: -12.46, y: 0, z: -6.79}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []

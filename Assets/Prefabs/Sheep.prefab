@@ -11,23 +11,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000011880567800}
   m_IsPrefabParent: 1
---- !u!1 &1000011401651052
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000014230789712}
-  - 33: {fileID: 33000010702545542}
-  - 23: {fileID: 23000010141870292}
-  m_Layer: 0
-  m_Name: Sheep_Model
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000011880567800
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,6 +30,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000013286285332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011773314470}
+  - 33: {fileID: 33000012101706448}
+  - 23: {fileID: 23000013574289936}
+  - 95: {fileID: 95000012815910084}
+  m_Layer: 0
+  m_Name: sheepModel_FBX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000011773314470
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013286285332}
+  m_LocalRotation: {x: -1, y: 0.00000028088027, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: -0.88999987, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012986050532}
+  m_RootOrder: 0
 --- !u!4 &4000012986050532
 Transform:
   m_ObjectHideFlags: 1
@@ -58,28 +72,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000014230789712}
+  - {fileID: 4000011773314470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &4000014230789712
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011401651052}
-  m_LocalRotation: {x: -1, y: 0.00000028088027, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.89, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: -179.99998}
-  m_Children: []
-  m_Father: {fileID: 4000012986050532}
-  m_RootOrder: 0
---- !u!23 &23000010141870292
+--- !u!23 &23000013574289936
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011401651052}
+  m_GameObject: {fileID: 1000013286285332}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -87,7 +88,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 83325916d99d5794196699abbfcab3bd, type: 2}
+  - {fileID: 2100000, guid: 239581d93cbee6343b29dc4618eec8db, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -103,13 +104,30 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33000010702545542
+--- !u!33 &33000012101706448
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011401651052}
-  m_Mesh: {fileID: 4300000, guid: 82c9b2ef2bca8a94cba2c99a2de3aa4a, type: 3}
+  m_GameObject: {fileID: 1000013286285332}
+  m_Mesh: {fileID: 4300000, guid: 895decd0231be3c45af642ee75379662, type: 3}
+--- !u!95 &95000012815910084
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013286285332}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 895decd0231be3c45af642ee75379662, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010009356386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,7 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedBlackboard: '{"_variables":{"IdleTime":{"_name":"IdleTime","_id":"46544e95-a3a0-48c2-8e5d-46745ad6d5a4","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
-    mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
+    mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"WanderPoint":{"_name":"WanderPoint","_id":"f029c262-6736-41dc-aa09-4b8d8abb29ed","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+    UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
   _objectReferences: []
 --- !u!136 &136000012835602234
 CapsuleCollider:

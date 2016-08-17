@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedBlackboard: '{"_variables":{"IdleTime":{"_name":"IdleTime","_id":"46544e95-a3a0-48c2-8e5d-46745ad6d5a4","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
-    mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
+    mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"WanderPoint":{"_name":"WanderPoint","_id":"f029c262-6736-41dc-aa09-4b8d8abb29ed","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject,
+    UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
   _objectReferences: []
 --- !u!136 &136000012835602234
 CapsuleCollider:

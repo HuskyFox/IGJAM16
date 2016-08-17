@@ -12,7 +12,8 @@ namespace NodeCanvas.Tasks.Actions{
 		public BBParameter<float> stoppingDistance = 0.1f;
 		public BBParameter<float> minWanderDistance = 5;
 		public BBParameter<float> maxWanderDistance = 20;
-		public bool repeat = true;
+        public BBParameter<Vector3> wanderAreaCentrePoint = Vector3.zero;
+        public bool repeat = true;
 
 		protected override void OnExecute(){
 			agent.speed = speed.value;
@@ -29,11 +30,13 @@ namespace NodeCanvas.Tasks.Actions{
 			}
 		}
 
-		void DoWander(){
+		void DoWander()
+		{
+
 			minWanderDistance.value = Mathf.Min(minWanderDistance.value, maxWanderDistance.value);
-			var wanderPos = (Random.insideUnitSphere * maxWanderDistance.value) + agent.transform.position;
-			while ( (wanderPos - agent.transform.position).sqrMagnitude < minWanderDistance.value )
-				wanderPos = (Random.insideUnitSphere * maxWanderDistance.value) + agent.transform.position;
+			var wanderPos = (Random.insideUnitSphere * maxWanderDistance.value) + wanderAreaCentrePoint.value;
+			while ( (wanderPos - wanderAreaCentrePoint.value).sqrMagnitude < minWanderDistance.value )
+				wanderPos = (Random.insideUnitSphere * maxWanderDistance.value) + wanderAreaCentrePoint.value;
 
 			agent.SetDestination(wanderPos);
 		}

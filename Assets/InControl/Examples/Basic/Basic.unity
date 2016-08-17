@@ -210,7 +210,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   suspendInBackground: 0
   enableICade: 0
-  enableXInput: 0
+  enableXInput: 1
   xInputOverrideUpdateRate: 0
   xInputUpdateRate: 0
   xInputOverrideBufferSize: 0
@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2347a68404f43b39fa6189b8ba138c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joystickNames: []
 --- !u!33 &1192333529
 MeshFilter:
   m_ObjectHideFlags: 0

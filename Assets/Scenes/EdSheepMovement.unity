@@ -453,6 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnRadius: 9.2
+  SpawnRate: 1
   StartActive: 1
   ObjectToSpawn: {fileID: 1000011880567800, guid: 19848d46a884d7d459c87183bac744c2,
     type: 2}

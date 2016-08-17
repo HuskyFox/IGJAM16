@@ -419,11 +419,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114000010729205828, guid: 19848d46a884d7d459c87183bac744c2,
-        type: 2}
-      propertyPath: _objectReferences.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4000012986050532, guid: 19848d46a884d7d459c87183bac744c2, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.4530373
@@ -456,18 +451,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010729205828, guid: 19848d46a884d7d459c87183bac744c2,
-        type: 2}
-      propertyPath: _serializedBlackboard
-      value: '{"_variables":{"IdleTime":{"_name":"IdleTime","_id":"46544e95-a3a0-48c2-8e5d-46745ad6d5a4","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
-        mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"WanderAreaCenterPos":{"_name":"WanderAreaCenterPos","_id":"d29473c9-f924-408b-95c3-ba136d4481cc","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Vector3,
-        UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000010729205828, guid: 19848d46a884d7d459c87183bac744c2,
-        type: 2}
-      propertyPath: _objectReferences.Array.data[1]
-      value: 
-      objectReference: {fileID: 1007247122}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19848d46a884d7d459c87183bac744c2, type: 2}
   m_IsPrefabParent: 0

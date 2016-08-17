@@ -22,6 +22,7 @@ GameObject:
   - 136: {fileID: 136000010057979210}
   - 54: {fileID: 54000013829491924}
   - 114: {fileID: 114000011114185000}
+  - 208: {fileID: 208000010228672626}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -168,3 +169,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &208000010228672626
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010789061800}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

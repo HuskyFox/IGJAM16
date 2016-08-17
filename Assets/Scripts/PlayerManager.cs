@@ -138,7 +138,7 @@ public class PlayerManager : MonoBehaviour {
 			player.name = "Player_"+nextPlayer;
 			player.Device = inputDevice;
 			Vector3 pos = player.transform.position;
-			pos.y = 1;
+			//pos.y = 1;
 			player.transform.position = pos;
 			players.Add( player );
 			//numberOfPlayersText.text = "Number of players: " + players.Count;

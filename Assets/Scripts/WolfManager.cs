@@ -16,7 +16,7 @@ public class WolfManager : MonoBehaviour
 
 	void Update()
 	{
-		timer += Time.DeltaTime;
+		timer += Time.deltaTime;
 		float timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch);
 
 		if (timer >= timeBetweenSwitch)

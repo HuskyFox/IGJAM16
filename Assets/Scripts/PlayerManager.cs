@@ -128,6 +128,7 @@ public class PlayerManager : MonoBehaviour {
 	{
 		if (players.Count < maxPlayers)
 		{
+            print("asd");
 			// Pop a position off the list. We'll add it back if the player is removed.
 			var playerPosition = playerPositions[0];
 			playerPositions.RemoveAt( 0 );

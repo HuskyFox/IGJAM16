@@ -24,7 +24,8 @@ GameObject:
   - 114: {fileID: 114000010009356386}
   - 114: {fileID: 114000010729205828}
   - 54: {fileID: 54000013559381658}
-  m_Layer: 0
+  - 114: {fileID: 114000010783214182}
+  m_Layer: 8
   m_Name: Sheep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +43,7 @@ GameObject:
   - 33: {fileID: 33000012101706448}
   - 23: {fileID: 23000013574289936}
   - 95: {fileID: 95000012815910084}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sheepModel_FBX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,6 +176,17 @@ MonoBehaviour:
     mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"WanderAreaCenterPos":{"_name":"WanderAreaCenterPos","_id":"d29473c9-f924-408b-95c3-ba136d4481cc","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Vector3,
     UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
   _objectReferences: []
+--- !u!114 &114000010783214182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011880567800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882feaecc0b16461387ee3133b90814e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136000012835602234
 CapsuleCollider:
   m_ObjectHideFlags: 1

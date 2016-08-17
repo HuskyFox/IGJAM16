@@ -6,32 +6,74 @@ public class WolfManager : MonoBehaviour
 {
 	public float minTimeBetweenWolfSwitch = 10f;
 	public float maxTimeBetweenWolfSwitch = 30f;
+	private float timeBetweenSwitch;
+
+	public GameObject playerPrefab;
+
+	public bool isTimeSet = false;
+
+	public int currentWolfIndex;
+	public bool isWolfCreated = false;
+	const int maxPlayers = 4;
+	public bool isWolf { get; set; }
 
 	float timer;
-
-//	void Start()
-//	{
-//		GenerateRandomTimeBetweenSwitch ();
-//	}
 
 	void Update()
 	{
 		timer += Time.deltaTime;
-		float timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch);
+		if (!isTimeSet)
+			GenerateRandomTimeBetweenSwitch ();
 
 		if (timer >= timeBetweenSwitch)
-			WolfSwitch ();
+			CreateRandomWolf ();
 	}
 
-	void WolfSwitch()
+	void CreateRandomWolf()
 	{
 		timer = 0f;
-
+		isTimeSet = false;
+		//MakeEveryoneASheep ();
+		GameObject.Find ("PlayerManager").SendMessage("MakeEveryoneASheep");
+		currentWolfIndex = CreateNewRandomNumber ();
+		var wolf = GameObject.Find("Player_"+currentWolfIndex).GetComponent<Player>();
+		wolf.MakeWolf ();
+		isWolfCreated = true;
+		Debug.Log("A new wolf was created.");
 	}
 
-//	void GenerateRandomTimeBetweenSwitch()
-//	{
-//		float timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch);
-//		Debug.Log (timeBetweenSwitch);
+	/*void MakeEveryoneASheep() 
+	{
+		for(int i=1;i<=maxPlayers;i++) {
+			GameObject.Find("Player_"+i).GetComponent<Player>().MakeSheep();
+		}
+	}*/
+
+//	public void MakeWolf() {
+//		isWolf = true;
+//		tag = "Wolf";
 //	}
+//
+//	public void MakeSheep() {
+//		isWolf = false;
+//		tag = "Player";
+//	}
+
+	int CreateNewRandomNumber() 
+	{
+		int randomPlayerIndex = 0;
+		do {
+			randomPlayerIndex = Random.Range (1, 4);
+		} while( randomPlayerIndex==currentWolfIndex );
+
+		return randomPlayerIndex;
+	}
+
+	float GenerateRandomTimeBetweenSwitch()
+	{
+		timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch);
+		Debug.Log (timeBetweenSwitch);
+		isTimeSet = true;
+		return timeBetweenSwitch;
+	}
 }

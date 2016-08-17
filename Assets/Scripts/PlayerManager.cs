@@ -10,12 +10,7 @@ public class PlayerManager : MonoBehaviour {
 
 	List<Player> players = new List<Player>( maxPlayers );
 
-	List<Vector3> playerPositions = new List<Vector3>() {
-		new Vector3( 0, 0.7f, 0 ),
-		new Vector3( 1, 0.7f, 1 ),
-		new Vector3( 1, 0.7f, 0 ),
-		new Vector3( 0, 0.7f, 1 ),
-	};
+	List<Vector3> playerPositions;
 
 	public GameObject playerPrefab;
 
@@ -26,6 +21,12 @@ public class PlayerManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		numberOfPlayersText = GameObject.Find ("NumberOfPlayersText").GetComponent<Text> ();
+		playerPositions = new List<Vector3>() {
+			GameObject.Find("Plane1").transform.position,
+			GameObject.Find("Plane2").transform.position,
+			GameObject.Find("Plane3").transform.position,
+			GameObject.Find("Plane4").transform.position,
+		};
 	}
 	
 	// Update is called once per frame
@@ -42,11 +43,15 @@ public class PlayerManager : MonoBehaviour {
 				}
 			}
 		} else {
-			int randomPlayerIndex = Random.Range (1, 4);
-			var wolf = GameObject.Find("Player_"+randomPlayerIndex).GetComponent<Player>();
-			wolf.isWolf = true;
+			CreateRandomWolf ();
 		}
 
+	}
+
+	void CreateRandomWolf() {
+		int randomPlayerIndex = Random.Range (1, 4);
+		var wolf = GameObject.Find("Player_"+randomPlayerIndex).GetComponent<Player>();
+		wolf.MakeWolf ();
 	}
 
 
@@ -109,6 +114,9 @@ public class PlayerManager : MonoBehaviour {
 			var player = gameObject.GetComponent<Player>();
 			player.name = "Player_"+players.Count;
 			player.Device = inputDevice;
+			Vector3 pos = player.transform.position;
+			pos.y = 1;
+			player.transform.position = pos;
 			players.Add( player );
 			numberOfPlayersText.text = "Number of players: " + players.Count;
 		}

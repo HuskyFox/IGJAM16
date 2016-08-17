@@ -8,20 +8,20 @@ namespace NodeCanvas.Tasks.Actions{
 	[Description("Makes the agent wander randomly within the navigation map")]
 	public class Wander : ActionTask<NavMeshAgent> {
 
-		public BBParameter<float> speed = 4;
-		public BBParameter<float> stoppingDistance = 0.1f;
-		public BBParameter<float> minWanderDistance = 5;
-		public BBParameter<float> maxWanderDistance = 20;
-		public bool repeat = true;
+		public BBParameter<float> Speed = 4;
+		public BBParameter<float> StoppingDistance = 0.1f;
+		public BBParameter<float> MinWanderDistance = 5;
+		public BBParameter<float> MaxWanderDistance = 20;
+        public bool Repeat = true;
 
 		protected override void OnExecute(){
-			agent.speed = speed.value;
-			agent.stoppingDistance = stoppingDistance.value;
+			agent.speed = Speed.value;
+			agent.stoppingDistance = StoppingDistance.value;
 			DoWander();
 		}
 		protected override void OnUpdate(){
 			if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance){
-				if (repeat){
+				if (Repeat){
 					DoWander();
 				} else {
 					EndAction();
@@ -30,10 +30,10 @@ namespace NodeCanvas.Tasks.Actions{
 		}
 
 		void DoWander(){
-			minWanderDistance.value = Mathf.Min(minWanderDistance.value, maxWanderDistance.value);
-			var wanderPos = (Random.insideUnitSphere * maxWanderDistance.value) + agent.transform.position;
-			while ( (wanderPos - agent.transform.position).sqrMagnitude < minWanderDistance.value )
-				wanderPos = (Random.insideUnitSphere * maxWanderDistance.value) + agent.transform.position;
+			MinWanderDistance.value = Mathf.Min(MinWanderDistance.value, MaxWanderDistance.value);
+			var wanderPos = (Random.insideUnitSphere * MaxWanderDistance.value) + agent.transform.position;
+			while ( (wanderPos - agent.transform.position).sqrMagnitude < MinWanderDistance.value )
+				wanderPos = (Random.insideUnitSphere * MaxWanderDistance.value) + agent.transform.position;
 
 			agent.SetDestination(wanderPos);
 		}

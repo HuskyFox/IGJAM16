@@ -28,11 +28,13 @@ public class ShapeshiftAbility : MonoBehaviour
     void OnEnable()
     {
         Sheep.OnNpSheepWasKilled += PlayerKilledSheep;
+        Player.OnPlayerKilled += PlayerKilledPlayer;
     }
 
     void OnDisable()
     {
         Sheep.OnNpSheepWasKilled -= PlayerKilledSheep;
+        Player.OnPlayerKilled -= PlayerKilledPlayer;
     }
 
     void PlayerKilledSheep(Player killer, Sheep npSheep)
@@ -45,8 +47,18 @@ public class ShapeshiftAbility : MonoBehaviour
         }
     }
 
-	// Use this for initialization
-	void Awake ()
+    void PlayerKilledPlayer(Player killer, Player victim)
+    {
+        if (_owner.playerIndex.Equals(killer.playerIndex))
+        {
+            SetState(State.Wolf);
+            if (!runningCoorutine)
+                StartCoroutine(ResetToSheep());
+        }
+    }
+
+    // Use this for initialization
+    void Awake ()
 	{
         var wolfChildObject = transform.FindChild("Wolf");
 	    var sheepChildObject = transform.FindChild("Sheep");

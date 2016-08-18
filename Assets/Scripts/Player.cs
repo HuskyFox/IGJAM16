@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
 			isGameStarted = true;
 			Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
-			startPosition.y = 0;
+			startPosition.y = 1;
 			transform.position = startPosition;
 		}
 

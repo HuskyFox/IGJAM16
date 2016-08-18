@@ -89,25 +89,25 @@ public class SoundManager : MonoBehaviour
 	public void PlayFarmerShout1()
 	{
 		sounds [4].pitch = Random.Range (0.9f, 1.1f);
-		sounds [4].Play ();
+		sounds [4].PlayDelayed (0.5f);
 	}
 
 	public void PlayFarmerShout2()
 	{
 		sounds [5].pitch = Random.Range (0.9f, 1.1f);
-		sounds [5].Play ();
+		sounds [5].PlayDelayed (0.5f);
 	}
 
 	public void PlayFarmerShout3()
 	{
 		sounds [6].pitch = Random.Range (0.9f, 1.1f);
-		sounds [6].Play ();
+		sounds [6].PlayDelayed (0.5f);
 	}
 
 	public void PlayFarmerShout4()
 	{
 		sounds [7].pitch = Random.Range (0.9f, 1.1f);
-		sounds [7].Play ();
+		sounds [7].PlayDelayed (0.5f);
 	}
 
 	public void PlayRandomFarmerShout()
@@ -138,25 +138,21 @@ public class SoundManager : MonoBehaviour
 
 	public void PlayWolfHowl()
 	{
-		sounds [9].pitch = Random.Range (0.9f, 1.1f);
 		sounds [9].Play ();
 	}
 
 	public void PlayWolfBiteFail()
 	{
-		sounds [10].pitch = Random.Range (0.9f, 1.1f);
 		sounds [10].Play ();
 	}
 
 	public void PlayWolfBiteSuccess()
 	{
-		sounds [11].pitch = Random.Range (0.9f, 1.1f);
 		sounds [11].Play ();
 	}
 
 	public void PlayAmbianceField()
 	{
-		sounds [12].pitch = Random.Range (0.9f, 1.1f);
 		sounds [12].Play ();
 	}
 
@@ -170,67 +166,28 @@ public class SoundManager : MonoBehaviour
 		sounds[13].pitch = Random.Range (0.9f, 1.1f) ;
 		sounds[13].Play(2500);
 	}
-
-	public void PlayGameMusic1()
-	{
-		sounds[14].Play();
-	}
-
-	public void PlayGameMusic2()
-	{
-		sounds[15].Play();
-	}
-
-	public void PlayGameMusic3()
-	{
-		sounds[16].Play();
-	}
-
-	public void PlayGameMusic4()
-	{
-		sounds[17].Play();
-	}
-
-	public void PlayRandomGameMusic()
-	{
-		int randomIndex = Random.Range (0, 4);
-		print (randomIndex);
-		switch (randomIndex)
-		{
-		case 0:
-			PlayGameMusic1 ();
-			break;
-		case 1:
-			PlayGameMusic2 ();
-			break;
-		case 2:
-			PlayGameMusic3 ();
-			break;
-		case 3:
-			PlayGameMusic4 ();
-			break;
-		}
-	}
-
-	public void PlayRestartMusic()
-	{
-		sounds [18].Play (1100);
-	}
-
-	public void StopRestartMusic()
-	{
-		sounds [18].Stop ();
-	}
-
+		
 	public void PlayGameMusic()
 	{
-		sounds [19].Play (2200);
+		sounds [14].PlayDelayed (1f);
 	}
 
 	public void StopGameMusic()
 	{
-		sounds [19].Stop ();
+		sounds [14].Stop ();
 	}
+
+	public void PlayRestartMusic()
+	{
+		sounds [15].Play (1100);
+	}
+
+	public void StopRestartMusic()
+	{
+		sounds [15].Stop ();
+	}
+
+
 	/*public void PlayAmbianceRandomSheepSounds()
 	{
 		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (0.5f, 3f)));

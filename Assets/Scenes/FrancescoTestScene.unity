@@ -194,7 +194,7 @@ GameObject:
   - 64: {fileID: 110094404}
   - 23: {fileID: 110094403}
   m_Layer: 0
-  m_Name: PlanePlayer_4
+  m_Name: Plane4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1633,7 +1633,7 @@ GameObject:
   - 64: {fileID: 1486163116}
   - 23: {fileID: 1486163115}
   m_Layer: 0
-  m_Name: PlanePlayer_1
+  m_Name: Plane1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1933,7 +1933,7 @@ GameObject:
   - 64: {fileID: 1780679950}
   - 23: {fileID: 1780679949}
   m_Layer: 0
-  m_Name: PlanePlayer_3
+  m_Name: Plane3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2242,7 +2242,7 @@ GameObject:
   - 64: {fileID: 2034350775}
   - 23: {fileID: 2034350774}
   m_Layer: 0
-  m_Name: PlanePlayer_2
+  m_Name: Plane2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

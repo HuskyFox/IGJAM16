@@ -9,6 +9,7 @@ public class PlayerScoreKeeper : MonoBehaviour
     public int OwnerIndex;
     private int _currentScore = 0;
     private Text _text;
+    private int oldScore;
     public int CurrentScore { get{ return _currentScore; } }
     private const int KillNPSheepPenalty = 20;
     private const int KillPlayerPoints = 20;
@@ -62,6 +63,26 @@ public class PlayerScoreKeeper : MonoBehaviour
 
     private void UpdateText()
     {
+        oldScore = int.Parse(_text.text);
         _text.text = _currentScore.ToString();
+
+        if (oldScore > _currentScore)
+        {
+            _text.color = Color.red;
+            Invoke("RevertTextEffects", 3f);
+            _text.transform.parent.gameObject.GetComponent<Animation>().Play();
+        }
+
+        if (oldScore < _currentScore)
+        {
+            _text.color = Color.green;
+            Invoke("RevertTextEffects", 3f);
+            _text.transform.parent.gameObject.GetComponent<Animation>().Play();
+        }
+    }
+
+    private void RevertTextEffects()
+    {
+        _text.color = Color.white;
     }
 }

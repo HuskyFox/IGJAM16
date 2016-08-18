@@ -32,8 +32,11 @@ public class Timer : MonoBehaviour
     void Start()
     {
         time = startingTime;
-        Invoke("InitialWolf", .1f);
-		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (1.3f, 5f)));
+        if (wolfTimer)
+        {
+            Invoke("InitialWolf", .1f);
+        }
+        StartCoroutine(AmbianceRandomSheepSounds(Random.Range (1.3f, 5f)));
     }
 		
 	IEnumerator AmbianceRandomSheepSounds(float delay)
@@ -150,7 +153,9 @@ public class Timer : MonoBehaviour
 
     public void InitialWolf()
     {
+        print("Wolf");
         wolfMan.CreateRandomWolf();
+
     }
 
     void WinnerUI()

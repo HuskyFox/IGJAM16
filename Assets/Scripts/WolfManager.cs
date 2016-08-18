@@ -68,8 +68,8 @@ public class WolfManager : MonoBehaviour
 		if (!isTimeSet)
 			GenerateRandomTimeBetweenSwitch ();
 
-		if (timer >= timeBetweenSwitch) 
-			CreateRandomWolf ();
+        if (timer >= timeBetweenSwitch) { }
+			//CreateRandomWolf ();
 
 	}
 
@@ -82,14 +82,15 @@ public class WolfManager : MonoBehaviour
 
     public void CreateRandomWolf()
     {
+        print(" Wolf 2");
         timer = 0f;
         isTimeSet = false;
         //MakeEveryoneASheep ();
         playerManager.SendMessage("MakeEveryoneASheep");
         currentWolfIndex = CreateNewRandomNumber();
+        SoundManager.instance.PlayRandomFarmerShout();
         timeManager.gameObject.SetActive(true);
         timeManager.StartNewWolfCountdown();
-		SoundManager.instance.PlayRandomFarmerShout ();
 		speechBubble.SetActive (true);
 		Invoke ("MakeSpeechBubbleDisappear", 1f);
         Invoke("MakeWolf", 5f);

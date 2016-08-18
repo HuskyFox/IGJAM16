@@ -4,22 +4,35 @@ using UnityEngine.UI;
 
 public class Scorer : MonoBehaviour {
 
-    public Text playerOneScore;
+    public int noOfPlayers;
+
+    public GameObject playerOneScore;
     int oneScore;
 
-    public Text playerTwoScore;
+    public GameObject playerTwoScore;
     int twoScore;
 
-    public Text playerThreeScore;
+    public GameObject playerThreeScore;
     int threeScore;
 
-    public Text playerFourScore;
+    public GameObject playerFourScore;
     int fourScore;
 
     public bool currentlyPlaying;
 
 	// Use this for initialization
 	void Start () {
+
+        if (noOfPlayers == 2)
+        {
+            playerThreeScore.gameObject.SetActive(false);
+            playerFourScore.gameObject.SetActive(false);
+        }
+
+        if (noOfPlayers == 3)
+        {
+            playerFourScore.gameObject.SetActive(false);
+        }
 	
 	}
 	
@@ -27,10 +40,10 @@ public class Scorer : MonoBehaviour {
 	void Update () {
 	if (currentlyPlaying)
         {
-            playerOneScore.text = oneScore.ToString();
-            playerTwoScore.text = twoScore.ToString();
-            playerThreeScore.text = threeScore.ToString();
-            playerFourScore.text = fourScore.ToString();
+            playerOneScore.GetComponent<Text>().text = oneScore.ToString();
+            playerTwoScore.GetComponent<Text>().text = twoScore.ToString();
+            playerThreeScore.GetComponent<Text>().text = threeScore.ToString();
+            playerFourScore.GetComponent<Text>().text = fourScore.ToString();
 
         }
 	}

@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject playerPrefab;
 
 	public bool isGameStarted = false;
-	private Text numberOfPlayersText;
+//	private Text numberOfPlayersText;
 	public int currentWolfIndex;
 	public bool isWolfCreated = false;
 
@@ -138,12 +138,20 @@ public class PlayerManager : MonoBehaviour {
 			int nextPlayer = players.Count + 1;
 			player.name = "Player_"+nextPlayer;
 			player.Device = inputDevice;
-			Vector3 pos = player.transform.position;
-			//pos.y = 1;
-			player.transform.position = pos;
-			players.Add( player );
-			//numberOfPlayersText.text = "Number of players: " + players.Count;
-		}
 
+			player.playerIndex = nextPlayer;
+			RespawnPlayer ( player.name );
+			players.Add( player );
+		}
+	}
+
+	public void RespawnPlayer(string playerName)
+	{
+		GameObject player = GameObject.Find (playerName);
+		string playerIndex = playerName.Replace ("Player_", "");
+		GameObject spawnPointIndex = GameObject.Find ("Plane" + playerIndex);
+		Vector3 pos = spawnPointIndex.transform.position;
+		pos.y = 1;
+		player.transform.position = pos;
 	}
 }

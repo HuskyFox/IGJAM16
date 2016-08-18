@@ -23,10 +23,10 @@ public class PlayerManager : MonoBehaviour {
 	void Start () {
 		//numberOfPlayersText = GameObject.Find ("NumberOfPlayersText").GetComponent<Text> ();
 		playerPositions = new List<Vector3>() {
-			GameObject.Find("PlanePlayer_1").transform.position,
-			GameObject.Find("PlanePlayer_2").transform.position,
-			GameObject.Find("PlanePlayer_3").transform.position,
-			GameObject.Find("PlanePlayer_4").transform.position,
+			GameObject.Find("Plane1").transform.position,
+			GameObject.Find("Plane2").transform.position,
+			GameObject.Find("Plane3").transform.position,
+			GameObject.Find("Plane4").transform.position,
 		};
 	}
 	
@@ -147,7 +147,8 @@ public class PlayerManager : MonoBehaviour {
 	public void RespawnPlayer(string playerName)
 	{
 		GameObject player = GameObject.Find (playerName);
-		GameObject spawnPointIndex = GameObject.Find ("Plane" + playerName);
+		string playerIndex = playerName.Replace ("Player_", "");
+		GameObject spawnPointIndex = GameObject.Find ("Plane" + playerIndex);
 		Vector3 pos = spawnPointIndex.transform.position;
 		pos.y = 1;
 		player.transform.position = pos;

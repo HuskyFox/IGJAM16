@@ -105,6 +105,8 @@ public class Timer : MonoBehaviour
 
     public void GameOver()
     {
+		SoundManager.instance.StopGameMusic ();
+		SoundManager.instance.PlayRestartMusic ();
         gameFinished = true;
         print("Time is up!");
         gameOverUI.SetActive(true);

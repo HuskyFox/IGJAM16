@@ -4,13 +4,17 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-
+    public GameObject wolfTimerObject;
     public bool wolfTimer;
     public bool wolfCountdown;
-    float wolfTime;
+    float wolfTime = 5;
     float wolfSeconds;
+    public Text wolfTimerLabel;
 
 
+    public bool gameFinished;
+    public GameObject gameOverUI;
+    public GameObject winnerIsUI;
 
     public Text timerLabel;
     public bool currentlyTiming;
@@ -51,7 +55,8 @@ public class Timer : MonoBehaviour
 
         if (wolfTimer)
         {
-            timerLabel.text = wolfSeconds.ToString();
+            wolfTimerObject.SetActive(true);
+            wolfTimerLabel.text = wolfSeconds.ToString();
             if (wolfCountdown == true)
             {
                 wolfTime -= Time.deltaTime;
@@ -60,10 +65,24 @@ public class Timer : MonoBehaviour
                 if (wolfTime <= 0)
                 {
                     SetNewWolf();
-                    wolfTime = 0;
-                    wolfSeconds = 0;
+                    wolfTime = 5;
+                    wolfSeconds = 5;
                     wolfCountdown = false;
                 }
+            }
+        }
+
+        if (gameOverUI.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("GameOverAnim"))
+        {
+            //do nothing
+        }
+
+        else
+        {
+            if (gameFinished == true)
+            {
+                winnerIsUI.SetActive(true);
+                gameOverUI.SetActive(false);
             }
         }
 
@@ -72,11 +91,27 @@ public class Timer : MonoBehaviour
 
     public void GameOver()
     {
+        gameFinished = true;
         print("Time is up!");
+        gameOverUI.SetActive(true);
+        if (gameOverUI.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("GameOverAnim"))
+        {
+           //do nothing
+        }
+
+    }
+
+    public void StartNewWolfCountdown()
+    {
+        wolfTimerObject.SetActive(true);
+        wolfTime = 5;
+        wolfSeconds = 5;
+        wolfCountdown = true;
+
     }
 
     public void SetNewWolf()
     {
-
+        wolfTimerObject.SetActive(false);
     }
 }

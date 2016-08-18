@@ -51,9 +51,6 @@ public class PlayerManager : MonoBehaviour {
 			if(areAllPlayersActive) {
 				if (inputDevice.Command.IsPressed) {
 					SceneManager.LoadScene("Demo Scene");
-					for (int i = 1; i <= 4; i++) {
-						SetStartPlayerPosition (i);
-					}
 
 				}
 
@@ -185,7 +182,4 @@ public class PlayerManager : MonoBehaviour {
 		player.transform.position = pos;
 	}
 
-	void SetStartPlayerPosition(int index) {
-		GameObject.Find ("Player_" + index).transform.position = GameObject.Find ("Plane" + index).transform.position;
-	}
 }

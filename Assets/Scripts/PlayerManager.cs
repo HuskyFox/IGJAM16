@@ -21,6 +21,8 @@ public class PlayerManager : MonoBehaviour {
 	public bool isWolfCreated = false;
 
 	public bool areAllPlayersActive = false;
+	public bool isControllerRegistrationActivated = false;
+
 
 	void Awake() {
 		DontDestroyOnLoad(transform.gameObject);
@@ -56,7 +58,7 @@ public class PlayerManager : MonoBehaviour {
 
 			}
 		}
-		if (!isGameStarted) {
+		if (!isGameStarted && isControllerRegistrationActivated) {
 			if (JoinButtonWasPressedOnDevice (inputDevice)) {
 				if (ThereIsNoPlayerUsingDevice (inputDevice)) {
 					AssignDeviceToPlayer (inputDevice);
@@ -85,7 +87,6 @@ public class PlayerManager : MonoBehaviour {
 
 	void MakeEveryoneASheep() {
 		for(int i=1;i<=players.Count;i++) {
-			print (i);
 			GameObject.Find("Player_"+i).GetComponent<Player>().MakeSheep();
 		}
 	}
@@ -150,21 +151,16 @@ public class PlayerManager : MonoBehaviour {
 	void AssignDeviceToPlayer( InputDevice inputDevice )
 	{
 		if (players.Count < maxPlayers) {
-			// Pop a position off the list. We'll add it back if the player is removed.
-			//var playerPosition = playerPositions [0];
-			//playerPositions.RemoveAt (0);
 
-			//var gameObject = (GameObject)Instantiate (playerPrefab, playerPosition, Quaternion.identity);
 			int nextPlayer = players.Count + 1;
 
 			GameObject gameObject = GameObject.Find("Player_"+nextPlayer);
 			Player player = gameObject.GetComponent<Player> ();
-			//player.name = "Player_" + nextPlayer;
 			player.Device = inputDevice;
-
-			//player.playerIndex = nextPlayer;
-			//RespawnPlayer (player.name);
 			players.Add (player);
+
+			Text playerBox = GameObject.Find ("BoxPlayer" + nextPlayer).transform.Find("Press A").gameObject.GetComponent<Text>();
+			playerBox.text = "Ok!";
 		} 
 
 		if(players.Count == maxPlayers){
@@ -180,6 +176,10 @@ public class PlayerManager : MonoBehaviour {
 		Vector3 pos = spawnPointIndex.transform.position;
 		//pos.y = 1;
 		player.transform.position = pos;
+	}
+
+	public void ActivateControllerRegistration() {
+		isControllerRegistrationActivated = true;
 	}
 
 }

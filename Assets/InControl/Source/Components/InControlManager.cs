@@ -59,7 +59,7 @@ namespace InControl
 			{
 				if (logDebugInfo)
 				{
-					Debug.Log( "InControl (version " + InputManager.Version + ")" );
+					//Debug.Log( "InControl (version " + InputManager.Version + ")" );
 					Logger.OnLogMessage -= LogMessage;
 					Logger.OnLogMessage += LogMessage;
 				}

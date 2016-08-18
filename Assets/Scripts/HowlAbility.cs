@@ -23,7 +23,7 @@ public class HowlAbility : MonoBehaviour
 	{
 	    if (!_owner.isWolf) return;
 
-	    if (_owner.Device.Action2 && _elapsedTime > CooldownTime)
+		if (_owner.Device!=null && _owner.Device.Action2 && _elapsedTime > CooldownTime)
 	    {
 	        _elapsedTime = 0;
 	        _threatBroadcast.BroadcastThreat();

@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
 
 		if(isGameStarted)
 			Controls();
+		
 	    if (Device == null) return;
 
         if (isWolf)

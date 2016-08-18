@@ -8,7 +8,8 @@ using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour {
 
-	const int maxPlayers = 2;
+	int minPlayers = 2;
+	const int maxPlayers = 4;
 
 	[HideInInspector]public List<Player> players = new List<Player>( maxPlayers );
 
@@ -17,17 +18,11 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject playerPrefab;
 
 	public bool isGameStarted = false;
-//	private Text numberOfPlayersText;
 	public int currentWolfIndex;
 	public bool isWolfCreated = false;
 
-	public bool areAllPlayersActive = false;
+	public bool isNumberOfPlayersOk = false;
 	public bool isControllerRegistrationActivated = false;
-
-//	public AudioClip sheepBaa1;
-//	public AudioClip sheepBaa2;
-//	public AudioClip sheepBaa3;
-//	public AudioClip sheepBaa4;
 
 	void Awake() {
 		DontDestroyOnLoad(transform.gameObject);
@@ -40,14 +35,7 @@ public class PlayerManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//numberOfPlayersText = GameObject.Find ("NumberOfPlayersText").GetComponent<Text> ();
-/*		playerPositions = new List<Vector3>() {
-			GameObject.Find("Plane1").transform.position,
-			GameObject.Find("Plane2").transform.position,
-			GameObject.Find("Plane3").transform.position,
-			GameObject.Find("Plane4").transform.position,
-		};
-		*/
+
 	}
 	
 	// Update is called once per frame
@@ -55,7 +43,7 @@ public class PlayerManager : MonoBehaviour {
 		var inputDevice = InputManager.ActiveDevice;
 
 		if(SceneManager.GetActiveScene().name=="MainMenu") {
-			if(areAllPlayersActive) {
+			if(isNumberOfPlayersOk) {
 				if (inputDevice.Command.IsPressed) {
 					SceneManager.LoadScene("Demo Scene");
 					SoundManager.instance.StopAmbianceField ();
@@ -63,15 +51,14 @@ public class PlayerManager : MonoBehaviour {
 
 			}
 		}
-		if (!isGameStarted && isControllerRegistrationActivated) {
+		if (/*!isGameStarted && */isControllerRegistrationActivated) {
 			if (JoinButtonWasPressedOnDevice (inputDevice)) {
 				if (ThereIsNoPlayerUsingDevice (inputDevice)) {
 					AssignDeviceToPlayer (inputDevice);
 					SoundManager.instance.PlayRandomSheepBaa();
-
 				}
-				if (players.Count == maxPlayers) {
-					isGameStarted = true;
+				if (players.Count >= minPlayers && players.Count <= maxPlayers) {
+				//	isGameStarted = true;
 				}
 			}
 		} else {
@@ -170,8 +157,8 @@ public class PlayerManager : MonoBehaviour {
 			playerBox.text = "Ok!";
 		} 
 
-		if(players.Count == maxPlayers){
-			areAllPlayersActive = true;
+		if(players.Count >= minPlayers && players.Count<=maxPlayers){
+			isNumberOfPlayersOk = true;
 		}
 	}
 

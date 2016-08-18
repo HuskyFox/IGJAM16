@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour {
 	int CreateNewRandomNumber() {
 		int randomPlayerIndex = 0;
 		do {
-			randomPlayerIndex = Random.Range (1, maxPlayers);
+			randomPlayerIndex = Random.Range (1, players.Count);
 		} while( randomPlayerIndex==currentWolfIndex );
 
 		return randomPlayerIndex;

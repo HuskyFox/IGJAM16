@@ -24,6 +24,10 @@ public class PlayerManager : MonoBehaviour {
 	public bool areAllPlayersActive = false;
 	public bool isControllerRegistrationActivated = false;
 
+	public AudioClip sheepBaa1;
+	public AudioClip sheepBaa2;
+	public AudioClip sheepBaa3;
+	public AudioClip sheepBaa4;
 
 	void Awake() {
 		DontDestroyOnLoad(transform.gameObject);
@@ -54,7 +58,7 @@ public class PlayerManager : MonoBehaviour {
 			if(areAllPlayersActive) {
 				if (inputDevice.Command.IsPressed) {
 					SceneManager.LoadScene("Demo Scene");
-
+					SoundManager.instance.RandomizeSfx (sheepBaa1, sheepBaa2, sheepBaa3, sheepBaa4);
 				}
 
 			}
@@ -63,6 +67,7 @@ public class PlayerManager : MonoBehaviour {
 			if (JoinButtonWasPressedOnDevice (inputDevice)) {
 				if (ThereIsNoPlayerUsingDevice (inputDevice)) {
 					AssignDeviceToPlayer (inputDevice);
+
 				}
 				if (players.Count == maxPlayers) {
 					isGameStarted = true;

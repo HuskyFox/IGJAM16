@@ -24,7 +24,6 @@ public class Spawner : MonoBehaviour {
         {
             for (var i = 0; i < _objectPool.ObjectsPreLoaded; i++)
             {
-                Debug.Log("Spawn Random");
                 SpawnObjectAtRandomPointInRadius();
             }
         }

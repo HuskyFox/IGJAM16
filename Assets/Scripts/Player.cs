@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 
 	void RespawnPlayer() {
 		Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
-		startPosition.y = 3;
+		startPosition.y = 4;
 		transform.position = startPosition;
 		pushDown = true;
 	}
@@ -127,9 +127,9 @@ public class Player : MonoBehaviour
 		if (Device!=null) {
 			faceDirection = new Vector3(Device.LeftStickX, 0.0f, Device.LeftStickY);
 			RotateTowardsDirection(faceDirection);
-			rigidbody.velocity = new Vector3(faceDirection.x * speed , 0.0f, faceDirection.z * speed);
-			if(pushDown)
-				rigidbody.AddForce (-Vector3.up*400f);
+			rigidbody.velocity = new Vector3(faceDirection.x * speed , rigidbody.velocity.y, faceDirection.z * speed);
+			//if(pushDown)
+				//rigidbody.AddForce (-Vector3.up*400f);
 		    isMoving = Mathf.Abs(faceDirection.x) + Mathf.Abs(faceDirection.z) > 0.05f;
 		}
 	    if (!animationController) return;

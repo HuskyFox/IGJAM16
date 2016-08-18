@@ -154,24 +154,10 @@ public class SoundManager : MonoBehaviour
 		sounds [12].Stop ();
 	}
 
-
-
-
-
-//	public void PlaySingle (AudioClip clip)
-//	{
-//		efxSource.clip = clip;
-//		efxSource.Play ();
-//	}
-//
-//	public void RandomizeSfx (params AudioClip[] clips)
-//	{
-//		int randomIndex = Random.Range (0, clips.Length);
-//
-//		efxSource.clip = clips[randomIndex];
-//		efxSource.Play();
-//	}
-//
-
+	public void PlaySheepReactionToHowl()
+	{
+		sounds[13].pitch = Random.Range (0.9f, 1.1f) ;
+		sounds[13].Play();
+	}
 
 }

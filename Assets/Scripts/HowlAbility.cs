@@ -25,6 +25,7 @@ public class HowlAbility : MonoBehaviour
 
 		if (_owner.Device!=null && _owner.Device.Action2 && _elapsedTime > CooldownTime)
 	    {
+			SoundManager.instance.PlayWolfHowl ();
 	        _elapsedTime = 0;
 	        _threatBroadcast.BroadcastThreat();
 	    }

@@ -15,6 +15,8 @@ public class Timer : MonoBehaviour
     public bool gameFinished;
     public GameObject gameOverUI;
     public GameObject winnerIsUI;
+    public GameObject winnerDeclarationUI;
+    public Scorer scorer;
 
     public Text timerLabel;
     public bool currentlyTiming;
@@ -24,25 +26,15 @@ public class Timer : MonoBehaviour
     public float seconds;
     float fraction;
 
+    public int gameWinner;
+    public EndGameRestart egRestart;
 
     void Start()
     {
         time = startingTime;
-		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (1.3f, 5f)));
         Invoke("InitialWolf", .1f);
     }
-
-	IEnumerator AmbianceRandomSheepSounds(float delay)
-	{
-		while (!gameFinished)
-		{
-
-			SoundManager.instance.PlayRandomSheepBaa ();
-			delay = Random.Range (1.3f, 6f);
-			yield return new WaitForSeconds (delay);
-		}
-	}
-
+		
     void Update()
     {
         if (!wolfTimer)
@@ -107,14 +99,24 @@ public class Timer : MonoBehaviour
 
     public void GameOver()
     {
+		SoundManager.instance.StopGameMusic ();
+		SoundManager.instance.PlayRestartMusic ();
         gameFinished = true;
         print("Time is up!");
         gameOverUI.SetActive(true);
-        if (gameOverUI.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("GameOverAnim"))
+
+        Invoke("WinnerUI", 3f);
+
+        var scoreKeepers = GameObject.FindObjectsOfType<PlayerScoreKeeper>();
+        var highestScore = scoreKeepers[0];
+        foreach (var scoreKeeper in scoreKeepers)
         {
-           //do nothing
+            var score = scoreKeeper.CurrentScore;
+            if (score > highestScore.CurrentScore)
+                highestScore = scoreKeeper;
         }
 
+        gameWinner = highestScore.OwnerIndex;
     }
 
 
@@ -138,4 +140,17 @@ public class Timer : MonoBehaviour
     {
         wolfMan.CreateRandomWolf();
     }
+
+    void WinnerUI()
+    {
+        winnerIsUI.SetActive(true);
+        Invoke("WinnerDeclareUI", 1.5f);
+    }
+
+    void WinnerDeclareUI()
+    {
+        winnerDeclarationUI.SetActive(true);
+        egRestart.DeclareWinner();
+    }
+
 }

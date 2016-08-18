@@ -49,6 +49,7 @@ public class PlayerManager : MonoBehaviour {
 					DeactivateExtraPlayers ();
 					SceneManager.LoadScene("Demo Scene");
 					SoundManager.instance.StopAmbianceField ();
+					SoundManager.instance.PlayGameMusic ();
 				}
 
 			}

@@ -7,16 +7,16 @@ public class Scorer : MonoBehaviour {
     public int noOfPlayers;
 
     public GameObject playerOneScore;
-    int oneScore;
+    public int oneScore;
 
     public GameObject playerTwoScore;
-    int twoScore;
+    public int twoScore;
 
     public GameObject playerThreeScore;
-    int threeScore;
+    public int threeScore;
 
     public GameObject playerFourScore;
-    int fourScore;
+    public int fourScore;
 
     public bool currentlyPlaying;
 

@@ -21,6 +21,21 @@ public class WolfManager : MonoBehaviour
 	float timer;
 
 	PlayerManager playerManager;
+    
+    void OnEnable ()
+    {
+        Sheep.OnNpSheepWasKilled += OnNPSheepDied;
+    }
+
+    void OnDisable()
+    {
+        Sheep.OnNpSheepWasKilled -= OnNPSheepDied;
+    }
+
+    void OnNPSheepDied(Player killer, Sheep sheep)
+    {
+        CreateRandomWolf();
+    }
 
 	void Start()
 	{
@@ -46,6 +61,11 @@ public class WolfManager : MonoBehaviour
 		wolfSwitchWarning.text = "";
 	}
 
+    void InvokeCreateWolf()
+    {
+        Invoke("CreateRandomWolf", 5f);
+    }
+
     void CreateRandomWolf()
     {
         timer = 0f;
@@ -54,10 +74,6 @@ public class WolfManager : MonoBehaviour
         playerManager.SendMessage("MakeEveryoneASheep");
         currentWolfIndex = CreateNewRandomNumber();
 
-    }
-
-    void SetWolf()
-    {
         if (currentWolfIndex > 0)
         {
             var wolf = GameObject.Find("Player_" + currentWolfIndex).GetComponent<Player>();
@@ -66,7 +82,7 @@ public class WolfManager : MonoBehaviour
             StartCoroutine(ShowWolfWarning("Abc", 1f));
             Debug.Log("A new wolf was created.");
         }
-	}
+    }
 
 	/*void MakeEveryoneASheep() 
 	{

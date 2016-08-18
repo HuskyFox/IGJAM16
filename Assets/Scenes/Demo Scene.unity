@@ -350,7 +350,7 @@ MonoBehaviour:
   scorer: {fileID: 1063237734}
   timerLabel: {fileID: 137317528}
   currentlyTiming: 1
-  startingTime: 270
+  startingTime: 20
   time: 0
   mins: 0
   seconds: 0

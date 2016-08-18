@@ -274,7 +274,7 @@ MonoBehaviour:
   winnerIsUI: {fileID: 0}
   timerLabel: {fileID: 137317528}
   currentlyTiming: 1
-  startingTime: 60
+  startingTime: 270
   time: 0
   mins: 0
   seconds: 0
@@ -1101,12 +1101,8 @@ MonoBehaviour:
   isGameStarted: 0
   currentWolfIndex: 0
   isWolfCreated: 0
-  areAllPlayersActive: 0
+  isNumberOfPlayersOk: 0
   isControllerRegistrationActivated: 0
-  sheepBaa1: {fileID: 0}
-  sheepBaa2: {fileID: 0}
-  sheepBaa3: {fileID: 0}
-  sheepBaa4: {fileID: 0}
 --- !u!4 &561301805
 Transform:
   m_ObjectHideFlags: 0

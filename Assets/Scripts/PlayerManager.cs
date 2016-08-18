@@ -15,18 +15,18 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject playerPrefab;
 
 	public bool isGameStarted = false;
-	private Text numberOfPlayersText;
+//	private Text numberOfPlayersText;
 	public int currentWolfIndex;
 	public bool isWolfCreated = false;
 
 	// Use this for initialization
 	void Start () {
-		numberOfPlayersText = GameObject.Find ("NumberOfPlayersText").GetComponent<Text> ();
+		//numberOfPlayersText = GameObject.Find ("NumberOfPlayersText").GetComponent<Text> ();
 		playerPositions = new List<Vector3>() {
-			GameObject.Find("Plane1").transform.position,
-			GameObject.Find("Plane2").transform.position,
-			GameObject.Find("Plane3").transform.position,
-			GameObject.Find("Plane4").transform.position,
+			GameObject.Find("PlanePlayer_1").transform.position,
+			GameObject.Find("PlanePlayer_2").transform.position,
+			GameObject.Find("PlanePlayer_3").transform.position,
+			GameObject.Find("PlanePlayer_4").transform.position,
 		};
 	}
 	
@@ -137,12 +137,19 @@ public class PlayerManager : MonoBehaviour {
 			int nextPlayer = players.Count + 1;
 			player.name = "Player_"+nextPlayer;
 			player.Device = inputDevice;
-			Vector3 pos = player.transform.position;
-			pos.y = 1;
-			player.transform.position = pos;
+			player.playerIndex = nextPlayer;
+			RespawnPlayer ( player.name );
 			players.Add( player );
-			numberOfPlayersText.text = "Number of players: " + players.Count;
+		//	numberOfPlayersText.text = "Number of players: " + players.Count;
 		}
+	}
 
+	public void RespawnPlayer(string playerName)
+	{
+		GameObject player = GameObject.Find (playerName);
+		GameObject spawnPointIndex = GameObject.Find ("Plane" + playerName);
+		Vector3 pos = spawnPointIndex.transform.position;
+		pos.y = 1;
+		player.transform.position = pos;
 	}
 }

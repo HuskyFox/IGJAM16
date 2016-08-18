@@ -11,6 +11,8 @@ public class PlayerScoreKeeper : MonoBehaviour
     private Text _text;
 
     private const int KillNPSheepPenalty = 20;
+    private const int KillPlayerPoints = 20;
+    private const int KilledByPlayerPenalty = 10;
 
     void Awake()
     {
@@ -20,18 +22,37 @@ public class PlayerScoreKeeper : MonoBehaviour
     void OnEnable()
     {
         Sheep.OnNpSheepWasKilled += NPSheepWasKilled;
+        Player.OnPlayerKilled += PlayerWasKilled;
     }
 
     void OnDisable()
     {
         Sheep.OnNpSheepWasKilled -= NPSheepWasKilled;
+        Player.OnPlayerKilled -= PlayerWasKilled;
+    }
+
+    void PlayerWasKilled(Player killer, Player victim)
+    {
+        int killerIndex = -1;
+        int.TryParse(killer.playerIndex, out killerIndex);
+        int victimIndex = -1;
+        int.TryParse(killer.playerIndex, out victimIndex);
+
+        if (killerIndex.Equals(OwnerIndex))
+        {
+            _currentScore += KillPlayerPoints;
+        }else if (victimIndex.Equals(OwnerIndex))
+        {
+            _currentScore -= KilledByPlayerPenalty;
+        }
+        UpdateText();
     }
 
     void NPSheepWasKilled(Player killer, Sheep killedSheep)
     {
         int playerIndex = -1;
         int.TryParse(killer.playerIndex, out playerIndex);
-        Debug.Log("Player " + playerIndex + " killed a npsheep");
+
         if (playerIndex.Equals(OwnerIndex))
         {
             _currentScore -= KillNPSheepPenalty;

@@ -1,5 +1,6 @@
 ﻿using InControl;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Player : MonoBehaviour {
@@ -22,11 +23,16 @@ public class Player : MonoBehaviour {
 	private int hittableMask = 1 << 8;
 
 	private bool isKilled = false;
+	private PlayerManager playerManager;
+
+	private int score = 0;
+	public int playerIndex;
 
 	// Use this for initialization
 	void Start () {
 	//	MakeWolf ();
 		rigidbody = GetComponent<Rigidbody> ();
+		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
 	}
 
 	void Update() {
@@ -57,24 +63,27 @@ public class Player : MonoBehaviour {
 		for(int i = 0; i < hitColliders.Length; i++){
 			if (hitColliders [i].tag != "Wolf") {
 				hitColliders[i].SendMessage("TakeDamage");
+				UpdatePlayerScoreGUI ();
 			}
-
 		}
 	}
 
 	void TakeDamage() {
 		isKilled = true;
+		playerManager.RespawnPlayer (gameObject.name);
+		UpdatePlayerScoreGUI ();
 		print ("You killed a sheep!");
+
 		//Destroy ( this.gameObject );
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (!isKilled) {
+	//	if (!isKilled) {
 			faceDirection = new Vector3(Device.LeftStickX, 0.0f, Device.LeftStickY);
 			RotateTowardsDirection(faceDirection);
 			rigidbody.velocity = new Vector3(faceDirection.x * speed , 0.0f, faceDirection.z * speed);
-		}
+	//	}
 
 	}
 
@@ -86,4 +95,8 @@ public class Player : MonoBehaviour {
                 Time.deltaTime * rotateSpeed);
         }
     }
+
+	void UpdatePlayerScoreGUI() {
+		GameObject.Find ("ScorePlayer_"+playerIndex).GetComponent<Text> ().text = "Player "+playerIndex+": "+score;
+	}
 }

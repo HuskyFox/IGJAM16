@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
 
 	private bool isGameStarted = false;
 
+	private bool pushDown = false;
+
 	// Use this for initialization
 	void Start () {
 		Device = null;
@@ -46,9 +48,7 @@ public class Player : MonoBehaviour
 	void Update() {
 		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
 			isGameStarted = true;
-			Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
-			startPosition.y = 1;
-			transform.position = startPosition;
+			RespawnPlayer ();
 		}
 
 		if(isGameStarted)
@@ -63,6 +63,17 @@ public class Player : MonoBehaviour
 	    {
 	        Device.StopVibration();
 	    }
+
+		if (Input.GetKey (KeyCode.A)) {
+			RespawnPlayer ();
+		}
+	}
+
+	void RespawnPlayer() {
+		Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
+		startPosition.y = 3;
+		transform.position = startPosition;
+		pushDown = true;
 	}
 
 	void Controls() {
@@ -86,7 +97,6 @@ public class Player : MonoBehaviour
 	void Attack() {
 		Vector3 attackPos = transform.position;
 		hitDirection = faceDirection;
-	//	print (faceDirection);
 		attackPos += hitDirection * (attackRange/1.5f);
 		Collider[] hitColliders = Physics.OverlapSphere(attackPos, attackRange, hittableMask);
 		for(int i = 0; i < hitColliders.Length; i++){
@@ -101,7 +111,7 @@ public class Player : MonoBehaviour
 
 	void TakeDamage(object damageInflicter) {
 		isKilled = true;
-		playerManager.RespawnPlayer (gameObject.name);
+		RespawnPlayer ();
 	    if (OnPlayerKilled != null)
 	    {
 	        OnPlayerKilled.Invoke((Player) damageInflicter, this);
@@ -114,6 +124,8 @@ public class Player : MonoBehaviour
 			faceDirection = new Vector3(Device.LeftStickX, 0.0f, Device.LeftStickY);
 			RotateTowardsDirection(faceDirection);
 			rigidbody.velocity = new Vector3(faceDirection.x * speed , 0.0f, faceDirection.z * speed);
+			if(pushDown)
+				rigidbody.AddForce (-Vector3.up*400f);
 		}
 
 	}
@@ -126,4 +138,12 @@ public class Player : MonoBehaviour
                 Time.deltaTime * rotateSpeed);
         }
     }
+
+	void OnCollisionEnter(Collision coll)
+	{
+		if (coll.gameObject.name == "Level") {
+			pushDown = false;
+			rigidbody.velocity = Vector3.zero;
+		}
+	}
 }

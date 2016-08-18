@@ -1419,8 +1419,8 @@ MonoBehaviour:
   wolfCountdown: 0
   wolfTimerLabel: {fileID: 836392008}
   gameFinished: 0
-  gameOverUI: {fileID: 0}
-  winnerIsUI: {fileID: 0}
+  gameOverUI: {fileID: 2135147508}
+  winnerIsUI: {fileID: 109487652}
   timerLabel: {fileID: 836392008}
   currentlyTiming: 1
   startingTime: 5

@@ -30,9 +30,12 @@ public class Player : MonoBehaviour
 
 	private bool isKilled = false;
 	private PlayerManager playerManager;
+    
 
 	private int score = 0;
 	public string playerIndex;
+
+    public Image groundIndicator;
 
 	private bool isGameStarted = false;
 
@@ -44,13 +47,15 @@ public class Player : MonoBehaviour
 		rigidbody = GetComponent<Rigidbody> ();
 		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
 		playerIndex = gameObject.name.Replace ("Player_", "");
-	}
+    }
 
 	void Update() {
 		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
 			isGameStarted = true;
 			RespawnPlayer ();
-		}
+            groundIndicator.color = new Color(Random.value, Random.value, Random.value);
+            Invoke("RemoveIndicator", 5);
+        }
 
 		if(isGameStarted)
 			Controls();
@@ -152,4 +157,9 @@ public class Player : MonoBehaviour
 			rigidbody.velocity = Vector3.zero;
 		}
 	}
+
+    void RemoveIndicator()
+    {
+        groundIndicator.enabled = false;
+    }
 }

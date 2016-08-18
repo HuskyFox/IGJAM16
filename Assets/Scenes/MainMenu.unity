@@ -374,7 +374,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -13.89
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -398,7 +398,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1000010789061800, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_Name
@@ -674,7 +674,7 @@ RectTransform:
   m_Children:
   - {fileID: 682141826}
   m_Father: {fileID: 946854281}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 267.16003, y: -202.19989}
@@ -895,7 +895,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &179678038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,7 +1020,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010527069888, guid: db6bbd0f5df5a4bd2935ce5c691218c8, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 82000012647437576, guid: db6bbd0f5df5a4bd2935ce5c691218c8,
         type: 2}
@@ -1232,7 +1232,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &358285668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,7 +1392,7 @@ GameObject:
   - 222: {fileID: 442525792}
   - 114: {fileID: 442525791}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SheepPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1413,7 +1413,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 14}
+  m_AnchoredPosition: {x: -184, y: 14}
   m_SizeDelta: {x: 713.6, y: 353.5}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &442525791
@@ -1450,12 +1450,14 @@ MonoBehaviour:
     m_LineSpacing: 1.26
   m_Text: '~As a sheep~
 
-    Survive a wolf attack:
+    Survive a wolf attack
 
-    +10 points.
+    +10 points
 
 
-    Killed by the wolf'
+    Killed by the wolf
+
+    -10 points'
 --- !u!222 &442525792
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1564,6 +1566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuSheep: {fileID: 1000010992432494, guid: 23ba69eebd60bc94e9b201f5fb8e577d, type: 2}
+  menuWolf: {fileID: 1000012927372260, guid: b08932b70026db74e929fbf874ea44f8, type: 2}
   inverse: 1
 --- !u!4 &481121251
 Transform:
@@ -1577,7 +1580,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &481215046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,7 +1812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1695908584}
+      - m_Target: {fileID: 946854280}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -1835,7 +1838,7 @@ MonoBehaviour:
         m_MethodName: ChangeMainMenu
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1014578399}
+          m_ObjectArgument: {fileID: 2011249280}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1922,7 +1925,7 @@ MonoBehaviour:
 
     ~As the wolf~
 
-    press X to attack the sheep infront of you
+    press A to attack the sheep infront of you
 
     press B to Howl, clearing non-player sheep from the area
 
@@ -2057,7 +2060,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -13.89
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2081,7 +2084,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1000010789061800, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_Name
@@ -2693,7 +2696,7 @@ RectTransform:
   - {fileID: 1742602911}
   - {fileID: 946854281}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2795,6 +2798,7 @@ RectTransform:
   m_Children:
   - {fileID: 358285669}
   - {fileID: 442525790}
+  - {fileID: 1693897739}
   - {fileID: 2011249281}
   - {fileID: 117511868}
   m_Father: {fileID: 831864283}
@@ -3203,7 +3207,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &1324725213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3868,6 +3872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuSheep: {fileID: 1000010992432494, guid: 23ba69eebd60bc94e9b201f5fb8e577d, type: 2}
+  menuWolf: {fileID: 1000012927372260, guid: b08932b70026db74e929fbf874ea44f8, type: 2}
   inverse: 0
 --- !u!4 &1596518617
 Transform:
@@ -3881,7 +3886,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &1622866867
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,7 +4050,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -13.89
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4069,7 +4074,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1000010789061800, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_Name
@@ -4162,6 +4167,89 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1674130625}
+--- !u!1 &1693897738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1693897739}
+  - 222: {fileID: 1693897741}
+  - 114: {fileID: 1693897740}
+  m_Layer: 5
+  m_Name: WolfPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1693897739
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1693897738}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 946854281}
+  m_RootOrder: 2
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 171, y: 14}
+  m_SizeDelta: {x: 713.6, y: 353.5}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1693897740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1693897738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 87b82bf510305b2478de17c43530b0d7, type: 3}
+    m_FontSize: 26
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 85
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1.26
+  m_Text: '~As the Wolf~
+
+    Kill a player
+
+    +20 points
+
+
+    Kill a non-player sheep
+
+    -20 points'
+--- !u!222 &1693897741
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1693897738}
 --- !u!1 &1695908584
 GameObject:
   m_ObjectHideFlags: 0
@@ -4396,44 +4484,40 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+    - target: {fileID: 4000011310490050, guid: fc84ce77383d35b42bffc41677251b26, type: 2}
       propertyPath: m_LocalPosition.x
       value: -12.46
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+    - target: {fileID: 4000011310490050, guid: fc84ce77383d35b42bffc41677251b26, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -13.89
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+    - target: {fileID: 4000011310490050, guid: fc84ce77383d35b42bffc41677251b26, type: 2}
       propertyPath: m_LocalPosition.z
       value: 8.17
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+    - target: {fileID: 4000011310490050, guid: fc84ce77383d35b42bffc41677251b26, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+    - target: {fileID: 4000011310490050, guid: fc84ce77383d35b42bffc41677251b26, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+    - target: {fileID: 4000011310490050, guid: fc84ce77383d35b42bffc41677251b26, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+    - target: {fileID: 4000011310490050, guid: fc84ce77383d35b42bffc41677251b26, type: 2}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+    - target: {fileID: 4000011310490050, guid: fc84ce77383d35b42bffc41677251b26, type: 2}
       propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010789061800, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
-      propertyPath: m_Name
-      value: Player_1
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: fc84ce77383d35b42bffc41677251b26, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1781947352
 GameObject:
@@ -4632,6 +4716,48 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!1001 &1852526113
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 401.28268
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 699.0061
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1110.9697
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2011249280
 GameObject:
   m_ObjectHideFlags: 0
@@ -4664,7 +4790,7 @@ RectTransform:
   m_Children:
   - {fileID: 646013701}
   m_Father: {fileID: 946854281}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -280.70004, y: -202.19989}
@@ -5038,7 +5164,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &2147284839
 GameObject:
   m_ObjectHideFlags: 0

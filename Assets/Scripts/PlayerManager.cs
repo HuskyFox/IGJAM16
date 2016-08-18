@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour {
 		for (int i = 1; i <= maxPlayers; i++) {
 			DontDestroyOnLoad(GameObject.Find("Player_"+i));
 		}
+
 		DontDestroyOnLoad(GameObject.Find("InControl"));
 
 	}
@@ -45,6 +46,7 @@ public class PlayerManager : MonoBehaviour {
 		if(SceneManager.GetActiveScene().name=="MainMenu") {
 			if(isNumberOfPlayersOk) {
 				if (inputDevice.Command.IsPressed) {
+					DeactivateExtraPlayers ();
 					SceneManager.LoadScene("Demo Scene");
 					SoundManager.instance.StopAmbianceField ();
 				}
@@ -69,6 +71,12 @@ public class PlayerManager : MonoBehaviour {
 			CreateRandomWolf ();
 		}
 
+	}
+
+	void DeactivateExtraPlayers() {
+		for(int i=players.Count+1;i<=maxPlayers;i++) {
+			GameObject.Find ("Player_" + i).SetActive (false);
+		}
 	}
 
 	void CreateRandomWolf() {

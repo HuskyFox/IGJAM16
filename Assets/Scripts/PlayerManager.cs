@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour {
 
-	const int maxPlayers = 1;
+	const int maxPlayers = 2;
 
 	[HideInInspector]public List<Player> players = new List<Player>( maxPlayers );
 
@@ -58,7 +58,6 @@ public class PlayerManager : MonoBehaviour {
 			if(areAllPlayersActive) {
 				if (inputDevice.Command.IsPressed) {
 					SceneManager.LoadScene("Demo Scene");
-					SoundManager.instance.RandomizeSfx (sheepBaa1, sheepBaa2, sheepBaa3, sheepBaa4);
 				}
 
 			}
@@ -67,6 +66,7 @@ public class PlayerManager : MonoBehaviour {
 			if (JoinButtonWasPressedOnDevice (inputDevice)) {
 				if (ThereIsNoPlayerUsingDevice (inputDevice)) {
 					AssignDeviceToPlayer (inputDevice);
+					SoundManager.instance.RandomizeSfx (sheepBaa1, sheepBaa2, sheepBaa3, sheepBaa4);
 
 				}
 				if (players.Count == maxPlayers) {

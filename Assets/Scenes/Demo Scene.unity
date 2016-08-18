@@ -345,13 +345,17 @@ MonoBehaviour:
   wolfMan: {fileID: 0}
   gameFinished: 0
   gameOverUI: {fileID: 2135147508}
-  winnerIsUI: {fileID: 0}
+  winnerIsUI: {fileID: 109487652}
+  winnerDeclarationUI: {fileID: 487722192}
+  scorer: {fileID: 1063237734}
   timerLabel: {fileID: 137317528}
   currentlyTiming: 1
-  startingTime: 270
+  startingTime: 60
   time: 0
   mins: 0
   seconds: 0
+  gameWinner: 0
+  egRestart: {fileID: 1063237735}
 --- !u!1 &204201001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,12 +1644,16 @@ MonoBehaviour:
   gameFinished: 0
   gameOverUI: {fileID: 2135147508}
   winnerIsUI: {fileID: 109487652}
+  winnerDeclarationUI: {fileID: 0}
+  scorer: {fileID: 0}
   timerLabel: {fileID: 836392008}
   currentlyTiming: 1
   startingTime: 5
   time: 5
   mins: 0
   seconds: 5
+  gameWinner: 0
+  egRestart: {fileID: 0}
 --- !u!114 &836392008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1821,6 +1829,7 @@ GameObject:
   - 114: {fileID: 1063237731}
   - 114: {fileID: 1063237730}
   - 114: {fileID: 1063237734}
+  - 114: {fileID: 1063237735}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1921,10 +1930,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noOfPlayers: 4
   playerOneScore: {fileID: 1213678275}
+  oneScore: 0
   playerTwoScore: {fileID: 395773157}
+  twoScore: 0
   playerThreeScore: {fileID: 1710062968}
+  threeScore: 0
   playerFourScore: {fileID: 216627564}
+  fourScore: 0
   currentlyPlaying: 0
+--- !u!114 &1063237735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1063237729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c79b1e14e02d13428b2370b78806667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winningPlayerText: {fileID: 67150457}
+  timer: {fileID: 137317530}
 --- !u!1 &1106805945
 GameObject:
   m_ObjectHideFlags: 0

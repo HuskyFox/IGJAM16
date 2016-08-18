@@ -15,6 +15,8 @@ public class Timer : MonoBehaviour
     public bool gameFinished;
     public GameObject gameOverUI;
     public GameObject winnerIsUI;
+    public GameObject winnerDeclarationUI;
+    public Scorer scorer;
 
     public Text timerLabel;
     public bool currentlyTiming;
@@ -23,6 +25,9 @@ public class Timer : MonoBehaviour
     public float mins;
     public float seconds;
     float fraction;
+
+    public int gameWinner;
+    public EndGameRestart egRestart;
 
     void Start()
     {
@@ -109,9 +114,28 @@ public class Timer : MonoBehaviour
         gameFinished = true;
         print("Time is up!");
         gameOverUI.SetActive(true);
-        if (gameOverUI.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("GameOverAnim"))
+
+        Invoke("WinnerUI", 3f);
+
+        float winner = Mathf.Max(scorer.oneScore, scorer.twoScore, scorer.threeScore, scorer.fourScore);
+        if (winner == scorer.oneScore)
         {
-           //do nothing
+            gameWinner = 1;
+        }
+
+        if (winner == scorer.twoScore)
+        {
+            gameWinner = 2;
+        }
+
+        if (winner == scorer.threeScore)
+        {
+            gameWinner = 3;
+        }
+
+        if (winner == scorer.fourScore)
+        {
+            gameWinner = 4;
         }
 
     }
@@ -137,4 +161,17 @@ public class Timer : MonoBehaviour
     {
         wolfMan.CreateRandomWolf();
     }
+
+    void WinnerUI()
+    {
+        winnerIsUI.SetActive(true);
+        Invoke("WinnerDeclareUI", 1.5f);
+    }
+
+    void WinnerDeclareUI()
+    {
+        winnerDeclarationUI.SetActive(true);
+        egRestart.DeclareWinner();
+    }
+
 }

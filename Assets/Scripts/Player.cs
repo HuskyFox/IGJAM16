@@ -53,6 +53,16 @@ public class Player : MonoBehaviour
 
 		if(isGameStarted)
 			Controls();
+	    if (Device == null) return;
+
+        if (isWolf)
+	    {
+	        Device.Vibrate(0.05f, 0.05f);
+	    }
+	    else
+	    {
+	        Device.StopVibration();
+	    }
 	}
 
 	void Controls() {

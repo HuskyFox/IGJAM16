@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
 	public float speed = 6000f;
     public float rotateSpeed = 10f;
+    public Animator animationController;
 
 	public InputDevice Device { get; set; }
 
@@ -119,15 +120,19 @@ public class Player : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () {
+	void FixedUpdate ()
+	{
+	    var isMoving = false;
 		if (Device!=null) {
 			faceDirection = new Vector3(Device.LeftStickX, 0.0f, Device.LeftStickY);
 			RotateTowardsDirection(faceDirection);
 			rigidbody.velocity = new Vector3(faceDirection.x * speed , 0.0f, faceDirection.z * speed);
 			if(pushDown)
 				rigidbody.AddForce (-Vector3.up*400f);
+		    isMoving = Mathf.Abs(faceDirection.x) + Mathf.Abs(faceDirection.z) > 0.05f;
 		}
-
+	    if (!animationController) return;
+        animationController.SetBool("Moving", isMoving);
 	}
 
     public void RotateTowardsDirection(Vector3 direction)

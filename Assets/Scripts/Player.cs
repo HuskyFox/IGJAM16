@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
 
 	void Update() {
 		if (isWolf) {
-			if (Device.AnyButton.IsPressed) {
+			if (Device.Action1.WasPressed) {
 				Attack ();
 			}
 		}
@@ -62,13 +62,14 @@ public class Player : MonoBehaviour {
 		Collider[] hitColliders = Physics.OverlapSphere(attackPos, attackRange, hittableMask);
 		for(int i = 0; i < hitColliders.Length; i++){
 			if (hitColliders [i].tag != "Wolf") {
-				hitColliders[i].SendMessage("TakeDamage");
-				UpdatePlayerScoreGUI ();
+				hitColliders[i].SendMessage("TakeDamage",  this);
+                return; //To only kill one
+				//UpdatePlayerScoreGUI ();
 			}
 		}
 	}
 
-	void TakeDamage() {
+	void TakeDamage(object damageInflicter) {
 		isKilled = true;
 		playerManager.RespawnPlayer (gameObject.name);
 		UpdatePlayerScoreGUI ();

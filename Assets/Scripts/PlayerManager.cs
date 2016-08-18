@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour {
 
-	const int maxPlayers = 3;
+	const int maxPlayers = 1;
 
 	[HideInInspector]public List<Player> players = new List<Player>( maxPlayers );
 

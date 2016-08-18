@@ -21,6 +21,7 @@ public class WolfManager : MonoBehaviour
 	float timer;
 
 	PlayerManager playerManager;
+    Timer timeManager;
     
     void OnEnable ()
     {
@@ -40,6 +41,8 @@ public class WolfManager : MonoBehaviour
 	void Start()
 	{
 		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
+        timeManager = GameObject.Find("WolfTimer").GetComponent<Timer>();
+
 		wolfSwitchWarning.text = "";
 	}
 
@@ -61,11 +64,6 @@ public class WolfManager : MonoBehaviour
 		wolfSwitchWarning.text = "";
 	}
 
-    void InvokeCreateWolf()
-    {
-        Invoke("CreateRandomWolf", 5f);
-    }
-
     void CreateRandomWolf()
     {
         timer = 0f;
@@ -73,7 +71,13 @@ public class WolfManager : MonoBehaviour
         //MakeEveryoneASheep ();
         playerManager.SendMessage("MakeEveryoneASheep");
         currentWolfIndex = CreateNewRandomNumber();
+        timeManager.gameObject.SetActive(true);
+        timeManager.StartNewWolfCountdown();
+        Invoke("MakeWolf", 5f);
+        
+    }
 
+    void MakeWolf() { 
         if (currentWolfIndex > 0)
         {
             var wolf = GameObject.Find("Player_" + currentWolfIndex).GetComponent<Player>();

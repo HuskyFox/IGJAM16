@@ -267,6 +267,7 @@ MonoBehaviour:
   wolfTimer: 0
   wolfCountdown: 0
   wolfTimerLabel: {fileID: 0}
+  wolfMan: {fileID: 0}
   gameFinished: 0
   gameOverUI: {fileID: 2135147508}
   winnerIsUI: {fileID: 0}
@@ -310,7 +311,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 178}
+  m_AnchoredPosition: {x: 0, y: 350}
   m_SizeDelta: {x: 398.83, y: 100.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &210885072
@@ -1367,6 +1368,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52e9d7bdf1f374a69938b1323df989b8, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &824936226 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011974432388, guid: 52e9d7bdf1f374a69938b1323df989b8,
+    type: 2}
+  m_PrefabInternal: {fileID: 824936225}
+  m_Script: {fileID: 11500000, guid: 2e54d3e1af04b471db8a6bc2d1da12ac, type: 3}
 --- !u!1 &836392005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,7 +1386,7 @@ GameObject:
   - 114: {fileID: 836392008}
   - 114: {fileID: 836392007}
   m_Layer: 5
-  m_Name: Timer
+  m_Name: WolfTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1418,9 +1425,10 @@ MonoBehaviour:
   wolfTimer: 1
   wolfCountdown: 0
   wolfTimerLabel: {fileID: 836392008}
+  wolfMan: {fileID: 824936226}
   gameFinished: 0
-  gameOverUI: {fileID: 0}
-  winnerIsUI: {fileID: 0}
+  gameOverUI: {fileID: 2135147508}
+  winnerIsUI: {fileID: 109487652}
   timerLabel: {fileID: 836392008}
   currentlyTiming: 1
   startingTime: 5

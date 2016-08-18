@@ -73,6 +73,7 @@ public class WolfManager : MonoBehaviour
         currentWolfIndex = CreateNewRandomNumber();
         timeManager.gameObject.SetActive(true);
         timeManager.StartNewWolfCountdown();
+		SoundManager.instance.PlayRandomFarmerShout ();
         Invoke("MakeWolf", 5f);
         
     }
@@ -80,6 +81,7 @@ public class WolfManager : MonoBehaviour
     void MakeWolf() { 
         if (currentWolfIndex > 0)
         {
+			SoundManager.instance.PlayGunShot ();
             var wolf = GameObject.Find("Player_" + currentWolfIndex).GetComponent<Player>();
             wolf.MakeWolf();
             isWolfCreated = true;

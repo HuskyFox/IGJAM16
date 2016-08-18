@@ -67,7 +67,7 @@ public class PlayerManager : MonoBehaviour {
 			if (JoinButtonWasPressedOnDevice (inputDevice)) {
 				if (ThereIsNoPlayerUsingDevice (inputDevice)) {
 					AssignDeviceToPlayer (inputDevice);
-					SoundManager.instance.PlayRandomFarmerShout();
+					SoundManager.instance.PlayRandomSheepBaa();
 
 				}
 				if (players.Count == maxPlayers) {

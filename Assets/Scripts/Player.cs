@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public delegate void PlayerWasKilled(Player killer, Player victim);
     public static PlayerWasKilled OnPlayerKilled;
 
+    public GameObject Particles;
+
 	public float speed = 6000f;
     public float rotateSpeed = 10f;
     public Animator animationController;
@@ -115,7 +117,11 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	void TakeDamage(object damageInflicter) {
+	void TakeDamage(object damageInflicter)
+	{
+	    var particles = Instantiate(Particles);
+	    if (particles) particles.transform.position = transform.position;
+
 		isKilled = true;
 		RespawnPlayer ();
 	    if (OnPlayerKilled != null)

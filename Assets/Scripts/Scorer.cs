@@ -20,6 +20,13 @@ public class Scorer : MonoBehaviour {
 
     public bool currentlyPlaying;
 
+    void Awake()
+    {
+        var playerManager = FindObjectOfType<PlayerManager>();
+        if (playerManager)
+            noOfPlayers = playerManager.players.Count;
+    }
+
 	// Use this for initialization
 	void Start () {
 

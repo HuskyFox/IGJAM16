@@ -73,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013976860344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 1.38, z: -9.63}
+  m_LocalPosition: {x: 91, y: 1.38, z: -9.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: -19.2, z: 0}
   m_Children:
@@ -212,6 +212,7 @@ MonoBehaviour:
   isTimeSet: 0
   currentWolfIndex: 0
   isWolfCreated: 0
+  speechBubble: {fileID: 0}
 --- !u!114 &114000013534261866
 MonoBehaviour:
   m_ObjectHideFlags: 1

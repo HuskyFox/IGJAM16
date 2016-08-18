@@ -23,6 +23,8 @@ GameObject:
   - 54: {fileID: 54000013829491924}
   - 114: {fileID: 114000011114185000}
   - 208: {fileID: 208000010228672626}
+  - 114: {fileID: 114000010004834402}
+  - 114: {fileID: 114000010754867520}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -55,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010789061800}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.0575361, y: 0.925, z: 10.9435215}
+  m_LocalPosition: {x: -3.030979, y: -0.14, z: -2.3828692}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_Children:
@@ -143,6 +145,29 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010004834402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010789061800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d9b3e4de721144dbff4f8cf702eb21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ThreatReach: 5
+--- !u!114 &114000010754867520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010789061800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 217540fe0cefd5f45aae1345bd4e53f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011114185000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,6 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rotateSpeed: 10
+  playerIndex: 0
 --- !u!136 &136000010057979210
 CapsuleCollider:
   m_ObjectHideFlags: 1

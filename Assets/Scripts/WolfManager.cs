@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 public class WolfManager : MonoBehaviour 
 {
 	public int minTimeBetweenWolfSwitch = 10;
 	public int maxTimeBetweenWolfSwitch = 30;
 	private int timeBetweenSwitch;
-
-	public GameObject playerPrefab;
+	public Text wolfSwitchWarning;
+	bool setWarningText = false;
 
 	public bool isTimeSet = false;
 
 	public int currentWolfIndex;
-	public bool isWolfCreated = false;
+	[HideInInspector]public bool isWolfCreated = false;
 	const int maxPlayers = 3;
-	public bool isWolf { get; set; }
+	[HideInInspector]public bool isWolf { get; set; }
 
 	float timer;
 
@@ -24,6 +25,7 @@ public class WolfManager : MonoBehaviour
 	void Start()
 	{
 		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
+		wolfSwitchWarning.text = "";
 	}
 
 	void Update()
@@ -32,8 +34,16 @@ public class WolfManager : MonoBehaviour
 		if (!isTimeSet)
 			GenerateRandomTimeBetweenSwitch ();
 
-		if (timer >= timeBetweenSwitch)
+		if (timer >= timeBetweenSwitch) 
 			CreateRandomWolf ();
+
+	}
+
+	IEnumerator ShowWolfWarning (string warning, float delay)
+	{
+		wolfSwitchWarning.text = "A new wolf was chosen!";
+		yield return new WaitForSeconds (delay);
+		wolfSwitchWarning.text = "";
 	}
 
 	void CreateRandomWolf()
@@ -47,6 +57,7 @@ public class WolfManager : MonoBehaviour
 			var wolf = GameObject.Find ("Player_" + currentWolfIndex).GetComponent<Player> ();
 			wolf.MakeWolf ();
 			isWolfCreated = true;
+			StartCoroutine(ShowWolfWarning ("Abc", 1f));
 			Debug.Log ("A new wolf was created.");
 		}
 	}
@@ -83,7 +94,7 @@ public class WolfManager : MonoBehaviour
 
 	int GenerateRandomTimeBetweenSwitch()
 	{
-		timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch);
+		timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch +1);
 		Debug.Log (timeBetweenSwitch);
 		isTimeSet = true;
 		return timeBetweenSwitch;

@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce90c7951f1340c3b1c85390b213e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  players: []
   playerPrefab: {fileID: 1000010789061800, guid: a28830997b7e14703a66871af0b2fbe5,
     type: 2}
   isGameStarted: 0
@@ -363,7 +364,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 629073512}
   m_Layer: 0
-  m_Name: Sheeps (1)
+  m_Name: Sheeps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -414,7 +415,7 @@ GameObject:
   - 4: {fileID: 658931799}
   - 108: {fileID: 658931798}
   m_Layer: 0
-  m_Name: Directional Light (1)
+  m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,7 +484,7 @@ GameObject:
   - 114: {fileID: 731623451}
   - 114: {fileID: 731623450}
   m_Layer: 0
-  m_Name: EventSystem (1)
+  m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1455,7 +1456,7 @@ GameObject:
   - 114: {fileID: 1705847354}
   - 114: {fileID: 1705847353}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1600,7 +1601,7 @@ GameObject:
   - 124: {fileID: 1718617334}
   - 81: {fileID: 1718617333}
   m_Layer: 0
-  m_Name: Main Camera (1)
+  m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2124,7 +2125,7 @@ Prefab:
     - target: {fileID: 114000011974432388, guid: 52e9d7bdf1f374a69938b1323df989b8,
         type: 2}
       propertyPath: maxTimeBetweenWolfSwitch
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114000011974432388, guid: 52e9d7bdf1f374a69938b1323df989b8,
         type: 2}
@@ -2145,7 +2146,7 @@ GameObject:
   - 4: {fileID: 2144284609}
   - 114: {fileID: 2144284608}
   m_Layer: 0
-  m_Name: InControl (1)
+  m_Name: InControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

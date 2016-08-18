@@ -4,9 +4,9 @@ using Random = UnityEngine.Random;
 
 public class WolfManager : MonoBehaviour 
 {
-	public float minTimeBetweenWolfSwitch = 10f;
-	public float maxTimeBetweenWolfSwitch = 30f;
-	private float timeBetweenSwitch;
+	public int minTimeBetweenWolfSwitch = 10;
+	public int maxTimeBetweenWolfSwitch = 30;
+	private int timeBetweenSwitch;
 
 	public GameObject playerPrefab;
 
@@ -14,10 +14,17 @@ public class WolfManager : MonoBehaviour
 
 	public int currentWolfIndex;
 	public bool isWolfCreated = false;
-	const int maxPlayers = 4;
+	const int maxPlayers = 3;
 	public bool isWolf { get; set; }
 
 	float timer;
+
+	PlayerManager playerManager;
+
+	void Start()
+	{
+		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
+	}
 
 	void Update()
 	{
@@ -34,12 +41,14 @@ public class WolfManager : MonoBehaviour
 		timer = 0f;
 		isTimeSet = false;
 		//MakeEveryoneASheep ();
-		GameObject.Find ("PlayerManager").SendMessage("MakeEveryoneASheep");
+		playerManager.SendMessage("MakeEveryoneASheep");
 		currentWolfIndex = CreateNewRandomNumber ();
-		var wolf = GameObject.Find("Player_"+currentWolfIndex).GetComponent<Player>();
-		wolf.MakeWolf ();
-		isWolfCreated = true;
-		Debug.Log("A new wolf was created.");
+		if (currentWolfIndex > 0) {
+			var wolf = GameObject.Find ("Player_" + currentWolfIndex).GetComponent<Player> ();
+			wolf.MakeWolf ();
+			isWolfCreated = true;
+			Debug.Log ("A new wolf was created.");
+		}
 	}
 
 	/*void MakeEveryoneASheep() 
@@ -61,15 +70,18 @@ public class WolfManager : MonoBehaviour
 
 	int CreateNewRandomNumber() 
 	{
-		int randomPlayerIndex = 0;
-		do {
-			randomPlayerIndex = Random.Range (1, 4);
-		} while( randomPlayerIndex==currentWolfIndex );
+		if (playerManager.players.Count > 1) {
+			int randomPlayerIndex = 0;
+			do {
+				randomPlayerIndex = Random.Range (1, playerManager.players.Count +1);
+			} while(randomPlayerIndex == currentWolfIndex);
 
-		return randomPlayerIndex;
+			return randomPlayerIndex;
+		} else
+			return 1;
 	}
 
-	float GenerateRandomTimeBetweenSwitch()
+	int GenerateRandomTimeBetweenSwitch()
 	{
 		timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch);
 		Debug.Log (timeBetweenSwitch);

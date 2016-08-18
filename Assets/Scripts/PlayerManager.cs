@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour {
 
 	const int maxPlayers = 3;
 
-	List<Player> players = new List<Player>( maxPlayers );
+	[HideInInspector]public List<Player> players = new List<Player>( maxPlayers );
 
 	List<Vector3> playerPositions;
 
@@ -62,7 +62,8 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	void MakeEveryoneASheep() {
-		for(int i=1;i<=maxPlayers;i++) {
+		for(int i=1;i<=players.Count;i++) {
+			print (i);
 			GameObject.Find("Player_"+i).GetComponent<Player>().MakeSheep();
 		}
 	}

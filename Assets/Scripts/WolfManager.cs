@@ -22,6 +22,9 @@ public class WolfManager : MonoBehaviour
 
 	PlayerManager playerManager;
     Timer timeManager;
+
+	public GameObject speechBubble;
+
     
     void OnEnable ()
     {
@@ -44,6 +47,12 @@ public class WolfManager : MonoBehaviour
     {
         CreateRandomWolf();
     }
+
+
+	void MakeSpeechBubbleDisappear()
+	{
+		speechBubble.SetActive (false);
+	}
 
 	void Start()
 	{
@@ -81,6 +90,8 @@ public class WolfManager : MonoBehaviour
         timeManager.gameObject.SetActive(true);
         timeManager.StartNewWolfCountdown();
 		SoundManager.instance.PlayRandomFarmerShout ();
+		speechBubble.SetActive (true);
+		Invoke ("MakeSpeechBubbleDisappear", 1f);
         Invoke("MakeWolf", 5f);
         
     }

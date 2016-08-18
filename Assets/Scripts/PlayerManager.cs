@@ -137,10 +137,10 @@ public class PlayerManager : MonoBehaviour {
 			int nextPlayer = players.Count + 1;
 			player.name = "Player_"+nextPlayer;
 			player.Device = inputDevice;
+
 			player.playerIndex = nextPlayer;
 			RespawnPlayer ( player.name );
 			players.Add( player );
-		//	numberOfPlayersText.text = "Number of players: " + players.Count;
 		}
 	}
 

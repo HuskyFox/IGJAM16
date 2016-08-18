@@ -83,7 +83,7 @@ GameObject:
   - 23: {fileID: 23000012223630700}
   - 95: {fileID: 95000011139648130}
   m_Layer: 0
-  m_Name: Wolf_Model
+  m_Name: Wolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,6 +120,7 @@ GameObject:
   - 208: {fileID: 208000010228672626}
   - 114: {fileID: 114000010004834402}
   - 114: {fileID: 114000010754867520}
+  - 114: {fileID: 114000011521425652}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -308,7 +309,7 @@ GameObject:
   - 4: {fileID: 4000012067841540}
   - 95: {fileID: 95000014095576712}
   m_Layer: 0
-  m_Name: SheepModel
+  m_Name: Sheep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,10 +542,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010463830504}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: -0.89, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000010475969488}
   m_RootOrder: 1
@@ -1461,6 +1462,18 @@ MonoBehaviour:
   rotateSpeed: 10
   animationController: {fileID: 95000014095576712}
   playerIndex: 1
+--- !u!114 &114000011521425652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010789061800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79541679b6015664fa76792878f6e4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Particles: {fileID: 1000013464745854, guid: 126810e4ba6bac841852821a90872340, type: 2}
 --- !u!136 &136000010057979210
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -18,10 +18,10 @@ namespace BasicExample
 
         void Start ()
         {
-            Handheld.Vibrate();
-            XInputDotNetPure.GamePad.SetVibration(0, .1f, .1f);
+            //Handheld.Vibrate();
+            //XInputDotNetPure.GamePad.SetVibration(0, .1f, .1f);
 
-            joystickNames = Input.GetJoystickNames();
+            //joystickNames = Input.GetJoystickNames();
           /*  for (int i = 0; i < joystickNames.Length; i++)
             {
                 if (i == 0)

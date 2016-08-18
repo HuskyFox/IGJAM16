@@ -4,7 +4,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
+
+    public delegate void PlayerWasKilled(Player killer, Player victim);
+    public static PlayerWasKilled OnPlayerKilled;
 
 	public float speed = 6000f;
     public float rotateSpeed = 10f;
@@ -43,12 +47,22 @@ public class Player : MonoBehaviour {
 		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
 			isGameStarted = true;
 			Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
-			startPosition.y = 0;
+			startPosition.y = 1;
 			transform.position = startPosition;
 		}
 
 		if(isGameStarted)
 			Controls();
+	    if (Device == null) return;
+
+        if (isWolf)
+	    {
+	        Device.Vibrate(0.05f, 0.05f);
+	    }
+	    else
+	    {
+	        Device.StopVibration();
+	    }
 	}
 
 	void Controls() {
@@ -89,6 +103,10 @@ public class Player : MonoBehaviour {
 		isKilled = true;
 		playerManager.RespawnPlayer (gameObject.name);
 		print ("You killed a sheep!");
+	    if (OnPlayerKilled != null)
+	    {
+	        OnPlayerKilled.Invoke((Player) damageInflicter, this);
+	    }
 	}
 
 	// Update is called once per frame

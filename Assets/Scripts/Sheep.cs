@@ -4,6 +4,7 @@ using NodeCanvas.StateMachines;
 
 public class Sheep : MonoBehaviour
 {
+    public GameObject Particles;
 
     public delegate void NPSheepWasKilled(Player killer, Sheep npSheep);
     public static NPSheepWasKilled OnNpSheepWasKilled;
@@ -25,14 +26,21 @@ public class Sheep : MonoBehaviour
         fsm.PauseBehaviour();
     }
 
+
+
 	void TakeDamage(object damageInflicter) {
 		//GetComponent<NavMeshAgent> ().Stop ();
+	    var particles = Instantiate(Particles);
+	    if (particles) particles.transform.position = transform.position;
+
 		gameObject.SetActive (false);
-		SoundManager.instance.PlayWolfBiteFail ();
+        if (SoundManager.instance)
+		    SoundManager.instance.PlayWolfBiteFail ();
 	    var player = (Player) damageInflicter;
 	    if (!player) return;
         if(OnNpSheepWasKilled != null)
             OnNpSheepWasKilled.Invoke(player, this);
+        
 	    //	Destroy ( this.gameObject );
 	}
 }

@@ -22,21 +22,37 @@ public class WolfManager : MonoBehaviour
 
 	PlayerManager playerManager;
     Timer timeManager;
+
+	public GameObject speechBubble;
+
     
     void OnEnable ()
     {
         Sheep.OnNpSheepWasKilled += OnNPSheepDied;
+        Player.OnPlayerKilled += OnPlayerWasKilled;
     }
 
     void OnDisable()
     {
         Sheep.OnNpSheepWasKilled -= OnNPSheepDied;
+        Player.OnPlayerKilled -= OnPlayerWasKilled;
     }
 
     void OnNPSheepDied(Player killer, Sheep sheep)
     {
         CreateRandomWolf();
     }
+
+    void OnPlayerWasKilled(Player killer, Player victim)
+    {
+        CreateRandomWolf();
+    }
+
+
+	void MakeSpeechBubbleDisappear()
+	{
+		speechBubble.SetActive (false);
+	}
 
 	void Start()
 	{
@@ -64,7 +80,7 @@ public class WolfManager : MonoBehaviour
 		wolfSwitchWarning.text = "";
 	}
 
-    void CreateRandomWolf()
+    public void CreateRandomWolf()
     {
         timer = 0f;
         isTimeSet = false;
@@ -74,6 +90,8 @@ public class WolfManager : MonoBehaviour
         timeManager.gameObject.SetActive(true);
         timeManager.StartNewWolfCountdown();
 		SoundManager.instance.PlayRandomFarmerShout ();
+		speechBubble.SetActive (true);
+		Invoke ("MakeSpeechBubbleDisappear", 1f);
         Invoke("MakeWolf", 5f);
         
     }
@@ -86,7 +104,6 @@ public class WolfManager : MonoBehaviour
             wolf.MakeWolf();
             isWolfCreated = true;
             StartCoroutine(ShowWolfWarning("Abc", 1f));
-            Debug.Log("A new wolf was created.");
         }
     }
 
@@ -123,7 +140,6 @@ public class WolfManager : MonoBehaviour
 	int GenerateRandomTimeBetweenSwitch()
 	{
 		timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch +1);
-		Debug.Log (timeBetweenSwitch);
 		isTimeSet = true;
 		return timeBetweenSwitch;
 	}

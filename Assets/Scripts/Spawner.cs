@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour {
             
 
 
-        InvokeRepeating("SpawnObjectAtRandomPointInRadius", SpawnRate, SpawnRate);
+        //InvokeRepeating("SpawnObjectAtRandomPointInRadius", SpawnRate, SpawnRate);
     }
 
     public void SpawnObjectAtRandomPointInRadius()

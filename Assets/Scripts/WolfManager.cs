@@ -26,14 +26,21 @@ public class WolfManager : MonoBehaviour
     void OnEnable ()
     {
         Sheep.OnNpSheepWasKilled += OnNPSheepDied;
+        Player.OnPlayerKilled += OnPlayerWasKilled;
     }
 
     void OnDisable()
     {
         Sheep.OnNpSheepWasKilled -= OnNPSheepDied;
+        Player.OnPlayerKilled -= OnPlayerWasKilled;
     }
 
     void OnNPSheepDied(Player killer, Sheep sheep)
+    {
+        CreateRandomWolf();
+    }
+
+    void OnPlayerWasKilled(Player killer, Player victim)
     {
         CreateRandomWolf();
     }
@@ -64,7 +71,7 @@ public class WolfManager : MonoBehaviour
 		wolfSwitchWarning.text = "";
 	}
 
-    void CreateRandomWolf()
+    public void CreateRandomWolf()
     {
         timer = 0f;
         isTimeSet = false;

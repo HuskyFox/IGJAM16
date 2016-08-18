@@ -28,7 +28,8 @@ public class Sheep : MonoBehaviour
 	void TakeDamage(object damageInflicter) {
 		//GetComponent<NavMeshAgent> ().Stop ();
 		gameObject.SetActive (false);
-		SoundManager.instance.PlayWolfBiteFail ();
+        if (SoundManager.instance)
+		    SoundManager.instance.PlayWolfBiteFail ();
 	    var player = (Player) damageInflicter;
 	    if (!player) return;
         if(OnNpSheepWasKilled != null)

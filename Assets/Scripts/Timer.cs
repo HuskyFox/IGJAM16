@@ -30,6 +30,7 @@ public class Timer : MonoBehaviour
     {
         time = startingTime;
 		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (1.3f, 5f)));
+        Invoke("InitialWolf", .1f);
     }
 
 	IEnumerator AmbianceRandomSheepSounds(float delay)
@@ -138,5 +139,10 @@ public class Timer : MonoBehaviour
     public void SetNewWolf()
     {
         this.transform.parent.gameObject.transform.localPosition = new Vector3(0, 350, 0);
+    }
+
+    public void InitialWolf()
+    {
+        wolfMan.CreateRandomWolf();
     }
 }

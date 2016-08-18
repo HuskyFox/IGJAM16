@@ -1,12 +1,13 @@
 ﻿using InControl;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour {
 
-	const int maxPlayers = 3;
+	const int maxPlayers = 1;
 
 	[HideInInspector]public List<Player> players = new List<Player>( maxPlayers );
 
@@ -19,25 +20,49 @@ public class PlayerManager : MonoBehaviour {
 	public int currentWolfIndex;
 	public bool isWolfCreated = false;
 
+	public bool areAllPlayersActive = false;
+
+	void Awake() {
+		DontDestroyOnLoad(transform.gameObject);
+		for (int i = 1; i <= maxPlayers; i++) {
+			DontDestroyOnLoad(GameObject.Find("Player_"+i));
+		}
+		DontDestroyOnLoad(GameObject.Find("InControl"));
+
+	}
+
 	// Use this for initialization
 	void Start () {
 		//numberOfPlayersText = GameObject.Find ("NumberOfPlayersText").GetComponent<Text> ();
-		playerPositions = new List<Vector3>() {
+/*		playerPositions = new List<Vector3>() {
 			GameObject.Find("Plane1").transform.position,
 			GameObject.Find("Plane2").transform.position,
 			GameObject.Find("Plane3").transform.position,
 			GameObject.Find("Plane4").transform.position,
 		};
+		*/
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		var inputDevice = InputManager.ActiveDevice;
 
+		if(SceneManager.GetActiveScene().name=="MainMenu") {
+			if(areAllPlayersActive) {
+				if (inputDevice.Command.IsPressed) {
+					SceneManager.LoadScene("Demo Scene");
+					for (int i = 1; i <= 4; i++) {
+						SetStartPlayerPosition (i);
+					}
+
+				}
+
+			}
+		}
 		if (!isGameStarted) {
 			if (JoinButtonWasPressedOnDevice (inputDevice)) {
 				if (ThereIsNoPlayerUsingDevice (inputDevice)) {
-					CreatePlayer (inputDevice);
+					AssignDeviceToPlayer (inputDevice);
 				}
 				if (players.Count == maxPlayers) {
 					isGameStarted = true;
@@ -47,10 +72,10 @@ public class PlayerManager : MonoBehaviour {
 			if(!isWolfCreated)
 				CreateRandomWolf ();
 		}
-
 		if (Input.GetKey (KeyCode.Space)) {
 			CreateRandomWolf ();
 		}
+
 	}
 
 	void CreateRandomWolf() {
@@ -71,7 +96,7 @@ public class PlayerManager : MonoBehaviour {
 	int CreateNewRandomNumber() {
 		int randomPlayerIndex = 0;
 		do {
-			randomPlayerIndex = Random.Range (1, 4);
+			randomPlayerIndex = Random.Range (1, maxPlayers);
 		} while( randomPlayerIndex==currentWolfIndex );
 
 		return randomPlayerIndex;
@@ -125,23 +150,28 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 
-	void CreatePlayer( InputDevice inputDevice )
+	void AssignDeviceToPlayer( InputDevice inputDevice )
 	{
-		if (players.Count < maxPlayers)
-		{
+		if (players.Count < maxPlayers) {
 			// Pop a position off the list. We'll add it back if the player is removed.
-			var playerPosition = playerPositions[0];
-			playerPositions.RemoveAt( 0 );
+			//var playerPosition = playerPositions [0];
+			//playerPositions.RemoveAt (0);
 
-			var gameObject = (GameObject) Instantiate( playerPrefab, playerPosition, Quaternion.identity );
-			var player = gameObject.GetComponent<Player>();
+			//var gameObject = (GameObject)Instantiate (playerPrefab, playerPosition, Quaternion.identity);
 			int nextPlayer = players.Count + 1;
-			player.name = "Player_"+nextPlayer;
+
+			GameObject gameObject = GameObject.Find("Player_"+nextPlayer);
+			Player player = gameObject.GetComponent<Player> ();
+			//player.name = "Player_" + nextPlayer;
 			player.Device = inputDevice;
 
-			player.playerIndex = nextPlayer;
-			RespawnPlayer ( player.name );
-			players.Add( player );
+			//player.playerIndex = nextPlayer;
+			//RespawnPlayer (player.name);
+			players.Add (player);
+		} 
+
+		if(players.Count == maxPlayers){
+			areAllPlayersActive = true;
 		}
 	}
 
@@ -153,5 +183,9 @@ public class PlayerManager : MonoBehaviour {
 		Vector3 pos = spawnPointIndex.transform.position;
 		pos.y = 1;
 		player.transform.position = pos;
+	}
+
+	void SetStartPlayerPosition(int index) {
+		GameObject.Find ("Player_" + index).transform.position = GameObject.Find ("Plane" + index).transform.position;
 	}
 }

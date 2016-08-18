@@ -24,6 +24,10 @@ public class PlayerManager : MonoBehaviour {
 	public bool areAllPlayersActive = false;
 	public bool isControllerRegistrationActivated = false;
 
+	public AudioClip sheepBaa1;
+	public AudioClip sheepBaa2;
+	public AudioClip sheepBaa3;
+	public AudioClip sheepBaa4;
 
 	void Awake() {
 		DontDestroyOnLoad(transform.gameObject);
@@ -54,7 +58,6 @@ public class PlayerManager : MonoBehaviour {
 			if(areAllPlayersActive) {
 				if (inputDevice.Command.IsPressed) {
 					SceneManager.LoadScene("Demo Scene");
-
 				}
 
 			}
@@ -63,6 +66,8 @@ public class PlayerManager : MonoBehaviour {
 			if (JoinButtonWasPressedOnDevice (inputDevice)) {
 				if (ThereIsNoPlayerUsingDevice (inputDevice)) {
 					AssignDeviceToPlayer (inputDevice);
+					SoundManager.instance.RandomizeSfx (sheepBaa1, sheepBaa2, sheepBaa3, sheepBaa4);
+
 				}
 				if (players.Count == maxPlayers) {
 					isGameStarted = true;
@@ -167,16 +172,6 @@ public class PlayerManager : MonoBehaviour {
 		if(players.Count == maxPlayers){
 			areAllPlayersActive = true;
 		}
-	}
-
-	public void RespawnPlayer(string playerName)
-	{
-		GameObject player = GameObject.Find (playerName);
-		string playerIndex = playerName.Replace ("Player_", "");
-		GameObject spawnPointIndex = GameObject.Find ("Plane" + playerIndex);
-		Vector3 pos = spawnPointIndex.transform.position;
-		//pos.y = 1;
-		player.transform.position = pos;
 	}
 
 	public void ActivateControllerRegistration() {

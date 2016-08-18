@@ -168,7 +168,7 @@ public class SoundManager : MonoBehaviour
 	public void PlaySheepReactionToHowl()
 	{
 		sounds[13].pitch = Random.Range (0.9f, 1.1f) ;
-		sounds[13].Play();
+		sounds[13].Play(2500);
 	}
 
 	public void PlayGameMusic1()

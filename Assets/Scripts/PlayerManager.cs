@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour {
 
-	const int maxPlayers = 2;
+	const int maxPlayers = 1;
 
 	[HideInInspector]public List<Player> players = new List<Player>( maxPlayers );
 
@@ -172,16 +172,6 @@ public class PlayerManager : MonoBehaviour {
 		if(players.Count == maxPlayers){
 			areAllPlayersActive = true;
 		}
-	}
-
-	public void RespawnPlayer(string playerName)
-	{
-		GameObject player = GameObject.Find (playerName);
-		string playerIndex = playerName.Replace ("Player_", "");
-		GameObject spawnPointIndex = GameObject.Find ("Plane" + playerIndex);
-		Vector3 pos = spawnPointIndex.transform.position;
-		//pos.y = 1;
-		player.transform.position = pos;
 	}
 
 	public void ActivateControllerRegistration() {

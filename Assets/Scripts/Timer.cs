@@ -4,6 +4,17 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    public GameObject wolfTimerObject;
+    public bool wolfTimer;
+    public bool wolfCountdown;
+    float wolfTime = 5;
+    float wolfSeconds;
+    public Text wolfTimerLabel;
+
+
+    public bool gameFinished;
+    public GameObject gameOverUI;
+    public GameObject winnerIsUI;
 
     public Text timerLabel;
     public bool currentlyTiming;
@@ -20,30 +31,87 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        timerLabel.text = string.Format("{0:0}:{1:00}", mins, seconds);
-
-        if (currentlyTiming == true)
+        if (!wolfTimer)
         {
-            time -= Time.deltaTime;
-            mins = Mathf.Floor(time / 60);
-            seconds = Mathf.Floor(time % 60); //Use the euclidean division for the seconds.
+            timerLabel.text = string.Format("{0:0}:{1:00}", mins, seconds);
 
-            if (time <= 0)
+            if (currentlyTiming == true)
             {
-                GameOver();
-                currentlyTiming = false;
-                time = 0;
-                mins = 0;
-                seconds = 0;
-            }
+                time -= Time.deltaTime;
+                mins = Mathf.Floor(time / 60);
+                seconds = Mathf.Floor(time % 60); //Use the euclidean division for the seconds.
 
+                if (time <= 0)
+                {
+                    GameOver();
+                    currentlyTiming = false;
+                    time = 0;
+                    mins = 0;
+                    seconds = 0;
+                }
+
+            }
+        }
+
+        if (wolfTimer)
+        {
+            wolfTimerObject.SetActive(true);
+            wolfTimerLabel.text = wolfSeconds.ToString();
+            if (wolfCountdown == true)
+            {
+                wolfTime -= Time.deltaTime;
+                wolfSeconds = Mathf.Floor(wolfTime % 60);
+
+                if (wolfTime <= 0)
+                {
+                    SetNewWolf();
+                    wolfTime = 5;
+                    wolfSeconds = 5;
+                    wolfCountdown = false;
+                }
+            }
+        }
+
+        if (gameOverUI.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("GameOverAnim"))
+        {
+            //do nothing
+        }
+
+        else
+        {
+            if (gameFinished == true)
+            {
+                winnerIsUI.SetActive(true);
+                gameOverUI.SetActive(false);
+            }
         }
 
 
     }
 
-    void GameOver()
+    public void GameOver()
     {
+        gameFinished = true;
         print("Time is up!");
+        gameOverUI.SetActive(true);
+        if (gameOverUI.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("GameOverAnim"))
+        {
+           //do nothing
+        }
+
+    }
+
+    public void StartNewWolfCountdown()
+    {
+        wolfTimerObject.SetActive(true);
+        wolfTime = 5;
+        wolfSeconds = 5;
+        wolfCountdown = true;
+
+    }
+
+    public void SetNewWolf()
+    {
+        wolfTimerObject.SetActive(false);
     }
 }

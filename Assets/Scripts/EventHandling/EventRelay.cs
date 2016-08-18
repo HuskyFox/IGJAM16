@@ -7,7 +7,7 @@ public class EventRelay : MonoBehaviour {
 	public static event EventAction OnEventAction;
 
 	public enum EventMessageType {
-		WolfHowled
+		Threat
 	}
 
 	public static string RelayEvent(EventMessageType messageType, MonoBehaviour sender) {

@@ -9,7 +9,7 @@ public class PlayerScoreKeeper : MonoBehaviour
     public int OwnerIndex;
     private int _currentScore = 0;
     private Text _text;
-
+    public int CurrentScore { get{ return _currentScore; } }
     private const int KillNPSheepPenalty = 20;
     private const int KillPlayerPoints = 20;
     private const int KilledByPlayerPenalty = 10;

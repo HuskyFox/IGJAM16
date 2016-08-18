@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -182,4 +183,7 @@ public class PlayerManager : MonoBehaviour {
 		isControllerRegistrationActivated = true;
 	}
 
+	public void ChangeMainMenu(GameObject defaultHighlightedButton) {
+		EventSystem.current.SetSelectedGameObject ( defaultHighlightedButton );
+	}
 }

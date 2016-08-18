@@ -65,12 +65,12 @@ public class PlayerManager : MonoBehaviour {
 				}
 			}
 		} else {
-			if(!isWolfCreated)
-				CreateRandomWolf ();
+            if (!isWolfCreated) { }
+			//	CreateRandomWolf ();
 		}
-		if (Input.GetKey (KeyCode.Space)) {
+		/*if (Input.GetKey (KeyCode.Space)) {
 			CreateRandomWolf ();
-		}
+ */
 
 	}
 

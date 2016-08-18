@@ -825,6 +825,7 @@ GameObject:
   - 224: {fileID: 216627565}
   - 222: {fileID: 216627567}
   - 114: {fileID: 216627566}
+  - 111: {fileID: 216627568}
   m_Layer: 5
   m_Name: PlayerFourScore (3)
   m_TagString: Untagged
@@ -890,6 +891,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 216627564}
+--- !u!111 &216627568
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 216627564}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &237773438
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,6 +972,7 @@ GameObject:
   - 224: {fileID: 395773158}
   - 222: {fileID: 395773160}
   - 114: {fileID: 395773159}
+  - 111: {fileID: 395773161}
   m_Layer: 5
   m_Name: PlayerTwoScore (1)
   m_TagString: Untagged
@@ -1022,6 +1038,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 395773157}
+--- !u!111 &395773161
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 395773157}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &458012677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,6 +2211,7 @@ GameObject:
   - 224: {fileID: 1213678276}
   - 222: {fileID: 1213678278}
   - 114: {fileID: 1213678277}
+  - 111: {fileID: 1213678279}
   m_Layer: 5
   m_Name: PlayerOneScore
   m_TagString: Untagged
@@ -2246,6 +2277,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1213678275}
+--- !u!111 &1213678279
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1213678275}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &1276079395
 Prefab:
   m_ObjectHideFlags: 0
@@ -2896,6 +2941,7 @@ GameObject:
   - 224: {fileID: 1710062969}
   - 222: {fileID: 1710062971}
   - 114: {fileID: 1710062970}
+  - 111: {fileID: 1710062972}
   m_Layer: 5
   m_Name: PlayerThreeScore (2)
   m_TagString: Untagged
@@ -2961,6 +3007,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1710062968}
+--- !u!111 &1710062972
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710062968}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1721427729
 GameObject:
   m_ObjectHideFlags: 0

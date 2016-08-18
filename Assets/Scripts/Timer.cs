@@ -24,6 +24,8 @@ public class Timer : MonoBehaviour
     public float seconds;
     float fraction;
 
+	public GameObject speechBubble;
+
     void Start()
     {
         time = startingTime;
@@ -34,13 +36,19 @@ public class Timer : MonoBehaviour
 	{
 		while (!gameFinished)
 		{
+			speechBubble.SetActive (true);
+			Invoke ("MakeSpeechBubbleDisappear", 1f);
 			SoundManager.instance.PlayRandomSheepBaa ();
 			delay = Random.Range (1.3f, 6f);
-			print (delay);
 			yield return new WaitForSeconds (delay);
 		}
-
 	}
+
+	void MakeSpeechBubbleDisappear()
+	{
+		speechBubble.SetActive (false);
+	}
+
     void Update()
     {
         if (!wolfTimer)

@@ -86,7 +86,6 @@ public class WolfManager : MonoBehaviour
             wolf.MakeWolf();
             isWolfCreated = true;
             StartCoroutine(ShowWolfWarning("Abc", 1f));
-            Debug.Log("A new wolf was created.");
         }
     }
 
@@ -123,7 +122,6 @@ public class WolfManager : MonoBehaviour
 	int GenerateRandomTimeBetweenSwitch()
 	{
 		timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch +1);
-		Debug.Log (timeBetweenSwitch);
 		isTimeSet = true;
 		return timeBetweenSwitch;
 	}

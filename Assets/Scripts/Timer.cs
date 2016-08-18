@@ -107,27 +107,16 @@ public class Timer : MonoBehaviour
 
         Invoke("WinnerUI", 3f);
 
-        float winner = Mathf.Max(scorer.oneScore, scorer.twoScore, scorer.threeScore, scorer.fourScore);
-        if (winner == scorer.oneScore)
+        var scoreKeepers = GameObject.FindObjectsOfType<PlayerScoreKeeper>();
+        var highestScore = scoreKeepers[0];
+        foreach (var scoreKeeper in scoreKeepers)
         {
-            gameWinner = 1;
+            var score = scoreKeeper.CurrentScore;
+            if (score > highestScore.CurrentScore)
+                highestScore = scoreKeeper;
         }
 
-        if (winner == scorer.twoScore)
-        {
-            gameWinner = 2;
-        }
-
-        if (winner == scorer.threeScore)
-        {
-            gameWinner = 3;
-        }
-
-        if (winner == scorer.fourScore)
-        {
-            gameWinner = 4;
-        }
-
+        gameWinner = highestScore.OwnerIndex;
     }
 
 

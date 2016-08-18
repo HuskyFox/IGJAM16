@@ -102,7 +102,6 @@ public class Player : MonoBehaviour
 		Collider[] hitColliders = Physics.OverlapSphere(attackPos, attackRange, hittableMask);
 		for(int i = 0; i < hitColliders.Length; i++){
 			if (hitColliders [i].tag != "Wolf") {
-
 				hitColliders[i].SendMessage("TakeDamage",  this);
                 return; //To only kill one
 				//UpdatePlayerScoreGUI ();
@@ -115,6 +114,7 @@ public class Player : MonoBehaviour
 		RespawnPlayer ();
 	    if (OnPlayerKilled != null)
 	    {
+			SoundManager.instance.PlayWolfBiteSuccess ();
 	        OnPlayerKilled.Invoke((Player) damageInflicter, this);
 	    }
 	}

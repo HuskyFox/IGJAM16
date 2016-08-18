@@ -171,7 +171,66 @@ public class SoundManager : MonoBehaviour
 		sounds[13].Play();
 	}
 
+	public void PlayGameMusic1()
+	{
+		sounds[14].Play();
+	}
 
+	public void PlayGameMusic2()
+	{
+		sounds[15].Play();
+	}
+
+	public void PlayGameMusic3()
+	{
+		sounds[16].Play();
+	}
+
+	public void PlayGameMusic4()
+	{
+		sounds[17].Play();
+	}
+
+	public void PlayRandomGameMusic()
+	{
+		int randomIndex = Random.Range (0, 4);
+		print (randomIndex);
+		switch (randomIndex)
+		{
+		case 0:
+			PlayGameMusic1 ();
+			break;
+		case 1:
+			PlayGameMusic2 ();
+			break;
+		case 2:
+			PlayGameMusic3 ();
+			break;
+		case 3:
+			PlayGameMusic4 ();
+			break;
+		}
+	}
+
+	public void PlayRestartMusic()
+	{
+		sounds [18].Play (1100);
+	}
+
+	public void StopRestartMusic()
+	{
+		sounds [18].Stop ();
+	}
+
+	public void PlayGameMusic()
+	{
+		sounds [19].Play (2200);
+	}
+
+	public void StopGameMusic()
+	{
+		sounds [19].Stop ();
+	}
 	/*public void PlayAmbianceRandomSheepSounds()
 	{
 		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (0.5f, 3f)));

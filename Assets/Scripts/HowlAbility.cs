@@ -26,9 +26,15 @@ public class HowlAbility : MonoBehaviour
 		if (_owner.Device!=null && _owner.Device.Action2 && _elapsedTime > CooldownTime)
 	    {
 			SoundManager.instance.PlayWolfHowl ();
+			Invoke ("SheepReactionToHowl", 1.8f);
 	        _elapsedTime = 0;
 	        _threatBroadcast.BroadcastThreat();
 	    }
 	    _elapsedTime += Time.deltaTime;
+	}
+
+	void SheepReactionToHow()
+	{
+		SoundManager.instance.PlaySheepReactionToHowl ();
 	}
 }

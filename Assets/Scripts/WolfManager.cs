@@ -46,20 +46,26 @@ public class WolfManager : MonoBehaviour
 		wolfSwitchWarning.text = "";
 	}
 
-	void CreateRandomWolf()
-	{
-		timer = 0f;
-		isTimeSet = false;
-		//MakeEveryoneASheep ();
-		playerManager.SendMessage("MakeEveryoneASheep");
-		currentWolfIndex = CreateNewRandomNumber ();
-		if (currentWolfIndex > 0) {
-			var wolf = GameObject.Find ("Player_" + currentWolfIndex).GetComponent<Player> ();
-			wolf.MakeWolf ();
-			isWolfCreated = true;
-			StartCoroutine(ShowWolfWarning ("Abc", 1f));
-			Debug.Log ("A new wolf was created.");
-		}
+    void CreateRandomWolf()
+    {
+        timer = 0f;
+        isTimeSet = false;
+        //MakeEveryoneASheep ();
+        playerManager.SendMessage("MakeEveryoneASheep");
+        currentWolfIndex = CreateNewRandomNumber();
+
+    }
+
+    void SetWolf()
+    {
+        if (currentWolfIndex > 0)
+        {
+            var wolf = GameObject.Find("Player_" + currentWolfIndex).GetComponent<Player>();
+            wolf.MakeWolf();
+            isWolfCreated = true;
+            StartCoroutine(ShowWolfWarning("Abc", 1f));
+            Debug.Log("A new wolf was created.");
+        }
 	}
 
 	/*void MakeEveryoneASheep() 

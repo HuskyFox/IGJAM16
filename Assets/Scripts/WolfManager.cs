@@ -64,7 +64,7 @@ public class WolfManager : MonoBehaviour
 		wolfSwitchWarning.text = "";
 	}
 
-    void CreateRandomWolf()
+    public void CreateRandomWolf()
     {
         timer = 0f;
         isTimeSet = false;

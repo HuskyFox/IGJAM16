@@ -27,6 +27,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         time = startingTime;
+        Invoke("InitialWolf", .1f);
     }
 
     void Update()
@@ -118,5 +119,10 @@ public class Timer : MonoBehaviour
     public void SetNewWolf()
     {
         this.transform.parent.gameObject.transform.localPosition = new Vector3(0, 350, 0);
+    }
+
+    public void InitialWolf()
+    {
+        wolfMan.CreateRandomWolf();
     }
 }

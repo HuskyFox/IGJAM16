@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
         if (isWolf)
 	    {
-	        Device.Vibrate(0.05f, 0.05f);
+	        Device.Vibrate(0.1f, 0.1f);
 	    }
 	    else
 	    {

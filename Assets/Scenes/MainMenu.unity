@@ -374,7 +374,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -13.89
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1554,6 +1554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuSheep: {fileID: 1000010992432494, guid: 23ba69eebd60bc94e9b201f5fb8e577d, type: 2}
+  menuWolf: {fileID: 1000012927372260, guid: b08932b70026db74e929fbf874ea44f8, type: 2}
   inverse: 1
 --- !u!4 &481121251
 Transform:
@@ -1825,7 +1826,7 @@ MonoBehaviour:
         m_MethodName: ChangeMainMenu
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1014578399}
+          m_ObjectArgument: {fileID: 2011249280}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1912,7 +1913,7 @@ MonoBehaviour:
 
     ~As the wolf~
 
-    press X to attack the sheep infront of you
+    press A to attack the sheep infront of you
 
     press B to Howl, clearing non-player sheep from the area
 
@@ -2047,7 +2048,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -13.89
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3858,6 +3859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuSheep: {fileID: 1000010992432494, guid: 23ba69eebd60bc94e9b201f5fb8e577d, type: 2}
+  menuWolf: {fileID: 1000012927372260, guid: b08932b70026db74e929fbf874ea44f8, type: 2}
   inverse: 0
 --- !u!4 &1596518617
 Transform:
@@ -4035,7 +4037,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -13.89
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4392,7 +4394,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -13.89
       objectReference: {fileID: 0}
     - target: {fileID: 4000010475969488, guid: a28830997b7e14703a66871af0b2fbe5, type: 2}
       propertyPath: m_LocalPosition.z

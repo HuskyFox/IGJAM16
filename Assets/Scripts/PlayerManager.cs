@@ -175,7 +175,7 @@ public class PlayerManager : MonoBehaviour {
 		string playerIndex = playerName.Replace ("Player_", "");
 		GameObject spawnPointIndex = GameObject.Find ("Plane" + playerIndex);
 		Vector3 pos = spawnPointIndex.transform.position;
-		//pos.y = 1;
+		pos.y = 1;
 		player.transform.position = pos;
 	}
 

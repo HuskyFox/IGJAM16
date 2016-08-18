@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
 			isGameStarted = true;
 			Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
-			startPosition.y = 0;
+			startPosition.y = 1;
 			transform.position = startPosition;
 		}
 
@@ -102,7 +102,6 @@ public class Player : MonoBehaviour
 	void TakeDamage(object damageInflicter) {
 		isKilled = true;
 		playerManager.RespawnPlayer (gameObject.name);
-		print ("You killed a sheep!");
 	    if (OnPlayerKilled != null)
 	    {
 	        OnPlayerKilled.Invoke((Player) damageInflicter, this);

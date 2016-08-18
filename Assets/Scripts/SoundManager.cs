@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour 
 {
@@ -13,6 +14,9 @@ public class SoundManager : MonoBehaviour
 //	public AudioClip sheepBaa4;
 
 	[HideInInspector]public AudioSource[] sounds;
+//	Timer timer;
+//
+//	bool isGameStarted =false;
 
 	void Awake()
 	{
@@ -30,6 +34,13 @@ public class SoundManager : MonoBehaviour
 	}
 
 
+//	void Update()
+//	{
+//		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
+//			isGameStarted = true;
+//			timer = GameObject.Find ("WolfPlayer").GetComponent<Timer> ();
+//		}
+//	}
 
 	public void PlaySheepBaa1()
 	{
@@ -154,24 +165,25 @@ public class SoundManager : MonoBehaviour
 		sounds [12].Stop ();
 	}
 
+	public void PlaySheepReactionToHowl()
+	{
+		sounds[13].pitch = Random.Range (0.9f, 1.1f) ;
+		sounds[13].Play();
+	}
 
 
+	/*public void PlayAmbianceRandomSheepSounds()
+	{
+		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (0.5f, 3f)));
+	}
 
-
-//	public void PlaySingle (AudioClip clip)
-//	{
-//		efxSource.clip = clip;
-//		efxSource.Play ();
+	IEnumerator AmbianceRandomSheepSounds(float delay)
+	{
+		while (!timer.gameFinished)
+		{
+			PlayRandomSheepBaa ();
+			yield return new WaitForSeconds (delay);
+		}
+		*/
 //	}
-//
-//	public void RandomizeSfx (params AudioClip[] clips)
-//	{
-//		int randomIndex = Random.Range (0, clips.Length);
-//
-//		efxSource.clip = clips[randomIndex];
-//		efxSource.Play();
-//	}
-//
-
-
 }

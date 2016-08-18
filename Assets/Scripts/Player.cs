@@ -30,9 +30,12 @@ public class Player : MonoBehaviour
 
 	private bool isKilled = false;
 	private PlayerManager playerManager;
+    
 
 	private int score = 0;
 	public string playerIndex;
+
+    public Image groundIndicator;
 
 	private bool isGameStarted = false;
 
@@ -44,21 +47,24 @@ public class Player : MonoBehaviour
 		rigidbody = GetComponent<Rigidbody> ();
 		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
 		playerIndex = gameObject.name.Replace ("Player_", "");
-	}
+    }
 
 	void Update() {
 		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
 			isGameStarted = true;
 			RespawnPlayer ();
-		}
+            groundIndicator.color = new Color(Random.value, Random.value, Random.value);
+            Invoke("RemoveIndicator", 5);
+        }
 
 		if(isGameStarted)
 			Controls();
+		
 	    if (Device == null) return;
 
         if (isWolf)
 	    {
-	        Device.Vibrate(0.05f, 0.05f);
+	        Device.Vibrate(0.1f, 0.1f);
 	    }
 	    else
 	    {
@@ -72,7 +78,7 @@ public class Player : MonoBehaviour
 
 	void RespawnPlayer() {
 		Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
-		startPosition.y = 3;
+		startPosition.y = 4;
 		transform.position = startPosition;
 		pushDown = true;
 	}
@@ -126,9 +132,9 @@ public class Player : MonoBehaviour
 		if (Device!=null) {
 			faceDirection = new Vector3(Device.LeftStickX, 0.0f, Device.LeftStickY);
 			RotateTowardsDirection(faceDirection);
-			rigidbody.velocity = new Vector3(faceDirection.x * speed , 0.0f, faceDirection.z * speed);
-			if(pushDown)
-				rigidbody.AddForce (-Vector3.up*400f);
+			rigidbody.velocity = new Vector3(faceDirection.x * speed , rigidbody.velocity.y, faceDirection.z * speed);
+			//if(pushDown)
+				//rigidbody.AddForce (-Vector3.up*400f);
 		    isMoving = Mathf.Abs(faceDirection.x) + Mathf.Abs(faceDirection.z) > 0.05f;
 		}
 	    if (!animationController) return;
@@ -151,4 +157,9 @@ public class Player : MonoBehaviour
 			rigidbody.velocity = Vector3.zero;
 		}
 	}
+
+    void RemoveIndicator()
+    {
+        groundIndicator.enabled = false;
+    }
 }

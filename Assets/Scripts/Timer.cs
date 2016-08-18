@@ -27,8 +27,20 @@ public class Timer : MonoBehaviour
     void Start()
     {
         time = startingTime;
+		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (1.3f, 5f)));
     }
 
+	IEnumerator AmbianceRandomSheepSounds(float delay)
+	{
+		while (!gameFinished)
+		{
+			SoundManager.instance.PlayRandomSheepBaa ();
+			delay = Random.Range (1.3f, 6f);
+			print (delay);
+			yield return new WaitForSeconds (delay);
+		}
+
+	}
     void Update()
     {
         if (!wolfTimer)

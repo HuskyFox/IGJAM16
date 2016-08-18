@@ -11,7 +11,7 @@ public class Timer : MonoBehaviour
     float wolfSeconds;
     public Text wolfTimerLabel;
 
-
+    public WolfManager wolfMan;
     public bool gameFinished;
     public GameObject gameOverUI;
     public GameObject winnerIsUI;
@@ -55,7 +55,7 @@ public class Timer : MonoBehaviour
 
         if (wolfTimer)
         {
-            wolfTimerObject.SetActive(true);
+           // wolfTimerObject.SetActive(true);
             wolfTimerLabel.text = wolfSeconds.ToString();
             if (wolfCountdown == true)
             {
@@ -64,15 +64,17 @@ public class Timer : MonoBehaviour
 
                 if (wolfTime <= 0)
                 {
+                    print("End of Wolf Time");
                     SetNewWolf();
                     wolfTime = 5;
                     wolfSeconds = 5;
                     wolfCountdown = false;
                 }
+                
             }
         }
 
-        if (gameOverUI.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("GameOverAnim"))
+       /* if (gameOverUI.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("GameOverAnim"))
         {
             //do nothing
         }
@@ -85,7 +87,7 @@ public class Timer : MonoBehaviour
                 gameOverUI.SetActive(false);
             }
         }
-
+        */
 
     }
 
@@ -101,17 +103,20 @@ public class Timer : MonoBehaviour
 
     }
 
+
     public void StartNewWolfCountdown()
     {
-        wolfTimerObject.SetActive(true);
+        this.transform.parent.gameObject.transform.localPosition = new Vector3(0, 178, 0);
+        wolfCountdown = true;
         wolfTime = 5;
         wolfSeconds = 5;
-        wolfCountdown = true;
+        Debug.Log(wolfCountdown);
+        Invoke("SetNewWolf", 5f);
 
     }
 
     public void SetNewWolf()
     {
-        wolfTimerObject.SetActive(false);
+        this.transform.parent.gameObject.transform.localPosition = new Vector3(0, 350, 0);
     }
 }

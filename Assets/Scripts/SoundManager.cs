@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour 
 {
@@ -13,6 +14,9 @@ public class SoundManager : MonoBehaviour
 //	public AudioClip sheepBaa4;
 
 	[HideInInspector]public AudioSource[] sounds;
+//	Timer timer;
+//
+//	bool isGameStarted =false;
 
 	void Awake()
 	{
@@ -30,6 +34,13 @@ public class SoundManager : MonoBehaviour
 	}
 
 
+//	void Update()
+//	{
+//		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
+//			isGameStarted = true;
+//			timer = GameObject.Find ("WolfPlayer").GetComponent<Timer> ();
+//		}
+//	}
 
 	public void PlaySheepBaa1()
 	{
@@ -160,4 +171,19 @@ public class SoundManager : MonoBehaviour
 		sounds[13].Play();
 	}
 
+
+	/*public void PlayAmbianceRandomSheepSounds()
+	{
+		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (0.5f, 3f)));
+	}
+
+	IEnumerator AmbianceRandomSheepSounds(float delay)
+	{
+		while (!timer.gameFinished)
+		{
+			PlayRandomSheepBaa ();
+			yield return new WaitForSeconds (delay);
+		}
+		*/
+//	}
 }

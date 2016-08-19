@@ -6,6 +6,9 @@ public class HowlAbility : MonoBehaviour
     public float CooldownTime = 5f;
     private float _elapsedTime = 0;
 
+    public GameObject Particles;
+    public float ParticleYOffset = 0;
+
     public float ElapsedTime {
         get { return _elapsedTime; }
     }
@@ -33,6 +36,12 @@ public class HowlAbility : MonoBehaviour
 				SoundManager.instance.PlayWolfHowl ();
 				SoundManager.instance.PlaySheepReactionToHowl ();
 			}
+	        if (Particles)
+	        {
+	            var pos = transform.position;
+	            pos.y += ParticleYOffset;
+	            Instantiate(Particles).transform.position = transform.position;
+	        }
 	        _elapsedTime = 0;
 	        _threatBroadcast.BroadcastThreat();
 	    }

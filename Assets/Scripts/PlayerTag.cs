@@ -17,7 +17,7 @@ public class PlayerTag : MonoBehaviour
         Colors.Add(Color.green);
         Colors.Add(Color.cyan);
 	    string pindex = transform.root.GetComponent<Player>().playerIndex;
-        GetComponent<Text>().text = "Player " + pindex;
+        GetComponent<Text>().text = "P" + pindex;
 	    int playerIndex = 0;
 	    int.TryParse(pindex, out playerIndex);
 	    GetComponent<Text>().color = Colors[playerIndex];

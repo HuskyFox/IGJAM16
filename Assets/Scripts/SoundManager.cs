@@ -8,15 +8,8 @@ public class SoundManager : MonoBehaviour
 //	public AudioSource efxSource;
 
 	public static SoundManager instance = null;
-//	public AudioClip sheepBaa1;
-//	public AudioClip sheepBaa2;
-//	public AudioClip sheepBaa3;
-//	public AudioClip sheepBaa4;
 
 	[HideInInspector]public AudioSource[] sounds;
-//	Timer timer;
-//
-//	bool isGameStarted =false;
 
 	void Awake()
 	{
@@ -33,7 +26,13 @@ public class SoundManager : MonoBehaviour
 		sounds = GetComponents<AudioSource> ();
 	}
 
-
+//	void Update()
+//	{
+//		for (int i = 0; i <= SoundManager.instance.sounds.Length; i++)
+//						{
+//			SoundManager.instance.sounds [i].pitch = Time.timeScale;
+//						}
+//	}
 //	void Update()
 //	{
 //		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
@@ -44,25 +43,25 @@ public class SoundManager : MonoBehaviour
 
 	public void PlaySheepBaa1()
 	{
-		sounds [0].pitch = Random.Range (0.9f, 1.1f);
+//		sounds [0].pitch = Random.Range (0.9f, 1.1f);
 		sounds [0].Play ();
 	}
 
 	public void PlaySheepBaa2()
 	{
-		sounds [1].pitch = Random.Range (0.9f, 1.1f);
+//		sounds [1].pitch = Random.Range (0.9f, 1.1f);
 		sounds [1].Play();
 	}
 
 	public void PlaySheepBaa3()
 	{
-		sounds [2].pitch = Random.Range (0.9f, 1.1f);
+//		sounds [2].pitch = Random.Range (0.9f, 1.1f);
 		sounds [2].Play ();
 	}
 
 	public void PlaySheepBaa4()
 	{
-		sounds [3].pitch = Random.Range (0.9f, 1.1f);
+//		sounds [3].pitch = Random.Range (0.9f, 1.1f);
 		sounds [3].Play();
 	}
 
@@ -88,25 +87,25 @@ public class SoundManager : MonoBehaviour
 
 	public void PlayFarmerShout1()
 	{
-		sounds [4].pitch = Random.Range (0.9f, 1.1f);
+//		sounds [4].pitch = Random.Range (0.9f, 1.1f);
 		sounds [4].PlayDelayed (0.5f);
 	}
 
 	public void PlayFarmerShout2()
 	{
-		sounds [5].pitch = Random.Range (0.9f, 1.1f);
+//		sounds [5].pitch = Random.Range (0.9f, 1.1f);
 		sounds [5].PlayDelayed (0.5f);
 	}
 
 	public void PlayFarmerShout3()
 	{
-		sounds [6].pitch = Random.Range (0.9f, 1.1f);
+//		sounds [6].pitch = Random.Range (0.9f, 1.1f);
 		sounds [6].PlayDelayed (0.5f);
 	}
 
 	public void PlayFarmerShout4()
 	{
-		sounds [7].pitch = Random.Range (0.9f, 1.1f);
+//		sounds [7].pitch = Random.Range (0.9f, 1.1f);
 		sounds [7].PlayDelayed (0.5f);
 	}
 
@@ -132,7 +131,7 @@ public class SoundManager : MonoBehaviour
 
 	public void PlayGunShot()
 	{
-		sounds [8].pitch = Random.Range (0.9f, 1.1f);
+//		sounds [8].pitch = Random.Range (0.9f, 1.1f);
 		sounds [8].Play ();
 	}
 
@@ -163,7 +162,6 @@ public class SoundManager : MonoBehaviour
 
 	public void PlaySheepReactionToHowl()
 	{
-		sounds[13].pitch = Random.Range (0.9f, 1.1f) ;
 		sounds[13].Play(2500);
 	}
 		

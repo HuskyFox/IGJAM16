@@ -506,9 +506,12 @@ GameObject:
   - 114: {fileID: 212519599}
   - 114: {fileID: 212519603}
   - 114: {fileID: 212519602}
+  - 114: {fileID: 212519605}
+  - 114: {fileID: 212519604}
+  - 82: {fileID: 212519606}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -815,6 +818,134 @@ MonoBehaviour:
     type: 3}
   colorCorrectionSelectiveShader: {fileID: 4800000, guid: e515e0f94cefc4c0db54b45cba621544,
     type: 3}
+--- !u!114 &212519604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212519593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d9802b9d9a3be644a9ef8c90ce23ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fail: {fileID: 8300000, guid: 77a57913948631b4cbaee976f89e56f2, type: 3}
+  Success: {fileID: 8300000, guid: b79f63300ba974525a864abf0a13a8c7, type: 3}
+--- !u!114 &212519605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212519593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0401554a0e6f9466db3c1a798d358b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenName: 
+  playAutomatically: 0
+  delay: 0
+  type: 33
+  showIconInInspector: 1
+  keys:
+  - amount
+  - time
+  indexes: 0000000000000000
+  metadatas:
+  - 
+  - 
+  ints: 
+  floats:
+  - 2
+  bools: 
+  strings: []
+  vector3s:
+  - {x: 0, y: 0, z: 0.25}
+  colors: []
+  spaces: 
+  easeTypes: 
+  loopTypes: 
+  gameObjects: []
+  transforms: []
+  audioClips: []
+  audioSources: []
+  vector3Arrays: []
+  transformArrays: []
+  paths: []
+--- !u!82 &212519606
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212519593}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &216627564
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,7 +1031,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -1047,7 +1179,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -2286,7 +2419,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -3016,7 +3150,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 9c3a9e7595499074f8ce5d42963c2cd9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0

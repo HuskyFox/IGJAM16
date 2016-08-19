@@ -29,27 +29,53 @@ public class Timer : MonoBehaviour
     public int gameWinner;
     public EndGameRestart egRestart;
 
+	bool playSheep = false;
+
     void Start()
     {
         time = startingTime;
-		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (1.3f, 5f)));
+
         if (wolfTimer)
         {
             Invoke("InitialWolf", .1f);
+
         }
         
     }
-		
-	IEnumerator AmbianceRandomSheepSounds(float delay)
+	void Awake()
 	{
-		while (gameFinished=false)
+		playSheep = true;
+		if (wolfTimer) 
 		{
-			SoundManager.instance.PlayRandomSheepBaa ();
-			delay = Random.Range (1.3f, 6f);
-			print (delay);
-			print ("was called");
-			yield return new WaitForSeconds (delay);
+			StartCoroutine ("AmbianceRandomSheepSounds");
 		}
+	}
+
+	IEnumerator AmbianceRandomSheepSounds()
+	{
+		print ("was called");
+		while (playSheep)
+		{
+				SoundManager.instance.PlayRandomSheepBaa ();
+				float delay = Random.Range (1.3f, 6f);
+				print (delay);
+			if(!playSheep)
+			{
+				yield break;
+			}
+				yield return new WaitForSeconds (delay);
+		}
+
+//		switch (gameFinished)
+//		{
+//		case false:
+//			SoundManager.instance.PlayRandomSheepBaa ();
+//			delay = Random.Range (1.3f, 6f);
+//			print (delay);
+//			yield return new WaitForSeconds (delay);
+//		case true :
+//			return;
+//		}
 	}
 
     void Update()
@@ -118,6 +144,9 @@ public class Timer : MonoBehaviour
     {
 		SoundManager.instance.StopGameMusic ();
 		SoundManager.instance.PlayRestartMusic ();
+		playSheep = false;
+		StopAllCoroutines();
+		print ("stopped");
         gameFinished = true;
         print("Time is up!");
         gameOverUI.SetActive(true);

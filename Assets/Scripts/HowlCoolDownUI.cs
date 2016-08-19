@@ -22,7 +22,7 @@ public class HowlCoolDownUI : MonoBehaviour
     {
         if (_playerManger && _playerManger.players.Count > 0)
         {
-            
+            print(_playerManger.currentWolfIndex+" wolf index");
             var currentWolf = _playerManger.players[_playerManger.currentWolfIndex];
             var howlAbility = currentWolf.GetComponent<HowlAbility>();
             UpdateExpBar(Mathf.Clamp(howlAbility.ElapsedTime, 0, howlAbility.CooldownTime), howlAbility.CooldownTime);

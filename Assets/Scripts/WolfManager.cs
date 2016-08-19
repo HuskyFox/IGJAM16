@@ -68,8 +68,8 @@ public class WolfManager : MonoBehaviour
 		if (!isTimeSet)
 			GenerateRandomTimeBetweenSwitch ();
 
-        if (timer >= timeBetweenSwitch) { }
-			//CreateRandomWolf ();
+        if (timer >= timeBetweenSwitch) 
+			CreateRandomWolf ();
 
 	}
 

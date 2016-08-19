@@ -3,6 +3,7 @@ using System.Collections;
 
 public class KillFeedback : MonoBehaviour
 {
+    public GameObject VictimHitParticles;
     public AudioClip Fail;
     public AudioClip Success;
     private bool coorutineIsRunning = false;
@@ -28,32 +29,50 @@ public class KillFeedback : MonoBehaviour
     void PlayerKilledPlayer(Player killer, Player victim)
     {
         if (!coorutineIsRunning)
-            StartCoroutine(SuccessfullKillFeedback(killer));
+            StartCoroutine(SuccessfullKillFeedback(killer, victim));
     }
 
     void PlayerKilledSheep(Player killer, Sheep sheep)
     {
-        UnsuccessfulKillFeedback();
+        UnsuccessfulKillFeedback(killer);
     }
 
-    IEnumerator SuccessfullKillFeedback(Player killer)
+    IEnumerator SuccessfullKillFeedback(Player killer, Player victim)
     {
         coorutineIsRunning = true;
+
+        //Stop the players
+        var prevKillerSpeed = killer.speed;
+        var prevVictimSpeed = victim.speed;
+        killer.speed = 0;
+        victim.speed = 0;
+
+        //Attack Visuals
+        killer.secondAnimationController.SetTrigger("Attack");
+        killer.enabled = false;
+        victim.enabled = false;
+
+        Time.timeScale = .1f;
         _audioSource.clip = Success;
         _audioSource.Play();
-        Time.timeScale = .1f;
-        var prevSpeed = killer.speed;
-        killer.speed = 0;
 
         yield return new WaitForSeconds(killer.GetComponent<ShapeshiftAbility>().TimeSpentAsAWolf);
+
         
-        killer.speed = prevSpeed;
+
+        killer.enabled = true;
+        killer.speed = prevKillerSpeed;
+        victim.enabled = true;
+        victim.speed = prevVictimSpeed;
+        victim.RespawnPlayer();
+        
         Time.timeScale = 1f;
         coorutineIsRunning = false;
     }
 
-    private void UnsuccessfulKillFeedback()
+    private void UnsuccessfulKillFeedback(Player killer)
     {
+        killer.GetComponent<Player>().secondAnimationController.SetTrigger("Attack");
         var camShake = Camera.main.GetComponent<iTweenEvent>();
         if (camShake) Camera.main.GetComponent<iTweenEvent>().Play();
         _audioSource.clip = Fail;

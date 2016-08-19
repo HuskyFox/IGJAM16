@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 	public float speed = 6000f;
     public float rotateSpeed = 10f;
     public Animator animationController;
+    public Animator secondAnimationController;
 
 	public InputDevice Device { get; set; }
 
@@ -49,9 +50,13 @@ public class Player : MonoBehaviour
 		rigidbody = GetComponent<Rigidbody> ();
 		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
 		playerIndex = gameObject.name.Replace ("Player_", "");
+
+        
     }
 
-	void Update() {
+	void Update()
+	{
+
 		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
 			isGameStarted = true;
 			RespawnPlayer ();
@@ -78,8 +83,10 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	void RespawnPlayer() {
-		Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
+	public void RespawnPlayer() {
+        var particles = Instantiate(Particles);
+        if (particles) particles.transform.position = transform.position;
+        Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
 		startPosition.y = 4;
 		transform.position = startPosition;
 		pushDown = true;
@@ -119,14 +126,12 @@ public class Player : MonoBehaviour
 
 	void TakeDamage(object damageInflicter)
 	{
-	    var particles = Instantiate(Particles);
-	    if (particles) particles.transform.position = transform.position;
 
 		isKilled = true;
-		RespawnPlayer ();
 	    if (OnPlayerKilled != null)
 	    {
-			SoundManager.instance.PlayWolfBiteSuccess ();
+            if (SoundManager.instance)
+			    SoundManager.instance.PlayWolfBiteSuccess ();
 	        OnPlayerKilled.Invoke((Player) damageInflicter, this);
 	    }
 	}
@@ -145,6 +150,7 @@ public class Player : MonoBehaviour
 		}
 	    if (!animationController) return;
         animationController.SetBool("Moving", isMoving);
+        secondAnimationController.SetBool("Moving", true);
 	}
 
     public void RotateTowardsDirection(Vector3 direction)

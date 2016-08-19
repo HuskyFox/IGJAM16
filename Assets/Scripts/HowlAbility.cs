@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using JetBrains.Annotations;
 
 [RequireComponent(typeof(ThreatBroadcast))]
 public class HowlAbility : MonoBehaviour
@@ -8,12 +6,17 @@ public class HowlAbility : MonoBehaviour
     public float CooldownTime = 5f;
     private float _elapsedTime = 0;
 
+    public float ElapsedTime {
+        get { return _elapsedTime; }
+    }
+
     private Player _owner;
     private ThreatBroadcast _threatBroadcast;
 
 	// Use this for initialization
 	void Awake ()
 	{
+	    _elapsedTime = CooldownTime;
 	    _owner = GetComponent<Player>();
 	    _threatBroadcast = GetComponent<ThreatBroadcast>();
 	}

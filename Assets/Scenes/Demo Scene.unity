@@ -15,14 +15,14 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 7
   m_Fog: 1
-  m_FogColor: {r: 1, g: 0.7032454, b: 0.43382353, a: 1}
+  m_FogColor: {r: 0.7794118, g: 0.43586984, b: 0.30947235, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 1, g: 0.94655174, b: 0.77205884, a: 1}
-  m_AmbientEquatorColor: {r: 0.50735295, g: 0.40938136, b: 0, a: 1}
-  m_AmbientGroundColor: {r: 0.14325558, g: 0.18382353, b: 0, a: 1}
+  m_AmbientEquatorColor: {r: 0.2586505, g: 0.5035795, b: 0.6764706, a: 1}
+  m_AmbientGroundColor: {r: 0.73924094, g: 0.8232983, b: 0.8308824, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -455,7 +455,7 @@ MonoBehaviour:
   scorer: {fileID: 1063237734}
   timerLabel: {fileID: 137317528}
   currentlyTiming: 1
-  startingTime: 270
+  startingTime: 150
   time: 0
   mins: 0
   seconds: 0
@@ -969,7 +969,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  saturation: 0.82
+  saturation: 0.75
   selectiveCc: 0
   selectiveFromColor: {r: 1, g: 1, b: 1, a: 1}
   selectiveToColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1934,7 +1934,7 @@ Light:
   serializedVersion: 7
   m_Type: 1
   m_Color: {r: 1, g: 0.9188641, b: 0.8161765, a: 1}
-  m_Intensity: 0.3
+  m_Intensity: 0.4
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1964,10 +1964,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 678339517}
-  m_LocalRotation: {x: 0.19477278, y: 0.29404166, z: -0.33855978, w: 0.8723419}
+  m_LocalRotation: {x: 0.1728807, y: 0.36408028, z: -0.351222, w: 0.84510416}
   m_LocalPosition: {x: -0.89605, y: 11.25, z: -0.15420055}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 147.402, y: 566.795, z: 505.39}
+  m_LocalEulerAnglesHint: {x: 146.784, y: 576.433, z: 505.825}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11

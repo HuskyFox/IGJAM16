@@ -1574,8 +1574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79541679b6015664fa76792878f6e4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Particles: {fileID: 1000013464745854, guid: 126810e4ba6bac841852821a90872340, type: 2}
-  TimeSpentAsAWolf: 1
+  Particles: {fileID: 100000, guid: d92b3391f10a45c438296dbf699972e2, type: 2}
+  TimeSpentAsAWolf: 0.3
 --- !u!114 &114000012194452660
 MonoBehaviour:
   m_ObjectHideFlags: 1

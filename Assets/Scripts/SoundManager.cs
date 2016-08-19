@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
 	public static SoundManager instance = null;
 
 	[HideInInspector]public AudioSource[] sounds;
+	bool slowMo;
 
 	void Awake()
 	{
@@ -28,16 +29,24 @@ public class SoundManager : MonoBehaviour
 
 //	void Update()
 //	{
-//		for (int i = 0; i <= SoundManager.instance.sounds.Length; i++)
-//						{
-//			SoundManager.instance.sounds [i].pitch = Time.timeScale;
-//						}
-//	}
-//	void Update()
-//	{
-//		if(!isGameStarted && SceneManager.GetActiveScene().name=="Demo Scene") {
-//			isGameStarted = true;
-//			timer = GameObject.Find ("WolfPlayer").GetComponent<Timer> ();
+//		if (Time.timeScale == .1f)
+//			slowMo = true;
+//		else if (Time.timeScale == 1f)
+//			slowMo = false;
+//		
+//		if (slowMo)
+//		{
+//			for (int i = 0; i < SoundManager.instance.sounds.Length - 1; i++) 
+//			{
+//				SoundManager.instance.sounds [i].pitch = .6f;
+//			}
+//		}
+//		else if (!slowMo)
+//		{
+//			for (int i = 0; i < SoundManager.instance.sounds.Length - 1; i++) 
+//			{
+//				SoundManager.instance.sounds [i].pitch = 1f;
+//			}
 //		}
 //	}
 
@@ -129,7 +138,7 @@ public class SoundManager : MonoBehaviour
 		}
 	}
 
-	public void PlayGunShot()
+	public void PlayGunLoad()
 	{
 //		sounds [8].pitch = Random.Range (0.9f, 1.1f);
 		sounds [8].Play ();
@@ -148,6 +157,7 @@ public class SoundManager : MonoBehaviour
 	public void PlayWolfBiteSuccess()
 	{
 		sounds [11].Play ();
+		sounds [17].PlayDelayed (2.5f);
 	}
 
 	public void PlayAmbianceField()
@@ -175,6 +185,16 @@ public class SoundManager : MonoBehaviour
 		sounds [14].Stop ();
 	}
 
+	public void PauseGameMusic()
+	{
+		sounds [14].Pause ();
+	}
+
+	public void UnpauseGameMusic()
+	{
+		sounds [14].UnPause ();
+	}
+
 	public void PlayRestartMusic()
 	{
 		sounds [15].PlayDelayed (0.25f);
@@ -185,7 +205,15 @@ public class SoundManager : MonoBehaviour
 		sounds [15].Stop ();
 	}
 
+	public void PlaySuccessSound()
+	{
+		sounds [16].Play();
+	}
 
+	public void PlayGunShot()
+	{
+		sounds [18].Play ();
+	}
 	/*public void PlayAmbianceRandomSheepSounds()
 	{
 		StartCoroutine(AmbianceRandomSheepSounds(Random.Range (0.5f, 3f)));

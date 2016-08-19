@@ -100,7 +100,7 @@ public class WolfManager : MonoBehaviour
     void MakeWolf() { 
         if (currentWolfIndex > 0)
         {
-			SoundManager.instance.PlayGunShot ();
+			SoundManager.instance.PlayGunLoad ();
             var wolf = GameObject.Find("Player_" + currentWolfIndex).GetComponent<Player>();
             wolf.MakeWolf();
             isWolfCreated = true;

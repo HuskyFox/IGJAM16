@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692498, g: 0.496787, b: 0.57508546, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2253,7 +2253,7 @@ MonoBehaviour:
 
     Killed by the wolf
 
-    -10 points'
+    -20 points'
 --- !u!222 &442525792
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7016,11 +7016,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "You are a sheep in a field full of sheep.\nOne of your controllers will
-    vibrate, that person is the Wolf. The other players will not know.\nAs the wolf,
-    you must find and kill the other players.\nIf you kill a sheep which is not a
-    player, you will become exposed as the wolf and another player will become the
-    Wolf.\n \n"
+  m_Text: "You are a sheep. As a sheep..\n You must hide from the wolf\n"
 --- !u!222 &1711490123
 CanvasRenderer:
   m_ObjectHideFlags: 0

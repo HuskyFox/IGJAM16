@@ -2730,6 +2730,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CooldownTime: 5
+  Particles: {fileID: 1000012237057568, guid: 0ecb1b39aa56a2741be72ccce707e5f3, type: 2}
+  ParticleYOffset: 0
 --- !u!114 &114000010940663966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2759,7 +2761,6 @@ MonoBehaviour:
   secondAnimationController: {fileID: 95000012472343090}
   playerIndex: 1
   groundIndicator: {fileID: 114000013611425844}
-  makeWolf: 0
 --- !u!114 &114000011521425652
 MonoBehaviour:
   m_ObjectHideFlags: 1

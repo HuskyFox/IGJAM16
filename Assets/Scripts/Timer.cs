@@ -41,7 +41,7 @@ public class Timer : MonoBehaviour
 		
 	IEnumerator AmbianceRandomSheepSounds(float delay)
 	{
-		while (!gameFinished)
+		while (gameFinished=false)
 		{
 			SoundManager.instance.PlayRandomSheepBaa ();
 			delay = Random.Range (1.3f, 6f);

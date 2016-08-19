@@ -179,7 +179,7 @@ public class SoundManager : MonoBehaviour
 
 	public void PlayRestartMusic()
 	{
-		sounds [15].Play (1100);
+		sounds [15].PlayDelayed (0.25f);
 	}
 
 	public void StopRestartMusic()

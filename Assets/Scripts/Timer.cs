@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject winnerIsUI;
     public GameObject winnerDeclarationUI;
-	public GameObject gun;
+	//public GameObject gun;
     public Scorer scorer;
 
     public Text timerLabel;
@@ -174,8 +174,8 @@ public class Timer : MonoBehaviour
         wolfTime = 5;
         wolfSeconds = 5;
         Debug.Log(wolfCountdown);
-		gun.GetComponent<Animator> ().Play("GunPopOut");
-		Invoke ("GunshotSound", 3f);
+		//gun.GetComponent<Animator> ().Play("GunPopOut");
+		//Invoke ("GunshotSound", 3f);
         Invoke("SetNewWolf", 5f);
 
     }

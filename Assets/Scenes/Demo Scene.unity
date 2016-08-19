@@ -2159,7 +2159,28 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114000010345897650, guid: fc1cf092eb078564a9226df5dd3d2e72,
+        type: 2}
+      propertyPath: OnKeyWasPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010345897650, guid: fc1cf092eb078564a9226df5dd3d2e72,
+        type: 2}
+      propertyPath: OnKeyWasPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010345897650, guid: fc1cf092eb078564a9226df5dd3d2e72,
+        type: 2}
+      propertyPath: OnKeyWasPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010345897650, guid: fc1cf092eb078564a9226df5dd3d2e72,
+        type: 2}
+      propertyPath: KeyToDetect
+      value: 104
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114000011944686262, guid: fc1cf092eb078564a9226df5dd3d2e72, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fc1cf092eb078564a9226df5dd3d2e72, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &811718790

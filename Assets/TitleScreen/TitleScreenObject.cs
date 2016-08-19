@@ -14,9 +14,11 @@ public class TitleScreenObject : MonoBehaviour {
 	private float isMoving;
 
 
+	private float forceTimerLimit = 2f;
+	private float forceTimer;
+
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -36,8 +38,15 @@ public class TitleScreenObject : MonoBehaviour {
 		}
 
 		if (mustApplyForce) {
-			Rigidbody2D rb = GetComponent<Rigidbody2D> ();
-			rb.AddForce ( Vector3.left*1000 );
+			forceTimer += Time.deltaTime;
+			if (forceTimer >= forceTimerLimit) {
+				Rigidbody2D rb = GetComponent<Rigidbody2D> ();
+				rb.AddForce ( Vector3.left*Random.Range(200,300));
+				forceTimer = 0;
+			}
+	
 		}
 	}
+
+
 }

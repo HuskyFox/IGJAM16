@@ -157,7 +157,6 @@ public class Timer : MonoBehaviour
     {
         print("Wolf");
         wolfMan.CreateRandomWolf();
-
     }
 
     void WinnerUI()

@@ -53,8 +53,9 @@ public class KillFeedback : MonoBehaviour
         victim.enabled = false;
 
         Time.timeScale = .1f;
-        _audioSource.clip = Success;
-        _audioSource.Play();
+		SoundManager.instance.PauseGameMusic ();
+
+		SoundManager.instance.PlaySuccessSound ();
 
         yield return new WaitForSeconds(killer.GetComponent<ShapeshiftAbility>().TimeSpentAsAWolf);
 
@@ -67,6 +68,7 @@ public class KillFeedback : MonoBehaviour
         victim.RespawnPlayer();
         
         Time.timeScale = 1f;
+		SoundManager.instance.UnpauseGameMusic ();
         coorutineIsRunning = false;
     }
 
@@ -75,7 +77,5 @@ public class KillFeedback : MonoBehaviour
         killer.GetComponent<Player>().secondAnimationController.SetTrigger("Attack");
         var camShake = Camera.main.GetComponent<iTweenEvent>();
         if (camShake) Camera.main.GetComponent<iTweenEvent>().Play();
-        _audioSource.clip = Fail;
-        _audioSource.Play();
     }
 }

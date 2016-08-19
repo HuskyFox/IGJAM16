@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1e1c2e3b04238ef48be54c372c9ce659
-timeCreated: 1471560173
+guid: 2b9d30d74cbeb704a8a0f473846ebea9
+timeCreated: 1471589523
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: gunLP_pCube160
+    4300000: pPlane166
     9500000: //RootNode
   materials:
     importMaterials: 1

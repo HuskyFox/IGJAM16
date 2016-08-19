@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
 		rigidbody = GetComponent<Rigidbody> ();
 		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
 		playerIndex = gameObject.name.Replace ("Player_", "");
+        
 
         
     }

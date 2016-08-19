@@ -455,7 +455,7 @@ MonoBehaviour:
   scorer: {fileID: 1063237734}
   timerLabel: {fileID: 137317528}
   currentlyTiming: 1
-  startingTime: 20
+  startingTime: 270
   time: 0
   mins: 0
   seconds: 0
@@ -2252,6 +2252,11 @@ Prefab:
     - target: {fileID: 1000013976860344, guid: 52e9d7bdf1f374a69938b1323df989b8, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011974432388, guid: 52e9d7bdf1f374a69938b1323df989b8,
+        type: 2}
+      propertyPath: minTimeBetweenWolfSwitch
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52e9d7bdf1f374a69938b1323df989b8, type: 2}

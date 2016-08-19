@@ -12,18 +12,19 @@ public class HowlCoolDownUI : MonoBehaviour
     public GameObject barFillImage;
 
     private PlayerManager _playerManger;
+    private WolfManager _wolfManager;
 
     void Awake()
     {
         _playerManger = FindObjectOfType<PlayerManager>();
+        _wolfManager = FindObjectOfType<WolfManager>();
     }
 
     void Update()
     {
         if (_playerManger && _playerManger.players.Count > 0)
         {
-            
-            var currentWolf = _playerManger.players[_playerManger.currentWolfIndex];
+            var currentWolf = _playerManger.players[_wolfManager.currentWolfIndex];
             var howlAbility = currentWolf.GetComponent<HowlAbility>();
             UpdateExpBar(Mathf.Clamp(howlAbility.ElapsedTime, 0, howlAbility.CooldownTime), howlAbility.CooldownTime);
         }
@@ -41,3 +42,4 @@ public class HowlCoolDownUI : MonoBehaviour
         fillRect.anchoredPosition = tempPos;
     }
 }
+

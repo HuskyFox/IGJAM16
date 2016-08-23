@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
 	}
 
 	public void RespawnPlayer() {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         var particles = Instantiate(Particles);
         if (particles) particles.transform.position = transform.position;
         Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;

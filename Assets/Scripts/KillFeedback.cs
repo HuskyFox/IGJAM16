@@ -41,6 +41,9 @@ public class KillFeedback : MonoBehaviour
     {
         coorutineIsRunning = true;
 
+        killer.transform.FindChild("NameTag").gameObject.SetActive(true);
+        victim.transform.FindChild("NameTag").gameObject.SetActive(true);
+
         //Stop the players
         var prevKillerSpeed = killer.speed;
         var prevVictimSpeed = victim.speed;
@@ -59,7 +62,9 @@ public class KillFeedback : MonoBehaviour
 
         yield return new WaitForSeconds(killer.GetComponent<ShapeshiftAbility>().TimeSpentAsAWolf);
 
-        
+
+        killer.transform.FindChild("NameTag").gameObject.SetActive(false);
+        victim.transform.FindChild("NameTag").gameObject.SetActive(false);
 
         killer.enabled = true;
         killer.speed = prevKillerSpeed;

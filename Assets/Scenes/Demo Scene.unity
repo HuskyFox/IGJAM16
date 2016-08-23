@@ -452,10 +452,11 @@ MonoBehaviour:
   gameOverUI: {fileID: 2135147508}
   winnerIsUI: {fileID: 109487652}
   winnerDeclarationUI: {fileID: 487722192}
+  gun: {fileID: 0}
   scorer: {fileID: 1063237734}
   timerLabel: {fileID: 137317528}
   currentlyTiming: 1
-  startingTime: 270
+  startingTime: 15
   time: 0
   mins: 0
   seconds: 0
@@ -2323,6 +2324,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 2135147508}
   winnerIsUI: {fileID: 109487652}
   winnerDeclarationUI: {fileID: 0}
+  gun: {fileID: 0}
   scorer: {fileID: 0}
   timerLabel: {fileID: 836392008}
   currentlyTiming: 1

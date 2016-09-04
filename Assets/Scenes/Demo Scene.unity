@@ -452,6 +452,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 2135147508}
   winnerIsUI: {fileID: 109487652}
   winnerDeclarationUI: {fileID: 487722192}
+  gun: {fileID: 2116902287}
   scorer: {fileID: 1063237734}
   timerLabel: {fileID: 137317528}
   currentlyTiming: 1
@@ -498,7 +499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5438e259ab244e046b28c990dcd0d3a8, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5438e259ab244e046b28c990dcd0d3a8, type: 3}
       propertyPath: m_LocalScale.x
@@ -1718,6 +1719,47 @@ Transform:
   - {fileID: 2101115483}
   m_Father: {fileID: 0}
   m_RootOrder: 14
+--- !u!1 &567145786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 567145787}
+  - 65: {fileID: 567145788}
+  m_Layer: 0
+  m_Name: FenceColliderSouth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &567145787
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 567145786}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 4.5, z: 10.86}
+  m_LocalScale: {x: 2.000002, y: 10, z: 20.000015}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_Children: []
+  m_Father: {fileID: 773295588}
+  m_RootOrder: 3
+--- !u!65 &567145788
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 567145786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &610356073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,6 +2139,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: c94a03a0a2640f54c9dbb71f3a827c05, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c94a03a0a2640f54c9dbb71f3a827c05, type: 3}
   m_IsPrefabParent: 0
@@ -2294,6 +2340,16 @@ Prefab:
       propertyPath: minTimeBetweenWolfSwitch
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 136000012221348282, guid: 52e9d7bdf1f374a69938b1323df989b8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23000014127581116, guid: 52e9d7bdf1f374a69938b1323df989b8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52e9d7bdf1f374a69938b1323df989b8, type: 2}
   m_IsPrefabParent: 0
@@ -2359,6 +2415,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 2135147508}
   winnerIsUI: {fileID: 109487652}
   winnerDeclarationUI: {fileID: 0}
+  gun: {fileID: 0}
   scorer: {fileID: 0}
   timerLabel: {fileID: 836392008}
   currentlyTiming: 1
@@ -2589,6 +2646,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!1 &997233633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 997233634}
+  - 65: {fileID: 997233635}
+  m_Layer: 0
+  m_Name: FenceColliderEast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &997233634
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 997233633}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.86, y: 4.5, z: 0}
+  m_LocalScale: {x: 2, y: 10, z: 25}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 773295588}
+  m_RootOrder: 1
+--- !u!65 &997233635
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 997233633}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1063237729
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +2965,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &1165592645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1165592646}
+  - 65: {fileID: 1165592647}
+  m_Layer: 0
+  m_Name: FenceColliderWest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1165592646
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1165592645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.86, y: 4.5, z: 0}
+  m_LocalScale: {x: 2, y: 10, z: 25}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 773295588}
+  m_RootOrder: 0
+--- !u!65 &1165592647
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1165592645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1191113920
 Prefab:
   m_ObjectHideFlags: 0
@@ -3053,7 +3192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 744163a5b58a1f543ba6c720dbf49151, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 744163a5b58a1f543ba6c720dbf49151, type: 3}
       propertyPath: m_LocalScale.x
@@ -3375,7 +3514,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 919a9dace38bde74fabff6ec9f7995c0, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 919a9dace38bde74fabff6ec9f7995c0, type: 3}
       propertyPath: m_LocalScale.x
@@ -4230,6 +4369,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1284591061}
   m_RootOrder: 2
+--- !u!1 &1959899850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1959899851}
+  - 65: {fileID: 1959899852}
+  m_Layer: 0
+  m_Name: FenceColliderNorth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1959899851
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1959899850}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 4.5, z: -10.86}
+  m_LocalScale: {x: 2, y: 10, z: 20}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_Children: []
+  m_Father: {fileID: 773295588}
+  m_RootOrder: 2
+--- !u!65 &1959899852
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1959899850}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2030602919
 GameObject:
   m_ObjectHideFlags: 0
@@ -4420,7 +4600,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0bd1e455f0b306d47bed9cf117b58cce, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0bd1e455f0b306d47bed9cf117b58cce, type: 3}
       propertyPath: m_LocalScale.x
@@ -4478,7 +4658,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6360a614b5e9be44fb46c82f58b4bd51, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6360a614b5e9be44fb46c82f58b4bd51, type: 3}
       propertyPath: m_LocalScale.x
@@ -4561,6 +4741,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1 &2116902287 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010811393830, guid: 799c6608ecb135a49a0819c385a05b15,
+    type: 2}
+  m_PrefabInternal: {fileID: 1714459367}
 --- !u!1 &2135147508
 GameObject:
   m_ObjectHideFlags: 0

@@ -1254,11 +1254,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 82000012690428816, guid: db6bbd0f5df5a4bd2935ce5c691218c8,
+    - target: {fileID: 82000010410237016, guid: db6bbd0f5df5a4bd2935ce5c691218c8,
         type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: da8f26799c02a4829821c940e8a3729e, type: 3}
+      propertyPath: BypassListenerEffects
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db6bbd0f5df5a4bd2935ce5c691218c8, type: 2}
   m_IsPrefabParent: 0
@@ -1800,6 +1800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce90c7951f1340c3b1c85390b213e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minPlayers: 2
   players: []
   playerPrefab: {fileID: 1000010789061800, guid: a28830997b7e14703a66871af0b2fbe5,
     type: 2}

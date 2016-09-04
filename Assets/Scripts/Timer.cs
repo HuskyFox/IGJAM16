@@ -16,7 +16,8 @@ public class Timer : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject winnerIsUI;
     public GameObject winnerDeclarationUI;
-	//public GameObject gun;
+//	public GameObject gun;
+//	Animator gunAnim;
     public Scorer scorer;
 
     public Text timerLabel;
@@ -34,6 +35,7 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
+		//gunAnim = gun.GetComponent<Animator> ();
         time = startingTime;
 
         if (wolfTimer)
@@ -42,6 +44,7 @@ public class Timer : MonoBehaviour
 
         }
         
+
     }
 	void Awake()
 	{
@@ -50,6 +53,7 @@ public class Timer : MonoBehaviour
 		{
 			StartCoroutine ("AmbianceRandomSheepSounds");
 		}
+
 	}
 
 	IEnumerator AmbianceRandomSheepSounds()
@@ -174,7 +178,7 @@ public class Timer : MonoBehaviour
         wolfTime = 5;
         wolfSeconds = 5;
         Debug.Log(wolfCountdown);
-		//gun.GetComponent<Animator> ().Play("GunPopOut");
+		//gunAnim.SetTrigger ("GunShot");
 		//Invoke ("GunshotSound", 3f);
         Invoke("SetNewWolf", 5f);
 

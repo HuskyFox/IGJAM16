@@ -8,8 +8,8 @@ using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour {
 
-	int minPlayers = 2;
-	const int maxPlayers = 4;
+	public int minPlayers = 1;
+	public const int maxPlayers = 4;
 
 	[HideInInspector]public List<Player> players = new List<Player>( maxPlayers );
 

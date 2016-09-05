@@ -8,8 +8,6 @@ public class WolfManager : MonoBehaviour
 	public int minTimeBetweenWolfSwitch = 10;
 	public int maxTimeBetweenWolfSwitch = 30;
 	private int timeBetweenSwitch;
-	public Text wolfSwitchWarning;
-	bool setWarningText = false;
 
 	public bool isTimeSet = false;
 
@@ -58,8 +56,6 @@ public class WolfManager : MonoBehaviour
 	{
 		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
         timeManager = GameObject.Find("WolfTimer").GetComponent<Timer>();
-
-		wolfSwitchWarning.text = "";
 	}
 
 	void Update()
@@ -71,13 +67,6 @@ public class WolfManager : MonoBehaviour
         if (timer >= timeBetweenSwitch) 
 			CreateRandomWolf ();
 
-	}
-
-	IEnumerator ShowWolfWarning (string warning, float delay)
-	{
-		wolfSwitchWarning.text = "A new wolf was chosen!";
-		yield return new WaitForSeconds (delay);
-		wolfSwitchWarning.text = "";
 	}
 
     public void CreateRandomWolf()
@@ -104,7 +93,6 @@ public class WolfManager : MonoBehaviour
             var wolf = GameObject.Find("Player_" + currentWolfIndex).GetComponent<Player>();
             wolf.MakeWolf();
             isWolfCreated = true;
-            StartCoroutine(ShowWolfWarning("Abc", 1f));
         }
     }
 

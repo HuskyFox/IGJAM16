@@ -68,10 +68,6 @@ public class PlayerManager : MonoBehaviour {
             if (!isWolfCreated) { }
 			//	CreateRandomWolf ();
 		}
-		/*if (Input.GetKey (KeyCode.Space)) {
-			CreateRandomWolf ();
- */
-
 	}
 
 	void DeactivateExtraPlayers() {
@@ -164,6 +160,9 @@ public class PlayerManager : MonoBehaviour {
 
 			Text playerBox = GameObject.Find ("BoxPlayer" + nextPlayer).transform.Find("Press A").gameObject.GetComponent<Text>();
 			playerBox.text = "Ok!";
+
+			Image backgroundImage = GameObject.Find ("BoxPlayer" + nextPlayer).transform.Find ("Press A").transform.Find("Background").gameObject.GetComponent<Image> ();
+			backgroundImage.color = new Color (0.078f, 0.29f, 0.51f, 0.392f);
 		} 
 
 		if(players.Count >= minPlayers && players.Count<=maxPlayers){

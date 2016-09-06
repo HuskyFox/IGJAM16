@@ -2055,6 +2055,10 @@ Prefab:
       propertyPath: speechBubble
       value: 
       objectReference: {fileID: 666386520}
+    - target: {fileID: 1000013976860344, guid: 52e9d7bdf1f374a69938b1323df989b8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52e9d7bdf1f374a69938b1323df989b8, type: 2}
   m_IsPrefabParent: 0
@@ -2268,6 +2272,10 @@ Prefab:
         type: 2}
       propertyPath: KeyToDetect
       value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013634166394, guid: fc1cf092eb078564a9226df5dd3d2e72, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000011944686262, guid: fc1cf092eb078564a9226df5dd3d2e72, type: 2}

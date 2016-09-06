@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	public float spawnHeight = 4f;
 
 	public Animator animationController;
+	//public GameObject Particles;
 
 	private Vector3 movement;
 
@@ -41,10 +42,9 @@ public class PlayerController : MonoBehaviour
 	//function called to spawn the players
 	public void RespawnPlayer()
 	{
-		GetComponent<Rigidbody>().velocity = Vector3.zero;
-//		var particles = Instantiate(Particles);
+//		var particles = Instantiate (Particles);
 //		if (particles) particles.transform.position = transform.position;
-
+		
 		//assigns the right spawn position depending on the player index
 		Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
 		startPosition.y = spawnHeight;
@@ -61,10 +61,14 @@ public class PlayerController : MonoBehaviour
 			//defines a vector from those inputs
 			movement.Set (h, 0f, v);
 
+			//if the player is not too high,
 			//calls the functions controlling the movement of the player, passing in the inputs
-			Move (movement);
-			Rotate (movement);
-			Animate (h, v);
+			if (transform.position.y <= 2f) 
+			{
+				Move (movement);
+				Rotate (movement);
+				Animate (h, v);
+			}
 		}
 	}
 

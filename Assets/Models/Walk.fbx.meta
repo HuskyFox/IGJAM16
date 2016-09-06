@@ -117,7 +117,8 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - Hip
     clipAnimations:
     - serializedVersion: 16
       name: Walk

@@ -48,8 +48,8 @@ public class PlayerManager : MonoBehaviour {
 				if (inputDevice.Command.IsPressed) {
 					DeactivateExtraPlayers ();
 					SceneManager.LoadScene("Demo Scene");
-					SoundManager.instance.StopAmbianceField ();
-					SoundManager.instance.PlayGameMusic ();
+					SoundManager.Instance.StopAmbianceField ();
+					SoundManager.Instance.PlayGameMusic ();
 				}
 
 			}
@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour {
 			if (JoinButtonWasPressedOnDevice (inputDevice)) {
 				if (ThereIsNoPlayerUsingDevice (inputDevice)) {
 					AssignDeviceToPlayer (inputDevice);
-					SoundManager.instance.PlayRandomSheepBaa();
+					SoundManager.Instance.PlayRandomSheepBaa();
 				}
 				if (players.Count >= minPlayers && players.Count <= maxPlayers) {
 				//	isGameStarted = true;

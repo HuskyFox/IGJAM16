@@ -21,8 +21,8 @@ public class RestartGameButton : MonoBehaviour {
             GameObject.Find("Player_" + i).SendMessage("RespawnPlayer");
 
         }
-        SoundManager.instance.StopRestartMusic();
-        SoundManager.instance.PlayGameMusic();
+        SoundManager.Instance.StopRestartMusic();
+        SoundManager.Instance.PlayGameMusic();
         Application.LoadLevel(Application.loadedLevel);
 	}
 }

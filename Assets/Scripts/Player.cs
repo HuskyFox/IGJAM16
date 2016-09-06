@@ -132,8 +132,8 @@ public class Player : MonoBehaviour
 		isKilled = true;
 	    if (OnPlayerKilled != null)
 	    {
-            if (SoundManager.instance)
-			    SoundManager.instance.PlayWolfBiteSuccess ();
+            if (SoundManager.Instance)
+			    SoundManager.Instance.PlayWolfBiteSuccess ();
 	        OnPlayerKilled.Invoke((Player) damageInflicter, this);
 	    }
 	}

@@ -3,52 +3,25 @@ using System.Collections;
 using Random = UnityEngine.Random;
 using UnityEngine.SceneManagement;
 
-public class SoundManager : MonoBehaviour 
+public class SoundManager : UnitySingleton <SoundManager>
 {
-//	public AudioSource efxSource;
-
-	public static SoundManager instance = null;
-
 	[HideInInspector]public AudioSource[] sounds;
 	bool slowMo;
 
-	void Awake()
-	{
-		if (instance == null)
-			instance = this;
-		else if (instance != this)
-			Destroy (gameObject);
-
-		DontDestroyOnLoad (gameObject);
-	}
+//	void Awake()
+//	{
+//		if (instance == null)
+//			instance = this;
+//		else if (instance != this)
+//			Destroy (gameObject);
+//
+//		DontDestroyOnLoad (gameObject);
+//	}
 
 	void Start()
 	{
 		sounds = GetComponents<AudioSource> ();
 	}
-
-//	void Update()
-//	{
-//		if (Time.timeScale == .1f)
-//			slowMo = true;
-//		else if (Time.timeScale == 1f)
-//			slowMo = false;
-//		
-//		if (slowMo)
-//		{
-//			for (int i = 0; i < SoundManager.instance.sounds.Length - 1; i++) 
-//			{
-//				SoundManager.instance.sounds [i].pitch = .6f;
-//			}
-//		}
-//		else if (!slowMo)
-//		{
-//			for (int i = 0; i < SoundManager.instance.sounds.Length - 1; i++) 
-//			{
-//				SoundManager.instance.sounds [i].pitch = 1f;
-//			}
-//		}
-//	}
 
 	public void PlaySheepBaa1()
 	{

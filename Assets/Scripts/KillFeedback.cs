@@ -4,15 +4,15 @@ using System.Collections;
 public class KillFeedback : MonoBehaviour
 {
     public GameObject VictimHitParticles;
-    public AudioClip Fail;
-    public AudioClip Success;
+//  public AudioClip Fail;
+//  public AudioClip Success;
+//	private AudioSource _audioSource;
     private bool coorutineIsRunning = false;
-    private AudioSource _audioSource;
 
-    void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
+//    void Awake()
+//    {
+//        _audioSource = GetComponent<AudioSource>();
+//    }
 
     void OnEnable()
     {
@@ -56,9 +56,9 @@ public class KillFeedback : MonoBehaviour
         victim.enabled = false;
 
         Time.timeScale = .1f;
-		SoundManager.instance.PauseGameMusic ();
+		SoundManager.Instance.PauseGameMusic ();
 
-		SoundManager.instance.PlaySuccessSound ();
+		SoundManager.Instance.PlaySuccessSound ();
 
         yield return new WaitForSeconds(killer.GetComponent<ShapeshiftAbility>().TimeSpentAsAWolf);
 
@@ -73,7 +73,7 @@ public class KillFeedback : MonoBehaviour
         victim.RespawnPlayer();
         
         Time.timeScale = 1f;
-		SoundManager.instance.UnpauseGameMusic ();
+		SoundManager.Instance.UnpauseGameMusic ();
         coorutineIsRunning = false;
     }
 

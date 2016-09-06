@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
   - enabled: 1
     path: Assets/Scenes/Demo Scene.unity
+  - enabled: 1
+    path: Assets/Scenes/Restart Scene.unity

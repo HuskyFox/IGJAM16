@@ -37,12 +37,12 @@ RenderSettings:
   m_ReflectionIntensity: 0.308
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1143290779}
-  m_IndirectSpecularColor: {r: 0.25486097, g: 0.2854652, b: 0.3308692, a: 0.308}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.308}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 7
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -993,8 +993,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VictimHitParticles: {fileID: 0}
-  Fail: {fileID: 8300000, guid: 77a57913948631b4cbaee976f89e56f2, type: 3}
-  Success: {fileID: 8300000, guid: b79f63300ba974525a864abf0a13a8c7, type: 3}
 --- !u!114 &212519605
 MonoBehaviour:
   m_ObjectHideFlags: 0

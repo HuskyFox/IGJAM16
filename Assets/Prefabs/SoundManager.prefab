@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010527069888}
-  - 82: {fileID: 82000010242421834}
   - 114: {fileID: 114000011455824206}
+  - 82: {fileID: 82000010242421834}
   - 82: {fileID: 82000010410237016}
   - 82: {fileID: 82000012309457602}
   - 82: {fileID: 82000010101445406}
@@ -230,7 +230,7 @@ AudioSource:
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
-  BypassListenerEffects: 0
+  BypassListenerEffects: 1
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2

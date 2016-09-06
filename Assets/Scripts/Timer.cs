@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class Timer : MonoBehaviour
 		print ("was called");
 		while (playSheep)
 		{
-				SoundManager.instance.PlayRandomSheepBaa ();
+				SoundManager.Instance.PlayRandomSheepBaa ();
 				float delay = Random.Range (1.3f, 6f);
 				print (delay);
 			if(!playSheep)
@@ -147,8 +148,8 @@ public class Timer : MonoBehaviour
 
     public void GameOver()
     {
-		SoundManager.instance.StopGameMusic ();
-		SoundManager.instance.PlayRestartMusic ();
+		SoundManager.Instance.StopGameMusic ();
+		SoundManager.Instance.PlayRestartMusic ();
 		playSheep = false;
 		StopAllCoroutines();
 		print ("stopped");
@@ -168,6 +169,9 @@ public class Timer : MonoBehaviour
         }
 
         gameWinner = highestScore.OwnerIndex;
+
+		//Add the scene in charge of the score display and restart function (TO CREATE).
+		//SceneManager.LoadScene ("Restart Scene", LoadSceneMode.Additive);
     }
 
 
@@ -209,7 +213,7 @@ public class Timer : MonoBehaviour
 
 	void GunshotSound()
 	{
-		SoundManager.instance.PlayGunShot ();
+		SoundManager.Instance.PlayGunShot ();
 	}
 
 }

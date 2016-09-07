@@ -203,7 +203,7 @@ GameObject:
   - 65: {fileID: 65000012666576470}
   m_Layer: 8
   m_Name: Sheep
-  m_TagString: Untagged
+  m_TagString: NPSheep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

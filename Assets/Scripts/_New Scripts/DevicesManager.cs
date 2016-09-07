@@ -10,7 +10,6 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 	const int maxPlayers = 4;
 
 	[HideInInspector]public List<PlayerController> players = new List<PlayerController>( maxPlayers );
-	[HideInInspector]public List<InputDevice> playerDevices = new List<InputDevice> (maxPlayers);
 
 	void Update()
 	{

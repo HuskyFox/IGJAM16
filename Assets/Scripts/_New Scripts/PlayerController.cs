@@ -8,15 +8,18 @@ public class PlayerController : MonoBehaviour
 	public float speed = 4.5f;
 	public float rotateSpeed = 10f;
 	public float spawnHeight = 4f;
+	public float attackRange = 0.5f;
 
 	public Animator animationController;
 	//public GameObject Particles;
 
 	private Vector3 movement;
-
 	private Rigidbody rigidbody;
+	private int hittableMask = 1 << 8;
 
 	[HideInInspector]public string playerIndex;	//does it need to be public ???
+
+	public bool isWolf { get; set; }	//get and set the boolean when the function MakeWolf is called in the NewWolfManager.
 
 	bool isGameStarted;	//used in Update
 
@@ -37,6 +40,19 @@ public class PlayerController : MonoBehaviour
 			//			groundIndicator.color = new Color(Random.value, Random.value, Random.value);
 			//			Invoke("RemoveIndicator", 5);
 		}
+
+		//check if there's a device attached to the player
+		if (Device == null)
+			return;
+		
+		if (isGameStarted)
+			Controls ();
+
+		//makes the controller vibrate when the player is the wolf.
+		if (isWolf)
+			Device.Vibrate (0.1f, 0.1f);
+		else
+			Device.StopVibration ();
 	}
 
 	//function called to spawn the players
@@ -49,6 +65,54 @@ public class PlayerController : MonoBehaviour
 		Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
 		startPosition.y = spawnHeight;
 		transform.position = startPosition;
+	}
+
+	public void Controls()
+	{	
+		//WOLF CONTROLS
+		if(isWolf)
+		{
+			if (Device.Action1.WasPressed)
+				Attack ();
+
+			if(Device.Action2.WasPressed){}
+				//Howl();
+			//other actions
+		}
+
+		//SHEEP CONTROLS (if we want to allow actions as a sheep)
+		/*if(isSheep)
+		{
+			
+		}*/
+	}
+
+	public void Attack()
+	{
+		Vector3 attackPos = transform.position;
+		Vector3 hitDirection = movement;
+		attackPos += hitDirection * (attackRange / 1.5f);
+
+		Collider[] hitColliders = Physics.OverlapSphere (attackPos, attackRange, hittableMask);
+
+		//checks the colliders that were hit when the action key was pressed
+		for (int i = 0 ; i < hitColliders.Length ; i++)
+		{
+			if (hitColliders [i].tag == "Player") 
+			{
+				//OnPlayerWasKilled
+				print ("You tried to kill a Player!");
+			} 
+			else if (hitColliders [i].tag == "NPSheep") 
+			{
+				//OnNPSheepWasKilled
+				print ("You tried to kill a NPSheep!");
+			} 
+			else
+				return;	//not sure this is needed...
+			
+			return;	//to only kill one sheep.
+		}
 	}
 
 	void FixedUpdate()

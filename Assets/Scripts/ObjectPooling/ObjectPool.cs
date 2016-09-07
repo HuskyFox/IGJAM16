@@ -28,7 +28,7 @@ namespace ObjectPooling
                 GameObject tempObject = Instantiate(ObjectToPool); //instantiate the object
                 tempObject.SetActive(false);
                 tempObject.transform.SetParent(transform);
-                _objectPool.Add(tempObject);
+				_objectPool.Add(tempObject);
             }
 
             _poolIsLoaded = true;

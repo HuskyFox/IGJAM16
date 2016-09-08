@@ -44,8 +44,6 @@ public class NewWolfManager : UnitySingleton <NewWolfManager>
 	{
 		timer = 0f;
 		isRandomTimeSet = false;
-		//MakeEveryoneASheep ();
-		//playerManager.SendMessage("MakeEveryoneASheep");
 		currentWolfIndex = CreateNewRandomNumber();
 		//SoundManager.Instance.PlayRandomFarmerShout();
 		//timeManager.gameObject.SetActive(true);

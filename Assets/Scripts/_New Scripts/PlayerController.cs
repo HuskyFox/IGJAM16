@@ -25,6 +25,13 @@ public class PlayerController : MonoBehaviour
 
 	public InputDevice Device { get; set;}	//get and set the device when the function "AssignDeviceToPlayer" is called in the DevicesManager
 
+	//the two events that let other scripts know of the kill
+	public delegate void PlayerWasKilled (PlayerController killer, PlayerController victim);
+	public static event PlayerWasKilled OnPlayerWasKilled;
+
+	public delegate void NPSheepWasKilled(PlayerController killer, Sheep victim);
+	public static event NPSheepWasKilled OnNPSheepWasKilled;
+
 	void Awake ()
 	{
 		rigidbody = GetComponent<Rigidbody> ();
@@ -88,28 +95,43 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void Attack()
-	{
+	{	
 		Vector3 attackPos = transform.position;
-		Vector3 hitDirection = movement;
-		attackPos += hitDirection * (attackRange / 1.5f);
+		attackPos += movement * (attackRange / 1.5f);
 
 		Collider[] hitColliders = Physics.OverlapSphere (attackPos, attackRange, hittableMask);
 
 		//checks the colliders that were hit when the action key was pressed
 		for (int i = 0 ; i < hitColliders.Length ; i++)
 		{
-			if (hitColliders [i].tag == "Player") 
+			if (hitColliders [i].tag == "PlayerSheep") 
 			{
-				//OnPlayerWasKilled
-				print ("You tried to kill a Player!");
+				//enables the KillManager
+				FindObjectOfType<KillManager> ().enabled = true;
+
+				//Activate the event OnPlayerWasKilled
+				//and passes in this script for the killer
+				//and the script correspondant to the player whose collider was hit.
+				PlayerController killer = this.GetComponent<PlayerController> ();
+				PlayerController victim = hitColliders [i].GetComponent<PlayerController> ();
+				OnPlayerWasKilled (killer, victim);
+				print ("You killed Player!");
 			} 
 			else if (hitColliders [i].tag == "NPSheep") 
 			{
-				//OnNPSheepWasKilled
-				print ("You tried to kill a NPSheep!");
+				//enables the KillManager
+				FindObjectOfType<KillManager> ().enabled = true;
+
+				//Activates the event OnNPSheepWasKilled
+				//and passes in this script for the killer
+				//and the script correspondant to the NPSheep whose collider was hit.		
+				PlayerController killer = this.GetComponent<PlayerController> ();
+				Sheep victim = hitColliders [i].GetComponent<Sheep> ();
+				OnNPSheepWasKilled (killer, victim);
+				print ("You killed a NPSheep!");
 			} 
-			else
-				return;	//not sure this is needed...
+			//else
+			//	return;	//not sure this is needed...
 			
 			return;	//to only kill one sheep.
 		}

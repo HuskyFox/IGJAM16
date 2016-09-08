@@ -26,7 +26,7 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 					print ("Number of players:" + players.Count);
 				}
 			}
-			print ("input check");
+			//print ("input check");
 		}
 	}
 

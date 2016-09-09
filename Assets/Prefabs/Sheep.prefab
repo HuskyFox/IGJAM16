@@ -192,22 +192,22 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012986050532}
-  - 136: {fileID: 136000012835602234}
   - 195: {fileID: 195000011956966342}
   - 114: {fileID: 114000010009356386}
   - 114: {fileID: 114000010729205828}
   - 54: {fileID: 54000013559381658}
   - 114: {fileID: 114000011899601876}
-  - 114: {fileID: 114000013619666234}
   - 95: {fileID: 95000012022059052}
   - 65: {fileID: 65000012666576470}
+  - 114: {fileID: 114000013317059920}
+  - 114: {fileID: 114000013785315254}
   m_Layer: 8
   m_Name: Sheep
   m_TagString: NPSheep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011976972730
 GameObject:
   m_ObjectHideFlags: 1
@@ -1395,7 +1395,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventsHandled: 00000000
---- !u!114 &114000013619666234
+--- !u!114 &114000013317059920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011880567800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfb808979afd4439cb50b4938e600533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  killParticles: {fileID: 100000, guid: 9670926e073251b4d9e7cc13c294ea9e, type: 2}
+--- !u!114 &114000013785315254
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1407,19 +1419,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Particles: {fileID: 100000, guid: 9670926e073251b4d9e7cc13c294ea9e, type: 2}
---- !u!136 &136000012835602234
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011880567800}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.53
-  m_Height: 1.08
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.55, z: -0.05}
 --- !u!195 &195000011956966342
 NavMeshAgent:
   m_ObjectHideFlags: 1

@@ -8,14 +8,19 @@ public class PlayerController : MonoBehaviour
 	public float speed = 4.5f;
 	public float rotateSpeed = 10f;
 	public float spawnHeight = 4f;
-	public float attackRange = 0.5f;
+	[Range (0, 3)]
+	public float attackRange = 0.75f;	//radius of the OverlapSphere in the attack function / lenght of the raycast
 
-	public Animator animationController;
+	public Animator sheepAnimator;
 	//public GameObject Particles;
 
+	//variables for the movement
 	private Vector3 movement;
 	private Rigidbody rigidbody;
-	private int hittableMask = 1 << 8;
+
+	//variables for the attack function
+	private int hittableMask = 9;	//"Hittable" is the 8th Layer.
+	Transform attackSphereOrigin;	//origin of the OverlapSphere
 
 	[HideInInspector]public string playerIndex;	//does it need to be public ???
 
@@ -29,13 +34,15 @@ public class PlayerController : MonoBehaviour
 	public delegate void PlayerWasKilled (PlayerController killer, PlayerController victim);
 	public static event PlayerWasKilled OnPlayerWasKilled;
 
-	public delegate void NPSheepWasKilled(PlayerController killer, Sheep victim);
+	public delegate void NPSheepWasKilled(PlayerController killer, NPSheep victim);
 	public static event NPSheepWasKilled OnNPSheepWasKilled;
 
 	void Awake ()
 	{
-		rigidbody = GetComponent<Rigidbody> ();
+		rigidbody = GetComponent <Rigidbody> ();
 		playerIndex = gameObject.name.Replace ("Player_", "");
+		hittableMask = ~hittableMask;
+		attackSphereOrigin = transform.Find ("Sheep/AttackSphereOrigin");
 	}
 		
 	void Update()
@@ -72,6 +79,9 @@ public class PlayerController : MonoBehaviour
 		Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
 		startPosition.y = spawnHeight;
 		transform.position = startPosition;
+
+		//JUST FOR PLAYTESTING
+		FindObjectOfType<NewWolfManager> ().CreateRandomWolf ();
 	}
 
 	public void Controls()
@@ -95,16 +105,24 @@ public class PlayerController : MonoBehaviour
 	}
 
 	public void Attack()
-	{	
-		Vector3 attackPos = transform.position;
-		attackPos += movement * (attackRange / 1.5f);
+	{
+		//original attack system with OverlapSphere
 
+		Vector3 attackPos = attackSphereOrigin.transform.position;
+
+		//draws a ray corresponding to the radius of the OverlapSphere
+		Debug.DrawRay (attackPos, transform.forward * attackRange, Color.red, 3f);
+
+		//get an array of the colliders that were inside the OverlapSphere
 		Collider[] hitColliders = Physics.OverlapSphere (attackPos, attackRange, hittableMask);
 
-		//checks the colliders that were hit when the action key was pressed
+		//checks the colliders that were hit when the action key was pressed...
 		for (int i = 0 ; i < hitColliders.Length ; i++)
 		{
-			if (hitColliders [i].tag == "PlayerSheep") 
+			Collider hitCollider = hitColliders [i].GetComponent<Collider> ();
+
+			//and checks its tag.
+			if (hitCollider.tag == "PlayerSheep") 
 			{
 				//enables the KillManager
 				FindObjectOfType<KillManager> ().enabled = true;
@@ -113,11 +131,12 @@ public class PlayerController : MonoBehaviour
 				//and passes in this script for the killer
 				//and the script correspondant to the player whose collider was hit.
 				PlayerController killer = this.GetComponent<PlayerController> ();
-				PlayerController victim = hitColliders [i].GetComponent<PlayerController> ();
+				PlayerController victim = hitCollider.GetComponent<PlayerController> ();
 				OnPlayerWasKilled (killer, victim);
-				print ("You killed Player!");
+				print ("You killed a Player!");
+				return;	//to only kill one player if there were several colliders.
 			} 
-			else if (hitColliders [i].tag == "NPSheep") 
+			else if (hitCollider.tag == "NPSheep") 
 			{
 				//enables the KillManager
 				FindObjectOfType<KillManager> ().enabled = true;
@@ -126,17 +145,62 @@ public class PlayerController : MonoBehaviour
 				//and passes in this script for the killer
 				//and the script correspondant to the NPSheep whose collider was hit.		
 				PlayerController killer = this.GetComponent<PlayerController> ();
-				Sheep victim = hitColliders [i].GetComponent<Sheep> ();
+				NPSheep victim = hitCollider.GetComponent<NPSheep> ();
 				OnNPSheepWasKilled (killer, victim);
 				print ("You killed a NPSheep!");
+				return;	//to only kill one sheep if there were several colliders.
 			} 
-			//else
-			//	return;	//not sure this is needed...
-			
-			return;	//to only kill one sheep.
 		}
-	}
 
+		//new RayCast attack system
+		/*
+		//declaration of the origin of the Ray
+		Vector3 hitOrigin = transform.position;
+		//moves the origin up on the y axis (the player is at -0.02 for some reason)
+		hitOrigin.y += 0.1f;	//we could do hitOrigin.y = 0f; but then we don't see the ray in DrawRay.
+
+		Ray hitRay = new Ray (hitOrigin, transform.forward);	//from where the player is, in the direction he's facing.
+		RaycastHit hit;
+		Debug.DrawRay (hitOrigin, transform.forward * attackRange, Color.red, 2f);
+
+		//if the RayCast hits something...
+		if (Physics.Raycast (hitRay, out hit, attackRange, hittableMask))
+		{
+			//we get a reference to the collider that was hit...
+			Collider hitCollider = hit.collider.GetComponent<Collider> ();
+
+			//and we check its tag.
+			if (hitCollider.tag == "PlayerSheep") 
+			{
+				//enables the KillManager
+				FindObjectOfType<KillManager> ().enabled = true;
+
+				//Activate the event OnPlayerWasKilled
+				//and passes in this script for the killer
+				//and the script correspondant to the player whose collider was hit.
+				PlayerController killer = this.GetComponent<PlayerController> ();	//or just this; ?
+				PlayerController victim = hitCollider.GetComponent<PlayerController> ();
+				OnPlayerWasKilled (killer, victim);
+				print ("You killed a Player!");
+				return;
+			} 
+			else if (hitCollider.tag == "NPSheep") 
+			{
+				//enables the KillManager
+				FindObjectOfType<KillManager> ().enabled = true;
+
+				//Activates the event OnNPSheepWasKilled
+				//and passes in this script for the killer
+				//and the script correspondant to the NPSheep whose collider was hit.		
+				PlayerController killer = this.GetComponent<PlayerController> ();	//or just this; ?
+				NPSheep victim = hitCollider.GetComponent<NPSheep> ();
+				OnNPSheepWasKilled (killer, victim);
+				print ("You killed a NPSheep!");
+				return;
+			}
+		}*/
+	}
+		
 	void FixedUpdate()
 	{	
 		if (Device != null)
@@ -174,7 +238,7 @@ public class PlayerController : MonoBehaviour
 	{
 		var isMoving = false;
 		isMoving = Mathf.Abs(h) + Mathf.Abs(v) > 0.05f;
-		if (!animationController) return;
-		animationController.SetBool("Moving", isMoving);
+		if (!sheepAnimator) return;
+		sheepAnimator.SetBool("Moving", isMoving);
 	}
 }

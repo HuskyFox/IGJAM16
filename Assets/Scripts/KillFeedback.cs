@@ -2,12 +2,65 @@
 using System.Collections;
 
 public class KillFeedback : MonoBehaviour
-{
-    public GameObject VictimHitParticles;
+{	
+	public GameObject VictimHitParticles;
+	public Animator wolfAnimator;
+
+	private bool coroutineIsRunning = false;
+
+	public void PlayerKilledPlayer(PlayerController killer, PlayerController victim)
+	{
+		//victim.gameObject.SetActive (false);
+		if (!coroutineIsRunning)
+			StartCoroutine(SuccessfulKillFeedback(killer, victim));
+	}
+
+	IEnumerator SuccessfulKillFeedback(PlayerController killer, PlayerController victim)
+	{
+		coroutineIsRunning = true;
+
+		//killer.transform.FindChild("NameTag").gameObject.SetActive(true);
+		//victim.transform.FindChild("NameTag").gameObject.SetActive(true);
+
+		//Stop the players
+		var prevKillerSpeed = killer.speed;
+		var prevVictimSpeed = victim.speed;
+		killer.speed = 0;
+		victim.speed = 0;
+
+		//Attack Visuals
+		wolfAnimator.SetTrigger("Attack");
+		killer.enabled = false;
+		victim.enabled = false;
+
+		Time.timeScale = .1f;
+		//SoundManager.Instance.PauseGameMusic ();
+
+		//SoundManager.Instance.PlaySuccessSound ();
+
+		yield return new WaitForSeconds(0.3f);
+
+
+		//killer.transform.FindChild("NameTag").gameObject.SetActive(false);
+		//victim.transform.FindChild("NameTag").gameObject.SetActive(false);
+
+		killer.enabled = true;
+		killer.speed = prevKillerSpeed;
+		victim.enabled = true;
+		victim.speed = prevVictimSpeed;
+		victim.RespawnPlayer();
+
+		Time.timeScale = 1f;
+		//SoundManager.Instance.UnpauseGameMusic ();
+		coroutineIsRunning = false;
+	}
+
+	//former script
+   // public GameObject VictimHitParticles;
 //  public AudioClip Fail;
 //  public AudioClip Success;
 //	private AudioSource _audioSource;
-    private bool coorutineIsRunning = false;
+   /* private bool coorutineIsRunning = false;
 
 //    void Awake()
 //    {
@@ -83,4 +136,5 @@ public class KillFeedback : MonoBehaviour
         var camShake = Camera.main.GetComponent<iTweenEvent>();
         if (camShake) Camera.main.GetComponent<iTweenEvent>().Play();
     }
+    */
 }

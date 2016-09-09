@@ -12,12 +12,15 @@ public class KillManager : MonoBehaviour
 
 	void successfulKillMethod (PlayerController killer, PlayerController victim)
 	{
+		killer.GetComponent<KillFeedback> ().PlayerKilledPlayer (killer, victim);
 		print ("Good kill!");
 		this.enabled = false;
 	}
 
-	void unsuccessfulKillMethod (PlayerController killer, Sheep victim)
+	void unsuccessfulKillMethod (PlayerController killer, NPSheep victim)
 	{
+		victim.TakeDamage (victim);
+		victim.CamShake ();
 		print ("Wrong kill!");
 		this.enabled = false;
 	}

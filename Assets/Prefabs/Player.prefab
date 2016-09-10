@@ -2896,7 +2896,8 @@ MonoBehaviour:
   speed: 4.5
   rotateSpeed: 10
   spawnHeight: 4
-  animationController: {fileID: 95000014095576712}
+  attackRange: 0.75
+  sheepAnimator: {fileID: 0}
   playerIndex: 
 --- !u!114 &114000013010203158
 MonoBehaviour:

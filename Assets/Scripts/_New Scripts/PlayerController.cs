@@ -12,17 +12,18 @@ public class PlayerController : MonoBehaviour
 	public float attackRange = 0.75f;	//radius of the OverlapSphere in the attack function / lenght of the raycast
 
 	public Animator sheepAnimator;
+	private Animator wolfAnimator;
 	//public GameObject Particles;
 
 	//variables for the movement
-	private Vector3 movement;
+	[HideInInspector]public Vector3 movement;
 	private Rigidbody rigidbody;
 
 	//variables for the attack function
 	private int hittableMask = 9;	//"Hittable" is the 8th Layer.
 	Transform attackSphereOrigin;	//origin of the OverlapSphere
 
-	[HideInInspector]public string playerIndex;	//does it need to be public ???
+	public string playerIndex;	//does it need to be public ???
 
 	public bool isWolf { get; set; }	//get and set the boolean when the function MakeWolf is called in the NewWolfManager.
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
 		playerIndex = gameObject.name.Replace ("Player_", "");
 		hittableMask = ~hittableMask;
 		attackSphereOrigin = transform.Find ("Sheep/AttackSphereOrigin");
+		wolfAnimator = transform.Find ("Wolf").GetComponent<Animator> ();
 	}
 		
 	void Update()
@@ -132,7 +134,8 @@ public class PlayerController : MonoBehaviour
 				//and the script correspondant to the player whose collider was hit.
 				PlayerController killer = this.GetComponent<PlayerController> ();
 				PlayerController victim = hitCollider.GetComponent<PlayerController> ();
-				OnPlayerWasKilled (killer, victim);
+				if(OnPlayerWasKilled != null)
+					OnPlayerWasKilled (killer, victim);
 				print ("You killed a Player!");
 				return;	//to only kill one player if there were several colliders.
 			} 
@@ -146,7 +149,8 @@ public class PlayerController : MonoBehaviour
 				//and the script correspondant to the NPSheep whose collider was hit.		
 				PlayerController killer = this.GetComponent<PlayerController> ();
 				NPSheep victim = hitCollider.GetComponent<NPSheep> ();
-				OnNPSheepWasKilled (killer, victim);
+				if(OnNPSheepWasKilled != null)
+					OnNPSheepWasKilled (killer, victim);
 				print ("You killed a NPSheep!");
 				return;	//to only kill one sheep if there were several colliders.
 			} 
@@ -240,5 +244,8 @@ public class PlayerController : MonoBehaviour
 		isMoving = Mathf.Abs(h) + Mathf.Abs(v) > 0.05f;
 		if (!sheepAnimator) return;
 		sheepAnimator.SetBool("Moving", isMoving);
+		if (!wolfAnimator)
+			return;
+		wolfAnimator.SetBool ("Moving", isMoving);
 	}
 }

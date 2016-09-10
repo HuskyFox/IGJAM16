@@ -12,7 +12,10 @@ public class KillManager : MonoBehaviour
 
 	void successfulKillMethod (PlayerController killer, PlayerController victim)
 	{
-		killer.GetComponent<KillFeedback> ().PlayerKilledPlayer (killer, victim);
+		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer);
+		killer.GetComponent<KillFeedback> ().SlowMoFeedback (killer, victim);
+		TimeManager.Instance.NewWolfCountdownUI ();
+		NewWolfManager.Instance.CreateRandomWolf ();
 		print ("Good kill!");
 		this.enabled = false;
 	}
@@ -21,6 +24,9 @@ public class KillManager : MonoBehaviour
 	{
 		victim.TakeDamage (victim);
 		victim.CamShake ();
+		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer);
+		TimeManager.Instance.NewWolfCountdownUI ();
+		NewWolfManager.Instance.CreateRandomWolf ();
 		print ("Wrong kill!");
 		this.enabled = false;
 	}

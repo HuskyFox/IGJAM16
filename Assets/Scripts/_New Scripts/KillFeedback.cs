@@ -35,8 +35,22 @@ public class KillFeedback : MonoBehaviour
 	//calls the coroutine that slows time when a success kill happens
 	public void SlowMoFeedback (PlayerController killer, PlayerController victim)
 	{
+		StartCoroutine (VictimVibration (victim, 0.3f));
 		if (!slowMoCoroutineIsRunning)
 			StartCoroutine(SlowMo(killer, victim));
+	}
+
+	IEnumerator VictimVibration (PlayerController victim, float duration)
+	{
+		victim.Device.Vibrate (0.15f);
+
+		float start = Time.realtimeSinceStartup;
+
+		while (Time.realtimeSinceStartup < start + duration)
+		{
+			yield return null;
+		}
+		victim.Device.StopVibration ();
 	}
 
 	IEnumerator SlowMo(PlayerController killer, PlayerController victim)
@@ -79,7 +93,7 @@ public class KillFeedback : MonoBehaviour
 		victim.enabled = true;
 		victim.speed = prevVictimSpeed;
 
-		victim.RespawnPlayer();
+		PlayerSpawnerManager.Instance.RespawnPlayer (victim);
 
 		//speeds back time
 		Time.timeScale = 1f;

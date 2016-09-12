@@ -6,6 +6,11 @@ using System.Collections.Generic;
 //this singleton is used to assign the devices to the players
 public class DevicesManager : UnitySingleton <DevicesManager> 
 {
+	//TEMPORARY TEST FOR PLAYERSPAWN - DO THAT IN INPUTCHECK FOR GAMEISEADY
+	public delegate void GameIsReady (List<PlayerController> registeredPlayers);
+	public static event GameIsReady OnGameIsReady;
+
+
 	public int minPlayers = 1;
 	const int maxPlayers = 4;
 
@@ -27,6 +32,14 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 				}
 			}
 			//print ("input check");
+		}
+
+		//TEMPORARY TEST FOR PLAYERSPAWN - DO THAT IN INPUTCHECK FOR GAMEISEADY
+		if(InputManager.ActiveDevice.Action3.WasPressed)
+		{
+			print ("Game is ready!");
+			if(OnGameIsReady != null)
+				OnGameIsReady(players);
 		}
 	}
 
@@ -55,8 +68,9 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 		return FindPlayerUsingDevice( inputDevice ) == null;
 	}
 
-	//the function that finds the player that has the index of the device currently checked
-	//and assigns this device to this player.
+	//the function that finds the player that has the index of the device currently checked,
+	//assigns this device to this player,
+	//and adds a player to the list.
 	PlayerController AssignDeviceToPlayer( InputDevice inputDevice )
 	{
 		if (players.Count < maxPlayers)

@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using InControl;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour 
 {
 	//Control variables editable in the Inspector
 	public float speed = 4.5f;
 	public float rotateSpeed = 10f;
-	public float spawnHeight = 4f;
+	//public float spawnHeight = 4f;
 	[Range (0, 3)]
 	public float attackRange = 0.75f;	//radius of the OverlapSphere in the attack function / lenght of the raycast
 
@@ -16,20 +17,23 @@ public class PlayerController : MonoBehaviour
 	//public GameObject Particles;
 
 	//variables for the movement
-	[HideInInspector]public Vector3 movement;
+	private Vector3 movement;
 	private Rigidbody rigidbody;
 
 	//variables for the attack function
 	private int hittableMask = 9;	//"Hittable" is the 8th Layer.
 	Transform attackSphereOrigin;	//origin of the OverlapSphere
 
-	public string playerIndex;	//does it need to be public ???
+	//public string playerIndex;	//does it need to be public ???
 
 	public bool isWolf { get; set; }	//get and set the boolean when the function MakeWolf is called in the NewWolfManager.
 
 	bool isGameStarted;	//used in Update
 
 	public InputDevice Device { get; set;}	//get and set the device when the function "AssignDeviceToPlayer" is called in the DevicesManager
+
+	[HideInInspector]public GameObject score;
+	public int scoreKeeper { get; set;}
 
 	//the two events that let other scripts know of the kill
 	public delegate void PlayerWasKilled (PlayerController killer, PlayerController victim);
@@ -41,27 +45,29 @@ public class PlayerController : MonoBehaviour
 	void Awake ()
 	{
 		rigidbody = GetComponent <Rigidbody> ();
-		playerIndex = gameObject.name.Replace ("Player_", "");
+		//playerIndex = gameObject.name.Replace ("Player_", "");
 		hittableMask = ~hittableMask;
 		attackSphereOrigin = transform.Find ("Sheep/AttackSphereOrigin");
 		wolfAnimator = transform.Find ("Wolf").GetComponent<Animator> ();
+		score = GameObject.Find("Player Scores").transform.Find("Score" + gameObject.name).gameObject;
+		//score = GameObject.Find ("Score" + gameObject.name).GetComponent<Text>();
 	}
 		
 	void Update()
 	{
-		if(!isGameStarted && Device != null)
-		{
-			isGameStarted = true;
-			RespawnPlayer ();
-			//			groundIndicator.color = new Color(Random.value, Random.value, Random.value);
-			//			Invoke("RemoveIndicator", 5);
-		}
+//		if(!isGameStarted && Device != null)
+//		{
+//			isGameStarted = true;
+//			//RespawnPlayer ();
+//			//			groundIndicator.color = new Color(Random.value, Random.value, Random.value);
+//			//			Invoke("RemoveIndicator", 5);
+//		}
 
 		//check if there's a device attached to the player
 		if (Device == null)
 			return;
 		
-		if (isGameStarted)
+		//if (isGameStarted)
 			Controls ();
 
 		//makes the controller vibrate when the player is the wolf.
@@ -72,19 +78,16 @@ public class PlayerController : MonoBehaviour
 	}
 
 	//function called to spawn the players
-	public void RespawnPlayer()
-	{
-//		var particles = Instantiate (Particles);
-//		if (particles) particles.transform.position = transform.position;
-		
-		//assigns the right spawn position depending on the player index
-		Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
-		startPosition.y = spawnHeight;
-		transform.position = startPosition;
-
-		//JUST FOR PLAYTESTING
-		FindObjectOfType<NewWolfManager> ().CreateRandomWolf ();
-	}
+//	public void RespawnPlayer()
+//	{
+////		var particles = Instantiate (Particles);
+////		if (particles) particles.transform.position = transform.position;
+//		
+//		//assigns the right spawn position depending on the player index
+//		Vector3 spawnPosition = GameObject.Find ("SpawnPositionPlayer_"+playerIndex).transform.position;
+//		spawnPosition.y = spawnHeight;
+//		transform.position = spawnPosition;
+//	}
 
 	public void Controls()
 	{	

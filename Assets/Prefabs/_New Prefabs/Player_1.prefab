@@ -200,7 +200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010870862522
 GameObject:
   m_ObjectHideFlags: 1
@@ -1733,10 +1733,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013716528274}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000014035004732}
   - {fileID: 4000010285417086}
@@ -2646,12 +2646,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9802b9d9a3be644a9ef8c90ce23ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killerHitParticles: {fileID: 100000, guid: d92b3391f10a45c438296dbf699972e2, type: 2}
-  wolfAnimator: {fileID: 95000011869494604}
   timeSpentInWolfShape: 0.3
+  wolfAnimator: {fileID: 95000011869494604}
   wolfShape: {fileID: 1000011186539588}
   sheepShape: {fileID: 1000010808323488}
   wolfArm: {fileID: 1000011245323818}
+  killerHitParticles: {fileID: 100000, guid: d92b3391f10a45c438296dbf699972e2, type: 2}
 --- !u!114 &114000011698281482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2665,11 +2665,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4.5
   rotateSpeed: 10
-  spawnHeight: 4
   attackRange: 0.57
   sheepAnimator: {fileID: 95000013320438528}
-  movement: {x: 0, y: 0, z: 0}
-  playerIndex: 
 --- !u!135 &135000013688360060
 SphereCollider:
   m_ObjectHideFlags: 1

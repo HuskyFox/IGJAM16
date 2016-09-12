@@ -62,8 +62,6 @@ public class NewWolfManager : UnitySingleton <NewWolfManager>
 			do {
 				randomPlayerIndex = Random.Range (1, devicesManager.players.Count +1);
 			} while(randomPlayerIndex == currentWolfIndex);
-
-			print (randomPlayerIndex);
 			return randomPlayerIndex;
 		} else
 			return 1;
@@ -82,7 +80,7 @@ public class NewWolfManager : UnitySingleton <NewWolfManager>
 			{
 				devicesManager.players [i].isWolf = true;
 				devicesManager.players[i].tag = "Wolf";
-				//print("Player " + wolfIndex + " is the wolf!");
+				print("Player " + wolfIndex + " is the wolf!");
 			}
 		}
 	}

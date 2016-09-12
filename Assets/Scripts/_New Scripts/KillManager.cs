@@ -16,6 +16,10 @@ public class KillManager : MonoBehaviour
 		killer.GetComponent<KillFeedback> ().SlowMoFeedback (killer, victim);
 		TimeManager.Instance.NewWolfCountdownUI ();
 		NewWolfManager.Instance.CreateRandomWolf ();
+
+		//we might want to have this after the feedback animation, not right at the moment of the kill...
+		FindObjectOfType<ScoreManager> ().SuccessfulKillScoreUpdate (killer, victim);
+
 		print ("Good kill!");
 		this.enabled = false;
 	}
@@ -27,6 +31,11 @@ public class KillManager : MonoBehaviour
 		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer);
 		TimeManager.Instance.NewWolfCountdownUI ();
 		NewWolfManager.Instance.CreateRandomWolf ();
+
+		//we might want to have this after the feedback animation, not right at the moment of the kill...
+		FindObjectOfType<ScoreManager> ().UnsuccessfulKillScoreUpdate (killer);
+
+
 		print ("Wrong kill!");
 		this.enabled = false;
 	}

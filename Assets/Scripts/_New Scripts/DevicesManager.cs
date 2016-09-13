@@ -7,9 +7,9 @@ using System.Collections.Generic;
 public class DevicesManager : UnitySingleton <DevicesManager> 
 {
 	//TEMPORARY TEST FOR PLAYERSPAWN - DO THAT IN INPUTCHECK FOR GAMEISEADY
-	public delegate void GameIsReady (List<PlayerController> registeredPlayers);
+	//public delegate void GameIsReady (List<PlayerController> registeredPlayers);
+	public delegate void GameIsReady ();
 	public static event GameIsReady OnGameIsReady;
-
 
 	public int minPlayers = 1;
 	const int maxPlayers = 4;
@@ -18,28 +18,32 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 
 	void Update()
 	{
-		//as long as there could be more players, the script continues to assign devices to players
-		if(players.Count < maxPlayers )
+		if(!GameStateManager.gameOn)
 		{
-			var inputDevice = InputManager.ActiveDevice;
-
-			if (JoinButtonWasPressedOnDevice( inputDevice ))
+			//as long as there could be more players, the script continues to assign devices to players
+			if(players.Count < maxPlayers )
 			{
-				if (ThereIsNoPlayerUsingDevice( inputDevice ))
-				{
-					AssignDeviceToPlayer( inputDevice );
-					print ("Number of players:" + players.Count);
-				}
-			}
-			//print ("input check");
-		}
+				var inputDevice = InputManager.ActiveDevice;
 
-		//TEMPORARY TEST FOR PLAYERSPAWN - DO THAT IN INPUTCHECK FOR GAMEISEADY
-		if(InputManager.ActiveDevice.Action3.WasPressed)
-		{
-			print ("Game is ready!");
-			if(OnGameIsReady != null)
-				OnGameIsReady(players);
+				if (JoinButtonWasPressedOnDevice( inputDevice ))
+				{
+					if (ThereIsNoPlayerUsingDevice( inputDevice ))
+					{
+						AssignDeviceToPlayer( inputDevice );
+						print ("Number of players:" + players.Count);
+					}
+				}
+				//print ("input check");
+			}
+
+			//TEMPORARY TEST FOR PLAYERSPAWN - DO THAT IN INPUTCHECK FOR GAMEISEADY
+			if(InputManager.ActiveDevice.Action3.WasPressed)
+			{
+				GameStateManager.Instance.playersInGame = players;
+				print ("Game is ready!");
+				if(OnGameIsReady != null)
+					OnGameIsReady();
+			}
 		}
 	}
 

@@ -169,9 +169,6 @@ public class Timer : MonoBehaviour
         }
 
         gameWinner = highestScore.OwnerIndex;
-
-		//Add the scene in charge of the score display and restart function (TO CREATE).
-		//SceneManager.LoadScene ("Restart Scene", LoadSceneMode.Additive);
     }
 
 

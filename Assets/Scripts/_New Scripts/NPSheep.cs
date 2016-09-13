@@ -14,7 +14,6 @@ public class NPSheep : MonoBehaviour
 
 	public void CamShake()
 	{
-		//killer.GetComponent<Player>().secondAnimationController.SetTrigger("Attack");
 		var camShake = Camera.main.GetComponent<iTweenEvent>();
 		if (camShake) Camera.main.GetComponent<iTweenEvent>().Play();
 	}

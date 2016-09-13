@@ -85,17 +85,39 @@ public class ScoreManager : MonoBehaviour
 	//release the highest score
 	public void GetWinner (List <PlayerController> players)
 	{
+//		List <int> finalScores = new List<int> ();
+//		for (int i = 0; i < players.Count; i++)
+//		{
+//			PlayerController player = players [i];
+//			int score = player.scoreKeeper;
+//			finalScores.Add (score);
+//			int highestScore = Mathf.Max (finalScores.ToArray ());
+//
+//			if (player.scoreKeeper == highestScore)
+//			{
+//				FindObjectOfType<GameOverManager> ().winners.Add (player);
+//				print ("The winner is Player " + (i+1) + " with a score of " + highestScore + " !");
+//			}
+//		}
+
 		List <int> finalScores = new List<int> ();
 		for (int i = 0; i < players.Count; i++)
 		{
 			PlayerController player = players [i];
 			int score = player.scoreKeeper;
 			finalScores.Add (score);
-			int highestScore = Mathf.Max (finalScores.ToArray ());
+		}
 
+		int highestScore = Mathf.Max (finalScores.ToArray ());
+
+		for (int i = 0; i < players.Count; i++)
+		{
+			PlayerController player = players [i];
 			if (player.scoreKeeper == highestScore)
 			{
-				GameStateManager.Instance.winner = player;
+				FindObjectOfType<GameOverManager> ().winners.Add (player);
+				string winnerIndex = player.name.Replace ("Player_", "");
+				FindObjectOfType<GameOverManager> ().winnerIndexes.Add (winnerIndex);
 				print ("The winner is Player " + (i+1) + " with a score of " + highestScore + " !");
 			}
 		}

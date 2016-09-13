@@ -65,7 +65,7 @@ public class TimeManager : UnitySingleton <TimeManager>
 				mins = Mathf.Floor (time / 60);
 				seconds = Mathf.Floor (time % 60); //Use the euclidean division for the seconds.
 
-				if (time <= 0) 
+				if (time <= 1) 
 				{
 					if (OnGameIsOver != null)
 						OnGameIsOver ();

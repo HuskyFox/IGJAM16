@@ -64,11 +64,10 @@ public class PlayerController : MonoBehaviour
 //		}
 
 		//check if there's a device attached to the player
-		if (Device == null)
+		if (Device == null || !GameStateManager.gameOn)
 			return;
 		
-		//if (isGameStarted)
-			Controls ();
+		Controls ();
 
 		//makes the controller vibrate when the player is the wolf.
 		if (isWolf)

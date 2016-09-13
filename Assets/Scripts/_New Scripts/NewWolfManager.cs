@@ -21,15 +21,18 @@ public class NewWolfManager : UnitySingleton <NewWolfManager>
 
 	void Update()
 	{	
-		timer += Time.deltaTime;
+		if(GameStateManager.gameOn)
+		{
+			timer += Time.deltaTime;
 
-		//generate a random time if not done yet
-		if (!isRandomTimeSet)
-			GenerateRandomTimeBetweenSwitch ();
+			//generate a random time if not done yet
+			if (!isRandomTimeSet)
+				GenerateRandomTimeBetweenSwitch ();
 
-		//when the time is up, calls the function to switch the wolf
-		if (timer >= timeBetweenSwitch)
-			CreateRandomWolf ();
+			//when the time is up, calls the function to switch the wolf
+			if (timer >= timeBetweenSwitch)
+				CreateRandomWolf ();
+		}
 	}
 
 	int GenerateRandomTimeBetweenSwitch()

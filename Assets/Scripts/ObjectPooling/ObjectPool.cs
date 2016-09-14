@@ -10,7 +10,7 @@ namespace ObjectPooling
         public bool PoolCanGrow = true;
         public GameObject ObjectToPool;
 
-        private List<GameObject> _objectPool = new List<GameObject>();
+		private List<GameObject> _objectPool = new List<GameObject>();
         private bool _poolIsLoaded = false;
 
         void Start()

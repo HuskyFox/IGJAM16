@@ -11,22 +11,14 @@ public class GameOverManager : MonoBehaviour
 
 	void OnEnable()
 	{
-		//winnerIndex = winner.name.Replace ("Player_", "");
-		if (winnerIndexes.Count == 1)
-			DeclareOneWinner (winnerIndexes);
-		else
-			DeclareSeveralWinners (winnerIndexes);
-	}
-
-	void DeclareOneWinner (List<string> winnersToDeclare)
-	{
-		string winner = winnersToDeclare [0];
-		gameOverUI.transform.Find("PlayerX/Text").gameObject.GetComponent<Text>().text = "Player " + winner;
-		gameOverUI.SetActive (true);
+		DeclareSeveralWinners (winnerIndexes);
 	}
 
 	void DeclareSeveralWinners (List<string> winnersToDeclare)
 	{
+		if (winnersToDeclare.Count > 1)
+			gameOverUI.transform.Find ("WinnerImage/WinnerText").gameObject.GetComponent<Text> ().text = "The winners are..";
+		
 		gameOverUI.transform.Find ("PlayerX/Text").gameObject.GetComponent<Text> ().text = "";
 
 		for (int i = 0 ; i < winnersToDeclare.Count ; i++)
@@ -39,8 +31,7 @@ public class GameOverManager : MonoBehaviour
 				gameOverUI.transform.Find ("PlayerX/Text").gameObject.GetComponent<Text> ().text += ", ";
 			}
 		}
-		//print (winText);
+
 		gameOverUI.SetActive (true);
-		//winText = "Player " + winnersToDeclare [0] + ", Player " + winnersToDeclare [1];
 	}
 }

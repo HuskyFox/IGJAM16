@@ -22,6 +22,12 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 	void CallGameOverManager()
 	{
 		gameOn = false;
+		for(int i = 0 ; i < playersInGame.Count ; i++)
+		{
+			PlayerController player = playersInGame [i];
+			player.isWolf = false;
+			player.Device.StopVibration ();
+		}
 		GetComponent <GameOverManager> ().enabled = true;
 	}
 

@@ -1,34 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using InControl;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour 
 {
-	//Control variables editable in the Inspector
+	//Variables for MOVEMENT
 	public float speed = 4.5f;
 	public float rotateSpeed = 10f;
-	//public float spawnHeight = 4f;
-	[Range (0, 3)]
-	public float attackRange = 0.75f;	//radius of the OverlapSphere in the attack function / lenght of the raycast
-
-	public Animator sheepAnimator;
+	private Animator sheepAnimator;
 	private Animator wolfAnimator;
-	//public GameObject Particles;
-
-	//variables for the movement
 	private Vector3 movement;
 	private Rigidbody rigidbody;
 
-	//variables for the attack function
+	//variables for ATTACK
+	[Range (0, 3)]
+	public float attackRange = 0.75f;	//radius of the OverlapSphere in the attack function / lenght of the raycast
 	private int hittableMask = 9;	//"Hittable" is the 8th Layer.
-	Transform attackSphereOrigin;	//origin of the OverlapSphere
+	private Transform attackSphereOrigin;	//origin of the OverlapSphere
 
-	//public string playerIndex;	//does it need to be public ???
+	//variables for HOWL
+	public float howlCooldownTime = 5f;
+	public float howlReach = 5f;
+	public float howlDuration = 2f;
+	private float _elapsedTime;
+	private ParticleSystem howlParticles;
 
 	public bool isWolf { get; set; }	//get and set the boolean when the function MakeWolf is called in the NewWolfManager.
-
-	bool isGameStarted;	//used in Update
 
 	public InputDevice Device { get; set;}	//get and set the device when the function "AssignDeviceToPlayer" is called in the DevicesManager
 
@@ -42,15 +41,20 @@ public class PlayerController : MonoBehaviour
 	public delegate void NPSheepWasKilled(PlayerController killer, NPSheep victim);
 	public static event NPSheepWasKilled OnNPSheepWasKilled;
 
+	//the event that broadcast the howl threat to the NPSheep
+	public delegate void WolfHowled (PlayerController wolf);
+	public static event WolfHowled OnWolfHowled;
+
 	void Awake ()
 	{
 		rigidbody = GetComponent <Rigidbody> ();
-		//playerIndex = gameObject.name.Replace ("Player_", "");
 		hittableMask = ~hittableMask;
 		attackSphereOrigin = transform.Find ("Sheep/AttackSphereOrigin");
+		sheepAnimator = transform.Find ("Sheep").GetComponent<Animator> ();
 		wolfAnimator = transform.Find ("Wolf").GetComponent<Animator> ();
 		score = GameObject.Find("Player Scores").transform.Find("Score" + gameObject.name).gameObject;
-		//score = GameObject.Find ("Score" + gameObject.name).GetComponent<Text>();
+		_elapsedTime = howlCooldownTime;
+		howlParticles = transform.Find ("Wolf/HowlWaves").gameObject.GetComponent<ParticleSystem> ();
 	}
 		
 	void Update()
@@ -64,9 +68,9 @@ public class PlayerController : MonoBehaviour
 //		}
 
 		//check if there's a device attached to the player
-		if (Device == null || !GameStateManager.gameOn)
+		if (Device == null)
 			return;
-		
+
 		Controls ();
 
 		//makes the controller vibrate when the player is the wolf.
@@ -74,6 +78,8 @@ public class PlayerController : MonoBehaviour
 			Device.Vibrate (0.1f, 0.1f);
 		else
 			Device.StopVibration ();
+
+		_elapsedTime += Time.deltaTime;
 	}
 
 	//function called to spawn the players
@@ -96,19 +102,20 @@ public class PlayerController : MonoBehaviour
 			if (Device.Action1.WasPressed)
 				Attack ();
 
-			if(Device.Action2.WasPressed){}
-				//Howl();
+			if(Device.Action2.WasPressed && _elapsedTime >= howlCooldownTime)
+				Howl();
+
 			//other actions
 		}
 
 		//SHEEP CONTROLS (if we want to allow actions as a sheep)
-		/*if(isSheep)
+		/*if(!isWolf)
 		{
 			
 		}*/
 	}
 
-	public void Attack()
+	void Attack()
 	{
 		//original attack system with OverlapSphere
 
@@ -206,7 +213,18 @@ public class PlayerController : MonoBehaviour
 			}
 		}*/
 	}
-		
+
+	void Howl()
+	{
+		howlParticles.Play ();
+		_elapsedTime = 0f;
+
+		//GetComponent<KillFeedback> ().ShapeShiftFeedback (this.GetComponent<PlayerController>());
+
+		if (OnWolfHowled != null)
+			OnWolfHowled (this);
+	}
+
 	void FixedUpdate()
 	{	
 		if (Device != null)

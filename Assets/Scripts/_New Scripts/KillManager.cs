@@ -5,7 +5,6 @@ public class KillManager : MonoBehaviour
 {
 	void OnEnable()
 	{
-		print ("KillManager enabled.");
 		PlayerController.OnPlayerWasKilled += successfulKillMethod;
 		PlayerController.OnNPSheepWasKilled += unsuccessfulKillMethod;
 	}
@@ -20,7 +19,6 @@ public class KillManager : MonoBehaviour
 		//we might want to have this after the feedback animation, not right at the moment of the kill...
 		FindObjectOfType<ScoreManager> ().SuccessfulKillScoreUpdate (killer, victim);
 
-		print ("Good kill!");
 		this.enabled = false;
 	}
 
@@ -36,13 +34,11 @@ public class KillManager : MonoBehaviour
 		FindObjectOfType<ScoreManager> ().UnsuccessfulKillScoreUpdate (killer);
 
 
-		print ("Wrong kill!");
 		this.enabled = false;
 	}
 
 	void OnDisable()
 	{
-		print ("KillManager disabled.");
 		PlayerController.OnPlayerWasKilled -= successfulKillMethod;
 		PlayerController.OnNPSheepWasKilled -= unsuccessfulKillMethod;
 	}

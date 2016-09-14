@@ -45,7 +45,10 @@ public class Spawner : MonoBehaviour {
         if (!pooledObject)//Ran out of enemies? or enemy pool not working
             return;
         pooledObject.transform.position = new Vector3(x + transform.position.x, transform.position.y, z + transform.position.z);
-        pooledObject.SetActive(true);
+		pooledObject.SetActive(true);
+
+		GameObject.Find ("GameManager").GetComponent<HowlManager> ().npSheepToCheckForScatter.Add (pooledObject);
+
 
     }
 

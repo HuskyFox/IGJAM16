@@ -3,42 +3,55 @@ using System.Collections;
 
 public class KillManager : MonoBehaviour
 {
+	public float timeSpentInWolfShape = 0.3f;
+
 	void OnEnable()
 	{
+		print ("Kill Manager enabled.");
 		PlayerController.OnPlayerWasKilled += successfulKillMethod;
 		PlayerController.OnNPSheepWasKilled += unsuccessfulKillMethod;
 	}
 
 	void successfulKillMethod (PlayerController killer, PlayerController victim)
 	{
-		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer);
-		killer.GetComponent<KillFeedback> ().SlowMoFeedback (killer, victim);
-		TimeManager.Instance.NewWolfCountdownUI ();
-		NewWolfManager.Instance.CreateRandomWolf ();
+		killer.isWolf = false;
 
-		//we might want to have this after the feedback animation, not right at the moment of the kill...
-		FindObjectOfType<ScoreManager> ().SuccessfulKillScoreUpdate (killer, victim);
+		StartCoroutine (SuccessKill (killer, victim, timeSpentInWolfShape));
 
 		this.enabled = false;
 	}
 
+	IEnumerator SuccessKill (PlayerController killer, PlayerController victim, float delay)
+	{
+		killer.GetComponent<KillFeedback> ().VictimVibration (victim, delay);
+		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer, delay);
+		killer.GetComponent<KillFeedback> ().SlowMoFeedback (killer, victim, delay);
+
+		yield return new WaitForSeconds (delay);
+
+		GetComponent<TimeManager>().NewWolfCountdownUI ();
+		FindObjectOfType<ScoreManager> ().SuccessfulKillScoreUpdate (killer, victim);
+		GetComponent<NewWolfManager>().CreateRandomWolf ();
+
+	}
+
 	void unsuccessfulKillMethod (PlayerController killer, NPSheep victim)
 	{
+		killer.isWolf = false;
+
 		victim.TakeDamage (victim);
 		victim.CamShake ();
-		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer);
-		TimeManager.Instance.NewWolfCountdownUI ();
-		NewWolfManager.Instance.CreateRandomWolf ();
+		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer, timeSpentInWolfShape);
+		GetComponent<TimeManager>().NewWolfCountdownUI ();
+		GetComponent<NewWolfManager>().CreateRandomWolf ();
 
-		//we might want to have this after the feedback animation, not right at the moment of the kill...
 		FindObjectOfType<ScoreManager> ().UnsuccessfulKillScoreUpdate (killer);
-
-
 		this.enabled = false;
 	}
 
 	void OnDisable()
 	{
+		print ("Kill Manager disabled.");
 		PlayerController.OnPlayerWasKilled -= successfulKillMethod;
 		PlayerController.OnNPSheepWasKilled -= unsuccessfulKillMethod;
 	}

@@ -2,7 +2,8 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Spawner : MonoBehaviour {
+public class Spawner : MonoBehaviour
+{
 
     [Range(5, 100)]
     public float SpawnRadius = 10f;
@@ -16,6 +17,8 @@ public class Spawner : MonoBehaviour {
 
     void Start()
     {
+		FindObjectOfType<GameStateManager> ().dontDestroy.Add (this.gameObject);
+
         _objectPool = ObjectPoolController.Instance.FindPool(ObjectToSpawn.name);
         if (!_objectPool)
             _objectPool = ObjectPoolController.Instance.CreateNewObjectPool(ObjectToSpawn);

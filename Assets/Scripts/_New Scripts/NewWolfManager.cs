@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class NewWolfManager : UnitySingleton <NewWolfManager>
+public class NewWolfManager : MonoBehaviour
 {	
 	//variables for the random switch after a random amount of time without any kill
 	public int minTimeBetweenWolfSwitch = 10;
@@ -11,18 +12,18 @@ public class NewWolfManager : UnitySingleton <NewWolfManager>
 	float timer;
 	int currentWolfIndex = 0;
 
-	DevicesManager devicesManager;
+	List <PlayerController> players = new List<PlayerController>();
 
-	void Awake()
+	void OnEnable()
 	{
-		//reference to the DevicesManager script to get access to the list of the players.
-		devicesManager = GetComponent<DevicesManager> ();
+		players = GetComponent<GameStateManager> ().playersInGame;
+		CreateRandomWolf ();
 	}
 
 	void Update()
 	{	
-		if(GameStateManager.gameOn)
-		{
+//		if(GameStateManager.gameOn)
+//		{
 			timer += Time.deltaTime;
 
 			//generate a random time if not done yet
@@ -32,14 +33,13 @@ public class NewWolfManager : UnitySingleton <NewWolfManager>
 			//when the time is up, calls the function to switch the wolf
 			if (timer >= timeBetweenSwitch)
 				CreateRandomWolf ();
-		}
+		//}
 	}
 
 	int GenerateRandomTimeBetweenSwitch()
 	{
 		timeBetweenSwitch = Random.Range (minTimeBetweenWolfSwitch, maxTimeBetweenWolfSwitch +1);
 		isRandomTimeSet = true;
-		//print ("Time before wolf switch:" + timeBetweenSwitch + " secs");
 		return timeBetweenSwitch;
 	}
 
@@ -53,38 +53,63 @@ public class NewWolfManager : UnitySingleton <NewWolfManager>
 		//timeManager.StartNewWolfCountdown();
 		//speechBubble.SetActive (true);
 		//Invoke ("MakeSpeechBubbleDisappear", 1f);
-		MakeWolf (currentWolfIndex);
-
+		//MakeWolf (currentWolfIndex);
+		StartCoroutine (MakeWolf ());
 	}
 
 	int CreateNewRandomNumber() 
 	{
-		if (devicesManager.players.Count > 1)
+		if (players.Count > 1)
 		{
 			int randomPlayerIndex = 0;
 			do {
-				randomPlayerIndex = Random.Range (1, devicesManager.players.Count +1);
+				randomPlayerIndex = Random.Range (1, players.Count +1);
 			} while(randomPlayerIndex == currentWolfIndex);
 			return randomPlayerIndex;
 		} else
 			return 1;
 	}
 
-	void MakeWolf(int wolfIndex)
+//	void MakeWolf()
+//	{
+//		for (int i = 0 ; i < players.Count ; i++)
+//		{
+//			PlayerController player = players [i];
+//			//we make sure all the players are back to sheep state
+//			//player.isWolf = false;
+//			player.tag = "PlayerSheep";
+//
+//			//and we set the boolean and the tag of the new wolf.
+//			if(i+1 == currentWolfIndex)
+//			{
+//				player.isWolf = true;
+//				player.tag = "Wolf";
+//				print("Player " + currentWolfIndex + " is the wolf!");
+//			}
+//		}
+//	}
+
+	IEnumerator MakeWolf()
 	{
-		for (int i = 0 ; i < devicesManager.players.Count ; i++)
+		PlayerController nextWolf = null;
+
+		for (int i = 0 ; i < players.Count ; i++)
 		{
+			PlayerController player = players [i];
 			//we make sure all the players are back to sheep state
-			devicesManager.players [i].isWolf = false;
-			devicesManager.players[i].tag = "PlayerSheep";
+			player.tag = "PlayerSheep";
 
 			//and we set the boolean and the tag of the new wolf.
-			if(i+1 == wolfIndex)
+			if (i + 1 == currentWolfIndex)
 			{
-				devicesManager.players [i].isWolf = true;
-				devicesManager.players[i].tag = "Wolf";
-				print("Player " + wolfIndex + " is the wolf!");
+				nextWolf = player;
 			}
 		}
+
+		yield return new WaitForSeconds (GetComponent<TimeManager> ().wolfCountdown);
+
+		nextWolf.isWolf = true;
+		nextWolf.tag = "Wolf";
+		print(nextWolf.name + " is the wolf!");
 	}
 }

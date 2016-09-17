@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 	private ParticleSystem howlParticles;
 
 	public bool isWolf { get; set; }	//get and set the boolean when the function MakeWolf is called in the NewWolfManager.
+	public bool isKilled { get; set;}
+	public bool movementEnabled { get; set;}	//to be able to stop the players during kill, or at the end, or before the game starts...
 
 	public InputDevice Device { get; set;}	//get and set the device when the function "AssignDeviceToPlayer" is called in the DevicesManager
 
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour
 	public delegate void WolfHowled (PlayerController wolf);
 	public static event WolfHowled OnWolfHowled;
 
-	void Awake ()
+	void OnEnable ()
 	{
 		rigidbody = GetComponent <Rigidbody> ();
 		hittableMask = ~hittableMask;
@@ -55,6 +57,7 @@ public class PlayerController : MonoBehaviour
 		score = GameObject.Find("Player Scores").transform.Find("Score" + gameObject.name).gameObject;
 		_elapsedTime = howlCooldownTime;
 		howlParticles = transform.Find ("Wolf/HowlWaves").gameObject.GetComponent<ParticleSystem> ();
+		movementEnabled = true;
 	}
 		
 	void Update()
@@ -70,12 +73,14 @@ public class PlayerController : MonoBehaviour
 		//check if there's a device attached to the player
 		if (Device == null)
 			return;
-
+		
 		Controls ();
 
 		//makes the controller vibrate when the player is the wolf.
 		if (isWolf)
 			Device.Vibrate (0.1f, 0.1f);
+		else if (isKilled)
+			Device.Vibrate (0.2f, 0.2f);
 		else
 			Device.StopVibration ();
 
@@ -104,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
 			if(Device.Action2.WasPressed && _elapsedTime >= howlCooldownTime)
 				Howl();
-
+			
 			//other actions
 		}
 
@@ -220,6 +225,7 @@ public class PlayerController : MonoBehaviour
 		_elapsedTime = 0f;
 
 		//GetComponent<KillFeedback> ().ShapeShiftFeedback (this.GetComponent<PlayerController>());
+//		GetComponent<HowlManager> ().enabled = true;
 
 		if (OnWolfHowled != null)
 			OnWolfHowled (this);
@@ -227,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{	
-		if (Device != null)
+		if (Device != null && movementEnabled) 
 		{
 			//stores the inputs of the device if there is one attached to the player
 			float h = Device.LeftStickX;
@@ -237,8 +243,7 @@ public class PlayerController : MonoBehaviour
 
 			//if the player is not too high,
 			//calls the functions controlling the movement of the player, passing in the inputs
-			if (transform.position.y <= 2f) 
-			{
+			if (transform.position.y <= 2f) {
 				Move (movement);
 				Rotate (movement);
 				Animate (h, v);

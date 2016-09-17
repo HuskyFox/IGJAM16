@@ -9,6 +9,11 @@ public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 	public int numberOfPlayers;
 	private string playerIndex;
 
+	void Start()
+	{
+		GameStateManager.Instance.dontDestroy.Add (this.gameObject);
+	}
+
 	//The 4 players are hidden at the beginning (the "Hip" GameObject of the sheep is inactive in the inspector).
 	//This function finds the number of players to spawn from the registered devices list,
 	//and only spawns the amount of players that are registered (the others stay hidden).
@@ -19,6 +24,7 @@ public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 		for(int i = 0 ; i < numberOfPlayers ; i++)
 		{
 			PlayerController playerToSpawn = playersToSpawn [i];
+
 			//finds the "hip" GameObject to set it active and make the player appear.
 			GameObject playerShape = playerToSpawn.transform.Find ("Sheep/Hip").gameObject;
 
@@ -31,6 +37,10 @@ public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 			//assigns the position and the rotation, and set the player active.
 			playerToSpawn.transform.position = spawnPosition;
 			playerToSpawn.transform.rotation = spawnRotation;
+
+			playerToSpawn.GetComponent<PlayerController> ().enabled = true;	
+			playerToSpawn.GetComponent<Rigidbody> ().useGravity = true;
+
 			playerShape.SetActive (true);
 			//PARTICLES ?
 			//ground indicator ?
@@ -49,5 +59,10 @@ public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 		//assigns the position and the rotation to the player.
 		playerToRespawn.transform.position = respawnPosition;
 		playerToRespawn.transform.rotation = respawnRotation;
+	}
+
+	void OnDestroy()
+	{
+		print (gameObject.name + "was destroyed!");
 	}
 }

@@ -5,16 +5,31 @@ using UnityEngine.UI;
 
 public class GameOverManager : MonoBehaviour 
 {
-	public GameObject gameOverUI;
+	private GameObject gameOverUI;
+	private GameObject restartButton;
 	public List <PlayerController> winners = new List<PlayerController>();
 	public List<string> winnerIndexes = new List<string>();
 
+	public delegate void RestartGame ();
+	public static event RestartGame OnRestartGame;
+
 	void OnEnable()
 	{
-		DeclareSeveralWinners (winnerIndexes);
+		gameOverUI = GameObject.Find ("Canvas").transform.Find ("GameOver").gameObject;
+		restartButton = GameObject.Find ("Canvas").transform.Find ("RestartButton").gameObject;
+		StartCoroutine (GameOverUI (winnerIndexes));
 	}
 
-	void DeclareSeveralWinners (List<string> winnersToDeclare)
+	IEnumerator GameOverUI (List<string> winners)
+	{
+		DeclarelWinners (winners);
+
+		yield return new WaitForSeconds (5.5f);
+
+		EnableRestart ();
+	}
+
+	void DeclarelWinners (List<string> winnersToDeclare)
 	{
 		if (winnersToDeclare.Count > 1)
 			gameOverUI.transform.Find ("WinnerImage/WinnerText").gameObject.GetComponent<Text> ().text = "The winners are..";
@@ -33,5 +48,24 @@ public class GameOverManager : MonoBehaviour
 		}
 
 		gameOverUI.SetActive (true);
+	}
+
+	void EnableRestart()
+	{
+		restartButton.SetActive (true);
+	}
+
+	void OnDisable()
+	{
+		if (OnRestartGame != null)
+			OnRestartGame ();
+		print ("GameOverManager was disabled, and restart game was called");
+		winners.Clear ();
+		winnerIndexes.Clear ();
+		if(gameOverUI.activeInHierarchy)
+			gameOverUI.SetActive (false);
+		restartButton.SetActive (false);
+		//GetComponent<TimeManager> ().enabled = false;
+		//GetComponent <ScoreManager> ().enabled = false;
 	}
 }

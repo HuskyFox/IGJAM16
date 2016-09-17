@@ -25,6 +25,7 @@ public class HowlManager : MonoBehaviour
 //		howlUI.GetComponent<HowlCoolDownUI> ().enabled = true;
 		GameObject.Find ("HowlUI").GetComponent<HowlCoolDownUI> ().enabled = true;
 		GameObject.Find ("HowlUI").GetComponent<HowlCoolDownUI> ().coolDownTime = wolf.howlCooldownTime;
+		//this.enabled = false;
 	}
 
 	void OnDisable()

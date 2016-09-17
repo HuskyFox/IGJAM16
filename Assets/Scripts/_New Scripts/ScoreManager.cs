@@ -9,7 +9,8 @@ public class ScoreManager : MonoBehaviour
 	public int npsheepKillPoints = -20;
 	public int killedByPlayerPoints = -20;
 
-	public GameObject playerScores;
+	private GameObject playerScores;
+	private List<PlayerController> players = new List <PlayerController> ();
 
 	public Color successfulKillColor = Color.green;
 	public Color unsuccessfulKillColor = Color.red;
@@ -17,10 +18,17 @@ public class ScoreManager : MonoBehaviour
 	//private List <int> finalScores = new List<int> ();
 	//private int highestScore = 0;
 
-	//setactive the scores depending on the number of players
-	public void InitializeScore (List <PlayerController> registeredPlayers)
+	void OnEnable()
 	{
-		for (int i = 0 ; i < registeredPlayers.Count ; i ++)
+		playerScores = GameObject.Find ("Player Scores").gameObject;
+		players = GameStateManager.Instance.playersInGame;
+		InitializeScore ();
+	}
+
+	//setactive the scores depending on the number of players
+	void InitializeScore ()
+	{
+		for (int i = 0 ; i < players.Count ; i ++)
 		{
 			GameObject playerScore = playerScores.transform.Find("ScorePlayer_" + (i+1)).gameObject;
 			playerScore.SetActive (true);
@@ -81,9 +89,9 @@ public class ScoreManager : MonoBehaviour
 		}
 		score.color = Color.white;
 	}
-
+		
 	//release the highest score
-	public void GetWinner (List <PlayerController> players)
+	public void GetWinner ()
 	{
 //		List <int> finalScores = new List<int> ();
 //		for (int i = 0; i < players.Count; i++)
@@ -118,7 +126,6 @@ public class ScoreManager : MonoBehaviour
 				FindObjectOfType<GameOverManager> ().winners.Add (player);
 				string winnerIndex = player.name.Replace ("Player_", "");
 				FindObjectOfType<GameOverManager> ().winnerIndexes.Add (winnerIndex);
-				print ("The winner is Player " + (i+1) + " with a score of " + highestScore + " !");
 			}
 		}
 	}

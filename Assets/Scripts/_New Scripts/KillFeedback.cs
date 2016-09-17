@@ -3,7 +3,6 @@ using System.Collections;
 
 public class KillFeedback : MonoBehaviour
 {	
-	public float timeSpentInWolfShape = 1f;
 	public Animator wolfAnimator;
 	public GameObject wolfShape;
 	public GameObject sheepShape;
@@ -12,37 +11,14 @@ public class KillFeedback : MonoBehaviour
 	private bool shapeShiftCoroutineIsRunning = false;
 	private bool slowMoCoroutineIsRunning = false;
 
-	//switch the shape from sheep to wolf, and then back to sheep.
-	public void ShapeShiftFeedback (PlayerController killer)
+	public void VictimVibration (PlayerController victim, float duration)
 	{
-		sheepShape.SetActive (false);
-		wolfShape.SetActive (true);
-		if (!shapeShiftCoroutineIsRunning)
-			StartCoroutine (ShapeShift (killer));
+		StartCoroutine (Vibration (victim, duration));
 	}
 
-	IEnumerator ShapeShift (PlayerController killer)
+	IEnumerator Vibration (PlayerController victim, float duration)
 	{
-		shapeShiftCoroutineIsRunning = true;
-
-		yield return new WaitForSeconds (timeSpentInWolfShape);
-
-		wolfShape.SetActive (false);
-		sheepShape.SetActive (true);
-		shapeShiftCoroutineIsRunning = false;
-	}
-
-	//calls the coroutine that slows time when a success kill happens
-	public void SlowMoFeedback (PlayerController killer, PlayerController victim)
-	{
-		StartCoroutine (VictimVibration (victim, 0.3f));
-		if (!slowMoCoroutineIsRunning)
-			StartCoroutine(SlowMo(killer, victim));
-	}
-
-	IEnumerator VictimVibration (PlayerController victim, float duration)
-	{
-		victim.Device.Vibrate (0.15f);
+		victim.isKilled = true;
 
 		float start = Time.realtimeSinceStartup;
 
@@ -50,10 +26,39 @@ public class KillFeedback : MonoBehaviour
 		{
 			yield return null;
 		}
-		victim.Device.StopVibration ();
+
+		victim.isKilled = false;
 	}
 
-	IEnumerator SlowMo(PlayerController killer, PlayerController victim)
+
+	//switch the shape from sheep to wolf, and then back to sheep.
+	public void ShapeShiftFeedback (PlayerController killer, float duration)
+	{
+		sheepShape.SetActive (false);
+		wolfShape.SetActive (true);
+		if (!shapeShiftCoroutineIsRunning)
+			StartCoroutine (ShapeShift (killer, duration));
+	}
+
+	IEnumerator ShapeShift (PlayerController killer, float duration)
+	{
+		shapeShiftCoroutineIsRunning = true;
+
+		yield return new WaitForSeconds (duration);
+
+		wolfShape.SetActive (false);
+		sheepShape.SetActive (true);
+		shapeShiftCoroutineIsRunning = false;
+	}
+
+	//calls the coroutine that slows time when a success kill happens
+	public void SlowMoFeedback (PlayerController killer, PlayerController victim, float duration)
+	{
+		if (!slowMoCoroutineIsRunning)
+			StartCoroutine(SlowMo(killer, victim, duration));
+	}
+
+	IEnumerator SlowMo (PlayerController killer, PlayerController victim, float duration)
 	{
 		slowMoCoroutineIsRunning = true;
 
@@ -71,8 +76,10 @@ public class KillFeedback : MonoBehaviour
 
 		//Attack Visuals
 		wolfAnimator.SetTrigger("Attack");
-		killer.enabled = false;
-		victim.enabled = false;
+		//		killer.enabled = false;
+		//		victim.enabled = false;
+		killer.movementEnabled = false;
+		victim.movementEnabled = false;
 
 		//slows time
 		Time.timeScale = .1f;
@@ -81,26 +88,27 @@ public class KillFeedback : MonoBehaviour
 
 		//SoundManager.Instance.PlaySuccessSound ();
 
-		yield return new WaitForSeconds(timeSpentInWolfShape);
+		yield return new WaitForSeconds(duration);
 
 
 		//killer.transform.FindChild("NameTag").gameObject.SetActive(false);
 		//victim.transform.FindChild("NameTag").gameObject.SetActive(false);
 		Instantiate (killerHitParticles, wolfArm.transform.position, Quaternion.identity);
 
-		killer.enabled = true;
+		//killer.enabled = true;
 		killer.speed = prevKillerSpeed;
-		victim.enabled = true;
+		//victim.enabled = true;
 		victim.speed = prevVictimSpeed;
+		killer.movementEnabled = true;
+		victim.movementEnabled = true;
 
-		PlayerSpawnerManager.Instance.RespawnPlayer (victim);
+		FindObjectOfType<PlayerSpawnerManager>().RespawnPlayer (victim);
 
 		//speeds back time
 		Time.timeScale = 1f;
 		//SoundManager.Instance.UnpauseGameMusic ();
 		slowMoCoroutineIsRunning = false;
 	}
-		
 
 	//former script
    // public GameObject VictimHitParticles;

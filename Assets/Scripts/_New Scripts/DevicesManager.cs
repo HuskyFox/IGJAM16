@@ -2,15 +2,20 @@
 using System.Collections;
 using InControl;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //this singleton is used to assign the devices to the players
-public class DevicesManager : UnitySingleton <DevicesManager> 
+public class DevicesManager : UnitySingleton <DevicesManager>
 {
-	//TEMPORARY TEST FOR PLAYERSPAWN - DO THAT IN INPUTCHECK FOR GAMEISEADY
-	//public delegate void GameIsReady (List<PlayerController> registeredPlayers);
 	public delegate void GameIsReady ();
 	public static event GameIsReady OnGameIsReady;
 
+	public GameObject playerPrefab;
+
+	public bool playtesting;
+
+	public bool lookingForPlayers { get; set;}
 	public int minPlayers = 1;
 	const int maxPlayers = 4;
 
@@ -18,31 +23,64 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 
 	void Update()
 	{
-		if(!GameStateManager.gameOn)
+		if (playtesting)
 		{
-			//as long as there could be more players, the script continues to assign devices to players
-			if(players.Count < maxPlayers )
+				//as long as there could be more players, the script continues to assign devices to players
+				if (players.Count < maxPlayers) 
+				{
+					var inputDevice = InputManager.ActiveDevice;
+
+					if (JoinButtonWasPressedOnDevice (inputDevice))
+					{
+						print ("trying to join..");
+						if (ThereIsNoPlayerUsingDevice (inputDevice)) 
+						{
+							AssignDeviceToPlayer (inputDevice);
+						}
+					}
+					//				print ("input check");
+				}
+
+				if (InputManager.ActiveDevice.Action3.WasPressed) 
+				{
+					//GameStateManager.Instance.playersInGame = players;
+					print ("Number of players:" + players.Count);
+					print ("Game is ready!");
+					if (OnGameIsReady != null)
+						OnGameIsReady ();
+
+				//SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+				}
+		}
+		else if (!playtesting && lookingForPlayers)
+		{
+			if (players.Count < maxPlayers) 
 			{
 				var inputDevice = InputManager.ActiveDevice;
 
-				if (JoinButtonWasPressedOnDevice( inputDevice ))
+				if (JoinButtonWasPressedOnDevice (inputDevice))
 				{
-					if (ThereIsNoPlayerUsingDevice( inputDevice ))
+					if (ThereIsNoPlayerUsingDevice (inputDevice)) 
 					{
-						AssignDeviceToPlayer( inputDevice );
-						print ("Number of players:" + players.Count);
+						AssignDeviceToPlayer (inputDevice);
 					}
 				}
-//				print ("input check");
+				//				print ("input check");
 			}
 
-			//TEMPORARY TEST FOR PLAYERSPAWN - DO THAT IN INPUTCHECK FOR GAMEISEADY
-			if(InputManager.ActiveDevice.Action3.WasPressed)
+			if(InputManager.ActiveDevice.Action2.WasPressed)
 			{
-				GameStateManager.Instance.playersInGame = players;
-				print ("Game is ready!");
-				if(OnGameIsReady != null)
-					OnGameIsReady();
+				GameObject.Find("Canvas").transform.Find ("MainMenu").gameObject.SetActive (true);
+				GameObject.Find ("ControllerRegistration").gameObject.SetActive (false);
+				players.Clear ();
+			}
+
+			if (InputManager.ActiveDevice.Command.WasPressed) 
+			{
+				//GameStateManager.Instance.playersInGame = players;
+				print ("game ready..");
+				if (OnGameIsReady != null)
+					OnGameIsReady ();
 			}
 		}
 	}
@@ -81,10 +119,22 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 		{
 			int nextPlayer = players.Count + 1;
 
-			GameObject gameObject = GameObject.Find("Player_"+nextPlayer);
+			//GameObject gameObject = GameObject.Find("Player_"+nextPlayer);
+			GameObject gameObject = Instantiate (playerPrefab) as GameObject;
+			gameObject.name = "Player_" + nextPlayer;
+			gameObject.transform.parent = GameObject.Find ("Players").transform;
 			PlayerController player = gameObject.GetComponent<PlayerController>();
 			player.Device = inputDevice;
 			players.Add( player );
+
+			if (playtesting)
+				return player;
+			
+			Text playerBox = GameObject.Find ("BoxPlayer_" + nextPlayer).transform.Find("Player"+nextPlayer+"/Press A").gameObject.GetComponent<Text>();
+			playerBox.text = "Ok!";
+
+			Image backgroundImage = GameObject.Find ("BoxPlayer_" + nextPlayer).gameObject.GetComponent<Image> ();
+			backgroundImage.color = new Color (0.078f, 0.29f, 0.51f, 0.392f);
 
 			return player;
 		}

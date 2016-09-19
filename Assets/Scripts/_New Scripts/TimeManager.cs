@@ -13,17 +13,14 @@ public class TimeManager : MonoBehaviour
 
 	public float timerDelay = 0f;
 
-	private Text timerLabel;
-	//public bool currentlyTiming;
 	public float gameTimeInSec; //In seconds
+	UIManager timeUI;
 	float time;
 	float mins;
 	float seconds;
 
-	private GameObject wolfCountdownUI;
-	private Text wolfCountdownLabel;
 	public float wolfCountdown = 5f; //in seconds
-	bool timeForANewWolf;
+	public bool timeForANewWolf { get; set;}
 	float wolfSeconds;
 	float wolfTime;
 
@@ -31,82 +28,57 @@ public class TimeManager : MonoBehaviour
 
 	void OnEnable()
 	{
-		timerLabel = GameObject.Find ("Timer").GetComponent<Text> ();
-		wolfCountdownUI = GameObject.Find ("Canvas").transform.Find ("WolfCountDown").gameObject;
-		wolfCountdownLabel = wolfCountdownUI.transform.Find ("WolfTimer").GetComponent<Text> ();
-
+		timeUI = GameObject.Find ("Canvas").GetComponent<UIManager> ();
 		isGameStarted = false;
-		wolfTime = wolfCountdown;
-		NewWolfCountdownUI ();
-
 		time = gameTimeInSec;
+		timeForANewWolf = true;
+		wolfTime = wolfCountdown;
 	}
 
 	//sets the timer label
 	void Update()
 	{
-		timerLabel.text = string.Format ("{0:0}:{1:00}", mins, seconds);
+		timeUI.TimeRemaining (mins, seconds);
 		mins = Mathf.Floor (time / 60);
 		seconds = Mathf.Floor (time % 60); //Use the euclidean division for the seconds.
 
-		wolfCountdownLabel.text = wolfSeconds.ToString ();
 		wolfSeconds = Mathf.Floor (wolfTime % 60);
 
 //		if (!isGameStarted)
 //		{
 //			//create a countdown before the game starts!
-//			//(using the wolf countdown for now).
-//
-//			//wolfCountdownLabel.text = wolfSeconds.ToString ();
-//			wolfTime -= Time.deltaTime;
-////			wolfSeconds = Mathf.Floor (wolfTime % 60);
-//
-//			if (wolfTime < timerDelay) 
-//			{
-//				wolfCountdownUI.SetActive (false);
-//				if (OnGameIsStarted != null)
-//					OnGameIsStarted ();
-//			}
 //		}
+
 		if (isGameStarted)
 		{
+			time -= Time.deltaTime;
 
-				time -= Time.deltaTime;
-			
-				if (time  < timerDelay) 
-				{
-					if (OnGameIsOver != null)
-						OnGameIsOver ();
+			if (time  < timerDelay) 
+			{
+				if (OnGameIsOver != null)
+					OnGameIsOver ();
 
-					//currentlyTiming = false;
-					time = 0;
-					mins = 0;
-					seconds = 0;
-				}
-		
+				time = 0;
+				mins = 0;
+				seconds = 0;
+			}
 		}
 
 		if (timeForANewWolf)
 		{
-			//wolfCountdownLabel.text = wolfSeconds.ToString ();
 			wolfTime -= Time.deltaTime;
-			//wolfSeconds = Mathf.Floor (wolfTime % 60);
+			timeUI.WolfCountDown (wolfSeconds, timeForANewWolf);
 
 			if (wolfTime < timerDelay) 
 			{
 				timeForANewWolf = false;
-				wolfCountdownUI.SetActive (false);
+				wolfTime = wolfCountdown;
+				timeUI.WolfCountDown (wolfSeconds, !timeForANewWolf);
+
 				if(!isGameStarted)
 					if (OnGameIsStarted != null)
 						OnGameIsStarted ();
 			}
 		}
-	}
-
-	public void NewWolfCountdownUI()
-	{
-		timeForANewWolf = true;
-		wolfTime = wolfCountdown;
-		wolfCountdownUI.SetActive (true);
 	}
 }

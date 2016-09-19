@@ -29,7 +29,7 @@ public class KillManager : MonoBehaviour
 
 		yield return new WaitForSeconds (delay);
 
-		GetComponent<TimeManager>().NewWolfCountdownUI ();
+		GetComponent<TimeManager> ().timeForANewWolf = true;
 		FindObjectOfType<ScoreManager> ().SuccessfulKillScoreUpdate (killer, victim);
 		GetComponent<NewWolfManager>().CreateRandomWolf ();
 
@@ -42,7 +42,7 @@ public class KillManager : MonoBehaviour
 		victim.TakeDamage (victim);
 		victim.CamShake ();
 		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer, timeSpentInWolfShape);
-		GetComponent<TimeManager>().NewWolfCountdownUI ();
+		GetComponent<TimeManager> ().timeForANewWolf = true;
 		GetComponent<NewWolfManager>().CreateRandomWolf ();
 
 		FindObjectOfType<ScoreManager> ().UnsuccessfulKillScoreUpdate (killer);

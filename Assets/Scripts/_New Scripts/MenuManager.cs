@@ -17,9 +17,6 @@ public class MenuManager : MonoBehaviour
 
 	public void RestartGame()
 	{	
-		print ("Restart was pressed");
 		FindObjectOfType<GameOverManager> ().enabled = false;
-		//FindObjectOfType<GameStateManager> ().GoToGameScene ();
-		//FindObjectOfType<SceneManagerUtils> ().ReloadCurrentScene ();
 	}
 }

@@ -59,13 +59,11 @@ public class GameOverManager : MonoBehaviour
 	{
 		if (OnRestartGame != null)
 			OnRestartGame ();
-		print ("GameOverManager was disabled, and restart game was called");
+
 		winners.Clear ();
 		winnerIndexes.Clear ();
 		if(gameOverUI.activeInHierarchy)
 			gameOverUI.SetActive (false);
 		restartButton.SetActive (false);
-		//GetComponent<TimeManager> ().enabled = false;
-		//GetComponent <ScoreManager> ().enabled = false;
 	}
 }

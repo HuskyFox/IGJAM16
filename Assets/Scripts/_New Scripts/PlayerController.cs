@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour 
 {
+	[HideInInspector] public int playerIndex;
+
 	//Variables for MOVEMENT
 	public float speed = 4.5f;
 	public float rotateSpeed = 10f;
@@ -33,7 +35,6 @@ public class PlayerController : MonoBehaviour
 
 	public InputDevice Device { get; set;}	//get and set the device when the function "AssignDeviceToPlayer" is called in the DevicesManager
 
-	[HideInInspector]public GameObject score;
 	public int scoreKeeper { get; set;}
 
 	//the two events that let other scripts know of the kill
@@ -49,12 +50,12 @@ public class PlayerController : MonoBehaviour
 
 	void OnEnable ()
 	{
+		playerIndex = int.Parse (name.Replace ("Player_", "")) -1;
 		rigidbody = GetComponent <Rigidbody> ();
 		hittableMask = ~hittableMask;
 		attackSphereOrigin = transform.Find ("Sheep/AttackSphereOrigin");
 		sheepAnimator = transform.Find ("Sheep").GetComponent<Animator> ();
 		wolfAnimator = transform.Find ("Wolf").GetComponent<Animator> ();
-		score = GameObject.Find("Player Scores").transform.Find("Score" + gameObject.name).gameObject;
 		_elapsedTime = howlCooldownTime;
 		howlParticles = transform.Find ("Wolf/HowlWaves").gameObject.GetComponent<ParticleSystem> ();
 		movementEnabled = true;

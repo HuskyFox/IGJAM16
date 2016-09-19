@@ -22,8 +22,6 @@ public class NewWolfManager : MonoBehaviour
 
 	void Update()
 	{	
-//		if(GameStateManager.gameOn)
-//		{
 			timer += Time.deltaTime;
 
 			//generate a random time if not done yet
@@ -33,7 +31,6 @@ public class NewWolfManager : MonoBehaviour
 			//when the time is up, calls the function to switch the wolf
 			if (timer >= timeBetweenSwitch)
 				CreateRandomWolf ();
-		//}
 	}
 
 	int GenerateRandomTimeBetweenSwitch()
@@ -49,11 +46,8 @@ public class NewWolfManager : MonoBehaviour
 		isRandomTimeSet = false;
 		currentWolfIndex = CreateNewRandomNumber();
 		//SoundManager.Instance.PlayRandomFarmerShout();
-		//timeManager.gameObject.SetActive(true);
-		//timeManager.StartNewWolfCountdown();
 		//speechBubble.SetActive (true);
 		//Invoke ("MakeSpeechBubbleDisappear", 1f);
-		//MakeWolf (currentWolfIndex);
 		StartCoroutine (MakeWolf ());
 	}
 
@@ -70,25 +64,6 @@ public class NewWolfManager : MonoBehaviour
 			return 1;
 	}
 
-//	void MakeWolf()
-//	{
-//		for (int i = 0 ; i < players.Count ; i++)
-//		{
-//			PlayerController player = players [i];
-//			//we make sure all the players are back to sheep state
-//			//player.isWolf = false;
-//			player.tag = "PlayerSheep";
-//
-//			//and we set the boolean and the tag of the new wolf.
-//			if(i+1 == currentWolfIndex)
-//			{
-//				player.isWolf = true;
-//				player.tag = "Wolf";
-//				print("Player " + currentWolfIndex + " is the wolf!");
-//			}
-//		}
-//	}
-
 	IEnumerator MakeWolf()
 	{
 		PlayerController nextWolf = null;
@@ -101,9 +76,7 @@ public class NewWolfManager : MonoBehaviour
 
 			//and we set the boolean and the tag of the new wolf.
 			if (i + 1 == currentWolfIndex)
-			{
 				nextWolf = player;
-			}
 		}
 
 		yield return new WaitForSeconds (GetComponent<TimeManager> ().wolfCountdown);

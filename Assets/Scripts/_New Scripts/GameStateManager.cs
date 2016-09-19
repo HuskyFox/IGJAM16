@@ -66,55 +66,39 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 		TimeManager.OnGameIsStarted += GameIsStarted;
 
 		TimeManager.OnGameIsOver += CallGameOverManager;
-
-		GameOverManager.OnRestartGame += ReloadGameScene;
 	}
 
 	public void GoToGameScene()
 	{
-		//GetComponent<DevicesManager>().lookingForPlayers = false;
 		playersInGame = GetComponent<DevicesManager> ().players;
-		//SceneManager.MoveGameObjectToScene (this.gameObject, SceneManager.GetSceneByName ("Scene Manager"));
-		//SceneManager.MoveGameObjectToScene (GameObject.Find("Players").gameObject, SceneManager.GetSceneByName ("Scene Manager"));
 
-		if (SceneManager.GetActiveScene ().name != "Game Scene")
-			StartCoroutine (LoadGameScene ("Main Menu", "Game Scene"));
-		else if (SceneManager.GetActiveScene ().name == "Game Scene")
-			ReloadGameScene ();
+		StartCoroutine (LoadGameScene ("Main Menu", "Game Scene"));
 	}
 
 	IEnumerator LoadGameScene(string currentScene, string sceneToLoad)
 	{
-		scene.LoadSceneWithPersist (currentScene, sceneToLoad, dontDestroy);
-
-		while (!scene.sceneLoaded) 
+		if (SceneManager.GetActiveScene ().name != "Game Scene")	
 		{
-			yield return null;
+			scene.LoadSceneWithPersist (currentScene, sceneToLoad, dontDestroy);
+
+			while (!scene.sceneLoaded) 
+			{
+				yield return null;
+			}
 		}
 
 		SetGameState (GameState.GameReady);
 
 		FindObjectOfType<PlayerSpawnerManager>().InitialPlayerSpawn (playersInGame);
-
-		//GetComponent<TimeManager> ().enabled = true;
-		//GetComponent <ScoreManager> ().enabled = true;
-		//GetComponent <ScoreManager> ().enabled = true;
-		//GetComponent<NewWolfManager> ().enabled = true;
 	}
 		
 	void GameIsStarted()
 	{
 		SetGameState (GameState.GameStarted);
-		//GetComponent<TimeManager>().isGameStarted = true;
-//		GetComponent<NewWolfManager> ().enabled = true;
-//		GetComponent <NewWolfManager> ().CreateRandomWolf ();
-		print ("Game is started!");
 	}
 
 	void CallGameOverManager()
 	{
-		//FindObjectOfType<ScoreManager> ().GetWinner ();
-		//FindObjectOfType<ScoreManager> ().enabled = false;
 		SetGameState (GameState.GameOver);
 
 		for(int i = 0 ; i < playersInGame.Count ; i++)
@@ -123,19 +107,6 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 			player.isWolf = false;
 			player.Device.StopVibration ();
 		}
-		//GetComponent<NewWolfManager> ().enabled = false;
-
-		//GetComponent<TimeManager> ().enabled = false;
-		//GetComponent <GameOverManager> ().enabled = true;
-	}
-
-	void ReloadGameScene()
-	{
-		SetGameState (GameState.GameReady);
-		FindObjectOfType<PlayerSpawnerManager>().InitialPlayerSpawn (playersInGame);
-//		GetComponent<TimeManager> ().enabled = true;
-//		GetComponent <ScoreManager> ().enabled = true;
-//		GetComponent<NewWolfManager> ().enabled = true;
 	}
 
 	void OnDisable()
@@ -146,11 +117,5 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 
 		TimeManager.OnGameIsOver -= CallGameOverManager;
 
-		GameOverManager.OnRestartGame -= ReloadGameScene;
-	}
-
-	void OnDestroy()
-	{
-		print (gameObject.name + "was destroyed!");
 	}
 }

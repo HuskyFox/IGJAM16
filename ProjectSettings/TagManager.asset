@@ -10,6 +10,8 @@ TagManager:
   - NPSheep
   - ScoreUI
   - GameOverUI
+  - FxTemporaire
+  - Indicator
   layers:
   - Default
   - TransparentFX

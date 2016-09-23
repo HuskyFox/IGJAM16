@@ -73,6 +73,7 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 	public void GoToGameScene()
 	{
 		playersInGame = GetComponent<DevicesManager> ().players;
+		SoundManager.Instance.StopMusic ();
 
 		StartCoroutine (LoadGameScene ("Main Menu", "Game Scene"));
 	}
@@ -90,7 +91,6 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 		}
 
 		SetGameState (GameState.GameReady);
-
 		FindObjectOfType<PlayerSpawnerManager>().InitialPlayerSpawn (playersInGame);
 	}
 		

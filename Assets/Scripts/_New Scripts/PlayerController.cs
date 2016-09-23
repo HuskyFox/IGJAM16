@@ -58,9 +58,14 @@ public class PlayerController : MonoBehaviour
 		wolfAnimator = transform.Find ("Wolf").GetComponent<Animator> ();
 		_elapsedTime = howlCooldownTime;
 		howlParticles = transform.Find ("Wolf/HowlWaves").gameObject.GetComponent<ParticleSystem> ();
+		Invoke("EnableMovement", 1f);
+	}
+
+	void EnableMovement()
+	{
 		movementEnabled = true;
 	}
-		
+
 	void Update()
 	{
 //		if(!isGameStarted && Device != null)
@@ -74,6 +79,8 @@ public class PlayerController : MonoBehaviour
 		//check if there's a device attached to the player
 		if (Device == null)
 			return;
+
+
 		
 		Controls ();
 

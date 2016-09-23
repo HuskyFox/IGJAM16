@@ -87,5 +87,7 @@ public class NewWolfManager : MonoBehaviour
 	void OnDisable()
 	{
 		StopCoroutine ("MakeWolf");
+		if(GameObject.FindWithTag ("Gun") != null)
+			GameObject.FindWithTag ("Gun").GetComponent<GunAnimation> ().HideForGameOver ();
 	}
 }

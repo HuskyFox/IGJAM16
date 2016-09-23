@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using NodeCanvas.BehaviourTrees;
 using ObjectPooling;
-using XInputDotNetPure;
+//using XInputDotNetPure;
 
 public class ShapeshiftAbility : MonoBehaviour
 {

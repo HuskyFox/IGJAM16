@@ -51,8 +51,7 @@ public class Spawner : MonoBehaviour
 		pooledObject.SetActive(true);
 
 		GameObject.Find ("GameManager").GetComponent<HowlManager> ().npSheepToCheckForScatter.Add (pooledObject);
-
-
+		SoundManager.Instance.npSheep.Add (pooledObject);
     }
 
     void OnDrawGizmosSelected()

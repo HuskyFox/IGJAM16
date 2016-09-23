@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 {
@@ -42,9 +43,19 @@ public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 			playerToSpawn.GetComponent<Rigidbody> ().useGravity = true;
 
 			playerShape.SetActive (true);
+
+			Image groundIndicator = playerToSpawn.transform.Find ("PlayerCanvas/GroundIndicator").GetComponent<Image> ();
+			groundIndicator.color = new Color (Random.value, Random.value, Random.value, 0.70f);
+			Invoke ("RemoveIndicator", 5f);
 			//PARTICLES ?
-			//ground indicator ?
 		}
+	}
+
+	void RemoveIndicator()
+	{
+		GameObject[] playerIndicators = GameObject.FindGameObjectsWithTag ("Indicator");
+		foreach (var playerIndicator in playerIndicators)
+			playerIndicator.SetActive (false);
 	}
 
 	//Almost the same as InitialPlayerSpawn (just without the SetActive because the kill function doesn't set it inactive).

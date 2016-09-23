@@ -456,16 +456,16 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 278457534}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -400.00003, y: -225.00002, z: 0}
-  m_LocalScale: {x: 1.3513513, y: 1.3513513, z: 1}
+  m_LocalPosition: {x: 0, y: 0.15625, z: 0}
+  m_LocalScale: {x: 1.0050675, y: 1.0050675, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1743942112}
   - {fileID: 1750607628}
   - {fileID: 1286642218}
   - {fileID: 94376210}
-  m_Father: {fileID: 1543734299}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &296225193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,7 +1023,7 @@ RectTransform:
   - {fileID: 1384363024}
   - {fileID: 861929705}
   m_Father: {fileID: 1543734299}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1465,7 +1465,17 @@ Prefab:
     - target: {fileID: 114000010059048714, guid: 3f052224e6e07427291430bc21ecacfd,
         type: 2}
       propertyPath: gameTimeInSec
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010059048714, guid: 3f052224e6e07427291430bc21ecacfd,
+        type: 2}
+      propertyPath: wolfCountdown
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012764977462, guid: 3f052224e6e07427291430bc21ecacfd,
+        type: 2}
+      propertyPath: enableXInput
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f052224e6e07427291430bc21ecacfd, type: 2}
@@ -2177,7 +2187,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.45}
-  m_ConnectedAnchor: {x: -5.2749963, y: 0.8349992}
+  m_ConnectedAnchor: {x: -5.275, y: 0.83500016}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -3746,7 +3756,7 @@ RectTransform:
   - {fileID: 1487731764}
   - {fileID: 361974499}
   m_Father: {fileID: 1543734299}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000030517578, y: -0.000015258789}
@@ -4338,7 +4348,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.69}
-  m_ConnectedAnchor: {x: 0, y: 1.0533329}
+  m_ConnectedAnchor: {x: 0, y: 1.0533345}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -4503,7 +4513,7 @@ RectTransform:
   - {fileID: 1321746196}
   - {fileID: 1735345601}
   m_Father: {fileID: 1543734299}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4539,7 +4549,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 697459630}
-  - {fileID: 278457535}
   - {fileID: 1878813609}
   - {fileID: 535548929}
   - {fileID: 1534927163}
@@ -5638,7 +5647,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.69}
-  m_ConnectedAnchor: {x: 0, y: 1.066693}
+  m_ConnectedAnchor: {x: 0, y: 1.066666}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -6042,7 +6051,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.69}
-  m_ConnectedAnchor: {x: 5.250007, y: 0.8430074}
+  m_ConnectedAnchor: {x: 5.25, y: 0.8429998}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -6350,7 +6359,7 @@ RectTransform:
   - {fileID: 1286476768}
   - {fileID: 130794317}
   m_Father: {fileID: 1543734299}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -6628,7 +6637,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.69}
-  m_ConnectedAnchor: {x: 0, y: 1.0533329}
+  m_ConnectedAnchor: {x: 0, y: 1.0533345}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -6901,7 +6910,7 @@ RectTransform:
   - {fileID: 1899628676}
   - {fileID: 1423073400}
   m_Father: {fileID: 1543734299}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -6984,7 +6993,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.69}
-  m_ConnectedAnchor: {x: 0, y: 1.066693}
+  m_ConnectedAnchor: {x: 0, y: 1.066666}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0

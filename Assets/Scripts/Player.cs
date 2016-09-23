@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
 	Renderer cachedRenderer;
 
-	private Rigidbody rigidbody;
+	private Rigidbody rb;
 
 	public bool isWolf { get; set; }
 
@@ -31,24 +31,24 @@ public class Player : MonoBehaviour
 
 	private int hittableMask = 1 << 8;
 
-	private bool isKilled = false;
-	private PlayerManager playerManager;
+	//private bool isKilled = false;
+	//private PlayerManager playerManager;
     
 
-	private int score = 0;
+	//private int score = 0;
 	public string playerIndex;
 
     public Image groundIndicator;
 
 	private bool isGameStarted = false;
 
-	private bool pushDown = false;
+	//private bool pushDown = false;
 
 	// Use this for initialization
 	void Start () {
 		Device = null;
-		rigidbody = GetComponent<Rigidbody> ();
-		playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
+		rb = GetComponent<Rigidbody> ();
+		//playerManager = GameObject.Find ("PlayerManager").GetComponent<PlayerManager> ();
 		playerIndex = gameObject.name.Replace ("Player_", "");
         
 
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
         Vector3 startPosition = GameObject.Find ("Plane"+playerIndex).transform.position;
 		startPosition.y = 4;
 		transform.position = startPosition;
-		pushDown = true;
+		//pushDown = true;
 	}
 
 	void Controls() {
@@ -129,11 +129,11 @@ public class Player : MonoBehaviour
 	void TakeDamage(object damageInflicter)
 	{
 
-		isKilled = true;
+		//isKilled = true;
 	    if (OnPlayerKilled != null)
 	    {
-            if (SoundManager.Instance)
-			    SoundManager.Instance.PlayWolfBiteSuccess ();
+           // if (SoundManager.Instance)
+			   // SoundManager.Instance.PlayWolfBiteSuccess ();
 	        OnPlayerKilled.Invoke((Player) damageInflicter, this);
 	    }
 	}
@@ -145,7 +145,7 @@ public class Player : MonoBehaviour
 		if (Device!=null) {
 			faceDirection = new Vector3(Device.LeftStickX, 0.0f, Device.LeftStickY);
 			RotateTowardsDirection(faceDirection);
-			rigidbody.velocity = new Vector3(faceDirection.x * speed , rigidbody.velocity.y, faceDirection.z * speed);
+			rb.velocity = new Vector3(faceDirection.x * speed , rb.velocity.y, faceDirection.z * speed);
 			//if(pushDown)
 				//rigidbody.AddForce (-Vector3.up*400f);
 		    isMoving = Mathf.Abs(faceDirection.x) + Mathf.Abs(faceDirection.z) > 0.05f;
@@ -164,13 +164,13 @@ public class Player : MonoBehaviour
         }
     }
 
-	void OnCollisionEnter(Collision coll)
-	{
-		if (coll.gameObject.name == "Level") {
-			pushDown = false;
-			rigidbody.velocity = Vector3.zero;
-		}
-	}
+//	void OnCollisionEnter(Collision coll)
+//	{
+//		if (coll.gameObject.name == "Level") {
+//			pushDown = false;
+//			rigidbody.velocity = Vector3.zero;
+//		}
+//	}
 
     void RemoveIndicator()
     {

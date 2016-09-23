@@ -12,7 +12,6 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 	DevicesManager devices;
 	TimeManager time;
 	ScoreManager score;
-	GameOverManager gameOver;
 	NewWolfManager newWolf;
 	SceneManagerUtils scene;
 
@@ -30,20 +29,24 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 		case GameState.GameReady:
 			devices.lookingForPlayers = false;
 			time.enabled = true;
+			time.ResetTime ();
 			score.enabled = true;
 			newWolf.enabled = true;
+			SoundManager.Instance.PlayGameMusic ();
 			break;
 
 		case GameState.GameStarted:
 			time.isGameStarted = true;
+			SoundManager.Instance.PlayRandomSheepBaa ();
 			break;
 
 		case GameState.GameOver:
-			time.enabled = false;
+			time.isGameStarted = false;
 			score.GetWinner ();
 			score.enabled = false;
 			newWolf.enabled = false;
-			gameOver.enabled = true;
+			SoundManager.Instance.PlayGameOverMusic ();
+			SoundManager.Instance.CancelInvoke ();
 			break;
 		}
 	}
@@ -53,7 +56,6 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 		devices = GetComponent<DevicesManager> ();
 		time = GetComponent<TimeManager> ();
 		score = GetComponent<ScoreManager> ();
-		gameOver = GetComponent<GameOverManager> ();
 		newWolf = GetComponent<NewWolfManager> ();
 		scene = transform.Find ("SceneManager").GetComponent<SceneManagerUtils> ();
 		dontDestroy.Add (this.gameObject);
@@ -65,7 +67,7 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 
 		TimeManager.OnGameIsStarted += GameIsStarted;
 
-		TimeManager.OnGameIsOver += CallGameOverManager;
+		TimeManager.OnGameIsOver += GameOver;
 	}
 
 	public void GoToGameScene()
@@ -97,7 +99,7 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 		SetGameState (GameState.GameStarted);
 	}
 
-	void CallGameOverManager()
+	void GameOver()
 	{
 		SetGameState (GameState.GameOver);
 
@@ -115,7 +117,7 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 
 		TimeManager.OnGameIsStarted -= GameIsStarted;
 
-		TimeManager.OnGameIsOver -= CallGameOverManager;
+		TimeManager.OnGameIsOver -= GameOver;
 
 	}
 }

@@ -50,7 +50,7 @@ public class UnitySingleton <T> : MonoBehaviour
 		{
 			if (instance == null)
 			{
-				var type = typeof(T);
+				//var type = typeof(T);
 				var instances = FindObjectsOfType<T> ();
 				//instance = FindObjectOfType<T> ();
 

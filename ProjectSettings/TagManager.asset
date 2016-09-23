@@ -5,10 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wolf
-  - FxTemporaire
+  - Gun
   - PlayerSheep
   - NPSheep
   - ScoreUI
+  - GameOverUI
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,6 @@ public class KillManager : MonoBehaviour
 
 	void OnEnable()
 	{
-		print ("Kill Manager enabled.");
 		PlayerController.OnPlayerWasKilled += successfulKillMethod;
 		PlayerController.OnNPSheepWasKilled += unsuccessfulKillMethod;
 	}
@@ -23,16 +22,18 @@ public class KillManager : MonoBehaviour
 
 	IEnumerator SuccessKill (PlayerController killer, PlayerController victim, float delay)
 	{
+		SoundManager.Instance.PauseMusic ();
 		killer.GetComponent<KillFeedback> ().VictimVibration (victim, delay);
 		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer, delay);
 		killer.GetComponent<KillFeedback> ().SlowMoFeedback (killer, victim, delay);
+		SoundManager.Instance.PlaySuccessKillSound (killer, victim, delay);
 
 		yield return new WaitForSeconds (delay);
 
+		SoundManager.Instance.UnPauseMusic ();
 		GetComponent<TimeManager> ().timeForANewWolf = true;
 		FindObjectOfType<ScoreManager> ().SuccessfulKillScoreUpdate (killer, victim);
 		GetComponent<NewWolfManager>().CreateRandomWolf ();
-
 	}
 
 	void unsuccessfulKillMethod (PlayerController killer, NPSheep victim)
@@ -42,6 +43,7 @@ public class KillManager : MonoBehaviour
 		victim.TakeDamage (victim);
 		victim.CamShake ();
 		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer, timeSpentInWolfShape);
+		SoundManager.Instance.PlayFailKillSound (killer);
 		GetComponent<TimeManager> ().timeForANewWolf = true;
 		GetComponent<NewWolfManager>().CreateRandomWolf ();
 
@@ -51,7 +53,6 @@ public class KillManager : MonoBehaviour
 
 	void OnDisable()
 	{
-		print ("Kill Manager disabled.");
 		PlayerController.OnPlayerWasKilled -= successfulKillMethod;
 		PlayerController.OnNPSheepWasKilled -= unsuccessfulKillMethod;
 	}

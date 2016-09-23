@@ -60,9 +60,4 @@ public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 		playerToRespawn.transform.position = respawnPosition;
 		playerToRespawn.transform.rotation = respawnRotation;
 	}
-
-	void OnDestroy()
-	{
-		print (gameObject.name + "was destroyed!");
-	}
 }

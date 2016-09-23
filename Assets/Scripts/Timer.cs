@@ -62,7 +62,7 @@ public class Timer : MonoBehaviour
 		print ("was called");
 		while (playSheep)
 		{
-				SoundManager.Instance.PlayRandomSheepBaa ();
+				//SoundManager.Instance.PlayRandomSheepBaa ();
 				float delay = Random.Range (1.3f, 6f);
 				print (delay);
 			if(!playSheep)
@@ -148,8 +148,8 @@ public class Timer : MonoBehaviour
 
     public void GameOver()
     {
-		SoundManager.Instance.StopGameMusic ();
-		SoundManager.Instance.PlayRestartMusic ();
+		//SoundManager.Instance.StopGameMusic ();
+		//SoundManager.Instance.PlayRestartMusic ();
 		playSheep = false;
 		StopAllCoroutines();
 		print ("stopped");
@@ -210,7 +210,7 @@ public class Timer : MonoBehaviour
 
 	void GunshotSound()
 	{
-		SoundManager.Instance.PlayGunShot ();
+		//SoundManager.Instance.PlayGunShot ();
 	}
 
 }

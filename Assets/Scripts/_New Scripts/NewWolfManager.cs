@@ -45,10 +45,8 @@ public class NewWolfManager : MonoBehaviour
 		timer = 0f;
 		isRandomTimeSet = false;
 		currentWolfIndex = CreateNewRandomNumber();
-		//SoundManager.Instance.PlayRandomFarmerShout();
-		//speechBubble.SetActive (true);
-		//Invoke ("MakeSpeechBubbleDisappear", 1f);
-		StartCoroutine (MakeWolf ());
+		GameObject.FindWithTag ("Gun").GetComponent<GunAnimation> ().StartAnim ();
+		StartCoroutine ("MakeWolf");;
 	}
 
 	int CreateNewRandomNumber() 
@@ -79,10 +77,15 @@ public class NewWolfManager : MonoBehaviour
 				nextWolf = player;
 		}
 
-		yield return new WaitForSeconds (GetComponent<TimeManager> ().wolfCountdown);
+		yield return new WaitForSeconds (GetComponent<TimeManager> ().wolfCountdown + 0.15f);
 
 		nextWolf.isWolf = true;
 		nextWolf.tag = "Wolf";
 		print(nextWolf.name + " is the wolf!");
+	}
+
+	void OnDisable()
+	{
+		StopCoroutine ("MakeWolf");
 	}
 }

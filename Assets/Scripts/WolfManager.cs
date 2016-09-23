@@ -77,7 +77,7 @@ public class WolfManager : MonoBehaviour
         //MakeEveryoneASheep ();
         playerManager.SendMessage("MakeEveryoneASheep");
         currentWolfIndex = CreateNewRandomNumber();
-        SoundManager.Instance.PlayRandomFarmerShout();
+        //SoundManager.Instance.PlayRandomFarmerShout();
         timeManager.gameObject.SetActive(true);
         timeManager.StartNewWolfCountdown();
 		speechBubble.SetActive (true);
@@ -89,7 +89,7 @@ public class WolfManager : MonoBehaviour
     void MakeWolf() { 
         if (currentWolfIndex > 0)
         {
-			SoundManager.Instance.PlayGunLoad ();
+			//SoundManager.Instance.PlayGunLoad ();
             var wolf = GameObject.Find("Player_" + currentWolfIndex).GetComponent<Player>();
             wolf.MakeWolf();
             isWolfCreated = true;

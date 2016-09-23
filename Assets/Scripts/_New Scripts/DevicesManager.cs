@@ -48,8 +48,6 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 					print ("Game is ready!");
 					if (OnGameIsReady != null)
 						OnGameIsReady ();
-
-				//SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 				}
 		}
 		else if (!playtesting && lookingForPlayers)
@@ -119,7 +117,6 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 		{
 			int nextPlayer = players.Count + 1;
 
-			//GameObject gameObject = GameObject.Find("Player_"+nextPlayer);
 			GameObject gameObject = Instantiate (playerPrefab) as GameObject;
 			gameObject.name = "Player_" + nextPlayer;
 			gameObject.transform.parent = GameObject.Find ("Players").transform;
@@ -132,6 +129,7 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 			
 			Text playerBox = GameObject.Find ("BoxPlayer_" + nextPlayer).transform.Find("Player"+nextPlayer+"/Press A").gameObject.GetComponent<Text>();
 			playerBox.text = "Ok!";
+			SoundManager.Instance.PlayRandomSheepBaa (player);
 
 			Image backgroundImage = GameObject.Find ("BoxPlayer_" + nextPlayer).gameObject.GetComponent<Image> ();
 			backgroundImage.color = new Color (0.078f, 0.29f, 0.51f, 0.392f);

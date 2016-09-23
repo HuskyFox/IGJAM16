@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour
 
 	public void RestartGame()
 	{	
-		FindObjectOfType<GameOverManager> ().enabled = false;
+		FindObjectOfType<GameStateManager> ().GoToGameScene ();
+		FindObjectOfType<UIManager> ().InitGameUI ();
 	}
 }

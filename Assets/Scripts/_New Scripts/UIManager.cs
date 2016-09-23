@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Score
 {
-	GameObject scoreDisplay;
+	public GameObject scoreDisplay;
 	public Text scoreLabel;
 	public Animation anim;
 
@@ -46,14 +46,47 @@ public class UIManager : MonoBehaviour
 	public Text timerLabel;
 	public GameObject wolfCountdownDisplay;
 	public Text wolfCountdown;
+	public float gameTimeLeft { get; set;}
+	float mins;
+	float seconds;
+	Animation timerAnim;
+	bool animPlaying = false;
+	public float wolfSeconds { get ; set; }
+	public bool showWolfCountdown {get ; set;}
+
+
+	//GAMEOVER VARIABLES
+	public GameObject gameOverUI;
+	public GameObject restartButton;
+	public Text winnerIsText;
+	public Text playerX;
+
+
+	void Awake()
+	{
+		timerAnim = timerLabel.GetComponent<Animation> ();
+		InitGameUI ();
+	}
+
+	public void InitGameUI ()
+	{
+		GameObject[] showOnGameOver = GameObject.FindGameObjectsWithTag ("GameOverUI");
+		for (int i = 0; i < showOnGameOver.Length; i++)
+			showOnGameOver [i].SetActive (false);
+	}
 
 	//score
 	public void ActivateScore(int index, int score)
 	{
-		GameObject scoreToActivate = Instantiate <GameObject> (scorePrefab);
-		scoreToActivate.transform.SetParent (scoreUI.transform, false);
+		if(index <= playerScores.Count)
+			playerScores [index - 1].scoreLabel.text = score.ToString ();
+		else
+		{
+			GameObject scoreToActivate = Instantiate <GameObject> (scorePrefab);
+			scoreToActivate.transform.SetParent (scoreUI.transform, false);
 
-		playerScores.Add (new Score(scoreToActivate, index, score));
+			playerScores.Add (new Score (scoreToActivate, index, score));
+		}
 	}
 
 	public void UpdateScore (int index, int newScore, bool success)
@@ -80,29 +113,69 @@ public class UIManager : MonoBehaviour
 	//WARNING: NEED TO CLEAR THE PLAYERSCORES LIST WHEN BACK TO MENU !!
 
 
-	//Game Countdown
-	public void TimeRemaining(float mins, float seconds)
+	//Game & Wolf Countdown
+	void Update()
 	{
+		mins = Mathf.Floor(gameTimeLeft / 60);
+		seconds = Mathf.Floor (gameTimeLeft % 60);
 		timerLabel.text = string.Format ("{0:0}:{1:00}", mins, seconds);
-	}
 
-	//Wolf Countdown
-	public void WolfCountDown(float seconds, bool active)
-	{
-		wolfCountdown.text = seconds.ToString ();
-
-		if (active) 
+		if(gameTimeLeft + 0.25f == 5.25f && gameTimeLeft > 0)
+			if(!animPlaying)
+				StartCoroutine (TimerAnimation ());
+			
+		wolfCountdown.text = wolfSeconds.ToString ("F0");
+		if (showWolfCountdown) 
 			wolfCountdownDisplay.SetActive (true);
-		else if (!active)
-			wolfCountdownDisplay.SetActive (false);
+		else if (!showWolfCountdown)
+			wolfCountdownDisplay.SetActive (false);	
 	}
+
+	IEnumerator TimerAnimation()
+	{
+		animPlaying = true;
+		timerAnim.Play ();
+		yield return new WaitForSeconds (6f);
+		timerAnim.Stop ();
+		animPlaying = false;
+	}
+
 
 	//Game Paused
 
 
 
 	//Game Over
+	public void GameOver (List <int> winners)
+	{
+		//showWolfCountdown = false;
+		StartCoroutine (GameOverUI (winners));
+	}
 
+	IEnumerator GameOverUI (List<int> winnersIndex)
+	{
+		DeclareWinners (winnersIndex);
 
+		yield return new WaitForSeconds (5.5f);
 
+		restartButton.SetActive (true);
+	}
+
+	void DeclareWinners (List<int> winnersToDeclare)
+	{
+		if (winnersToDeclare.Count > 1)
+			winnerIsText.text = "The winners are..";
+
+		playerX.text = "";
+
+		for (int i = 0 ; i < winnersToDeclare.Count ; i++)
+		{
+			int winner = winnersToDeclare [i];
+			playerX.text += "Player " + winner;
+
+			if (i < winnersToDeclare.Count-1)
+				playerX.text += ", ";
+		}
+		gameOverUI.SetActive (true);
+	}
 }

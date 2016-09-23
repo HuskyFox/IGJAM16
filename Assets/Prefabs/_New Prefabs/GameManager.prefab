@@ -55,7 +55,6 @@ GameObject:
   - 114: {fileID: 114000013509562504}
   - 114: {fileID: 114000010059048714}
   - 114: {fileID: 114000012706532666}
-  - 114: {fileID: 114000010862850492}
   - 114: {fileID: 114000013960692236}
   - 114: {fileID: 114000013553372250}
   - 114: {fileID: 114000013535615598}
@@ -78,7 +77,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013001582630}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &4000011205393998
 Transform:
   m_ObjectHideFlags: 1
@@ -91,7 +90,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013001582630}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &4000013001582630
 Transform:
   m_ObjectHideFlags: 1
@@ -103,8 +102,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4000010832966738}
   - {fileID: 4000011205393998}
+  - {fileID: 4000010832966738}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &114000010059048714
@@ -119,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerDelay: 0
-  gameTimeInSec: 5
+  gameTimeInSec: 30
   wolfCountdown: 3
 --- !u!114 &114000010820625632
 MonoBehaviour:
@@ -133,19 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneLoaded: 0
---- !u!114 &114000010862850492
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013329958054}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb43b458a399e4165ac312b472882624, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  winners: []
-  winnerIndexes: []
 --- !u!114 &114000012706532666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,8 +146,6 @@ MonoBehaviour:
   playerKillPoints: 20
   npsheepKillPoints: -20
   killedByPlayerPoints: -20
-  successfulKillColor: {r: 0, g: 1, b: 0, a: 1}
-  unsuccessfulKillColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &114000012738510966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,7 +157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9836d33b65af4962a0ad6f9bfe60ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersInGame: []
   dontDestroy: []
 --- !u!114 &114000012764977462
 MonoBehaviour:
@@ -216,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1000011964862318, guid: 7bab0cea3f1244cac8ff7859218d91d5,
     type: 2}
-  playtesting: 0
+  playtesting: 1
   minPlayers: 1
   players: []
 --- !u!114 &114000013535615598

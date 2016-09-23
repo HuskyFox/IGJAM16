@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 	private Animator sheepAnimator;
 	private Animator wolfAnimator;
 	private Vector3 movement;
-	private Rigidbody rigidbody;
+	private Rigidbody rb;
 
 	//variables for ATTACK
 	[Range (0, 3)]
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 	void OnEnable ()
 	{
 		playerIndex = int.Parse (name.Replace ("Player_", "")) -1;
-		rigidbody = GetComponent <Rigidbody> ();
+		rb = GetComponent <Rigidbody> ();
 		hittableMask = ~hittableMask;
 		attackSphereOrigin = transform.Find ("Sheep/AttackSphereOrigin");
 		sheepAnimator = transform.Find ("Sheep").GetComponent<Animator> ();
@@ -255,7 +255,7 @@ public class PlayerController : MonoBehaviour
 	void Move (Vector3 movement)
 	{
 		movement = movement * speed * Time.deltaTime;
-		rigidbody.MovePosition (transform.position + movement);
+		rb.MovePosition (transform.position + movement);
 	}
 
 	void Rotate(Vector3 direction)

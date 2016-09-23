@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class HowlManager : MonoBehaviour
 {
 	[HideInInspector]public List <GameObject> npSheepToCheckForScatter = new List <GameObject>();
-	//public GameObject howlUI;
 
 	void OnEnable()
 	{
@@ -18,14 +17,15 @@ public class HowlManager : MonoBehaviour
 		{
 			npSheepToCheckForScatter [i].GetComponent<NPSheep> ().CheckDistanceFromWolf (wolf);
 		}
+
+		SoundManager.Instance.PlayWolfHowl (wolf);
+		SoundManager.Instance.PlaySheepReactionToHowl (wolf);
 	}
 
 	void CoolDownUI (PlayerController wolf)
 	{
-//		howlUI.GetComponent<HowlCoolDownUI> ().enabled = true;
 		GameObject.Find ("HowlUI").GetComponent<HowlCoolDownUI> ().enabled = true;
 		GameObject.Find ("HowlUI").GetComponent<HowlCoolDownUI> ().coolDownTime = wolf.howlCooldownTime;
-		//this.enabled = false;
 	}
 
 	void OnDisable()

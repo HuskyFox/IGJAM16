@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour {
 
 	[HideInInspector]public List<Player> players = new List<Player>( maxPlayers );
 
-	List<Vector3> playerPositions;
+	//List<Vector3> playerPositions;
 
 	public GameObject playerPrefab;
 
@@ -48,8 +48,8 @@ public class PlayerManager : MonoBehaviour {
 				if (inputDevice.Command.IsPressed) {
 					DeactivateExtraPlayers ();
 					SceneManager.LoadScene("Demo Scene");
-					SoundManager.Instance.StopAmbianceField ();
-					SoundManager.Instance.PlayGameMusic ();
+					//SoundManager.Instance.StopAmbianceField ();
+					//SoundManager.Instance.PlayGameMusic ();
 				}
 
 			}
@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour {
 			if (JoinButtonWasPressedOnDevice (inputDevice)) {
 				if (ThereIsNoPlayerUsingDevice (inputDevice)) {
 					AssignDeviceToPlayer (inputDevice);
-					SoundManager.Instance.PlayRandomSheepBaa();
+					//SoundManager.Instance.PlayRandomSheepBaa();
 				}
 				if (players.Count >= minPlayers && players.Count <= maxPlayers) {
 				//	isGameStarted = true;
@@ -140,7 +140,7 @@ public class PlayerManager : MonoBehaviour {
 
 	void RemovePlayer( Player player )
 	{
-		playerPositions.Insert( 0, player.transform.position );
+		//playerPositions.Insert( 0, player.transform.position );
 		players.Remove( player );
 		player.Device = null;
 		Destroy( player.gameObject );

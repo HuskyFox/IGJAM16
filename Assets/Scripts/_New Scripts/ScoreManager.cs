@@ -56,22 +56,19 @@ public class ScoreManager : MonoBehaviour
 		List <int> finalScores = new List<int> ();
 		for (int i = 0; i < players.Count; i++)
 		{
-			PlayerController player = players [i];
-			int score = player.scoreKeeper;
+			int score = players[i].scoreKeeper;
 			finalScores.Add (score);
 		}
 
 		int highestScore = Mathf.Max (finalScores.ToArray ());
 
+		List <int> winnersToDeclare = new List<int> ();
 		for (int i = 0; i < players.Count; i++)
 		{
-			PlayerController player = players [i];
-			if (player.scoreKeeper == highestScore)
-			{
-				FindObjectOfType<GameOverManager> ().winners.Add (player);
-				string winnerIndex = player.name.Replace ("Player_", "");
-				FindObjectOfType<GameOverManager> ().winnerIndexes.Add (winnerIndex);
-			}
+			int winnerIndex = players [i].playerIndex + 1;
+			if (players [i].scoreKeeper == highestScore)
+				winnersToDeclare.Add (winnerIndex);
 		}
+		scoreUI.GameOver (winnersToDeclare);
 	}
 }

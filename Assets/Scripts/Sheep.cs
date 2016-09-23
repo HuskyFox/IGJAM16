@@ -16,8 +16,8 @@ public class Sheep : MonoBehaviour
 	    if (particles) particles.transform.position = transform.position;
 
 		gameObject.SetActive (false);
-        if (SoundManager.Instance)
-		    SoundManager.Instance.PlayWolfBiteFail ();
+       // if (SoundManager.Instance)
+		   // SoundManager.Instance.PlayWolfBiteFail ();
 	    var player = (Player) damageInflicter;
 	    if (!player) return;
         if(OnNpSheepWasKilled != null)

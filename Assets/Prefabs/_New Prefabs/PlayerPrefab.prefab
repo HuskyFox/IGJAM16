@@ -480,6 +480,7 @@ GameObject:
   - 136: {fileID: 136000013008964566}
   - 135: {fileID: 135000010107397352}
   - 114: {fileID: 114000012419572704}
+  - 82: {fileID: 82000012034368030}
   m_Layer: 8
   m_Name: PlayerPrefab
   m_TagString: PlayerSheep
@@ -2632,6 +2633,81 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!82 &82000012034368030
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011964862318}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243000013353917658, guid: 9ee27a06ded6e468c834861b04721e3b,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0.75
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95000010851144598
 Animator:
   serializedVersion: 3
@@ -2677,13 +2753,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9ff7468d67d477f897f8b3c97a1a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 0
   speed: 4.5
   rotateSpeed: 10
   attackRange: 0.57
   howlCooldownTime: 5
   howlReach: 3
   howlDuration: 2
-  score: {fileID: 0}
 --- !u!114 &114000012419572704
 MonoBehaviour:
   m_ObjectHideFlags: 1

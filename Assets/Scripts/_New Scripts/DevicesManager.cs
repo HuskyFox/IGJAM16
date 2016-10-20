@@ -4,6 +4,7 @@ using InControl;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using InControl.NativeProfile;
 
 //this singleton is used to assign the devices to the players
 public class DevicesManager : UnitySingleton <DevicesManager>
@@ -32,18 +33,15 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 
 					if (JoinButtonWasPressedOnDevice (inputDevice))
 					{
-						print ("trying to join..");
 						if (ThereIsNoPlayerUsingDevice (inputDevice)) 
 						{
 							AssignDeviceToPlayer (inputDevice);
 						}
 					}
-					//				print ("input check");
 				}
 
 				if (InputManager.ActiveDevice.Action3.WasPressed) 
 				{
-					//GameStateManager.Instance.playersInGame = players;
 					print ("Number of players:" + players.Count);
 					print ("Game is ready!");
 					if (OnGameIsReady != null)
@@ -63,7 +61,6 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 						AssignDeviceToPlayer (inputDevice);
 					}
 				}
-				//				print ("input check");
 			}
 
 			if(InputManager.ActiveDevice.Action2.WasPressed)
@@ -75,8 +72,6 @@ public class DevicesManager : UnitySingleton <DevicesManager>
 
 			if (InputManager.ActiveDevice.Command.WasPressed) 
 			{
-				//GameStateManager.Instance.playersInGame = players;
-				print ("game ready..");
 				if (OnGameIsReady != null)
 					OnGameIsReady ();
 			}

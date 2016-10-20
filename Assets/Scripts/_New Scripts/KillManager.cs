@@ -31,7 +31,6 @@ public class KillManager : MonoBehaviour
 		yield return new WaitForSeconds (delay);
 
 		SoundManager.Instance.UnPauseMusic ();
-		GetComponent<TimeManager> ().timeForANewWolf = true;
 		FindObjectOfType<ScoreManager> ().SuccessfulKillScoreUpdate (killer, victim);
 		GetComponent<NewWolfManager>().CreateRandomWolf ();
 	}
@@ -44,7 +43,6 @@ public class KillManager : MonoBehaviour
 		victim.CamShake ();
 		killer.GetComponent<KillFeedback> ().ShapeShiftFeedback (killer, timeSpentInWolfShape);
 		SoundManager.Instance.PlayFailKillSound (killer);
-		GetComponent<TimeManager> ().timeForANewWolf = true;
 		GetComponent<NewWolfManager>().CreateRandomWolf ();
 
 		FindObjectOfType<ScoreManager> ().UnsuccessfulKillScoreUpdate (killer);

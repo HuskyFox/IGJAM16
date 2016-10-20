@@ -50,8 +50,8 @@ public class Spawner : MonoBehaviour
         pooledObject.transform.position = new Vector3(x + transform.position.x, transform.position.y, z + transform.position.z);
 		pooledObject.SetActive(true);
 
-		GameObject.Find ("GameManager").GetComponent<HowlManager> ().npSheepToCheckForScatter.Add (pooledObject);
-		SoundManager.Instance.npSheep.Add (pooledObject);
+		//GameObject.Find ("GameManager").GetComponent<HowlManager> ().npSheepToCheckForScatter.Add (pooledObject);
+		//SoundManager.Instance.npSheep.Add (pooledObject);
     }
 
     void OnDrawGizmosSelected()

@@ -68,46 +68,29 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-//		if(!isGameStarted && Device != null)
-//		{
-//			isGameStarted = true;
-//			//RespawnPlayer ();
-//			//			groundIndicator.color = new Color(Random.value, Random.value, Random.value);
-//			//			Invoke("RemoveIndicator", 5);
-//		}
+		if(movementEnabled)
+			Controls ();
+			
+		Vibrations ();
 
-		//check if there's a device attached to the player
-		if (Device == null)
-			return;
+		if(isWolf && movementEnabled)
+			_elapsedTime += Time.deltaTime;
+	}
 
-
-		
-		Controls ();
-
+	void Vibrations()
+	{
 		//makes the controller vibrate when the player is the wolf.
-		if (isWolf)
+		if (isWolf && movementEnabled)
 			Device.Vibrate (0.1f, 0.1f);
 		else if (isKilled)
 			Device.Vibrate (0.2f, 0.2f);
+		else if (!isKilled && !movementEnabled)
+			Device.StopVibration ();
 		else
 			Device.StopVibration ();
-
-		_elapsedTime += Time.deltaTime;
 	}
 
-	//function called to spawn the players
-//	public void RespawnPlayer()
-//	{
-////		var particles = Instantiate (Particles);
-////		if (particles) particles.transform.position = transform.position;
-//		
-//		//assigns the right spawn position depending on the player index
-//		Vector3 spawnPosition = GameObject.Find ("SpawnPositionPlayer_"+playerIndex).transform.position;
-//		spawnPosition.y = spawnHeight;
-//		transform.position = spawnPosition;
-//	}
-
-	public void Controls()
+	void Controls()
 	{	
 		//WOLF CONTROLS
 		if(isWolf)
@@ -233,7 +216,6 @@ public class PlayerController : MonoBehaviour
 		_elapsedTime = 0f;
 
 		//GetComponent<KillFeedback> ().ShapeShiftFeedback (this.GetComponent<PlayerController>());
-//		GetComponent<HowlManager> ().enabled = true;
 
 		if (OnWolfHowled != null)
 			OnWolfHowled (this);
@@ -241,7 +223,7 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{	
-		if (Device != null && movementEnabled) 
+		if (movementEnabled)
 		{
 			//stores the inputs of the device if there is one attached to the player
 			float h = Device.LeftStickX;

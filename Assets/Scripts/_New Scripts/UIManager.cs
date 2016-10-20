@@ -61,6 +61,8 @@ public class UIManager : MonoBehaviour
 	public Text winnerIsText;
 	public Text playerX;
 
+	//PAUSE VARIABLES
+	public GameObject pauseUI;
 
 	void Awake()
 	{
@@ -142,25 +144,23 @@ public class UIManager : MonoBehaviour
 
 
 	//Game Paused
+	public void DisplayPauseMenu()
+	{
+		pauseUI.SetActive (true);
+	}
 
-
+	public void HidePauseMenu()
+	{
+		pauseUI.SetActive (false);
+	}
 
 	//Game Over
 	public void GameOver (List <int> winners)
 	{
-		//showWolfCountdown = false;
-		StartCoroutine (GameOverUI (winners));
+		DeclareWinners (winners);
+		Invoke ("RestartButton", 5.5f);
 	}
-
-	IEnumerator GameOverUI (List<int> winnersIndex)
-	{
-		DeclareWinners (winnersIndex);
-
-		yield return new WaitForSeconds (5.5f);
-
-		restartButton.SetActive (true);
-	}
-
+		
 	void DeclareWinners (List<int> winnersToDeclare)
 	{
 		if (winnersToDeclare.Count > 1)
@@ -177,5 +177,10 @@ public class UIManager : MonoBehaviour
 				playerX.text += ", ";
 		}
 		gameOverUI.SetActive (true);
+	}
+
+	void RestartButton()
+	{
+		restartButton.SetActive (true);
 	}
 }

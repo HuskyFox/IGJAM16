@@ -2902,6 +2902,7 @@ MonoBehaviour:
   sheepShape: {fileID: 1000012500374894}
   wolfArm: {fileID: 1000013654554176}
   killerHitParticles: {fileID: 100000, guid: d92b3391f10a45c438296dbf699972e2, type: 2}
+  killerHitPow: {fileID: 100004, guid: 5b52f1ff89b4dc94087ad66d49be9d6b, type: 2}
 --- !u!114 &114000012443499294
 MonoBehaviour:
   m_ObjectHideFlags: 1

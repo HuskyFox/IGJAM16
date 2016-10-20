@@ -12,6 +12,7 @@ TagManager:
   - GameOverUI
   - FxTemporaire
   - Indicator
+  - PauseUI
   layers:
   - Default
   - TransparentFX

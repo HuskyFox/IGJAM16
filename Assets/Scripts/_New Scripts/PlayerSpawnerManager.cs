@@ -8,6 +8,7 @@ public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 {
 	public float spawnHeight = 4f;
 	public int numberOfPlayers;
+	public GameObject spawnParticles;
 	private string playerIndex;
 
 	void Start()
@@ -47,7 +48,8 @@ public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 			Image groundIndicator = playerToSpawn.transform.Find ("PlayerCanvas/GroundIndicator").GetComponent<Image> ();
 			groundIndicator.color = new Color (Random.value, Random.value, Random.value, 0.70f);
 			Invoke ("RemoveIndicator", 5f);
-			//PARTICLES ?
+
+			Instantiate (spawnParticles, playerShape.transform.position, Quaternion.identity);
 		}
 	}
 
@@ -70,5 +72,8 @@ public class PlayerSpawnerManager : UnitySingleton <PlayerSpawnerManager>
 		//assigns the position and the rotation to the player.
 		playerToRespawn.transform.position = respawnPosition;
 		playerToRespawn.transform.rotation = respawnRotation;
+
+		GameObject playerShape = playerToRespawn.transform.Find ("Sheep/Hip").gameObject;
+		Instantiate (spawnParticles, playerShape.transform.position, Quaternion.identity);
 	}
 }

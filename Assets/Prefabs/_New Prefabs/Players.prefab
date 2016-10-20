@@ -198,3 +198,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnHeight: 4
   numberOfPlayers: 0
+  spawnParticles: {fileID: 100000, guid: 9670926e073251b4d9e7cc13c294ea9e, type: 2}

@@ -28,7 +28,7 @@ public class SoundManager : UnitySingleton <SoundManager>
 
 	private int currentBaa = 0;
 
-	[HideInInspector]public List <GameObject> npSheep = new List <GameObject> ();
+	List <GameObject> npSheep;
 
 	public override void Awake()
 	{
@@ -102,6 +102,7 @@ public class SoundManager : UnitySingleton <SoundManager>
 	void RandomSheepBaa()
 	{
 		currentBaa = GetRandomBaa ();
+		npSheep = FindObjectOfType<NPSheepSpawner> ().npSheepInGame;
 		npSheepAudioSource = npSheep [Random.Range (0, npSheep.Count)].GetComponent<AudioSource>();
 		npSheepAudioSource.clip = sheepBaas[currentBaa];
 		npSheepAudioSource.Play();

@@ -117,7 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d9906a8d2f44bd6ad0a1a4be3367b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDelay: 0
   gameTimeInSec: 30
   wolfCountdown: 3
 --- !u!114 &114000010820625632
@@ -175,7 +174,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   suspendInBackground: 0
   enableICade: 0
-  enableXInput: 1
+  enableXInput: 0
   xInputOverrideUpdateRate: 0
   xInputUpdateRate: 0
   xInputOverrideBufferSize: 0
@@ -237,5 +236,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6eb7d00c79149c7bf8cdc305db9ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeBetweenWolfSwitch: 30
-  maxTimeBetweenWolfSwitch: 35
+  minTimeBetweenWolfSwitch: 20
+  maxTimeBetweenWolfSwitch: 30

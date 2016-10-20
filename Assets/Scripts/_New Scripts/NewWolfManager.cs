@@ -45,7 +45,8 @@ public class NewWolfManager : MonoBehaviour
 		timer = 0f;
 		isRandomTimeSet = false;
 		currentWolfIndex = CreateNewRandomNumber();
-		GameObject.FindWithTag ("Gun").GetComponent<GunAnimation> ().StartAnim ();
+		GetComponent<TimeManager> ().timeForANewWolf = true;
+		GameObject.FindWithTag ("Gun").GetComponent<GunAnimation> ().StartAnim (GetComponent<TimeManager> ().wolfCountdown);
 		StartCoroutine ("MakeWolf");;
 	}
 

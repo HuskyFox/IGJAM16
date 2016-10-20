@@ -8,6 +8,7 @@ public class KillFeedback : MonoBehaviour
 	public GameObject sheepShape;
 	public GameObject wolfArm;
 	public GameObject killerHitParticles;
+	public GameObject killerHitPow;
 	private bool shapeShiftCoroutineIsRunning = false;
 	private bool slowMoCoroutineIsRunning = false;
 
@@ -76,17 +77,11 @@ public class KillFeedback : MonoBehaviour
 
 		//Attack Visuals
 		wolfAnimator.SetTrigger("Attack");
-		//		killer.enabled = false;
-		//		victim.enabled = false;
 		killer.movementEnabled = false;
 		victim.movementEnabled = false;
 
 		//slows time
 		Time.timeScale = .1f;
-
-		//SoundManager.Instance.PauseGameMusic ();
-
-		//SoundManager.Instance.PlaySuccessSound ();
 
 		yield return new WaitForSeconds(duration);
 
@@ -94,10 +89,9 @@ public class KillFeedback : MonoBehaviour
 		//killer.transform.FindChild("NameTag").gameObject.SetActive(false);
 		//victim.transform.FindChild("NameTag").gameObject.SetActive(false);
 		Instantiate (killerHitParticles, wolfArm.transform.position, Quaternion.identity);
+		Instantiate (killerHitPow, wolfArm.transform.position, Quaternion.identity);
 
-		//killer.enabled = true;
 		killer.speed = prevKillerSpeed;
-		//victim.enabled = true;
 		victim.speed = prevVictimSpeed;
 		killer.movementEnabled = true;
 		victim.movementEnabled = true;
@@ -106,7 +100,6 @@ public class KillFeedback : MonoBehaviour
 
 		//speeds back time
 		Time.timeScale = 1f;
-		//SoundManager.Instance.UnpauseGameMusic ();
 		slowMoCoroutineIsRunning = false;
 	}
 

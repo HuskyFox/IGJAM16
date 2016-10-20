@@ -11,6 +11,7 @@ public class NPSheep : MonoBehaviour
 		var particles = Instantiate(killParticles);
 		if (particles) particles.transform.position = transform.position;
 		gameObject.SetActive (false);
+		FindObjectOfType<NPSheepSpawner> ().npSheepInGame.Remove (gameObject);
 	}
 
 	public void CamShake()

@@ -17,11 +17,10 @@ public class ScoreManager : MonoBehaviour
 	{
 		scoreUI = GameObject.Find ("Canvas").GetComponent<UIManager> ();
 		players = GameStateManager.Instance.playersInGame;
-		InitializeScore ();
 	}
 
 	//setactive the scores depending on the number of players
-	void InitializeScore ()
+	public void InitializeScore ()
 	{
 		for (int i = 0 ; i < players.Count ; i ++)
 		{

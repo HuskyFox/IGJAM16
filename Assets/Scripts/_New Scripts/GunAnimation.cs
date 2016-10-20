@@ -3,7 +3,8 @@ using System.Collections;
 
 public class GunAnimation : MonoBehaviour 
 {
-	AudioSource farmerAudioSource;
+	public AudioSource farmerAudioSource;
+	public AudioSource gunAudioSource;
 	Animator anim;
 	ParticleSystem gunPoof;
 	ParticleSystem gunPoofLines;
@@ -18,9 +19,16 @@ public class GunAnimation : MonoBehaviour
 		gunFire = transform.Find ("Gun Poof/GunFire").GetComponent<ParticleSystem> ();
 	}
 		
-	public void StartAnim()
+	public void StartAnim(float countdown)
 	{
-		anim.SetTrigger ("GunAnim");
+		//anim.SetTrigger ("GunAnim");
+		anim.SetTrigger ("GunPopOut");
+		Invoke ("TriggerGunShot", countdown -1f);
+	}
+
+	void TriggerGunShot()
+	{
+		anim.SetTrigger ("GunShot");
 	}
 
 	public void FarmerShout()
@@ -30,12 +38,12 @@ public class GunAnimation : MonoBehaviour
 
 	public void LoadGun()
 	{
-		SoundManager.Instance.PlayFarmerSequence (farmerAudioSource, "LoadGun");
+		SoundManager.Instance.PlayFarmerSequence (gunAudioSource, "LoadGun");
 	}
 
 	public void GunShot()
 	{
-		SoundManager.Instance.PlayFarmerSequence (farmerAudioSource, "GunShot");
+		SoundManager.Instance.PlayFarmerSequence (gunAudioSource, "GunShot");
 		gunPoof.Play ();
 		gunPoofLines.Play ();
 		gunFire.Play ();

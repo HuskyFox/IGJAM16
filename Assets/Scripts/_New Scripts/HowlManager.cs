@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class HowlManager : MonoBehaviour
 {
-	[HideInInspector]public List <GameObject> npSheepToCheckForScatter = new List <GameObject>();
+	List <GameObject> npSheepToCheckForScatter;
 
 	void OnEnable()
 	{
@@ -13,6 +13,8 @@ public class HowlManager : MonoBehaviour
 
 	void ScatterNPSheep (PlayerController wolf)
 	{
+		npSheepToCheckForScatter = FindObjectOfType<NPSheepSpawner> ().npSheepInGame;
+
 		for (int i = 0 ; i < npSheepToCheckForScatter.Count ; i++)
 		{
 			npSheepToCheckForScatter [i].GetComponent<NPSheep> ().CheckDistanceFromWolf (wolf);

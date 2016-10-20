@@ -19,7 +19,8 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 	{
 		GameReady,
 		GameStarted,
-		GameOver
+		GameOver,
+		GamePaused
 	}
 
 	void SetGameState (GameState newState)
@@ -31,12 +32,15 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 			time.enabled = true;
 			time.ResetTime ();
 			score.enabled = true;
+			score.InitializeScore ();
 			newWolf.enabled = true;
+			FindObjectOfType<NPSheepSpawner> ().SpawnNPSheep ();
 			SoundManager.Instance.PlayGameMusic ();
 			break;
 
 		case GameState.GameStarted:
 			time.isGameStarted = true;
+			ActivatePlayers ();
 			SoundManager.Instance.PlayRandomSheepBaa ();
 			break;
 
@@ -47,6 +51,12 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 			newWolf.enabled = false;
 			SoundManager.Instance.PlayGameOverMusic ();
 			SoundManager.Instance.CancelInvoke ();
+			break;
+
+		case GameState.GamePaused:
+			time.isGameStarted = false;
+			SoundManager.Instance.CancelInvoke ();
+			StopPlayers ();
 			break;
 		}
 	}
@@ -68,6 +78,8 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 		TimeManager.OnGameIsStarted += GameIsStarted;
 
 		TimeManager.OnGameIsOver += GameOver;
+
+		PauseManager.OnGamePaused += PauseGame;
 	}
 
 	public void GoToGameScene()
@@ -94,7 +106,7 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 		FindObjectOfType<PlayerSpawnerManager>().InitialPlayerSpawn (playersInGame);
 	}
 		
-	void GameIsStarted()
+	public void GameIsStarted()
 	{
 		SetGameState (GameState.GameStarted);
 	}
@@ -111,6 +123,27 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 		}
 	}
 
+	void StopPlayers()
+	{
+		for(int i = 0 ; i < playersInGame.Count ; i++)
+		{
+			playersInGame [i].movementEnabled = false;
+		}
+	}
+
+	void ActivatePlayers()
+	{
+		for(int i = 0 ; i < playersInGame.Count ; i++)
+		{
+			playersInGame [i].movementEnabled = true;
+		}
+	}
+
+	void PauseGame()
+	{
+		SetGameState (GameState.GamePaused);
+	}
+
 	void OnDisable()
 	{
 		DevicesManager.OnGameIsReady -= GoToGameScene;
@@ -119,5 +152,6 @@ public class GameStateManager : UnitySingleton <GameStateManager>
 
 		TimeManager.OnGameIsOver -= GameOver;
 
+		PauseManager.OnGamePaused -= PauseGame;
 	}
 }

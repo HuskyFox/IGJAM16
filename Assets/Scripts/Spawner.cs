@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
 
     void Start()
     {
-		FindObjectOfType<GameStateManager> ().dontDestroy.Add (this.gameObject);
+		//FindObjectOfType<GameStateManager> ().dontDestroy.Add (this.gameObject);
 
         _objectPool = ObjectPoolController.Instance.FindPool(ObjectToSpawn.name);
         if (!_objectPool)

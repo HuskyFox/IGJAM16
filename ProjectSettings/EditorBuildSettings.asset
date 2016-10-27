@@ -6,8 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/_Work in progress/NeverUnload.unity
+  - enabled: 1
     path: Assets/Scenes/_Work in progress/Main Menu.unity
   - enabled: 1
-    path: Assets/Scenes/_Work in progress/Transition.unity
-  - enabled: 1
     path: Assets/Scenes/_Work in progress/Game Scene.unity
+  - enabled: 0
+    path: Assets/Scenes/_Work in progress/Transition.unity

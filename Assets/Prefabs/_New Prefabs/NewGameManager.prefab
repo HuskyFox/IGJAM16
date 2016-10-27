@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000011631298784}
+  m_IsPrefabParent: 1
+--- !u!1 &1000011631298784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012224254966}
+  - 114: {fileID: 114000010471777840}
+  - 114: {fileID: 114000013097150712}
+  - 114: {fileID: 114000013664379564}
+  - 114: {fileID: 114000010999583526}
+  - 114: {fileID: 114000011731828440}
+  - 114: {fileID: 114000010427379720}
+  m_Layer: 0
+  m_Name: NewGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000012224254966
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011631298784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114000010427379720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011631298784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ae3d0306f1b4f5ea563d51beff9061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npSheep: {fileID: 0}
+  UI: {fileID: 0}
+--- !u!114 &114000010471777840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011631298784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9836d33b65af4962a0ad6f9bfe60ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playtesting: 1
+  playtestInit: {fileID: 1000013412998218, guid: 8139fc87ee2934511ad2efe58779057e,
+    type: 2}
+  players: {fileID: 0}
+  playersInGame: []
+  npSheepSpawner: {fileID: 0}
+--- !u!114 &114000010999583526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011631298784}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6eb7d00c79149c7bf8cdc305db9ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeBetweenWolfSwitch: 20
+  maxTimeBetweenWolfSwitch: 30
+  gunAnim: {fileID: 0}
+--- !u!114 &114000011731828440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011631298784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ba64049736f4bad966d6f2c0898a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeSpentInWolfShape: 0.3
+  scoreManager: {fileID: 114000013664379564}
+  wolfManager: {fileID: 114000010999583526}
+  spawnManager: {fileID: 0}
+--- !u!114 &114000013097150712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011631298784}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d9906a8d2f44bd6ad0a1a4be3367b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameStarted: 0
+  gameTimeInSec: 10
+  wolfCountdown: 3
+  timeForANewWolf: 0
+  UI: {fileID: 0}
+--- !u!114 &114000013664379564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011631298784}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff250a0d7cb8f4072999cf9a6326212c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerKillPoints: 20
+  npsheepKillPoints: -20
+  killedByPlayerPoints: -20
+  scoreUI: {fileID: 0}
+  gameOverUI: {fileID: 0}

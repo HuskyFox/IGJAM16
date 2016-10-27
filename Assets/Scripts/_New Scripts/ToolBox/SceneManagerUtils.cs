@@ -1,17 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 using InControl;
 
 public class SceneManagerUtils : MonoBehaviour
 {
-	public bool sceneLoaded = false;
+	[SerializeField]EventSystem eventSystem;
+
+	[HideInInspector]public bool sceneLoaded = false;
 
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
+
+	public void LoadScene(string sceneName, string currentSceneName)
+	{
+		StartCoroutine (LoadSceneAndSetActive (sceneName, currentSceneName));
+	}
+
+	IEnumerator LoadSceneAndSetActive(string sceneName, string currentSceneName)
+	{
+		var loading = SceneManager.LoadSceneAsync (sceneName, LoadSceneMode.Additive);
+
+		while (!loading.isDone)
+		{
+			yield return null;
+		}
+
+		Scene scene = SceneManager.GetSceneByName (sceneName);
+		SceneManager.MoveGameObjectToScene (eventSystem.gameObject, scene);
+		SceneManager.SetActiveScene (scene);
+		SceneManager.UnloadScene (currentSceneName);
+	}
 
     public void LoadNextScene()
     {

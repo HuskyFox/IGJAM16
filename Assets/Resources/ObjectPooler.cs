@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ObjectPooler : UnitySingleton <ObjectPooler> 
+public class ObjectPooler : MonoBehaviour
 {
 	public GameObject pooledObject;
 	public int pooledAmount = 25;
@@ -10,7 +10,7 @@ public class ObjectPooler : UnitySingleton <ObjectPooler>
 
 	List<GameObject> pooledObjects;
 
-	void Start()
+	void Awake()
 	{
 		pooledObjects = new List<GameObject> ();
 

@@ -196,6 +196,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e969c889921bb49f384e6a35331d2ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 1000011964862318, guid: 7bab0cea3f1244cac8ff7859218d91d5,
+    type: 2}
   spawnHeight: 4
   numberOfPlayers: 0
   spawnParticles: {fileID: 100000, guid: 9670926e073251b4d9e7cc13c294ea9e, type: 2}
+  score: {fileID: 0}

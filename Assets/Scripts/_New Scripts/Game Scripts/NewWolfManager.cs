@@ -5,12 +5,9 @@ using System.Collections.Generic;
 public class NewWolfManager : MonoBehaviour
 {	
 	//variables for the random switch after a random amount of time without any kill
-	[SerializeField]
-	int minTimeBetweenWolfSwitch = 10;
-	[SerializeField]
-	int maxTimeBetweenWolfSwitch = 30;
-	[SerializeField]
-	GunAnimation gunAnim;
+	[SerializeField] int minTimeBetweenWolfSwitch = 10;
+	[SerializeField] int maxTimeBetweenWolfSwitch = 30;
+	[SerializeField] GunAnimation gunAnim;
 	private int timeBetweenSwitch;
 	private bool isRandomTimeSet = false;
 	float timer;

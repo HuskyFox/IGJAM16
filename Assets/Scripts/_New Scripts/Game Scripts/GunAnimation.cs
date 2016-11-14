@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GunAnimation : MonoBehaviour 
 {
-	public AudioSource farmerAudioSource;
-	public AudioSource gunAudioSource;
+	[SerializeField] AudioSource farmerAudioSource;
+	[SerializeField] AudioSource gunAudioSource;
 	Animator anim;
 	ParticleSystem gunPoof;
 	ParticleSystem gunPoofLines;

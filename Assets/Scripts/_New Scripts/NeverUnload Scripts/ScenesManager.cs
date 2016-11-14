@@ -10,7 +10,8 @@ public class ScenesManager : MonoBehaviour
 	void Awake()
 	{
 		string activeSceneName = SceneManager.GetActiveScene ().name;
-		if (activeSceneName != "Main Menu" || activeSceneName != "Game Scene")
+		//if (activeSceneName != "Main Menu" || activeSceneName != "Game Scene")
+		if (activeSceneName == "NeverUnload")
 			scene.LoadScene ("Main Menu", null);
 	}
 

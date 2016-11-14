@@ -13,6 +13,7 @@ public class GameStateManager : MonoBehaviour
 
 	[SerializeField] PlayerSpawnerManager players;
 	[SerializeField]NPSheepSpawner npSheepSpawner;
+	[SerializeField] TimeUI timeUI;
 	GameData gameData;
 	TimeManager time;
 	ScoreManager score;
@@ -49,6 +50,7 @@ public class GameStateManager : MonoBehaviour
 
 		case GameState.GameOver:
 			StopPlayers ();
+			timeUI.HideWolfCountdown ();
 			time.isGameStarted = false;
 			score.GetWinner ();
 			score.enabled = false;

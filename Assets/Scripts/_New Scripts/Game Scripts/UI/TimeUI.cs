@@ -61,7 +61,7 @@ public class TimeUI : MonoBehaviour
 		Invoke ("HideWolfCountdown", countdown);
 	}
 
-	void HideWolfCountdown()
+	public void HideWolfCountdown()
 	{
 		wolfCountdownDisplay.SetActive (false);	
 	}

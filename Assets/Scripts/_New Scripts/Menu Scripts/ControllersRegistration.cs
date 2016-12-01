@@ -4,17 +4,15 @@ using System.Collections.Generic;
 using InControl;
 using UnityEngine.UI;
 
-//This script is in charge of registering the input from the controllers. Every time a new input device is detected,
-//it triggers an event listened by the script "GameData" in the NeverUnload scene. 
+/*This script is in charge of registering the input from the controllers. 
+ * Every time a new input device is detected, it triggers an event listened by the script "GameData" in the NeverUnload scene.*/ 
 public class ControllersRegistration : MonoBehaviour 
 {
 	public int minPlayers = 1;
 	const int maxPlayers = 4;
 
-	[SerializeField]
-	GameObject[] playerBoxes = new GameObject[4];
-	[SerializeField]
-	Color boxColor;
+	[SerializeField] private GameObject[] _playerBoxes = new GameObject[4];
+	[SerializeField] private Color _boxColor;
 
 	//the list of input devices, which cannot contain more elements than the maximum amount of players.
 	[HideInInspector]public List<InputDevice> controllers = new List<InputDevice>( maxPlayers );
@@ -66,9 +64,9 @@ public class ControllersRegistration : MonoBehaviour
 		return null;
 	}
 
-	//If the device is not in the list yet, this function triggers an event (see GameData),
-	//adds the device to the list,
-	//and gives visual and sound feedback that the player is registered.
+	/* If the device is not in the list yet, this function triggers an event (see GameData),
+	 * adds the device to the list,
+	 * and gives visual and sound feedback that the player is registered.*/
 	InputDevice AssignDeviceToPlayer( InputDevice inputDevice )
 	{
 		if (controllers.Count < maxPlayers)
@@ -78,14 +76,9 @@ public class ControllersRegistration : MonoBehaviour
 			if (OnNewPlayerRegistered != null)
 				OnNewPlayerRegistered (newPlayerIndex, inputDevice);
 
-			//GameObject gameObject = Instantiate (playerPrefab) as GameObject;
-			//gameObject.name = "Player_" + nextPlayer;
-			//gameObject.transform.parent = GameObject.Find ("Players").transform;
-			//PlayerController player = gameObject.GetComponent<PlayerController>();
-			//player.Device = inputDevice;
 			controllers.Add(inputDevice);
 
-			GameObject box = playerBoxes [newPlayerIndex - 1];
+			GameObject box = _playerBoxes [newPlayerIndex - 1];
 
 			Text playerBox = box.transform.Find("Player"+newPlayerIndex+"/Press A").GetComponent<Text>();
 			playerBox.text = "Ok!";
@@ -105,11 +98,11 @@ public class ControllersRegistration : MonoBehaviour
 	//If a player presses B to return to the menu, the controllers list is cleared, and the boxes are reset.
 	void ResetPlayerBoxesAndList()
 	{
-		for(int i = 0 ; i < playerBoxes.Length ; i++)
+		for(int i = 0 ; i < _playerBoxes.Length ; i++)
 		{
-			GameObject box = playerBoxes [i];
+			GameObject box = _playerBoxes [i];
 			Image backgroundImage = box.GetComponent<Image> ();
-			backgroundImage.color = boxColor;
+			backgroundImage.color = _boxColor;
 
 			Text pressA = box.transform.Find ("Player" + (i + 1) + "/Press A").GetComponent<Text> ();
 			pressA.text = "Press <color=#008000ff>A</color>";

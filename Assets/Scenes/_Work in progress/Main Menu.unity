@@ -1077,12 +1077,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minPlayers: 1
-  playerBoxes:
+  _playerBoxes:
   - {fileID: 1687515325}
   - {fileID: 469941808}
   - {fileID: 1824779563}
   - {fileID: 1165741470}
-  boxColor: {r: 0.050980393, g: 0.63529414, b: 0.9254902, a: 0.516}
+  _boxColor: {r: 0.050980393, g: 0.63529414, b: 0.9254902, a: 0.516}
 --- !u!114 &535548931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,9 +1094,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a3243b0dfdd04688a868c9eb20cfd9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contReg: {fileID: 535548930}
-  start: {fileID: 548770194}
-  mainMenu: {fileID: 1878813608}
+  _contReg: {fileID: 535548930}
+  _start: {fileID: 548770194}
+  _mainMenu: {fileID: 1878813608}
 --- !u!1 &544823392
 GameObject:
   m_ObjectHideFlags: 0
@@ -6478,7 +6478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe6abb29e83244a0a819924df345064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonToSelect: {fileID: 548770194}
+  _buttonToSelect: {fileID: 548770194}
 --- !u!1 &1890214460
 GameObject:
   m_ObjectHideFlags: 0

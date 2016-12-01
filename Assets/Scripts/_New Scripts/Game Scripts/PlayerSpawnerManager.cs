@@ -5,80 +5,72 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using InControl;
 
+/* This script is in charge of spawning the players at the beginning of the game,
+ * and to respawn the players when they are killed.*/
 public class PlayerSpawnerManager : MonoBehaviour
 {
-	[SerializeField]
-	GameObject playerPrefab;
-	public float spawnHeight = 4f;
-	public int numberOfPlayers;
-	public GameObject spawnParticles;
-	private int playerIndex;
+	[SerializeField] private GameObject _playerPrefab;
+	[SerializeField] private float _spawnHeight = 4f;
+	[SerializeField] private Transform[] _spawnTransforms = new Transform[4];
+	//[SerializeField] private GameObject _spawnParticles;
+	private int _playerIndex;
+	private List<PlayerData> _playersInGame = new List<PlayerData>();
+	private List<Image> _groundIndicators = new List<Image>();
 
-	[SerializeField]
-	ScoreManager score;
-
-	private List<PlayerData> playersInGame = new List<PlayerData>();
-
-	//The 4 players are hidden at the beginning (the "Hip" GameObject of the sheep is inactive in the inspector).
-	//This function finds the number of players to spawn from the registered devices list,
-	//and only spawns the amount of players that are registered (the others stay hidden).
-
+	/* Called by the GameStateManager and being passed the dictionary of registered players,
+	 * this function spawns the needed amount of players prefabs.*/
 	public List<PlayerData> InitialPlayerSpawnTest (Dictionary <int, InputDevice> playersToSpawn)
 	{
-		foreach (KeyValuePair <int, InputDevice> players in playersToSpawn)
-		{
-			playerIndex = players.Key;
+		foreach (KeyValuePair <int, InputDevice> player in playersToSpawn)
+		{	
+			//retrieve the player index from the dictionary key.
+			_playerIndex = player.Key;
 
-			GameObject playerToSpawn = Instantiate (playerPrefab) as GameObject;
-			playerToSpawn.name = "Player_" + playerIndex;
+			//Instantiate the player prefab, rename it, and attach it to the players folder.
+			GameObject playerToSpawn = Instantiate (_playerPrefab) as GameObject;
+			playerToSpawn.name = "Player_" + _playerIndex;
 			playerToSpawn.transform.parent = transform;
 
+			//assign the index and the controller to the PlayerData script.
 			PlayerData playerData = playerToSpawn.GetComponent<PlayerData> ();
-			playerData.playerIndex = playerIndex;
-			playerData.controller = players.Value;
+			playerData.playerIndex = _playerIndex;
+			playerData.controller = player.Value;
 
-			//finds the right position and rotation corresponding to the index of the player
-			Vector3 spawnPosition = GameObject.Find ("SpawnPositionPlayer_" + playerIndex).transform.position;
-			Quaternion spawnRotation = GameObject.Find ("SpawnPositionPlayer_" + playerIndex).transform.rotation;
-			spawnPosition.y = spawnHeight;	//if we want to change the spawn height in the inspector.
-
-			//assigns the position and the rotation, and set the player active.
+			//find the right position and rotation corresponding to the index of the player
+			Vector3 spawnPosition = _spawnTransforms [_playerIndex - 1].transform.position;
+			spawnPosition.y = _spawnHeight;	//if we want to change the spawn height in the inspector.
 			playerToSpawn.transform.position = spawnPosition;
-			playerToSpawn.transform.rotation = spawnRotation;
+			playerToSpawn.transform.rotation = _spawnTransforms [_playerIndex - 1].transform.rotation;
 
+			//Ground indicator to spot the players at the beginning.
 			Image groundIndicator = playerToSpawn.transform.Find ("PlayerCanvas/GroundIndicator").GetComponent<Image> ();
 			groundIndicator.color = new Color (Random.value, Random.value, Random.value, 0.70f);
+			_groundIndicators.Add (groundIndicator);
 			Invoke ("RemoveIndicator", 5f);
 
 			//Instantiate (spawnParticles, playerShape.transform.position, Quaternion.identity);
 
-			playersInGame.Add (playerData);
+			_playersInGame.Add (playerData);
 		}
 
-		return playersInGame;
+		return _playersInGame;
 	}
 
 	void RemoveIndicator()
 	{
-		GameObject[] playerIndicators = GameObject.FindGameObjectsWithTag ("Indicator");
-		foreach (var playerIndicator in playerIndicators)
-			playerIndicator.SetActive (false);
+		foreach (Image indicator in _groundIndicators)
+			indicator.enabled = false;
 	}
 
-	//Almost the same as InitialPlayerSpawn (just without the SetActive because the kill function doesn't set it inactive).
+	//Almost the same as InitialPlayerSpawn.
 	public void RespawnPlayer(PlayerData playerToRespawn)
 	{
-		//finds the right position and rotation corresponding to the index of the player
-		playerIndex = playerToRespawn.playerIndex;
-		Vector3 respawnPosition = GameObject.Find ("SpawnPositionPlayer_" + playerIndex).transform.position;
-		Quaternion respawnRotation = GameObject.Find ("SpawnPositionPlayer_" + playerIndex).transform.rotation;
-		respawnPosition.y = spawnHeight; //if we want to change the spawn height in the inspector.
+		//find the right position and rotation corresponding to the index of the player
+		Vector3 spawnPosition = _spawnTransforms [_playerIndex - 1].transform.position;
+		spawnPosition.y = _spawnHeight;	//if we want to change the spawn height in the inspector.
+		playerToRespawn.transform.position = spawnPosition;
+		playerToRespawn.transform.rotation = _spawnTransforms [_playerIndex - 1].transform.rotation;
 
-		//assigns the position and the rotation to the player.
-		playerToRespawn.transform.position = respawnPosition;
-		playerToRespawn.transform.rotation = respawnRotation;
-
-	//	GameObject playerShape = playerToRespawn.transform.Find ("Sheep/Hip").gameObject;
 	//	Instantiate (spawnParticles, playerShape.transform.position, Quaternion.identity);
 	}
 }

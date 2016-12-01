@@ -4,41 +4,10 @@ using System.Collections;
 
 //A script that defines a class for Singletons
 //When you want to create a Manager Singleton, pass in Manager as the T Component
-/*
-public class UnitySingleton <T> : MonoBehaviour
-	where T : Component
-{
-	private static T instance;
 
-	public static T Instance
-	{
-		get
-		{
-			if (instance == null)
-			{
-				instance = FindObjectOfType<T> ();
-				if (instance == null)
-				{
-					GameObject obj = new GameObject ();
-					obj.hideFlags = HideFlags.HideAndDontSave;
-					instance = obj.AddComponent<T> ();
-				}
-			}
-			return instance;
-		}
-	}
-
-	public virtual void Awake ()
-	{
-		//DontDestroyOnLoad (this.gameObject);
-		if (instance == null)
-			instance = this as T;
-		else
-			Destroy (gameObject);
-	}
-}
-*/
-
+/* All the manager scripts used to be a singleton,
+ * but after I found out it was useless, I stopped using it.
+ * Only the SoundManager is still a singleton, but it's probably useless as well.*/
 public class UnitySingleton <T> : MonoBehaviour
 	where T : Component
 {

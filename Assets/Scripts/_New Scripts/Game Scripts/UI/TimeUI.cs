@@ -4,12 +4,11 @@ using UnityEngine.UI;
 
 public class TimeUI : MonoBehaviour
 {
-	[SerializeField]
-	Text timerLabel;
-	[SerializeField]
-	GameObject wolfCountdownDisplay;
-	[SerializeField]
-	Text wolfCountdown;
+	[SerializeField] Text timerLabel;
+	[SerializeField] GameObject wolfCountdownDisplay;
+	[SerializeField] Text wolfCountdown;
+	[SerializeField] GameObject countdownDisplay;
+	[SerializeField] Text countdown;
 
 	[HideInInspector]public float gameTimeLeft;
 	float mins;
@@ -17,7 +16,7 @@ public class TimeUI : MonoBehaviour
 	Animation timerAnim;
 	bool animPlaying = false;
 	[HideInInspector]public float wolfSeconds;
-	//[HideInInspector]public bool showWolfCountdown;
+	[HideInInspector] public float countdownSeconds;
 
 	void Awake()
 	{
@@ -31,19 +30,17 @@ public class TimeUI : MonoBehaviour
 
 	void Update()
 	{
-		mins = Mathf.Floor(gameTimeLeft / 60);
-		seconds = Mathf.Floor (gameTimeLeft % 60);
-		timerLabel.text = string.Format ("{0:0}:{1:00}", mins, seconds);
+		//countdown.text = countdownSeconds.ToString ("F0");
+
+//		mins = Mathf.Floor(gameTimeLeft / 60);
+//		seconds = Mathf.Floor (gameTimeLeft % 60);
+//		timerLabel.text = string.Format ("{0:0}:{1:00}", mins, seconds);
 
 		if(gameTimeLeft + 0.25f == 5.25f && gameTimeLeft > 0)
 		if(!animPlaying)
 			StartCoroutine (TimerAnimation ());
 
 		wolfCountdown.text = wolfSeconds.ToString ("F0");
-//		if (showWolfCountdown) 
-//			wolfCountdownDisplay.SetActive (true);
-//		else if (!showWolfCountdown)
-//			wolfCountdownDisplay.SetActive (false);	
 	}
 
 	IEnumerator TimerAnimation()
@@ -53,6 +50,11 @@ public class TimeUI : MonoBehaviour
 		yield return new WaitForSeconds (6f);
 		timerAnim.Stop ();
 		animPlaying = false;
+	}
+
+	public void Countdown()
+	{
+		countdownDisplay.SetActive (!countdownDisplay.activeSelf);
 	}
 
 	void ShowWolfCountdown(float countdown)

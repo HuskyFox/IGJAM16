@@ -15,10 +15,11 @@ public class PauseManager : MonoBehaviour
 	public static event GameUnpaused OnGameUnpaused;
 
 	public bool gamePaused = false;
+	public bool canPause = false;
 
 	void Update ()
 	{
-		if (InputManager.ActiveDevice.CommandWasPressed) 
+		if (InputManager.ActiveDevice.CommandWasPressed && canPause) 
 		{
 			gamePaused = !gamePaused;
 

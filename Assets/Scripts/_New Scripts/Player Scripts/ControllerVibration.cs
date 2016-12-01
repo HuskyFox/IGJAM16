@@ -4,46 +4,65 @@ using InControl;
 
 public class ControllerVibration : MonoBehaviour 
 {
-	public bool isWolf;
-	InputDevice controller;
+	private InputDevice _controller;
+	private bool _isWolf = false;
+	private bool _gamePaused = false;
 
 	void Start()
 	{
-		controller = GetComponent<PlayerData> ().controller;
+		_controller = GetComponent<PlayerData> ().controller;
 	}
 
-	void Update()
+	public void PauseToggle ()
 	{
-		if (isWolf)
-			controller.Vibrate (0.1f, 0.1f);
-		else
-			controller.StopVibration ();
+		_gamePaused = !_gamePaused;
+
+		if (_gamePaused)
+			_controller.StopVibration ();
+		else if (_isWolf)
+			WolfVibration ();
 	}
 
-	public void KillVibration(float duration)
+	public void Unpause()
 	{
-		StartCoroutine (Vibration (duration));
+		if (_isWolf)
+			WolfVibration ();
+	}
+
+	public void WolfVibration()
+	{
+		_controller.Vibrate (0.1f);
+		_isWolf = true;
+	}
+
+	public void Stop()
+	{
+		_controller.StopVibration ();
+		_isWolf = false;
+	}
+
+	public void KillVibration()
+	{
+		StartCoroutine (Vibration (0.3f));
 	}
 
 	IEnumerator Vibration (float duration)
 	{
-		isWolf = true;
 		float start = Time.realtimeSinceStartup;
 
-		controller.Vibrate (0.2f, 0.2f);
+		_controller.Vibrate (0.2f, 0.2f);
 
 		while (Time.realtimeSinceStartup < start + duration)
 		{
 			yield return null;
 		}
 
-		isWolf = false;
-		//controller.StopVibration ();
+		_controller.StopVibration ();
 	}
 
 	void OnDisable()
 	{
-		controller.StopVibration ();
+		_controller.StopVibration ();
 	}
 
 }

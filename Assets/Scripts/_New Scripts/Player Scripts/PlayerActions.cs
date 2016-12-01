@@ -25,6 +25,7 @@ public class PlayerActions : MonoBehaviour
 	[SerializeField]
 	ParticleSystem howlParticles;
 	private float _elapsedTime;
+	private bool _gamePaused = false;
 
 	//the two events that let other scripts know of the kill
 	public delegate void PlayerWasKilled (GameObject killer, GameObject victim);
@@ -47,6 +48,9 @@ public class PlayerActions : MonoBehaviour
 
 	void Update()
 	{
+		if (_gamePaused)
+			return;
+		
 		Controls ();
 
 		if(isWolf)
@@ -110,6 +114,9 @@ public class PlayerActions : MonoBehaviour
 				return;	//to only kill one sheep if there were several colliders.
 			} 
 		}
+
+		//reset the cooldown time for the howl
+		_elapsedTime = howlCooldownTime;
 	}
 
 	void Howl()
@@ -121,5 +128,10 @@ public class PlayerActions : MonoBehaviour
 
 		if (OnWolfHowled != null)
 			OnWolfHowled (this);
+	}
+
+	public void PauseToggle()
+	{
+		_gamePaused = !_gamePaused;
 	}
 }

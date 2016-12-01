@@ -6,64 +6,17 @@ using System.Timers;
 
 public class TimeManager : MonoBehaviour
 {
-	public delegate void GameIsStarted ();
-	public static event GameIsStarted OnGameIsStarted;
+	[SerializeField] private float _gameTimeInSeconds = 150f;
+	[SerializeField] private float _wolfCountdown = 3f;
+	[SerializeField] private float _initialCountdown = 3f;
+	[SerializeField] private InitialCountdownUI _countdownTimer;
+	[SerializeField] private GameTimeUI _gameTimer;
+	[SerializeField] private WolfCountdownUI _wolfTimer;
 
-	public delegate void GameIsOver ();
-	public static event GameIsOver OnGameIsOver;
-
-	public bool isGameStarted;
-	[SerializeField]
-	float gameTimeInSec; //In seconds
-	float elapsedTime;
-
-	public float wolfCountdown = 5f; //in seconds
-	public bool timeForANewWolf;
-	float wolfTime;
-
-	[SerializeField]
-	TimeUI UI;
-
-	public void ResetTime()
+	void Awake()
 	{
-		isGameStarted = false;
-		elapsedTime = 0f;
-		timeForANewWolf = true;
-		wolfTime = 0f;
-	}
-
-	//sets the timer label
-	void Update()
-	{	
-		UI.gameTimeLeft = gameTimeInSec - Mathf.Floor (elapsedTime);
-		UI.wolfSeconds = wolfCountdown - Mathf.Floor (wolfTime);
-
-		if(isGameStarted)
-		{
-			elapsedTime += Time.deltaTime;
-
-			if (Mathf.Floor (elapsedTime) == gameTimeInSec)
-			{
-				timeForANewWolf = false;
-				if (OnGameIsOver != null)
-					OnGameIsOver ();
-			}
-		}
-
-		if (timeForANewWolf) 
-		{
-			wolfTime += Time.deltaTime;
-			//UI.showWolfCountdown = true;
-
-			if (Mathf.Floor (wolfTime) == wolfCountdown)
-			{
-				timeForANewWolf = false;
-				wolfTime = 0f;
-
-				if (!isGameStarted)
-				if (OnGameIsStarted != null)
-					OnGameIsStarted ();
-			}
-		}
+		_countdownTimer.countdownTime = _initialCountdown;
+		_gameTimer.gameTimeInSec = _gameTimeInSeconds;
+		_wolfTimer.wolfCountdown = _wolfCountdown;
 	}
 }

@@ -2,17 +2,17 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+// This script loads the menu and game scene by calling functions written in the SceneManagerUtils script.
 public class ScenesManager : MonoBehaviour
 {
-	[SerializeField]
-	SceneManagerUtils scene;
+	[SerializeField] private SceneManagerUtils _scene;
 
 	void Awake()
 	{
+		// loads the main menu scene if there is no other scene than the NeverUnload.
 		string activeSceneName = SceneManager.GetActiveScene ().name;
-		//if (activeSceneName != "Main Menu" || activeSceneName != "Game Scene")
 		if (activeSceneName == "NeverUnload")
-			scene.LoadScene ("Main Menu", null);
+			_scene.LoadScene ("Main Menu", null);
 	}
 
 	void OnEnable()
@@ -23,12 +23,12 @@ public class ScenesManager : MonoBehaviour
 
 	public void LoadGameScene()
 	{
-		scene.LoadScene ("Game Scene", "Main Menu");
+		_scene.LoadScene ("Game Scene", "Main Menu");
 	}
 
 	public void LoadMenu()
 	{
-		scene.LoadScene ("Main Menu", "Game Scene");
+		_scene.LoadScene ("Main Menu", "Game Scene");
 	}
 
 	void OnDisable()

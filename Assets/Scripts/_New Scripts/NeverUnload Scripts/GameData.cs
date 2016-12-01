@@ -18,6 +18,7 @@ public class GameData : MonoBehaviour
 		StartReturnButtons.OnReturnToMenu += ClearPlayersList;
 	}
 
+	//Creates a player with an index and a controller
 	void AddPlayerToList(int playerIndex, InputDevice controller)
 	{
 		if (!registeredPlayers.ContainsKey (playerIndex))
@@ -36,23 +37,3 @@ public class GameData : MonoBehaviour
 		StartReturnButtons.OnReturnToMenu -= ClearPlayersList;
 	}
 }
-
-//public class Player
-//{
-//	public int index;
-//	public InputDevice controller;
-//	public PlayerController playerCont;	//rename that ?
-//	public int scoreKeeper;
-//	public bool movementEnabled;
-//
-//	List<Player> playersInGame = new List<Player> ();
-//
-//	public Player (int index, InputDevice controller)
-//	{
-//		Player newPlayer = new Player();
-//		newPlayer.controller = InputDevice;
-//		newPlayer.index = index;
-//		newPlayer.playerCont = new PlayerController();
-//
-//	}
-//}

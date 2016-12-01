@@ -3,20 +3,20 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+// This script handles the EventSystem assignation (there was some problems when moving it from scene to scene)
 public class EventSystemActivation : MonoBehaviour
 {
-	[SerializeField]GameObject buttonToSelect;
+	[SerializeField]private GameObject _buttonToSelect;
 
 	void Start()
 	{
-		EventSystem.current.SetSelectedGameObject (buttonToSelect);
+		EventSystem.current.SetSelectedGameObject (_buttonToSelect);
 	}
 
 	void OnEnable()
 	{
 		if (EventSystem.current)
 			StartCoroutine (ChangeSelectedButton ());
-			//EventSystem.current.SetSelectedGameObject (buttonToSelect);
 	}
 
 	void OnDisable()
@@ -26,8 +26,9 @@ public class EventSystemActivation : MonoBehaviour
 
 	IEnumerator ChangeSelectedButton()
 	{
+		//setting it to null and waiting for the next frame solves occasional non-assignation problems...
 		EventSystem.current.SetSelectedGameObject (null);
 		yield return new WaitForEndOfFrame ();
-		EventSystem.current.SetSelectedGameObject (buttonToSelect);
+		EventSystem.current.SetSelectedGameObject (_buttonToSelect);
 	}
 }

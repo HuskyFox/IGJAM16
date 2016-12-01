@@ -8,11 +8,12 @@ public class NewWolfManager : MonoBehaviour
 	[SerializeField] int minTimeBetweenWolfSwitch = 10;
 	[SerializeField] int maxTimeBetweenWolfSwitch = 30;
 	[SerializeField] GunAnimation gunAnim;
+	[SerializeField] GameObject UI;
 	private int timeBetweenSwitch;
 	private bool isRandomTimeSet = false;
-	float timer;
-	int currentWolfIndex = 0;
-	float wolfCountdown = 0;
+	private float timer;
+	private int currentWolfIndex = 0;
+	//private TimeManager timeManager;
 
 	List <PlayerData> players = new List<PlayerData>();
 
@@ -22,12 +23,14 @@ public class NewWolfManager : MonoBehaviour
 	void OnEnable()
 	{
 		players = GetComponent<GameStateManager> ().playersInGame;
-		wolfCountdown = GetComponent<TimeManager> ().wolfCountdown;
+		//timeManager = GetComponent<TimeManager> ();
 		CreateRandomWolf ();
 	}
 
 	void Update()
 	{	
+		//if(timeManager.isGameStarted) 
+		//{
 			timer += Time.deltaTime;
 
 			//generate a random time if not done yet
@@ -37,6 +40,7 @@ public class NewWolfManager : MonoBehaviour
 			//when the time is up, calls the function to switch the wolf
 			if (timer >= timeBetweenSwitch)
 				CreateRandomWolf ();
+		//}
 	}
 
 	int GenerateRandomTimeBetweenSwitch()
@@ -51,13 +55,14 @@ public class NewWolfManager : MonoBehaviour
 		timer = 0f;
 		isRandomTimeSet = false;
 		currentWolfIndex = CreateNewRandomNumber();
-		GetComponent<TimeManager> ().timeForANewWolf = true;
-		gunAnim.StartAnim (wolfCountdown);
-		StartCoroutine ("MakeWolf");
-		if (OnTimeForANewWolf != null)
-			OnTimeForANewWolf (wolfCountdown);
-		else
-			print ("No listener");
+		//timeManager.timeForANewWolf = true;
+		gunAnim.StartAnim ();
+		UI.SetActive (true);
+		StartCoroutine (MakeWolf ());
+		//if (OnTimeForANewWolf != null)
+		//	OnTimeForANewWolf (wolfCountdown);
+		//else
+		//	print ("No listener");
 	}
 
 	int CreateNewRandomNumber() 
@@ -88,9 +93,10 @@ public class NewWolfManager : MonoBehaviour
 				nextWolf = player;
 		}
 
-		yield return new WaitForSeconds (wolfCountdown + 0.15f);
+		//yield return new WaitForSeconds (wolfCountdown + 0.15f);
+		yield return new WaitUntil (() => UI.activeSelf == false);
 
-		nextWolf.MakeWolf ();
+		nextWolf.SetPlayerState (PlayerData.PlayerState.Wolf);
 		//nextWolf.isWolf = true;
 		//nextWolf.tag = "Wolf";
 		print(nextWolf.name + " is the wolf!");
@@ -99,7 +105,11 @@ public class NewWolfManager : MonoBehaviour
 	void OnDisable()
 	{
 		StopCoroutine ("MakeWolf");
+		if (UI.activeSelf)
+			UI.SetActive (false);
 		if(gunAnim != null)
 			gunAnim.HideForGameOver ();
+		
+		//UI.SetActive (false);
 	}
 }

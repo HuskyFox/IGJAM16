@@ -5,72 +5,78 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour 
 {
-	public int playerKillPoints = 20;
-	public int npsheepKillPoints = -20;
-	public int killedByPlayerPoints = -20;
+	[SerializeField] private int _playerKillPoints = 20;
+	[SerializeField] private int _npsheepKillPoints = -20;
+	[SerializeField] private int _killedByPlayerPoints = -20;
+	[SerializeField] private ScoreUI _scoreUI;
+	[SerializeField] private GameOverUI _gameOverUI;
 
-	[SerializeField]
-	ScoreUI scoreUI;
-	[SerializeField]
-	GameOverUI gameOverUI;
-
-	List<PlayerData> players = new List <PlayerData> ();
-	private bool success = true;
+	private List<PlayerData> _players = new List <PlayerData> ();
+	private bool _success = true;
 
 	void OnEnable()
 	{
-		players = GetComponent<GameStateManager> ().playersInGame;
+		//gets the list of the registered and spawned players.
+		_players = GetComponent<GameStateManager> ().playersInGame;
 	}
 
 	//setactive the scores depending on the number of players
 	public void InitializeScore ()
 	{
-		for (int i = 0 ; i < players.Count ; i ++)
+		for (int i = 0 ; i < _players.Count ; i ++)
 		{
-			players [i].scoreKeeper = 0;
-			scoreUI.ActivateScore (players[i].playerIndex, players[i].scoreKeeper);
+			//resets the score to 0.
+			_players [i].scoreKeeper = 0;
+			//(see ScoreUI script)
+			_scoreUI.ActivateScore (_players[i].playerIndex, _players[i].scoreKeeper);
 		}
 	}
 
 	//update the scores
-	public void SuccessfulKillScoreUpdate (PlayerData killer, PlayerData victim)
+	public void ScoreUpdate (PlayerData killer, PlayerData victim)
 	{
-		int killerIndex = killer.playerIndex;
-		int victimIndex = victim.playerIndex;
-		killer.scoreKeeper += playerKillPoints;
-		victim.scoreKeeper += killedByPlayerPoints;
+		//update the score of the two players.
+		killer.scoreKeeper += _playerKillPoints;
+		victim.scoreKeeper += _killedByPlayerPoints;
 
-		scoreUI.UpdateScore (killerIndex, killer.scoreKeeper, success);
-		scoreUI.UpdateScore (victimIndex, victim.scoreKeeper, !success);
+		//(see ScoreUI script)
+		_scoreUI.UpdateScore (killer.playerIndex, killer.scoreKeeper, _success);
+		_scoreUI.UpdateScore (victim.playerIndex, victim.scoreKeeper, !_success);
 	}
 
-	public void UnsuccessfulKillScoreUpdate (PlayerData killer)
+	public void ScoreUpdate (PlayerData killer)
 	{
-		int killerIndex = killer.playerIndex;
-		killer.scoreKeeper += npsheepKillPoints;
+		//update the score of the killer
+		killer.scoreKeeper += _npsheepKillPoints;
 
-		scoreUI.UpdateScore (killerIndex, killer.scoreKeeper, !success);
+		//(see ScoreUI script)
+		_scoreUI.UpdateScore (killer.playerIndex, killer.scoreKeeper, !_success);
 	}
 
 	//release the highest score
 	public void GetWinner ()
 	{
+		//creates and populates a list with the final scores of all the players.
 		List <int> finalScores = new List<int> ();
-		for (int i = 0; i < players.Count; i++)
+		for (int i = 0; i < _players.Count; i++)
 		{
-			int score = players[i].scoreKeeper;
+			int score = _players[i].scoreKeeper;
 			finalScores.Add (score);
 		}
 
+		//Finds the highest score in the list.
 		int highestScore = Mathf.Max (finalScores.ToArray ());
 
+		//creates and populates a list with the index of the player(s) whose score is equal to the highest score.
 		List <int> winnersToDeclare = new List<int> ();
-		for (int i = 0; i < players.Count; i++)
+		for (int i = 0; i < _players.Count; i++)
 		{
-			int winnerIndex = players [i].playerIndex;
-			if (players [i].scoreKeeper == highestScore)
+			int winnerIndex = _players [i].playerIndex;
+			if (_players [i].scoreKeeper == highestScore)
 				winnersToDeclare.Add (winnerIndex);
 		}
-		gameOverUI.GameOver (winnersToDeclare);
+
+		//Pass in the list of winners to the game over UI script.
+		_gameOverUI.GameOver (winnersToDeclare);
 	}
 }

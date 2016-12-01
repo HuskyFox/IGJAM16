@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using InControl;
 
+//Special script to register players for playtest.
 public class PlaytestRegistration : MonoBehaviour 
 {
 	const int maxPlayers = 4;

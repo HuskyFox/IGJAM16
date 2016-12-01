@@ -5,40 +5,43 @@ using UnityEngine.UI;
 
 public class ScoreUI : MonoBehaviour 
 {
-	[SerializeField]
-	GameObject scorePrefab;
-	[SerializeField]
-	GameObject scoresDisplay;
-	[SerializeField]
-	Color successfulKillColor = Color.green;
-	[SerializeField]
-	Color unsuccessfulKillColor = Color.red;
+	[SerializeField] private GameObject _scorePrefab;
+	[SerializeField] private Color _successfulKillColor = Color.green;
+	[SerializeField] private Color _unsuccessfulKillColor = Color.red;
 
-	List<Score> playerScores  = new List <Score> ();
+	private List<Score> _playerScores  = new List <Score> ();
 
 	public void ActivateScore(int index, int score)
 	{
-		if(index <= playerScores.Count)
-			playerScores [index - 1].scoreLabel.text = score.ToString ();
+		//Only resets the score if the score is already displayed (if the game was restarted)
+		if(index <= _playerScores.Count)
+			_playerScores [index - 1].scoreLabel.text = score.ToString ();
 		else
 		{
-			GameObject scoreToActivate = Instantiate <GameObject> (scorePrefab);
-			scoreToActivate.transform.SetParent (scoresDisplay.transform, false);
+			//Instantiates the score display gameobject.
+			GameObject scoreToActivate = Instantiate <GameObject> (_scorePrefab);
+			scoreToActivate.transform.SetParent (transform, false);
 
-			playerScores.Add (new Score (scoreToActivate, index, score));
+			//Creates a new Score and adds it to the list.
+			_playerScores.Add (new Score (scoreToActivate, index, score));
 		}
 	}
 
+	// This function handles the score update, and the success bool value determines what happens.
 	public void UpdateScore (int index, int newScore, bool success)
 	{
-		Score scoreToUpdate = playerScores [index -1];
+		//finds the player's score in the list,
+		Score scoreToUpdate = _playerScores [index -1];
+		//updates its text,
 		scoreToUpdate.scoreLabel.text = newScore.ToString ();
+		//and starts the right animation depending on if it's a success or a fail.
 		if (success)
-			StartCoroutine (ScoreAnimation (scoreToUpdate.anim, scoreToUpdate.scoreLabel, successfulKillColor));
+			StartCoroutine (ScoreAnimation (scoreToUpdate.anim, scoreToUpdate.scoreLabel, _successfulKillColor));
 		if(!success)
-			StartCoroutine (ScoreAnimation (scoreToUpdate.anim, scoreToUpdate.scoreLabel, unsuccessfulKillColor));
+			StartCoroutine (ScoreAnimation (scoreToUpdate.anim, scoreToUpdate.scoreLabel, _unsuccessfulKillColor));
 	}
 
+	//animates the score text for a few seconds. The color depends on the success or fail of the kill.
 	IEnumerator ScoreAnimation (Animation anim, Text score, Color color)
 	{
 		score.color = color;

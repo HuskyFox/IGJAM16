@@ -1442,6 +1442,7 @@ MonoBehaviour:
     mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"WanderAreaCenterPos":{"_name":"WanderAreaCenterPos","_id":"d29473c9-f924-408b-95c3-ba136d4481cc","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Vector3,
     UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"Threat":{"_name":"Threat","_id":"0ac67b55-920d-4895-9461-b1a07c82f53f","$type":"NodeCanvas.Framework.Variable`1[[UnityEngine.Transform,
     UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"WanderingSpeed":{"_value":4.5,"_name":"WanderingSpeed","_id":"29d86eff-3f6c-4513-8fb8-41cb632e0244","$type":"NodeCanvas.Framework.Variable`1[[System.Single,
+    mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"StopWandering":{"_name":"StopWandering","_id":"a313a7b1-54e9-438f-b828-19c5a4423589","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
 --- !u!114 &114000012196775716

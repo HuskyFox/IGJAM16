@@ -4,12 +4,10 @@ using System.Collections;
 public class KillManager : MonoBehaviour
 {
 	public float timeSpentInWolfShape = 0.3f;
-	[SerializeField]
-	ScoreManager scoreManager;
-	[SerializeField]
-	NewWolfManager wolfManager;
-	[SerializeField]
-	PlayerSpawnerManager spawnManager;
+	[SerializeField] ScoreManager scoreManager;
+	[SerializeField] NewWolfManager wolfManager;
+	[SerializeField] PlayerSpawnerManager spawnManager;
+	[SerializeField] iTweenEvent camShake;
 
 	KillFeedback killerFeedback = null;
 	//KillFeedback victimFeedback = null;
@@ -83,45 +81,44 @@ public class KillManager : MonoBehaviour
 	void successfulKillMethod (GameObject killer, GameObject victim)
 	{
 		GetReferences (killer, victim);
-		killerData.MakeSheep ();
-		//killerActions.isWolf = false;
+		killerData.SetPlayerState (PlayerData.PlayerState.Sheep);
 
 		StartCoroutine (SuccessKill (timeSpentInWolfShape));
 	}
 
 	IEnumerator SuccessKill (float delay)
 	{
-		SoundManager.Instance.PauseMusic ();
-		victimVib.KillVibration (delay);
+		SoundManager.Instance.HeartBeatOn ();
+		//victimVib.KillVibration (delay);
 		killerFeedback.ShapeShiftFeedback (delay);
 		killerFeedback.SlowMoFeedback (victimMove, delay);
 		SoundManager.Instance.PlaySuccessKillSound (killerAudio, victimAudio, delay);
 
 		yield return new WaitForSeconds (delay);
 
-		SoundManager.Instance.UnPauseMusic ();
+		SoundManager.Instance.HeartBeatOff ();
 		spawnManager.RespawnPlayer (victimData);
-		scoreManager.SuccessfulKillScoreUpdate (killerData, victimData);
+		scoreManager.ScoreUpdate (killerData, victimData);
 		wolfManager.CreateRandomWolf ();
 	}
 
 	void unsuccessfulKillMethod (GameObject killer, NPSheep victim)
 	{
 		killerFeedback = killer.GetComponent<KillFeedback> ();
-		//killerActions = killer.GetComponent<PlayerActions> ();
 		killerData = killer.GetComponent<PlayerData> ();
 		killerAudio = killer.GetComponent<AudioSource> ();
 
-		//killerActions.isWolf = false;
-		killerData.MakeSheep ();
+		killerData.SetPlayerState (PlayerData.PlayerState.Sheep);
 
 		victim.TakeDamage (victim);
-		victim.CamShake ();
+
+		if (camShake) camShake.Play();
+
 		killerFeedback.ShapeShiftFeedback (timeSpentInWolfShape);
 		SoundManager.Instance.PlayFailKillSound (killerAudio);
 		wolfManager.CreateRandomWolf ();
 
-		scoreManager.UnsuccessfulKillScoreUpdate (killerData);
+		scoreManager.ScoreUpdate (killerData);
 	}
 
 	void OnDisable()

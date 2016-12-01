@@ -33,9 +33,14 @@ public class SoundManager : UnitySingleton <SoundManager>
 	public override void Awake()
 	{
 		base.Awake ();
-		//FindObjectOfType<GameStateManager> ().dontDestroy.Add (this.gameObject);
+		AudioListener.pause = false;
 		if (SceneManager.GetActiveScene ().name == "Main Menu")
 			PlayMenuMusic ();
+	}
+
+	public void PauseAudioToggle()
+	{
+		AudioListener.pause = !AudioListener.pause;
 	}
 
 	//****** MUSIC ******
@@ -50,6 +55,7 @@ public class SoundManager : UnitySingleton <SoundManager>
 		
 	public void PlayGameMusic()
 	{
+		AudioListener.pause = false;
 		game.TransitionTo (0.1f);
 		musicPlayer.Stop ();
 		musicPlayer.clip = musics [1];
@@ -63,7 +69,7 @@ public class SoundManager : UnitySingleton <SoundManager>
 		musicPlayer.Play ();
 	}
 
-	public void PauseMusic()
+	public void HeartBeatOn()
 	{
 		CancelInvoke ();
 		musicPlayer.Pause ();
@@ -71,7 +77,7 @@ public class SoundManager : UnitySingleton <SoundManager>
 		killHeartBeat.TransitionTo (0.1f);
 	}
 
-	public void UnPauseMusic()
+	public void HeartBeatOff()
 	{
 		music.TransitionTo (0.1f);
 		heartBeatPlayer.Stop ();

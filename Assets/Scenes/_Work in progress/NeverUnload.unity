@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7659f551eb84fd8ad8ee269bb744c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: {fileID: 1054542517}
+  _scene: {fileID: 1054542517}
 --- !u!114 &1054542517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,8 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d031d8e745eefc948b1f0c05743bd4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 1759153498}
-  sceneLoaded: 0
+  _eventSystem: {fileID: 1759153498}
 --- !u!1001 &1380222020
 Prefab:
   m_ObjectHideFlags: 0

@@ -9,39 +9,39 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] Animator sheepAnimator;
 	[SerializeField] Animator wolfAnimator;
 
-	Vector3 movement;
-	Rigidbody rb;
-	InputDevice controller;
+	private Vector3 _movement;
+	private Rigidbody _rb;
+	private InputDevice _controller;
 
-	bool isMoving = false;
+	private bool _isMoving = false;
+	private bool _gamePaused = false;
 
 	void Start()
 	{
-		rb = GetComponent <Rigidbody> ();
-		controller = GetComponent<PlayerData> ().controller;
+		_rb = GetComponent <Rigidbody> ();
+		_controller = GetComponent<PlayerData> ().controller;
 	}
 
 	void FixedUpdate()
 	{	
+		if (_gamePaused)
+			return;
+		
 		//stores the inputs of the device if there is one attached to the player
-		float h = controller.LeftStickX;
-		float v = controller.LeftStickY;
+		float h = _controller.LeftStickX;
+		float v = _controller.LeftStickY;
 		//defines a vector from those inputs
-		movement.Set (h, 0f, v);
+		_movement.Set (h, 0f, v);
 
-		//if the player is not too high,
-		//calls the functions controlling the movement of the player, passing in the inputs
-		if (transform.position.y <= 2f) {
-			Move (movement);
-			Rotate (movement);
-			Animate (h, v);
-		}
+		Move (_movement);
+		Rotate (_movement);
+		Animate (h, v);
 	}
 
 	void Move (Vector3 movement)
 	{
 		movement = movement * speed * Time.deltaTime;
-		rb.MovePosition (transform.position + movement);
+		_rb.MovePosition (transform.position + movement);
 	}
 
 	void Rotate(Vector3 direction)
@@ -52,12 +52,20 @@ public class PlayerMovement : MonoBehaviour
 
 	void Animate (float h, float v)
 	{
-		isMoving = Mathf.Abs(h) + Mathf.Abs(v) > 0.05f;
+		_isMoving = Mathf.Abs(h) + Mathf.Abs(v) > 0.05f;
 		if (!sheepAnimator) return;
-		sheepAnimator.SetBool("Moving", isMoving);
+		sheepAnimator.SetBool("Moving", _isMoving);
 		if (!wolfAnimator)
 			return;
-		wolfAnimator.SetBool ("Moving", isMoving);
+		wolfAnimator.SetBool ("Moving", _isMoving);
+	}
+
+	public void PauseToggle ()
+	{
+		_gamePaused = !_gamePaused;
+
+		sheepAnimator.enabled = !sheepAnimator.isActiveAndEnabled;
+		wolfAnimator.enabled = !wolfAnimator.isActiveAndEnabled;
 	}
 
 	void OnDisable()

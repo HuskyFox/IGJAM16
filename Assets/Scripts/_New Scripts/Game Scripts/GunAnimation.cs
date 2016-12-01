@@ -19,14 +19,14 @@ public class GunAnimation : MonoBehaviour
 		gunFire = transform.Find ("Gun Poof/GunFire").GetComponent<ParticleSystem> ();
 	}
 		
-	public void StartAnim(float countdown)
+	public void StartAnim()
 	{
 		//anim.SetTrigger ("GunAnim");
 		anim.SetTrigger ("GunPopOut");
-		Invoke ("TriggerGunShot", countdown -1f);
+		//Invoke ("TriggerGunShot", countdown -1f);
 	}
 
-	void TriggerGunShot()
+	public void TriggerGunShot()
 	{
 		anim.SetTrigger ("GunShot");
 	}
@@ -47,6 +47,11 @@ public class GunAnimation : MonoBehaviour
 		gunPoof.Play ();
 		gunPoofLines.Play ();
 		gunFire.Play ();
+	}
+
+	public void PauseAnimToggle()
+	{
+		anim.enabled = !anim.isActiveAndEnabled;
 	}
 
 	public void HideForGameOver()

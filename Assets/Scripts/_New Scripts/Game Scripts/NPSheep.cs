@@ -4,36 +4,40 @@ using NodeCanvas.StateMachines;
 
 public class NPSheep : MonoBehaviour 
 {
-	public GameObject killParticles;
+	[SerializeField] GameObject killParticles;
+	FSMOwner behavior;
+	Animator anim;
+
+	void Awake()
+	{
+		behavior = GetComponent<FSMOwner> ();
+		anim = GetComponent<Animator> ();
+	}
+
+	void OnEnable()
+	{
+		behavior.enabled = true;
+		anim.enabled = true;
+	}
 
 	public void TakeDamage (NPSheep victim)
 	{
 		var particles = Instantiate(killParticles);
 		if (particles) particles.transform.position = transform.position;
 		gameObject.SetActive (false);
-		FindObjectOfType<NPSheepSpawner> ().npSheepInGame.Remove (gameObject);
-	}
-
-	public void CamShake()
-	{
-		var camShake = Camera.main.GetComponent<iTweenEvent>();
-		if (camShake) Camera.main.GetComponent<iTweenEvent>().Play();
+		GetComponentInParent<NPSheepSpawner>().npSheepInGame.Remove (gameObject);
 	}
 
 	public void CheckDistanceFromWolf (PlayerActions wolf)
 	{
 		var distanceFromWolf = Vector3.Distance(transform.position, wolf.transform.position);
 		if (distanceFromWolf < wolf.howlReach)
-			GetComponent<FSMOwner> ().blackboard.SetValue ("Threat", wolf.gameObject.transform);
+			behavior.blackboard.SetValue ("Threat", wolf.gameObject.transform);
 	}
 
-	public void StopMoving()
+	public void PauseToggle()
 	{
-		GetComponent<FSMOwner> ().enabled = false;
-	}
-
-	public void EnableMovement()
-	{
-		GetComponent<FSMOwner> ().enabled = true;
+		behavior.enabled = !behavior.enabled;
+		anim.enabled = !anim.enabled;
 	}
 }

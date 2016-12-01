@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011986450584}
   m_Layer: 0
-  m_Name: SpawnPositionPlayer_4
+  m_Name: SpawnTransformPlayer_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011756104238}
   m_Layer: 0
-  m_Name: SpawnPositionPlayer_1
+  m_Name: SpawnTransformPlayer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011207378308}
   m_Layer: 0
-  m_Name: SpawnPositionPlayer_3
+  m_Name: SpawnTransformPlayer_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013294508390}
   m_Layer: 0
-  m_Name: SpawnPositionPlayer_2
+  m_Name: SpawnTransformPlayer_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,9 +196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e969c889921bb49f384e6a35331d2ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1000011964862318, guid: 7bab0cea3f1244cac8ff7859218d91d5,
+  _playerPrefab: {fileID: 1000011964862318, guid: 7bab0cea3f1244cac8ff7859218d91d5,
     type: 2}
-  spawnHeight: 4
-  numberOfPlayers: 0
-  spawnParticles: {fileID: 100000, guid: 9670926e073251b4d9e7cc13c294ea9e, type: 2}
-  score: {fileID: 0}
+  _spawnHeight: 4
+  _spawnTransforms:
+  - {fileID: 4000011756104238}
+  - {fileID: 4000013294508390}
+  - {fileID: 4000011207378308}
+  - {fileID: 4000011986450584}

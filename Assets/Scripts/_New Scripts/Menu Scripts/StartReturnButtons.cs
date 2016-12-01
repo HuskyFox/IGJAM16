@@ -13,17 +13,14 @@ public class StartReturnButtons : MonoBehaviour
 	public delegate void ReturnToMenu ();
 	public static event ReturnToMenu OnReturnToMenu;
 
-	[SerializeField]
-	ControllersRegistration contReg;
-	[SerializeField]
-	GameObject start;
-	[SerializeField]
-	GameObject mainMenu;
+	[SerializeField] private ControllersRegistration _contReg;
+	[SerializeField] private GameObject _start;
+	[SerializeField] private GameObject _mainMenu;
 
 	void Update()
 	{
 		//if there is enough registered players and Start is pressed...
-		if (contReg.controllers.Count >= contReg.minPlayers && InputManager.ActiveDevice.Command.WasPressed)
+		if (_contReg.controllers.Count >= _contReg.minPlayers && InputManager.ActiveDevice.Command.WasPressed)
 		{
 			if (OnGameIsReady != null)
 				OnGameIsReady ();
@@ -34,8 +31,8 @@ public class StartReturnButtons : MonoBehaviour
 		{
 			if (OnReturnToMenu != null)
 				OnReturnToMenu ();
-			mainMenu.SetActive (true);
-			EventSystem.current.SetSelectedGameObject (start);
+			_mainMenu.SetActive (true);
+			EventSystem.current.SetSelectedGameObject (_start);
 			gameObject.SetActive (false);
 		}
 	}

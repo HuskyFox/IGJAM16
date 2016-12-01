@@ -22,33 +22,73 @@ public class PlayerData : MonoBehaviour
 		movement.enabled = true;
 	}
 
-	public void MakeWolf()
-	{
-		actions.isWolf = true;
-		vibration.isWolf = true;
+//	public void MakeWolf()
+//	{
+//		actions.isWolf = true;
+//		vibration.isWolf = true;
+//
+//		tag = "Wolf";
+//	}
+//
+//	public void MakeSheep()
+//	{
+//		actions.isWolf = false;
+//		vibration.isWolf = false;
+//
+//		tag = "PlayerSheep";
+//	}
+//
+//	public void ActivatePlayer()
+//	{
+//		actions.enabled = true;
+//		movement.enabled = true;
+//		vibration.enabled = true;
+//	}
+//
+//	public void DeactivatePlayer()
+//	{
+//		actions.enabled = false;
+//		movement.enabled = false;
+//		vibration.enabled = false;
+//	}
 
-		tag = "Wolf";
+	public enum PlayerState
+	{
+		Sheep,
+		Wolf,
+		Killed
+		//Paused
 	}
 
-	public void MakeSheep()
+	public void SetPlayerState (PlayerState newState)
 	{
-		actions.isWolf = false;
-		vibration.isWolf = false;
-
-		tag = "PlayerSheep";
+		switch (newState)
+		{
+		case PlayerState.Sheep:
+			actions.isWolf = false;
+			vibration.Stop ();
+			tag = "PlayerSheep";
+			break;
+		case PlayerState.Wolf:
+			actions.isWolf = true;
+			vibration.WolfVibration ();
+			tag = "Wolf";
+			break;
+		case PlayerState.Killed:
+			vibration.KillVibration ();
+			break;
+//		case PlayerState.Paused:
+//			actions.PauseToggle ();
+//			movement.PauseToggle ();
+//			vibration.PauseToggle ();
+//			break;
+		}
 	}
 
-	public void ActivatePlayer()
+	public void PauseToggle()
 	{
-		actions.enabled = true;
-		movement.enabled = true;
-		vibration.enabled = true;
-	}
-
-	public void DeactivatePlayer()
-	{
-		actions.enabled = false;
-		movement.enabled = false;
-		vibration.enabled = false;
+		actions.PauseToggle ();
+		movement.PauseToggle ();
+		vibration.PauseToggle ();
 	}
 }

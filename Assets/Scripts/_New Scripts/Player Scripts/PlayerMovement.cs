@@ -4,15 +4,13 @@ using InControl;
 
 public class PlayerMovement : MonoBehaviour 
 {
-	[SerializeField] float speed = 4.5f;
-	[SerializeField] float rotateSpeed = 10f;
-	[SerializeField] Animator sheepAnimator;
-	[SerializeField] Animator wolfAnimator;
-
+	[SerializeField] private float _speed = 4.5f;
+	[SerializeField] private float _rotateSpeed = 10f;
+	[SerializeField] private Animator _sheepAnimator;
+	[SerializeField] private Animator _wolfAnimator;
 	private Vector3 _movement;
 	private Rigidbody _rb;
 	private InputDevice _controller;
-
 	private bool _isMoving = false;
 	private bool _gamePaused = false;
 
@@ -24,15 +22,17 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{	
+		//Prevent movement when the game is paused
 		if (_gamePaused)
 			return;
 		
-		//stores the inputs of the device if there is one attached to the player
+		//stores the inputs of the controller
 		float h = _controller.LeftStickX;
 		float v = _controller.LeftStickY;
 		//defines a vector from those inputs
 		_movement.Set (h, 0f, v);
 
+		//Calls the movement and animation functions, passing in the vector.
 		Move (_movement);
 		Rotate (_movement);
 		Animate (h, v);
@@ -40,36 +40,37 @@ public class PlayerMovement : MonoBehaviour
 
 	void Move (Vector3 movement)
 	{
-		movement = movement * speed * Time.deltaTime;
+		movement = movement * _speed * Time.deltaTime;
 		_rb.MovePosition (transform.position + movement);
 	}
 
 	void Rotate(Vector3 direction)
 	{
 		if (direction != Vector3.zero)
-			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (direction), Time.deltaTime * rotateSpeed);
+			transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (direction), Time.deltaTime * _rotateSpeed);
 	}
 
 	void Animate (float h, float v)
 	{
 		_isMoving = Mathf.Abs(h) + Mathf.Abs(v) > 0.05f;
-		if (!sheepAnimator) return;
-		sheepAnimator.SetBool("Moving", _isMoving);
-		if (!wolfAnimator)
+		if (!_sheepAnimator) return;
+		_sheepAnimator.SetBool("Moving", _isMoving);
+		if (!_wolfAnimator)
 			return;
-		wolfAnimator.SetBool ("Moving", _isMoving);
+		_wolfAnimator.SetBool ("Moving", _isMoving);
 	}
 
 	public void PauseToggle ()
 	{
 		_gamePaused = !_gamePaused;
 
-		sheepAnimator.enabled = !sheepAnimator.isActiveAndEnabled;
-		wolfAnimator.enabled = !wolfAnimator.isActiveAndEnabled;
+		//Enable/disable the animator to pause/unpause the animation.
+		_sheepAnimator.enabled = !_sheepAnimator.isActiveAndEnabled;
+		_wolfAnimator.enabled = !_wolfAnimator.isActiveAndEnabled;
 	}
 
 	void OnDisable()
 	{
-		sheepAnimator.SetBool ("Moving", false);
+		_sheepAnimator.SetBool ("Moving", false);
 	}
 }

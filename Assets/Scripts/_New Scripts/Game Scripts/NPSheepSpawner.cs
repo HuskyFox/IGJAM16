@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-// This script used the generic ObjectPooler script to spawn the NPSheep
+// This script uses the generic ObjectPooler script to spawn the NPSheep
 [RequireComponent(typeof (ObjectPooler))]
 public class NPSheepSpawner : MonoBehaviour
 {

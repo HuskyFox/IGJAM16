@@ -2,22 +2,26 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/* This script displays the countdown when a new wolf is created.
+ * It is enabled by the NewWolfManager script.
+ * The countdown value is set in the TimeManager script.*/
 public class WolfCountdownUI : MonoBehaviour
 {
-	[SerializeField] Text wolfTimer;
-	[SerializeField] TimeManager timeManager;
 	[HideInInspector] public float wolfCountdown;
-	[SerializeField] GunAnimation gun;
 	[HideInInspector] public bool currentlyPlaying;
+	[SerializeField] private Text _wolfTimer;
+	[SerializeField] private TimeManager _timeManager;
+	[SerializeField] private GunAnimation _gun;
 	private float _elapsedTime;
 	private float _timeLeft;
-	private bool _gunTriggered = false;
+	private bool _animPlaying;
 
+	//The NewWolfManager script enables the GameObject this script is attached to every time a new wolf is created.
 	void OnEnable()
 	{
-		//wolfCountdown = timeManager.wolfCountdown;
+		//reset everything and start the countdown.
 		currentlyPlaying = true;
-		_gunTriggered = false;
+		_animPlaying = false;
 		_elapsedTime = 0f;
 		_timeLeft = wolfCountdown;
 		StartCoroutine (Countdown ());
@@ -28,14 +32,11 @@ public class WolfCountdownUI : MonoBehaviour
 		while (Mathf.Floor (_elapsedTime) != wolfCountdown) 
 		{
 			DisplayTime ();
+
+			//stop the countdown while the game is on Pause.
+			//The bool currentlyPlaying is controlled by the GameStateManager.
 			if (!currentlyPlaying)
 				yield return StartCoroutine (WaitForUnpause ());
-
-			if (Mathf.Floor (_elapsedTime) == (wolfCountdown - 1f) && !_gunTriggered) 
-			{
-				gun.TriggerGunShot ();
-				_gunTriggered = true;
-			}
 
 			yield return null;
 
@@ -49,17 +50,25 @@ public class WolfCountdownUI : MonoBehaviour
 
 	IEnumerator WaitForUnpause()
 	{
-		gun.PauseAnimToggle ();
+		//stop the gun animation and the countdown.
+		_gun.PauseAnimToggle ();
 		while (!currentlyPlaying)
 		{
 			yield return null;
 		}
-		gun.PauseAnimToggle ();
+		_gun.PauseAnimToggle ();
 	}
 
 	void DisplayTime()
 	{
 		_timeLeft = wolfCountdown - Mathf.Floor (_elapsedTime);
-		wolfTimer.text = _timeLeft.ToString ("F0");
+		_wolfTimer.text = _timeLeft.ToString ("F0");
+
+		//for the gun animation synchronisation.
+		if(_timeLeft == 1f && !_animPlaying) 
+		{
+			_gun.TriggerGunShot ();
+			_animPlaying = true;
+		}
 	}
 }

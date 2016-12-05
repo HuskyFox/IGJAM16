@@ -12,7 +12,7 @@ public class PlayerSpawnerManager : MonoBehaviour
 	[SerializeField] private GameObject _playerPrefab;
 	[SerializeField] private float _spawnHeight = 4f;
 	[SerializeField] private Transform[] _spawnTransforms = new Transform[4];
-	//[SerializeField] private GameObject _spawnParticles;
+	[SerializeField] private GameObject _spawnParticles;
 	private int _playerIndex;
 	private List<PlayerData> _playersInGame = new List<PlayerData>();
 	private List<Image> _groundIndicators = new List<Image>();
@@ -45,12 +45,13 @@ public class PlayerSpawnerManager : MonoBehaviour
 			//Ground indicator to spot the players at the beginning.
 			Image groundIndicator = playerToSpawn.transform.Find ("PlayerCanvas/GroundIndicator").GetComponent<Image> ();
 			groundIndicator.color = new Color (Random.value, Random.value, Random.value, 0.70f);
+			groundIndicator.enabled = true;
 			_groundIndicators.Add (groundIndicator);
-			Invoke ("RemoveIndicator", 5f);
-
-			//Instantiate (spawnParticles, playerShape.transform.position, Quaternion.identity);
+			Invoke ("RemoveIndicator", 3f);
 
 			_playersInGame.Add (playerData);
+
+			Instantiate (_spawnParticles, playerToSpawn.transform.position, Quaternion.identity);
 		}
 
 		return _playersInGame;
@@ -60,17 +61,23 @@ public class PlayerSpawnerManager : MonoBehaviour
 	{
 		foreach (Image indicator in _groundIndicators)
 			indicator.enabled = false;
+		_groundIndicators.Clear ();
 	}
 
 	//Almost the same as InitialPlayerSpawn.
 	public void RespawnPlayer(PlayerData playerToRespawn)
 	{
+		//Get the player index.
+		_playerIndex = playerToRespawn.playerIndex;
+
 		//find the right position and rotation corresponding to the index of the player
 		Vector3 spawnPosition = _spawnTransforms [_playerIndex - 1].transform.position;
 		spawnPosition.y = _spawnHeight;	//if we want to change the spawn height in the inspector.
 		playerToRespawn.transform.position = spawnPosition;
 		playerToRespawn.transform.rotation = _spawnTransforms [_playerIndex - 1].transform.rotation;
 
-	//	Instantiate (spawnParticles, playerShape.transform.position, Quaternion.identity);
+		playerToRespawn.Invoke ("EnableMovement", 1f);
+
+		Instantiate (_spawnParticles, playerToRespawn.transform.position, Quaternion.identity);
 	}
 }

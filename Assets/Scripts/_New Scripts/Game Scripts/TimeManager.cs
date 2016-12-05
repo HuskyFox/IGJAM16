@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Timers;
 
+//This script contains the time related variables, to be able to change them more conveniently.
+//See GameTime UI, InitialCountdownUI and WolfCountdownUI scripts.
 public class TimeManager : MonoBehaviour
 {
 	[SerializeField] private float _gameTimeInSeconds = 150f;

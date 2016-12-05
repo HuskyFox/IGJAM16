@@ -65,6 +65,7 @@ MonoBehaviour:
   _timer: {fileID: 0}
   _countdownUI: {fileID: 0}
   _wolfUI: {fileID: 0}
+  _howlUI: {fileID: 0}
   _pause: {fileID: 0}
 --- !u!114 &114000011428195690
 MonoBehaviour:
@@ -77,10 +78,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6eb7d00c79149c7bf8cdc305db9ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeBetweenWolfSwitch: 20
-  maxTimeBetweenWolfSwitch: 30
-  gunAnim: {fileID: 0}
-  UI: {fileID: 0}
+  currentlyPlaying: 0
+  _minTimeBetweenWolfSwitch: 10
+  _maxTimeBetweenWolfSwitch: 30
+  _gunAnim: {fileID: 0}
+  _UI: {fileID: 0}
+  _howlUI: {fileID: 0}
 --- !u!114 &114000011575686786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,10 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSpentInWolfShape: 0.3
-  scoreManager: {fileID: 114000011575686786}
-  wolfManager: {fileID: 114000011428195690}
-  spawnManager: {fileID: 0}
-  camShake: {fileID: 0}
+  _spawnManager: {fileID: 0}
+  _camShake: {fileID: 0}
 --- !u!114 &114000012557935710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ae3d0306f1b4f5ea563d51beff9061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npSheep: {fileID: 0}
-  UI: {fileID: 0}
+  _npSheep: {fileID: 0}
+  _UI: {fileID: 0}
 --- !u!114 &114000014255911782
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d9906a8d2f44bd6ad0a1a4be3367b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameTimeInSeconds: 150
+  _gameTimeInSeconds: 120
   _wolfCountdown: 3
   _initialCountdown: 3
   _countdownTimer: {fileID: 0}

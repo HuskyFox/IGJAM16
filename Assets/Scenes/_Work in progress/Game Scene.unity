@@ -2153,11 +2153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba382d040ddc543f788b3e60d189fa03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wolfTimer: {fileID: 184581884}
-  timeManager: {fileID: 474114391}
   wolfCountdown: 3
-  gun: {fileID: 1400288424}
   currentlyPlaying: 0
+  _wolfTimer: {fileID: 184581884}
+  _timeManager: {fileID: 474114391}
+  _gun: {fileID: 1400288424}
 --- !u!1 &84275762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,10 +2572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e2f7aac261b46478ed3cf6d7ee79ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 84275762}
-  restartButton: {fileID: 1732312096}
-  winnerIsText: {fileID: 1812109394}
-  playerX: {fileID: 1315387536}
+  _UI: {fileID: 84275762}
+  _restartButton: {fileID: 1732312096}
+  _winnerIsText: {fileID: 1812109394}
+  _playerX: {fileID: 1315387536}
 --- !u!1 &339208855
 GameObject:
   m_ObjectHideFlags: 0
@@ -3072,7 +3072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b7dd1e23ae454b88d91bff65f3b3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownTime: 0
+  currentlyPlaying: 0
 --- !u!114 &427174468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3173,39 +3173,59 @@ Prefab:
       objectReference: {fileID: 73907441}
     - target: {fileID: 114000010310057766, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
+      propertyPath: _howlUI
+      value: 
+      objectReference: {fileID: 427174467}
+    - target: {fileID: 114000010310057766, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
       propertyPath: _pause
       value: 
       objectReference: {fileID: 1233453733}
     - target: {fileID: 114000011428195690, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
-      propertyPath: gunAnim
+      propertyPath: _gunAnim
       value: 
       objectReference: {fileID: 1400288424}
     - target: {fileID: 114000011428195690, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
-      propertyPath: UI
+      propertyPath: _UI
       value: 
       objectReference: {fileID: 73907437}
+    - target: {fileID: 114000011428195690, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _howlUI
+      value: 
+      objectReference: {fileID: 427174467}
     - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
-      propertyPath: spawnManager
+      propertyPath: _spawnManager
       value: 
       objectReference: {fileID: 272410516}
     - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
-      propertyPath: camShake
+      propertyPath: _camShake
       value: 
       objectReference: {fileID: 372529495}
     - target: {fileID: 114000012557935710, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
-      propertyPath: npSheep
+      propertyPath: _npSheep
       value: 
       objectReference: {fileID: 172659301}
     - target: {fileID: 114000012557935710, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
-      propertyPath: UI
+      propertyPath: _UI
       value: 
       objectReference: {fileID: 427174467}
+    - target: {fileID: 114000011575686786, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _scoreUI
+      value: 
+      objectReference: {fileID: 1697878486}
+    - target: {fileID: 114000011575686786, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _gameOverUI
+      value: 
+      objectReference: {fileID: 281304303}
     - target: {fileID: 114000014255911782, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
       propertyPath: _countdownTimer
@@ -3221,20 +3241,15 @@ Prefab:
       propertyPath: _wolfTimer
       value: 
       objectReference: {fileID: 73907441}
-    - target: {fileID: 114000011575686786, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+    - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
-      propertyPath: _scoreUI
-      value: 
-      objectReference: {fileID: 1697878486}
-    - target: {fileID: 114000011575686786, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+      propertyPath: timeSpentInWolfShape
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010310057766, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
-      propertyPath: _gameOverUI
-      value: 
-      objectReference: {fileID: 281304303}
-    - target: {fileID: 114000014255911782, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _gameTimeInSeconds
-      value: 10
+      propertyPath: _playtesting
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9dd1b6cdc90f840d09ef991e370e050c, type: 2}
@@ -5312,9 +5327,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271ad70de668b42e0bbc42255a20a5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameTimer: {fileID: 785101093}
   gameTimeInSec: 10
   currentlyPlaying: 0
+  _gameTimer: {fileID: 785101093}
+  _anim: {fileID: 785101092}
 --- !u!1 &911225310
 GameObject:
   m_ObjectHideFlags: 0
@@ -5327,7 +5343,6 @@ GameObject:
   - 114: {fileID: 911225312}
   - 114: {fileID: 911225311}
   - 114: {fileID: 911225316}
-  - 114: {fileID: 911225318}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5426,25 +5441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd201cd3180e3d24e89eb37476a96256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &911225318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 911225310}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03947c462f5724f32834f4cc940fc8c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerLabel: {fileID: 785101093}
-  wolfCountdownDisplay: {fileID: 73907437}
-  wolfCountdown: {fileID: 184581884}
-  countdownDisplay: {fileID: 2019673815}
-  countdown: {fileID: 1121138509}
-  gameTimeLeft: 0
-  wolfSeconds: 0
-  countdownSeconds: 0
 --- !u!1 &932874412
 GameObject:
   m_ObjectHideFlags: 0
@@ -7337,7 +7333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe6abb29e83244a0a819924df345064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonToSelect: {fileID: 0}
+  _buttonToSelect: {fileID: 1104846603}
 --- !u!1 &1060012348
 GameObject:
   m_ObjectHideFlags: 0
@@ -11348,8 +11344,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f03f7126c0c4611baf7047c969aa37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  farmerAudioSource: {fileID: 1400288425}
-  gunAudioSource: {fileID: 1400288430}
+  _farmerAudioSource: {fileID: 1400288425}
+  _gunAudioSource: {fileID: 1400288430}
+  _gunPoof: {fileID: 1759068926}
+  _gunPoofLines: {fileID: 1196564247}
+  _gunFire: {fileID: 611204321}
 --- !u!82 &1400288425
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13911,7 +13910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe6abb29e83244a0a819924df345064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonToSelect: {fileID: 0}
+  _buttonToSelect: {fileID: 1732312096}
 --- !u!114 &1732312100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18222,8 +18221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b217e2911857430190addffd76edf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initCountdown: {fileID: 1121138509}
   countdownTime: 3
+  _initCountdown: {fileID: 1121138509}
 --- !u!1 &2095021475
 GameObject:
   m_ObjectHideFlags: 0

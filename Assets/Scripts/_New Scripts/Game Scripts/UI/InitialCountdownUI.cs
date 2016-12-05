@@ -2,11 +2,13 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/* This script handles the initial countdown before the game starts.
+ * Its value is set in the TimeManager script.
+ * It is enabled by the GameStateManager script.*/
 public class InitialCountdownUI : MonoBehaviour 
 {
-	[SerializeField] Text initCountdown;
-	//[SerializeField] TimeManager timeManager;
 	[HideInInspector] public float countdownTime;
+	[SerializeField] private Text _initCountdown;
 	//[HideInInspector] public bool currentlyPlaying;
 	private float _elapsedTime;
 	private float _timeLeft;
@@ -16,7 +18,6 @@ public class InitialCountdownUI : MonoBehaviour
 
 	void OnEnable()
 	{
-		//wolfCountdown = timeManager.wolfCountdown;
 		_elapsedTime = 0f;
 		_timeLeft = countdownTime;
 		StartCoroutine (Countdown ());
@@ -52,6 +53,6 @@ public class InitialCountdownUI : MonoBehaviour
 	void DisplayTime()
 	{
 		_timeLeft = countdownTime - Mathf.Floor (_elapsedTime);
-		initCountdown.text = _timeLeft.ToString ("F0");
+		_initCountdown.text = _timeLeft.ToString ("F0");
 	}
 }

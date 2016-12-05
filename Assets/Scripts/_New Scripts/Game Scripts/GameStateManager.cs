@@ -25,6 +25,7 @@ public class GameStateManager : MonoBehaviour
 	[SerializeField] private GameTimeUI _timer;
 	[SerializeField] private GameObject _countdownUI;
 	[SerializeField] private WolfCountdownUI _wolfUI;
+	[SerializeField] private HowlCoolDownUI _howlUI;
 	[SerializeField] private PauseManager _pause;
 	private GameData _gameData;
 	private ScoreManager _score;
@@ -70,18 +71,16 @@ public class GameStateManager : MonoBehaviour
 			break;
 
 		case GameState.GamePaused:
-			_timer.currentlyPlaying = false;
-			_wolfUI.currentlyPlaying = false;
 			PausePlayersToggle ();
 			PauseNPSheepToggle ();
+			PauseUIToggle ();
 			SoundManager.Instance.PauseAudioToggle ();
 			break;
 
 		case GameState.GameUnpaused:
-			_timer.currentlyPlaying = true;
-			_wolfUI.currentlyPlaying = true;
 			Invoke ("PausePlayersToggle", 0.1f);
 			PauseNPSheepToggle ();
+			PauseUIToggle ();
 			SoundManager.Instance.PauseAudioToggle ();
 			break;
 		}
@@ -186,13 +185,19 @@ public class GameStateManager : MonoBehaviour
 		}
 	}
 
+	void PauseUIToggle()
+	{
+		_timer.currentlyPlaying = !_timer.currentlyPlaying;
+		_wolfUI.currentlyPlaying = !_wolfUI.currentlyPlaying;
+		_newWolf.currentlyPlaying = !_newWolf.currentlyPlaying;
+		_howlUI.currentlyPlaying = !_howlUI.currentlyPlaying;
+	}
+
 	void RestartGame()
 	{
 		ClearGame ();
 	
 		StartCoroutine (InitGame ());
-		//playersInGame = players.InitialPlayerSpawnTest (gameData.registeredPlayers);
-		//SetGameState (GameState.GameReady);
 	}
 
 	void ClearGame()

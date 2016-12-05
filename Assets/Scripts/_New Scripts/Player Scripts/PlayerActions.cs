@@ -4,28 +4,21 @@ using InControl;
 
 public class PlayerActions : MonoBehaviour
 {
-	public bool isWolf = false;
-	InputDevice controller;
-	[SerializeField]PlayerData data;
+	[HideInInspector] public bool isWolf = false;
+	[HideInInspector] public bool canHowl = false;
+	[SerializeField]private PlayerData _data;
+	private InputDevice _controller;
+	private bool _gamePaused = false;
 
 	//variables for ATTACK
-	[SerializeField]
-	[Range (0, 3)]
-	float attackRange = 0.75f;	//radius of the OverlapSphere in the attack function / lenght of the raycast
-	[SerializeField]
-	Transform attackSphereOrigin;	//origin of the OverlapSphere
-
-	int hittableMask = 9;	//"Hittable" is the 8th Layer.
+	[SerializeField][Range (0, 3)] private float _attackRange = 0.75f;	//radius of the OverlapSphere in the attack function
+	[SerializeField] private Transform _attackSphereOrigin;	//origin of the OverlapSphere
+	private int _hittableMask = 9;	//"Hittable" is the 8th Layer.
 
 	//variables for HOWL
 	public float howlCooldownTime = 5f;
-	public float howlReach = 5f;
-	//[SerializeField]
-	//float howlDuration = 2f;
-	[SerializeField]
-	ParticleSystem howlParticles;
-	private float _elapsedTime;
-	private bool _gamePaused = false;
+	public float howlReach = 3f;
+	[SerializeField] private ParticleSystem _howlParticles;
 
 	//the two events that let other scripts know of the kill
 	public delegate void PlayerWasKilled (GameObject killer, GameObject victim);
@@ -38,23 +31,19 @@ public class PlayerActions : MonoBehaviour
 	public delegate void WolfHowled (PlayerActions wolf);
 	public static event WolfHowled OnWolfHowled;
 
-
 	void Start()
 	{
-		hittableMask = ~hittableMask;
-		_elapsedTime = howlCooldownTime;
-		controller = data.controller;
+		_hittableMask = ~_hittableMask;
+		_controller = _data.controller;
 	}
 
 	void Update()
 	{
+		//prevent the actions when the game is paused.
 		if (_gamePaused)
 			return;
 		
 		Controls ();
-
-		if(isWolf)
-			_elapsedTime += Time.deltaTime;
 	}
 
 	void Controls()
@@ -62,10 +51,10 @@ public class PlayerActions : MonoBehaviour
 		//WOLF CONTROLS
 		if(isWolf)
 		{
-			if (controller.Action1.WasPressed)
+			if (_controller.Action1.WasPressed)
 				Attack ();
 
-			if(controller.Action2.WasPressed && _elapsedTime >= howlCooldownTime) 
+			if (_controller.Action2.WasPressed && canHowl)
 				Howl ();
 
 			//other actions
@@ -80,49 +69,49 @@ public class PlayerActions : MonoBehaviour
 
 	void Attack()
 	{
-		Vector3 attackPos = attackSphereOrigin.transform.position;
+		//Get the position of the player when the action key was pressed.
+		Vector3 attackPos = _attackSphereOrigin.transform.position;
 
-		//draws a ray corresponding to the radius of the OverlapSphere
-		Debug.DrawRay (attackPos, transform.forward * attackRange, Color.red, 3f);
+		//draw a ray in the scene view, corresponding to the radius of the OverlapSphere
+		//Debug.DrawRay (attackPos, transform.forward * _attackRange, Color.red, 3f);
 
-		//get an array of the colliders that were inside the OverlapSphere
-		Collider[] hitColliders = Physics.OverlapSphere (attackPos, attackRange, hittableMask);
+		//get an array of the colliders that were inside the OverlapSphere.
+		Collider[] hitColliders = Physics.OverlapSphere (attackPos, _attackRange, _hittableMask);
 
-		//checks the colliders that were hit when the action key was pressed...
-		for (int i = 0; i < hitColliders.Length; i++) {
+		//check the colliders that were hit when the action key was pressed...
+		for (int i = 0; i < hitColliders.Length; i++) 
+		{
 			Collider hitCollider = hitColliders [i].GetComponent<Collider> ();
 
-			//and checks its tag.
-			if (hitCollider.tag == "PlayerSheep") {
+			//and checks their tag.
+			if (hitCollider.tag == "PlayerSheep") 
+			{
 				//Activate the event OnPlayerWasKilled
-				//and passes in this GameObject for the killer
+				//and pass in this GameObject for the killer
 				//and the GameObject correspondant to the collider that was hit for the victim.
 				if (OnPlayerWasKilled != null)
 					OnPlayerWasKilled (gameObject, hitCollider.gameObject);
-				//isWolf = false;
 				print (name + " killed " + hitCollider.name + "!");
 				return;	//to only kill one player if there were several colliders.
-			} else if (hitCollider.tag == "NPSheep") {
+			} 
+			else if (hitCollider.tag == "NPSheep")
+			{
 				//Activate the event OnNPSheepWasKilled
-				//and passes in this GameObject for the killer
+				//and pass in this GameObject for the killer
 				//and the NPSheep script correspondant to the collider that was hit for the victim.
 				NPSheep victim = hitCollider.GetComponent<NPSheep> ();
 				if (OnNPSheepWasKilled != null)
 					OnNPSheepWasKilled (gameObject, victim);
-				//isWolf = false;
 				print (name + " killed a NPSheep!");
 				return;	//to only kill one sheep if there were several colliders.
 			} 
 		}
-
-		//reset the cooldown time for the howl
-		_elapsedTime = howlCooldownTime;
 	}
 
 	void Howl()
 	{
-		howlParticles.Play ();
-		_elapsedTime = 0f;
+		_howlParticles.Play ();
+		canHowl = false;	//Wait for the howl to cooldown (see HowlManager script).
 
 		//GetComponent<KillFeedback> ().ShapeShiftFeedback (this.GetComponent<PlayerController>());
 

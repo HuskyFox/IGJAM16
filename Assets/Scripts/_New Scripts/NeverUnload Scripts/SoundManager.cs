@@ -23,7 +23,7 @@ public class SoundManager : UnitySingleton <SoundManager>
 	public AudioSource heartBeatPlayer;
 
 	private AudioSource killerAudioSource;
-	private AudioSource victimAudioSource;
+	//private AudioSource victimAudioSource;
 	private AudioSource npSheepAudioSource;
 
 	private int currentBaa = 0;
@@ -147,29 +147,21 @@ public class SoundManager : UnitySingleton <SoundManager>
 		AudioSource.PlayClipAtPoint (sheepReactionToHowl, wolf.transform.position);
 	}
 
-	public void PlaySuccessKillSound(AudioSource killerAudio, AudioSource victimAudio, float delay)
+	public void PlayKillSound (AudioSource source, string clip)
 	{
-		StartCoroutine (SuccessKillSound (killerAudio, victimAudio, delay));
-	}
+		switch(clip)
+		{
+		case "Growl":
+			source.clip = wolfSounds [1];
+			break;
+		case "Bite":
+			source.clip = wolfSounds [0];
+			break;
+		case "Poof":
+			source.clip = poof;
+			break;
+		}
 
-	IEnumerator SuccessKillSound (AudioSource killer, AudioSource victim, float delay)
-	{
-		killer.clip = wolfSounds [1];
-		killer.Play ();
-		//victim.clip = sheepBaas [Random.Range (0, sheepBaas.Length)];
-		//victim.Play ();
-
-		yield return new WaitForSeconds (delay);
-
-		killer.clip = wolfSounds [0];
-		killer.Play ();
-		victim.clip = poof;
-		victim.Play ();
-	}
-
-	public void PlayFailKillSound (AudioSource killerAudio)
-	{
-		killerAudio.clip = poof;
-		killerAudio.Play ();
+		source.Play ();
 	}
 }

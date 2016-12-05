@@ -509,15 +509,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013884052278}
   - 54: {fileID: 54000013446182536}
-  - 114: {fileID: 114000012311706436}
   - 136: {fileID: 136000013008964566}
-  - 135: {fileID: 135000010107397352}
-  - 114: {fileID: 114000012419572704}
   - 82: {fileID: 82000012034368030}
-  - 114: {fileID: 114000010352263646}
   - 114: {fileID: 114000010083892930}
   - 114: {fileID: 114000011818147006}
+  - 114: {fileID: 114000010352263646}
   - 114: {fileID: 114000012746905554}
+  - 114: {fileID: 114000012419572704}
   m_Layer: 8
   m_Name: PlayerPrefab
   m_TagString: PlayerSheep
@@ -2858,9 +2856,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIndex: 0
   scoreKeeper: 0
-  actions: {fileID: 114000011818147006}
-  vibration: {fileID: 114000012746905554}
-  movement: {fileID: 114000010352263646}
+  _actions: {fileID: 114000011818147006}
+  _movement: {fileID: 114000010352263646}
+  _vibration: {fileID: 114000012746905554}
 --- !u!114 &114000010352263646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2872,10 +2870,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd5ea23bd95b4960a09ed6fc6621493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4.5
-  rotateSpeed: 10
-  sheepAnimator: {fileID: 95000012410817782}
-  wolfAnimator: {fileID: 95000010851144598}
+  _speed: 4.5
+  _rotateSpeed: 10
+  _sheepAnimator: {fileID: 95000012410817782}
+  _wolfAnimator: {fileID: 95000010851144598}
 --- !u!114 &114000011818147006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2888,19 +2886,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWolf: 0
-  data: {fileID: 114000010083892930}
-  attackRange: 0.75
-  attackSphereOrigin: {fileID: 4000010451816292}
+  canHowl: 0
+  _data: {fileID: 114000010083892930}
+  _attackRange: 0.75
+  _attackSphereOrigin: {fileID: 4000010451816292}
   howlCooldownTime: 5
   howlReach: 3
-  howlParticles: {fileID: 198000010704179350}
+  _howlParticles: {fileID: 198000010704179350}
 --- !u!114 &114000012065561868
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010313324226}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -2921,24 +2920,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000012311706436
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011964862318}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9ff7468d67d477f897f8b3c97a1a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerIndex: 0
-  speed: 4.5
-  rotateSpeed: 10
-  attackRange: 0.57
-  howlCooldownTime: 5
-  howlReach: 3
-  howlDuration: 2
 --- !u!114 &114000012419572704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2950,13 +2931,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9802b9d9a3be644a9ef8c90ce23ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wolfAnimator: {fileID: 95000010851144598}
-  wolfShape: {fileID: 1000010726465368}
-  sheepShape: {fileID: 1000012500374894}
-  wolfArm: {fileID: 1000013654554176}
-  killerHitParticles: {fileID: 100000, guid: d92b3391f10a45c438296dbf699972e2, type: 2}
-  killerHitPow: {fileID: 100004, guid: 5b52f1ff89b4dc94087ad66d49be9d6b, type: 2}
-  movement: {fileID: 114000010352263646}
+  _wolfShapeDuration: 0.3
+  _delay: 0.8
+  _wolfAnimator: {fileID: 95000010851144598}
+  _wolfShape: {fileID: 1000010726465368}
+  _sheepShape: {fileID: 1000012500374894}
+  _wolfArm: {fileID: 1000013626960794}
+  _hitParticles: {fileID: 100000, guid: d92b3391f10a45c438296dbf699972e2, type: 2}
+  _hitPow: {fileID: 100004, guid: 5b52f1ff89b4dc94087ad66d49be9d6b, type: 2}
 --- !u!114 &114000012443499294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3005,20 +2987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9bae2e988dbb401e9891382f8b47285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWolf: 0
-  isKilled: 0
---- !u!135 &135000010107397352
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011964862318}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0.5, z: 0.65}
+  _wolfVibrationIntensity: 0.1
 --- !u!135 &135000011454787060
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -39,9 +39,7 @@ GameObject:
   - 114: {fileID: 114000012579106068}
   - 114: {fileID: 114000012467594116}
   - 114: {fileID: 114000011581020686}
-  - 114: {fileID: 114000012196775716}
   - 95: {fileID: 95000012069758932}
-  - 65: {fileID: 65000012943581312}
   - 136: {fileID: 136000011217061382}
   - 82: {fileID: 82000012675218406}
   m_Layer: 8
@@ -1323,18 +1321,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65000012943581312
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010034964232}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.13}
-  m_Center: {x: 0, y: 0.52, z: -0.07}
 --- !u!82 &82000012675218406
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1445,18 +1431,6 @@ MonoBehaviour:
     mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"StopWandering":{"_name":"StopWandering","_id":"a313a7b1-54e9-438f-b828-19c5a4423589","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences: []
---- !u!114 &114000012196775716
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010034964232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93a9c4ba9512817499522a96b78d9b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EventsHandled: 00000000
 --- !u!114 &114000012467594116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1468,7 +1442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb808979afd4439cb50b4938e600533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killParticles: {fileID: 100000, guid: 9670926e073251b4d9e7cc13c294ea9e, type: 2}
+  _killParticles: {fileID: 100000, guid: 9670926e073251b4d9e7cc13c294ea9e, type: 2}
+  _shape: {fileID: 1000011656058730}
 --- !u!114 &114000012579106068
 MonoBehaviour:
   m_ObjectHideFlags: 1

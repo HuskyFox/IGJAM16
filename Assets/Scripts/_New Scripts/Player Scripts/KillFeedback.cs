@@ -1,109 +1,110 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* This script handles the audiovisual feedback related to the players when there is a kill.
+ * The functions are called by the KillManager script.
+ * The KillerFeedback method is overloaded, there is one for killing a player and one for killing a NPSheep.*/
 public class KillFeedback : MonoBehaviour
 {	
-	public Animator wolfAnimator;
-	public GameObject wolfShape;
-	public GameObject sheepShape;
-	public GameObject wolfArm;
-	public GameObject killerHitParticles;
-	public GameObject killerHitPow;
-	private bool shapeShiftCoroutineIsRunning = false;
-	private bool slowMoCoroutineIsRunning = false;
+	[SerializeField] private float _wolfShapeDuration = 0.3f;
+	[SerializeField] private bool _delay;
+	[SerializeField] private float _delayDuration = 0.8f;
+	[SerializeField] private Animator _wolfAnimator;
+	[SerializeField] private GameObject _wolfShape;
+	[SerializeField] private GameObject _sheepShape;
+	[SerializeField] private GameObject _wolfArm;
+	[SerializeField] private GameObject _hitParticles;
+	[SerializeField] private GameObject _hitPow;
+	private PlayerMovement _movement;
+	private ControllerVibration _vibration;
+	private AudioSource _audio;
 
-	[SerializeField]
-	PlayerMovement movement;
-
-//	public void VictimVibration (float duration)
-//	{
-//		StartCoroutine (Vibration (duration));
-//	}
-//
-//	IEnumerator Vibration (float duration)
-//	{
-//		victim.isKilled = true;
-//
-//		float start = Time.realtimeSinceStartup;
-//
-//		while (Time.realtimeSinceStartup < start + duration)
-//		{
-//			yield return null;
-//		}
-//
-//		victim.isKilled = false;
-//	}
-
-
-	//switch the shape from sheep to wolf, and then back to sheep.
-	public void ShapeShiftFeedback (float duration)
+	void Start()
 	{
-		sheepShape.SetActive (false);
-		wolfShape.SetActive (true);
-		if (!shapeShiftCoroutineIsRunning)
-			StartCoroutine (ShapeShift (duration));
+		_movement = GetComponent<PlayerMovement> ();
+		_vibration = GetComponent<ControllerVibration> ();
+		_audio = GetComponent<AudioSource> ();
 	}
 
-	IEnumerator ShapeShift (float duration)
+	//If the victim is a player, do the shape shift and the slowmo feedback.
+	public IEnumerator KillerFeedback (KillFeedback victim)
 	{
-		shapeShiftCoroutineIsRunning = true;
-
-		yield return new WaitForSeconds (duration);
-
-		wolfShape.SetActive (false);
-		sheepShape.SetActive (true);
-		shapeShiftCoroutineIsRunning = false;
-	}
-
-	//calls the coroutine that slows time when a success kill happens
-	public void SlowMoFeedback (PlayerMovement victim, float duration)
-	{
-		if (!slowMoCoroutineIsRunning)
-			StartCoroutine(SlowMo(victim, duration));
-	}
-
-	IEnumerator SlowMo (PlayerMovement victim, float duration)
-	{
-		slowMoCoroutineIsRunning = true;
-
 		//killer.transform.FindChild("NameTag").gameObject.SetActive(true);
 		//victim.transform.FindChild("NameTag").gameObject.SetActive(true);
 
-		//Stop the players
-		//var prevKillerSpeed = killer.speed;
-		//var prevVictimSpeed = victim.speed;
-		//killer.speed = 0;
-		//victim.speed = 0;
+		//Switch to wolf shape.
+		_sheepShape.SetActive (false);
+		_wolfShape.SetActive (true);
 
-		//the wolf looks at the victim
+		//Make the wolf face the victim.
 		transform.LookAt (victim.transform.position);
 
-		//Attack Visuals
-		wolfAnimator.SetTrigger("Attack");
-		movement.enabled = false;
-		victim.enabled = false;
+		//Stop the player.
+		_movement.enabled = false;
 
-		//slows time
+		//Trigger the attack animation.
+		_wolfAnimator.SetTrigger("Attack");
+
+		//Play growl sound.
+		SoundManager.Instance.PlayKillSound (_audio, "Growl");
+
+		// *** SLOW MOTION ***
 		Time.timeScale = .1f;
-
-		yield return new WaitForSeconds(duration);
-
-
-		//killer.transform.FindChild("NameTag").gameObject.SetActive(false);
-		//victim.transform.FindChild("NameTag").gameObject.SetActive(false);
-		Instantiate (killerHitParticles, wolfArm.transform.position, Quaternion.identity);
-		Instantiate (killerHitPow, wolfArm.transform.position, Quaternion.identity);
-
-//		killer.speed = prevKillerSpeed;
-//		victim.speed = prevVictimSpeed;
-		movement.enabled = true;
-		victim.enabled = true;
-
-		//FindObjectOfType<PlayerSpawnerManager>().RespawnPlayer (victim);
-
-		//speeds back time
+		yield return new WaitForSeconds(_wolfShapeDuration);
 		Time.timeScale = 1f;
-		slowMoCoroutineIsRunning = false;
+		// *** SLOW MOTION ***
+
+		//Hit particles.
+		Instantiate (_hitParticles, _wolfArm.transform.position, Quaternion.identity);
+		Instantiate (_hitPow, _wolfArm.transform.position, Quaternion.identity);
+
+		SoundManager.Instance.PlayKillSound (_audio, "Bite");
+
+		//optional delay before reactivating the game...
+		if (_delay)
+			yield return new WaitForSeconds (_delayDuration);
+
+		//Release the player.
+		_movement.enabled = true;
+
+		//Switch back to sheep shape.
+		_wolfShape.SetActive (false);
+		_sheepShape.SetActive (true);
+	}
+
+	//If the victim is a NPSheep, only do the shape shift.
+	public IEnumerator KillerFeedback ()
+	{
+		_sheepShape.SetActive (false);
+		_wolfShape.SetActive (true);
+
+		//SoundManager.Instance.PlayKillSound (_audio, "Poof");
+
+		yield return new WaitForSeconds (_wolfShapeDuration);
+
+		_wolfShape.SetActive (false);
+		_sheepShape.SetActive (true);
+	}
+
+	public IEnumerator VictimFeedback(KillFeedback killer)
+	{
+		transform.LookAt (killer.transform.position);
+		_vibration.KillVibration ();
+		_movement.enabled = false;		//movement enabled when the player is respawned.
+
+		//"Hide" the sheep when the slowmo is over...
+		yield return new WaitForSeconds (_wolfShapeDuration);
+		_sheepShape.SetActive (false);
+
+		//(optional delay before reactivating the game)
+		if(_delay)
+			yield return new WaitForSeconds (_delayDuration);
+
+		//... and make it visible again (it is respawned during the next frame).
+		_sheepShape.SetActive (true);
+
+		SoundManager.Instance.PlayKillSound (_audio, "Poof");
+
 	}
 
 	//former script

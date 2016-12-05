@@ -4,8 +4,9 @@ using InControl;
 
 public class ControllerVibration : MonoBehaviour 
 {
+	[SerializeField] private float _wolfVibrationIntensity = 0.1f;
 	private InputDevice _controller;
-	private bool _isWolf = false;
+	private bool _isWolf = false;		//to stop and resume the vibrations when the game is paused/unpaused.
 	private bool _gamePaused = false;
 
 	void Start()
@@ -13,6 +14,9 @@ public class ControllerVibration : MonoBehaviour
 		_controller = GetComponent<PlayerData> ().controller;
 	}
 
+	/* Called by the PlayerData script.
+	 * When the game is paused, vibrations stop.
+	 * When the game is resumed, vibrations start again if the player was the wolf.*/
 	public void PauseToggle ()
 	{
 		_gamePaused = !_gamePaused;
@@ -22,16 +26,10 @@ public class ControllerVibration : MonoBehaviour
 		else if (_isWolf)
 			WolfVibration ();
 	}
-
-	public void Unpause()
-	{
-		if (_isWolf)
-			WolfVibration ();
-	}
-
+		
 	public void WolfVibration()
 	{
-		_controller.Vibrate (0.1f);
+		_controller.Vibrate (_wolfVibrationIntensity);
 		_isWolf = true;
 	}
 
@@ -41,18 +39,19 @@ public class ControllerVibration : MonoBehaviour
 		_isWolf = false;
 	}
 
+	//A flash vibration to let the player know she was killed.
 	public void KillVibration()
 	{
-		StartCoroutine (Vibration (0.3f));
+		StartCoroutine (Vibration ());
 	}
 
-	IEnumerator Vibration (float duration)
+	IEnumerator Vibration ()
 	{
 		float start = Time.realtimeSinceStartup;
 
 		_controller.Vibrate (0.2f, 0.2f);
 
-		while (Time.realtimeSinceStartup < start + duration)
+		while (Time.realtimeSinceStartup < start + 0.3f)
 		{
 			yield return null;
 		}

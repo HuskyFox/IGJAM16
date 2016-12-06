@@ -21,6 +21,7 @@ public class EventSystemActivation : MonoBehaviour
 
 	void OnDisable()
 	{
+		if (EventSystem.current)
 			EventSystem.current.SetSelectedGameObject (null);
 	}
 

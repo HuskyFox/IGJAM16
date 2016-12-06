@@ -3146,6 +3146,56 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011575686786, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _scoreUI
+      value: 
+      objectReference: {fileID: 1697878486}
+    - target: {fileID: 114000011575686786, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _gameOverUI
+      value: 
+      objectReference: {fileID: 281304303}
+    - target: {fileID: 114000012557935710, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _npSheep
+      value: 
+      objectReference: {fileID: 172659301}
+    - target: {fileID: 114000012557935710, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _UI
+      value: 
+      objectReference: {fileID: 427174467}
+    - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _spawnManager
+      value: 
+      objectReference: {fileID: 272410516}
+    - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _camShake
+      value: 
+      objectReference: {fileID: 372529495}
+    - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _pause
+      value: 
+      objectReference: {fileID: 1233453733}
+    - target: {fileID: 114000011428195690, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _gunAnim
+      value: 
+      objectReference: {fileID: 1400288424}
+    - target: {fileID: 114000011428195690, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _UI
+      value: 
+      objectReference: {fileID: 73907437}
+    - target: {fileID: 114000011428195690, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _howlUI
+      value: 
+      objectReference: {fileID: 427174467}
     - target: {fileID: 114000010310057766, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
       propertyPath: _players
@@ -3181,51 +3231,6 @@ Prefab:
       propertyPath: _pause
       value: 
       objectReference: {fileID: 1233453733}
-    - target: {fileID: 114000011428195690, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _gunAnim
-      value: 
-      objectReference: {fileID: 1400288424}
-    - target: {fileID: 114000011428195690, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _UI
-      value: 
-      objectReference: {fileID: 73907437}
-    - target: {fileID: 114000011428195690, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _howlUI
-      value: 
-      objectReference: {fileID: 427174467}
-    - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _spawnManager
-      value: 
-      objectReference: {fileID: 272410516}
-    - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _camShake
-      value: 
-      objectReference: {fileID: 372529495}
-    - target: {fileID: 114000012557935710, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _npSheep
-      value: 
-      objectReference: {fileID: 172659301}
-    - target: {fileID: 114000012557935710, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _UI
-      value: 
-      objectReference: {fileID: 427174467}
-    - target: {fileID: 114000011575686786, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _scoreUI
-      value: 
-      objectReference: {fileID: 1697878486}
-    - target: {fileID: 114000011575686786, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: _gameOverUI
-      value: 
-      objectReference: {fileID: 281304303}
     - target: {fileID: 114000014255911782, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
       propertyPath: _countdownTimer
@@ -3241,15 +3246,10 @@ Prefab:
       propertyPath: _wolfTimer
       value: 
       objectReference: {fileID: 73907441}
-    - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
-      propertyPath: timeSpentInWolfShape
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 114000010310057766, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
       propertyPath: _playtesting
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9dd1b6cdc90f840d09ef991e370e050c, type: 2}
@@ -9439,9 +9439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b0d3532753a4af5958578a9c3503c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseUI: {fileID: 1028224562}
-  gamePaused: 0
   canPause: 0
+  _pauseUI: {fileID: 1028224562}
 --- !u!1 &1315387534
 GameObject:
   m_ObjectHideFlags: 0

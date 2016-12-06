@@ -11,8 +11,11 @@ public class ScenesManager : MonoBehaviour
 	{
 		// loads the main menu scene if there is no other scene than the NeverUnload.
 		string activeSceneName = SceneManager.GetActiveScene ().name;
-		if (activeSceneName == "NeverUnload")
+		if (activeSceneName == "NeverUnload") 
+		{
 			_scene.LoadScene ("Main Menu", null);
+			SoundManager.Instance.PlayMusic ("Menu");
+		}
 	}
 
 	void OnEnable()
@@ -29,6 +32,7 @@ public class ScenesManager : MonoBehaviour
 	public void LoadMenu()
 	{
 		_scene.LoadScene ("Main Menu", "Game Scene");
+		SoundManager.Instance.PlayMusic ("Menu");
 	}
 
 	void OnDisable()

@@ -8,6 +8,7 @@ public class KillManager : MonoBehaviour
 {
 	[SerializeField] private PlayerSpawnerManager _spawnManager;
 	[SerializeField] private iTweenEvent _camShake;
+	[SerializeField] private PauseManager _pause;	//to disable pause function during a kill.
 	private ScoreManager _scoreManager;
 	private NewWolfManager _wolfManager;
 	private KillFeedback _killerFeedback = null;	//assigned after each kill
@@ -30,6 +31,9 @@ public class KillManager : MonoBehaviour
 	//Success kill
 	void Kill(GameObject killer, GameObject victim)
 	{
+		//Disable pause function
+		_pause.canPause = false;
+
 		//Assign values to the scripts.
 		GetReferences (killer, victim);
 
@@ -65,6 +69,9 @@ public class KillManager : MonoBehaviour
 		_scoreManager.ScoreUpdate (_killerData, _victimData);
 
 		_wolfManager.CreateRandomWolf ();
+
+		//enable pause function
+		_pause.canPause = true;
 	}
 		
 	//Fail kill

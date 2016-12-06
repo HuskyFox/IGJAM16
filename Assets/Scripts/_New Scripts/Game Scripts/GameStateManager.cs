@@ -51,14 +51,14 @@ public class GameStateManager : MonoBehaviour
 			_score.InitializeScore ();
 			_newWolf.enabled = true;
 			_npSheepSpawner.SpawnNPSheep ();
-			_pause.canPause = false;
-			SoundManager.Instance.PlayGameMusic ();
+			_pause.canPause = false;	//disable pause function during countdown.
+			SoundManager.Instance.PlayMusic ("Game");
 			break;
 
 		case GameState.GameStarted:
 			_timer.StartGameTimer ();
 			SoundManager.Instance.PlayRandomSheepBaa ();
-			_pause.canPause = true;
+			_pause.canPause = true;		//enable pause function.
 			break;
 
 		case GameState.GameOver:
@@ -66,22 +66,21 @@ public class GameStateManager : MonoBehaviour
 			_score.enabled = false;
 			_newWolf.enabled = false;
 			_pause.canPause = false;
-			SoundManager.Instance.PlayGameOverMusic ();
-			SoundManager.Instance.CancelInvoke ();
+			SoundManager.Instance.PlayMusic ("GameOver");
 			break;
 
 		case GameState.GamePaused:
 			PausePlayersToggle ();
 			PauseNPSheepToggle ();
 			PauseUIToggle ();
-			SoundManager.Instance.PauseAudioToggle ();
+			AudioListener.pause = true;
 			break;
 
 		case GameState.GameUnpaused:
-			Invoke ("PausePlayersToggle", 0.1f);
+			Invoke ("PausePlayersToggle", 0.1f);	//delay to prevent killing if A is pressed on Resume.
 			PauseNPSheepToggle ();
 			PauseUIToggle ();
-			SoundManager.Instance.PauseAudioToggle ();
+			AudioListener.pause = false;
 			break;
 		}
 	}
@@ -218,7 +217,7 @@ public class GameStateManager : MonoBehaviour
 
 	void OnDisable()
 	{
-		InitialCountdownUI.OnGameIsStarted += GameIsStarted;
+		InitialCountdownUI.OnGameIsStarted -= GameIsStarted;
 		MenuFunctions.OnRestartGamePressed -= RestartGame;
 		GameTimeUI.OnGameIsOver -= GameOver;
 		PauseManager.OnGamePaused -= PauseGame;

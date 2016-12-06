@@ -20,5 +20,6 @@ public class TimeManager : MonoBehaviour
 		_countdownTimer.countdownTime = _initialCountdown;
 		_gameTimer.gameTimeInSec = _gameTimeInSeconds;
 		_wolfTimer.wolfCountdown = _wolfCountdown;
+		print ("Time was set");
 	}
 }

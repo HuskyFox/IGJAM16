@@ -17,6 +17,13 @@ public class StartReturnButtons : MonoBehaviour
 	[SerializeField] private GameObject _start;
 	[SerializeField] private GameObject _mainMenu;
 
+	//Clear the players' list (GameData script) when the main menu is loaded from the game scene.
+	void Awake()
+	{
+		if (OnReturnToMenu != null)
+			OnReturnToMenu ();
+	}
+
 	void Update()
 	{
 		//if there is enough registered players and Start is pressed...

@@ -111,9 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ba64049736f4bad966d6f2c0898a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSpentInWolfShape: 0.3
   _spawnManager: {fileID: 0}
   _camShake: {fileID: 0}
+  _pause: {fileID: 0}
 --- !u!114 &114000012557935710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d9906a8d2f44bd6ad0a1a4be3367b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameTimeInSeconds: 120
+  _gameTimeInSeconds: 150
   _wolfCountdown: 3
   _initialCountdown: 3
   _countdownTimer: {fileID: 0}

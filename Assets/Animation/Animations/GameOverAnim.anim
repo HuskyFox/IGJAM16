@@ -62,9 +62,9 @@ AnimationClip:
         outSlope: 0
         tangentMode: 1
       - time: 3
-        value: 280
-        inSlope: 599.9998
-        outSlope: 599.9998
+        value: 302.32
+        inSlope: 658.2259
+        outSlope: 658.2259
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -256,9 +256,9 @@ AnimationClip:
         outSlope: 0
         tangentMode: 1
       - time: 3
-        value: 280
-        inSlope: 599.9998
-        outSlope: 599.9998
+        value: 302.32
+        inSlope: 658.2259
+        outSlope: 658.2259
         tangentMode: 10
       m_PreInfinity: 2
       m_PostInfinity: 2

@@ -5,7 +5,13 @@
 \paperw11900\paperh16840\margl1440\margr1440\vieww12140\viewh6920\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 Main modifications:\
+\f0\fs24 \cf0 Important:\
+You always have to have the NeverUnload scene loaded in the hierarchy.\
+If it is the only loaded scene, the Main Menu scene will automatically be loaded when you press Play. But you can also load it manually, and set it active.\
+You can also load the Game Scene if you want to playtest directly, without going through the menu. (Remember to set it active, and to unload the Main Menu). The game will detect it\'92s in playtest mode and enable an alternative player registration.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 Main modifications:\
 \
 - overall architecture of the project, especially the scene management, the controllers/players registration (see pdf), and the way kills are handled (kill manager scrip), the UI\'85\
 - fixed the environment : everything to (0,0,0), colliders to prevent sheep from going out of the play field\'85\
@@ -13,11 +19,12 @@
 \
 Improvements:\
 - NPSheep movement more natural\
-- Gun animation with sound\
+- Gun animation with sound synchronised.\
 \
 New features:\
 - pause menu\
 - ability to playtest from the game scene\
+- flash vibration when you get killed by the wolf\
 \
 Known issues:\
 - only the xbox controllers can validate the menu and pause buttons.\

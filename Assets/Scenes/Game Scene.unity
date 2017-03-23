@@ -2398,7 +2398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pooledObject: {fileID: 1000010034964232, guid: b52f1b6dac555462c964bf2532ba5ef3,
     type: 2}
-  pooledAmount: 25
+  pooledAmount: 30
   _poolCanGrow: 1
 --- !u!1 &184581881
 GameObject:
@@ -3159,14 +3159,14 @@ Prefab:
       objectReference: {fileID: 281304303}
     - target: {fileID: 114000012557935710, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
-      propertyPath: _npSheep
-      value: 
-      objectReference: {fileID: 172659301}
-    - target: {fileID: 114000012557935710, guid: 9dd1b6cdc90f840d09ef991e370e050c,
-        type: 2}
       propertyPath: _UI
       value: 
       objectReference: {fileID: 427174467}
+    - target: {fileID: 114000012557935710, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _restartButton
+      value: 
+      objectReference: {fileID: 2095021480}
     - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
         type: 2}
       propertyPath: _spawnManager

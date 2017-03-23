@@ -7,7 +7,7 @@ using System.Collections.Generic;
  * or automatically when a kill happens.*/
 public class NewWolfManager : MonoBehaviour
 {	
-	[HideInInspector] public bool currentlyPlaying = false;			//for random switch
+	[HideInInspector] public bool currentlyPlaying = false;	
 	[SerializeField] private int _minTimeBetweenWolfSwitch = 20;	//for random switch
 	[SerializeField] private int _maxTimeBetweenWolfSwitch = 30;	//for random switch
 	[SerializeField] private GunAnimation _gunAnim;

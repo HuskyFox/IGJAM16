@@ -17,8 +17,8 @@ public class PlayerActions : MonoBehaviour
 	private int _hittableMask = 9;										//"Hittable" is the 8th Layer.
 
 	//variables for HOWL
-	public float howlCooldownTime = 5f;
-	public float howlReach = 3f;
+//	public float howlCooldownTime = 5f;
+//	public float howlReach = 3f;
 	[SerializeField] private ParticleSystem _howlParticles;
 
 	//the two events that let other scripts know of the kill

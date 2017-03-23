@@ -28,6 +28,7 @@ public class GameStateManager : MonoBehaviour
 	private GameData _gameData;
 	private ScoreManager _score;
 	private NewWolfManager _newWolf;
+	private HowlManager _howlMan;
 
 	public enum GameState
 	{
@@ -88,6 +89,7 @@ public class GameStateManager : MonoBehaviour
 	{
 		_score = GetComponent<ScoreManager> ();
 		_newWolf = GetComponent<NewWolfManager> ();
+		_howlMan = GetComponent<HowlManager> ();
 
 		_gameData = GameObject.Find ("GameData").GetComponent<GameData> ();
 		StartCoroutine (InitGame ());
@@ -137,6 +139,7 @@ public class GameStateManager : MonoBehaviour
 		_wolfUI.currentlyPlaying = !_wolfUI.currentlyPlaying;
 		_newWolf.currentlyPlaying = !_newWolf.currentlyPlaying;
 		_howlUI.currentlyPlaying = !_howlUI.currentlyPlaying;
+		_howlMan.currentlyPlaying = !_howlMan.currentlyPlaying;
 	}
 
 	void PlayersSheepState()

@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerKillPoints: 20
   _npsheepKillPoints: -20
-  _killedByPlayerPoints: -20
+  _killedByPlayerPoints: -5
   _scoreUI: {fileID: 0}
   _gameOverUI: {fileID: 0}
 --- !u!114 &114000011641899202
@@ -123,8 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ae3d0306f1b4f5ea563d51beff9061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npSheep: {fileID: 0}
+  _howlCooldownTime: 5
+  _howlReach: 3
   _UI: {fileID: 0}
+  _restartButton: {fileID: 0}
 --- !u!114 &114000014255911782
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -50,15 +50,9 @@ public class NPSheep : MonoBehaviour
 		GetComponentInParent<NPSheepSpawner>().npSheepInGame.Remove (gameObject);
 	}
 
-	// Called by the HowlManager script.
-	public void CheckDistanceFromWolf (PlayerActions wolf)
+	public void RunAway(Transform wolf)
 	{
-		// check the distance to the wolf
-		_distanceFromWolf = Vector3.Distance(transform.position, wolf.transform.position);
-
-		// trigger the "Threat" event if the NPSheep is in range of the howl.
-		if (_distanceFromWolf < wolf.howlReach)
-			_behavior.blackboard.SetValue ("Threat", wolf.gameObject.transform);
+		_behavior.blackboard.SetValue ("Threat", wolf);
 	}
 
 	// Called by the GameStateManager script when the game is paused.

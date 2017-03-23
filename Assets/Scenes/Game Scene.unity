@@ -3016,12 +3016,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 372529492}
-  m_LocalRotation: {x: 0.31705642, y: 0, z: 0, w: 0.9484067}
+  m_LocalRotation: {x: 0.31705642, y: -0, z: -0, w: 0.9484067}
   m_LocalPosition: {x: 0, y: 8.440001, z: -12.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 36.97, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1822801507}
   m_RootOrder: 0
 --- !u!1 &427174465
 GameObject:
@@ -3247,6 +3247,11 @@ Prefab:
       propertyPath: _wolfTimer
       value: 
       objectReference: {fileID: 73907441}
+    - target: {fileID: 114000011641899202, guid: 9dd1b6cdc90f840d09ef991e370e050c,
+        type: 2}
+      propertyPath: _camRig
+      value: 
+      objectReference: {fileID: 1822801508}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9dd1b6cdc90f840d09ef991e370e050c, type: 2}
   m_IsPrefabParent: 0
@@ -15977,6 +15982,51 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1812109392}
+--- !u!1 &1822801506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1822801507}
+  - 114: {fileID: 1822801508}
+  m_Layer: 0
+  m_Name: Camera Rig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1822801507
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1822801506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 372529505}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &1822801508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1822801506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d09abdab1db4561af01f3198500326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dampTime: 0.5
+  _offset: 3.5
+  _rotationX: -18
+  _zoomedFieldOfView: 20
 --- !u!1 &1899220482
 GameObject:
   m_ObjectHideFlags: 0

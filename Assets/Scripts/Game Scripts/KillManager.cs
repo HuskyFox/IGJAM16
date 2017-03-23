@@ -9,6 +9,7 @@ public class KillManager : MonoBehaviour
 	[SerializeField] private PlayerSpawnerManager _spawnManager;
 	[SerializeField] private iTweenEvent _camShake;
 	[SerializeField] private PauseManager _pause;	//to disable pause function during a kill.
+	[SerializeField] private CameraKillAnimation _camRig;	//to send the cam animation order on a success kill.
 	private ScoreManager _scoreManager;
 	private NewWolfManager _wolfManager;
 	private KillFeedback _killerFeedback = null;	//assigned after each kill
@@ -40,6 +41,9 @@ public class KillManager : MonoBehaviour
 		//Set the killer back to sheep state.
 		_killerData.SetPlayerState (PlayerData.PlayerState.Sheep);
 
+		//Camera animation
+		_camRig.ZoomIn (killer.transform, victim.transform);
+
 		StartCoroutine (SuccessKill ());
 	}
 
@@ -61,6 +65,9 @@ public class KillManager : MonoBehaviour
 
 		//Wait for the feedback coroutine to finish...
 		yield return StartCoroutine (_killerFeedback.KillerFeedback (_victimFeedback));	//See KillFeedback script.
+
+		//Reset the camera position
+		_camRig.ZoomOut ();
 
 		_spawnManager.RespawnPlayer (_victimData);
 

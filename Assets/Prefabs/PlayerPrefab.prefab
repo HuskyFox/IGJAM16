@@ -2888,6 +2888,7 @@ MonoBehaviour:
   isWolf: 0
   canHowl: 0
   _data: {fileID: 114000010083892930}
+  _priorityToPlayers: 1
   _attackRange: 0.75
   _attackSphereOrigin: {fileID: 4000010451816292}
   howlCooldownTime: 5

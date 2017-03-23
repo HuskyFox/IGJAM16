@@ -11,9 +11,10 @@ public class PlayerActions : MonoBehaviour
 	private bool _gamePaused = false;
 
 	//variables for ATTACK
+	[SerializeField] private bool _priorityToPlayers;					//if we want the attack to prioritize killing a player over a NPSheep if there was both in the attack sphere.
 	[SerializeField][Range (0, 3)] private float _attackRange = 0.75f;	//radius of the OverlapSphere in the attack function
-	[SerializeField] private Transform _attackSphereOrigin;	//origin of the OverlapSphere
-	private int _hittableMask = 9;	//"Hittable" is the 8th Layer.
+	[SerializeField] private Transform _attackSphereOrigin;				//origin of the OverlapSphere
+	private int _hittableMask = 9;										//"Hittable" is the 8th Layer.
 
 	//variables for HOWL
 	public float howlCooldownTime = 5f;
@@ -78,6 +79,12 @@ public class PlayerActions : MonoBehaviour
 		//get an array of the colliders that were inside the OverlapSphere.
 		Collider[] hitColliders = Physics.OverlapSphere (attackPos, _attackRange, _hittableMask);
 
+		//initialize a bool to false
+		bool playerHit = false;
+		//if the priority is given to killing a player, check if there was a player in the colliders that were inside the sphere.
+		if(_priorityToPlayers)
+			playerHit = PlayerAround (hitColliders);	//if so, the bool value is now true.
+		
 		//check the colliders that were hit when the action key was pressed...
 		for (int i = 0; i < hitColliders.Length; i++) 
 		{
@@ -96,6 +103,10 @@ public class PlayerActions : MonoBehaviour
 			} 
 			else if (hitCollider.tag == "NPSheep")
 			{
+				//if the priority is to killing players, we know there is at least one in the array, so we continue to look for it.
+				if (playerHit)
+					continue;
+				
 				//Activate the event OnNPSheepWasKilled
 				//and pass in this GameObject for the killer
 				//and the NPSheep script correspondant to the collider that was hit for the victim.
@@ -106,6 +117,17 @@ public class PlayerActions : MonoBehaviour
 				return;	//to only kill one sheep if there were several colliders.
 			} 
 		}
+	}
+
+	//a bool that returns true if there is at least one player in the attack sphere.
+	bool PlayerAround(Collider[] hits)
+	{
+		for(int i = 0; i< hits.Length ; i++)
+		{
+			if(hits[i].tag == "PlayerSheep")
+				return true;	//if there was at least one player.
+		}
+		return false;			//if there was no player.
 	}
 
 	void Howl()

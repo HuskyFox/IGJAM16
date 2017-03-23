@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class NewWolfManager : MonoBehaviour
 {	
 	[HideInInspector] public bool currentlyPlaying = false;			//for random switch
-	[SerializeField] private int _minTimeBetweenWolfSwitch = 10;	//for random switch
+	[SerializeField] private int _minTimeBetweenWolfSwitch = 20;	//for random switch
 	[SerializeField] private int _maxTimeBetweenWolfSwitch = 30;	//for random switch
 	[SerializeField] private GunAnimation _gunAnim;
 	[SerializeField] private GameObject _UI;
@@ -89,7 +89,7 @@ public class NewWolfManager : MonoBehaviour
 		PlayerData nextWolf = null;
 		for (int i = 0 ; i < _players.Count ; i++)
 		{
-			//PlayerData player = _players [i];
+			_players [i].SetPlayerState (PlayerData.PlayerState.Sheep);	//if the function is called after the random time.
 			if (i + 1 == _currentWolfIndex)
 				nextWolf = _players[i];
 		}

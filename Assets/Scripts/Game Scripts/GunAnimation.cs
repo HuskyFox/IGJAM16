@@ -21,6 +21,7 @@ public class GunAnimation : MonoBehaviour
 	//Called by NewWolfManager script.
 	public void StartAnim()
 	{
+		_anim.enabled = true;
 		_farmerAudioSource.enabled = true;
 		_gunAudioSource.enabled = true;
 		_anim.SetTrigger ("GunPopOut");

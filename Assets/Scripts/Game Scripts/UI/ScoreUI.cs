@@ -11,11 +11,15 @@ public class ScoreUI : MonoBehaviour
 
 	private List<Score> _playerScores  = new List <Score> ();
 
-	public void ActivateScore(int index, int score)
+	public void ActivateScore(int index, int score, PlayerData player)
 	{
 		//Only resets the score if the score is already displayed (if the game was restarted)
-		if(index <= _playerScores.Count)
-			_playerScores [index - 1].scoreLabel.text = score.ToString ();
+		if(index <= _playerScores.Count) 
+		{
+			Score playerScore = _playerScores [index - 1];
+			playerScore.scoreLabel.text = score.ToString ();
+			player.indexLabel = playerScore.indexLabel;			//for the alternative to vibrations, see PlayerData script.
+		}
 		else
 		{
 			//Instantiates the score display gameobject.
@@ -24,6 +28,9 @@ public class ScoreUI : MonoBehaviour
 
 			//Creates a new Score and adds it to the list.
 			_playerScores.Add (new Score (scoreToActivate, index, score));
+
+			//for the alternative to vibrations, see PlayerData script.
+			player.indexLabel = _playerScores [index - 1].indexLabel;
 		}
 	}
 

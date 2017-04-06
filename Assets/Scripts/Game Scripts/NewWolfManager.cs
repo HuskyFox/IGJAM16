@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class NewWolfManager : MonoBehaviour
 {	
 	[HideInInspector] public bool currentlyPlaying = false;	
+	[SerializeField] private bool _negativeFeedbackLoop = false;
 	[SerializeField] private int _minTimeBetweenWolfSwitch = 20;	//for random switch
 	[SerializeField] private int _maxTimeBetweenWolfSwitch = 30;	//for random switch
 	[SerializeField] private GunAnimation _gunAnim;
@@ -16,15 +17,30 @@ public class NewWolfManager : MonoBehaviour
 	private int _timeBetweenSwitch;				//for random switch
 	private bool _isRandomTimeSet = false;		//for random switch
 	private float _timer;						//for random switch
-	private int _currentWolfIndex = 0;
+	private int _wolfIndex = 0;
 	private List <PlayerData> _players = new List<PlayerData>();
+	private List<int> _wolfCounters = new List<int>();		//list for the number of times each player has been the wolf.
 
 	void OnEnable()
 	{
 		//get the list of the players in game and create the first wolf.
-		_players = GetComponent<GameStateManager> ().playersInGame;
+		PopulateLists ();
 		currentlyPlaying = true;
 		CreateRandomWolf ();
+	}
+		
+	void PopulateLists()
+	{
+		_players = GetComponent<GameStateManager> ().playersInGame;
+
+		if(_negativeFeedbackLoop)
+		{
+			//add an index to the list with an initial value of 0.
+			for (int i = 0; i < _players.Count; i++)
+			{
+				_wolfCounters.Add (0);
+			}
+		}
 	}
 
 	void Update()
@@ -58,20 +74,58 @@ public class NewWolfManager : MonoBehaviour
 		_howlUI.ResetCooldown ();
 
 		//get a random number that will be the next wolf's player index
-		_currentWolfIndex = CreateNewRandomNumber();
+		_wolfIndex = GetNextWolfIndex();
 
 		StartCoroutine (CreateWolf ());
 	}
 
-	int CreateNewRandomNumber() 
+	int GetNextWolfIndex() 
 	{
-		if (_players.Count > 1)
+		if(_players.Count > 1)
 		{
 			int randomPlayerIndex = 0;
-			//a player cannot be the wolf twice in a raw.
 			do {
-				randomPlayerIndex = Random.Range (1, _players.Count +1);
-			} while(randomPlayerIndex == _currentWolfIndex);
+				randomPlayerIndex = Random.Range (1, _players.Count + 1);
+			} while(randomPlayerIndex == _wolfIndex);	//a player cannot be the wolf twice in a raw.
+
+			if (_negativeFeedbackLoop)
+			{
+				//check the counters
+				int minCounter = Mathf.Min (_wolfCounters.ToArray ());
+				int maxCounter = Mathf.Max (_wolfCounters.ToArray ());
+
+				//if there are more than two players and they have not been the wolf the same amount of times
+				if (minCounter != maxCounter && _players.Count >= 3)
+				{
+					//check the counter of the player that was randomly chosen, and apply a probability to re-do the random choice
+					int checkedCounter = _wolfCounters [randomPlayerIndex-1];
+					if (checkedCounter == maxCounter)
+					{
+						if (Random.value <= 0.80f) 		//high probability of doing the random choice again
+						{	
+							int newRandomIndex = 0;
+							do {
+								newRandomIndex = Random.Range (1, _players.Count + 1);
+							} while(newRandomIndex == _wolfIndex || newRandomIndex == randomPlayerIndex);
+							_wolfCounters [newRandomIndex-1] += 1;	//increment the counter of the chosen player.
+							return newRandomIndex;
+						}
+					} 
+					else if (minCounter < checkedCounter && checkedCounter < maxCounter)
+					{	
+						if (Random.value <= 0.40f)		//medium probability of doing the random choice again
+						{
+							int newRandomIndex = 0;
+							do {
+								newRandomIndex = Random.Range (1, _players.Count + 1);
+							} while(newRandomIndex == _wolfIndex || newRandomIndex == randomPlayerIndex);
+							_wolfCounters [newRandomIndex-1] += 1;	//increment the counter of the chosen player.
+							return newRandomIndex;
+						}
+					} 
+				} 
+			}
+			_wolfCounters [randomPlayerIndex-1] += 1;	//increment the counter of the chosen player.
 			return randomPlayerIndex;
 		} else
 			return 1;
@@ -89,9 +143,10 @@ public class NewWolfManager : MonoBehaviour
 		PlayerData nextWolf = null;
 		for (int i = 0 ; i < _players.Count ; i++)
 		{
-			_players [i].SetPlayerState (PlayerData.PlayerState.Sheep);	//if the function is called after the random time.
-			if (i + 1 == _currentWolfIndex)
-				nextWolf = _players[i];
+			PlayerData player = _players [i];
+			player.SetPlayerState (PlayerData.PlayerState.Sheep);	//needed if the function is called after the random time.
+			if (i + 1 == _wolfIndex)
+				nextWolf = player;
 		}
 
 		//wait until the countdown is over...

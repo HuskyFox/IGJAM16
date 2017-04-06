@@ -9,6 +9,7 @@ public class Score
 {
 	public GameObject scoreDisplay;
 	public Text scoreLabel;
+	public Text indexLabel;
 	public Animation anim;
 
 	Dictionary <int, string> scoreTexts = new Dictionary <int, string>();
@@ -25,7 +26,7 @@ public class Score
 		scoreDisplay = newScoreDisplay;
 		newScoreDisplay.name = "ScorePlayer_" + index;
 
-		Text indexLabel = scoreDisplay.GetComponent<Text> ();
+		indexLabel = scoreDisplay.GetComponent<Text> ();
 		indexLabel.text = "Player " + scoreTexts [index];
 
 		scoreLabel = scoreDisplay.transform.Find ("Score").GetComponent<Text> ();

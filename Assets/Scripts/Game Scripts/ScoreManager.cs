@@ -31,10 +31,11 @@ public class ScoreManager : MonoBehaviour
 	{
 		for (int i = 0 ; i < _players.Count ; i ++)
 		{
+			PlayerData player = _players [i];
 			//resets the score to 0.
-			_players [i].scoreKeeper = 0;
+			player.scoreKeeper = 0;
 			//(see ScoreUI script)
-			_scoreUI.ActivateScore (_players[i].playerIndex, _players[i].scoreKeeper);
+			_scoreUI.ActivateScore (player.playerIndex, player.scoreKeeper, player);
 		}
 	}
 

@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentlyPlaying: 0
+  _negativeFeedbackLoop: 1
   _minTimeBetweenWolfSwitch: 20
   _maxTimeBetweenWolfSwitch: 30
   _gunAnim: {fileID: 0}
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ae3d0306f1b4f5ea563d51beff9061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentlyPlaying: 0
   _howlCooldownTime: 5
   _howlReach: 3
   _UI: {fileID: 0}

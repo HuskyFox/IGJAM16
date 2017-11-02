@@ -8,10 +8,19 @@ public class ControllerVibration : MonoBehaviour
 	private InputDevice _controller;
 	private bool _isWolf = false;		//to stop and resume the vibrations when the game is paused/unpaused.
 	private bool _gamePaused = false;
+	private bool _isKilled = false;
 
 	void Start()
 	{
 		_controller = GetComponent<PlayerData> ().controller;
+	}
+
+	void Update()
+	{
+		if (_isWolf)
+			_controller.Vibrate (_wolfVibrationIntensity);
+		else
+			if(!_isKilled)_controller.StopVibration ();
 	}
 
 	/* Called by the PlayerData script.
@@ -29,19 +38,20 @@ public class ControllerVibration : MonoBehaviour
 		
 	public void WolfVibration()
 	{
-		_controller.Vibrate (_wolfVibrationIntensity);
+		//_controller.Vibrate (_wolfVibrationIntensity);
 		_isWolf = true;
 	}
 
 	public void Stop()
 	{
-		_controller.StopVibration ();
+		//_controller.StopVibration ();
 		_isWolf = false;
 	}
 
 	//A flash vibration to let the player know she was killed.
 	public void KillVibration()
 	{
+		_isKilled = true;
 		StartCoroutine (Vibration ());
 	}
 
@@ -57,6 +67,7 @@ public class ControllerVibration : MonoBehaviour
 		}
 
 		_controller.StopVibration ();
+		_isKilled = false;
 	}
 
 	void OnDisable()

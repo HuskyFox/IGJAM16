@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 		//stores the inputs of the controller
 		float h = _controller.LeftStickX;
 		float v = _controller.LeftStickY;
+
 		//defines a vector from those inputs
 		_movement.Set (h, 0f, v);
 

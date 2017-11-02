@@ -2368,7 +2368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce298f1456b52480988ff317d06c0f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npSheepToSpawn: 25
+  _npSheepToSpawn: 30
   _spawnRadius: 6
   _objectPooler: {fileID: 172659303}
   npSheepInGame: []

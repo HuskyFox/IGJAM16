@@ -105,7 +105,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -215,11 +215,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 771c07054579248219a32e30ea72de86, type: 3}
   - {fileID: 8300000, guid: 2b8336cb7fb3e4c84b0d77308524bdcb, type: 3}
   _sheepBaas:
-  - {fileID: 8300000, guid: cc47ce2aa29e545b48d582f490ebc869, type: 3}
-  - {fileID: 8300000, guid: 4e4655393abe444d081f28e6adcbb800, type: 3}
-  - {fileID: 8300000, guid: c7750194fb9074e2a94c4cde09e01ed3, type: 3}
-  - {fileID: 8300000, guid: 2fde8e16e89164f7ebe3ebad36b5267d, type: 3}
-  _sheepReactionToHowl: {fileID: 8300000, guid: 3fb666e9f764c4084be09e94e28b8d77,
+  - {fileID: 8300000, guid: 652d89ca6de9c44198fdbb681db5904e, type: 3}
+  - {fileID: 8300000, guid: a34c4f6ee38a8410baa6958562e35944, type: 3}
+  - {fileID: 8300000, guid: 704c4982496134cd5864f961746c47dd, type: 3}
+  - {fileID: 8300000, guid: c5a5ca440e4ca4640baf91f0ddcc9c91, type: 3}
+  _sheepReactionToHowl: {fileID: 8300000, guid: 434effcd7a7164c66a67f877474eed55,
     type: 3}
   _poof: {fileID: 8300000, guid: 77a57913948631b4cbaee976f89e56f2, type: 3}
   _farmerShouts:

@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d9906a8d2f44bd6ad0a1a4be3367b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameTimeInSeconds: 150
+  _gameTimeInSeconds: 120
   _wolfCountdown: 3
   _initialCountdown: 3
   _countdownTimer: {fileID: 0}

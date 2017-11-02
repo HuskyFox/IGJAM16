@@ -27,10 +27,13 @@ public class StartReturnButtons : MonoBehaviour
 	void Update()
 	{
 		//if there is enough registered players and Start is pressed...
-		if (_contReg.controllers.Count >= _contReg.minPlayers && InputManager.ActiveDevice.Command.WasPressed)
+		if (InputManager.ActiveDevice.Command.WasPressed)
 		{
-			if (OnGameIsReady != null)
-				OnGameIsReady ();
+			if (_contReg.controllers.Count >= _contReg.minPlayers) 
+			{
+				if (OnGameIsReady != null)
+					OnGameIsReady ();
+			}
 		}
 
 		//if B is pressed to return to the menu...

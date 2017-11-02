@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45158905, g: 0.5014252, b: 0.57442856, a: 1}
+  m_IndirectSpecularColor: {r: 0.37356448, g: 0.3811204, b: 0.35887685, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -605,10 +605,10 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1378395355}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 127.2, y: 39.5}
+  m_AnchoredPosition: {x: -0.000015259, y: 34}
   m_SizeDelta: {x: 713.6, y: 353.5}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &350576230
@@ -645,16 +645,14 @@ MonoBehaviour:
     m_LineSpacing: 1.26
   m_Text: '~As the Wolf~
 
-    Kill a player
+    +20 points if you kill a PLAYER (-10 points if you howled)
 
-    +20 points
-
-    (-10 points if you howl)
+    -20 points if you kill a non-player sheep
 
 
-    Kill a non-player sheep
+    ~As a sheep~
 
-    -20 points'
+    -5 points if you are killed by the wolf'
 --- !u!222 &350576231
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -692,7 +690,7 @@ RectTransform:
   m_Children:
   - {fileID: 1410981814}
   m_Father: {fileID: 1378395355}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -280.70004, y: -202.19989}
@@ -1633,84 +1631,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &648268083
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 648268084}
-  - 222: {fileID: 648268086}
-  - 114: {fileID: 648268085}
-  m_Layer: 5
-  m_Name: SheepPoints
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &648268084
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 648268083}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1378395355}
-  m_RootOrder: 1
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -141.4, y: -2}
-  m_SizeDelta: {x: 713.6, y: 353.5}
-  m_Pivot: {x: 0.5, y: 1}
---- !u!114 &648268085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 648268083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 87b82bf510305b2478de17c43530b0d7, type: 3}
-    m_FontSize: 26
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 85
-    m_Alignment: 1
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1.26
-  m_Text: '~As a sheep~
-
-    Killed by the wolf
-
-    -20 points'
---- !u!222 &648268086
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 648268083}
 --- !u!1 &706353813
 GameObject:
   m_ObjectHideFlags: 0
@@ -3007,7 +2927,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 87b82bf510305b2478de17c43530b0d7, type: 3}
-    m_FontSize: 20
+    m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -3018,10 +2938,19 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: "You are a sheep. As a sheep..\n You must hide from the wolf\n\nIf your
-    controller is vibrating, you are now the wolf in sheeps clothing.\nYou must eat
-    the other player sheep.\nIf you eat a sheep which isn't a player, you will lose
-    points.\nOnce you attack, a new wolf is chosen. Choose your prey carefully.\n"
+  m_Text: 'All the players are SHEEP, among a herd of sheep. But there is a WOLF prowling,
+    hiding from the farmer until it can jump on an unsuspecting sheep...
+
+
+    If your controller is vibrating, you are now the WOLF IN SHEEP''S CLOTHING !
+
+    You must find and eat the other player sheep, but only them.
+
+    If you eat a sheep which isn''t a player, you will lose points.
+
+    Once you attack, a new wolf is chosen. Choose your prey carefully...
+
+'
 --- !u!222 &1227747108
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3751,7 +3680,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1946535399}
-  - {fileID: 648268084}
   - {fileID: 350576229}
   - {fileID: 1487731764}
   - {fileID: 361974499}
@@ -4186,7 +4114,7 @@ RectTransform:
   m_Children:
   - {fileID: 1688210867}
   m_Father: {fileID: 1378395355}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 267.16003, y: -202.19989}
@@ -4628,6 +4556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd201cd3180e3d24e89eb37476a96256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
 --- !u!1 &1564375622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4660,7 +4589,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 14}
+  m_AnchoredPosition: {x: 0, y: 45}
   m_SizeDelta: {x: 713.6, y: 353.5}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1564375624
@@ -4694,17 +4623,22 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.26
-  m_Text: 'Walk around with the left analogue stick
+    m_LineSpacing: 0.87
+  m_Text: 'CONTROLS :
+
+    Walk around with the left analogue stick.
+
+
+    ~As a sheep~
+
+    Try to blend in the herd, and hide from the wolf.
 
 
     ~As the wolf~
 
-    press A to attack the sheep infront of you
+    Press A to attack the sheep in front of you.
 
-    press B to Howl, clearing non-player sheep from the area
-
-'
+    Press B to Howl, clearing non-player sheep around you.'
 --- !u!222 &1564375625
 CanvasRenderer:
   m_ObjectHideFlags: 0

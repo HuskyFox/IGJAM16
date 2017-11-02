@@ -96,6 +96,8 @@ ModelImporter:
     4300016: RightLeg
     4300018: Tail
     7400000: Take 001
+    7400002: Take 0010
+    7400004: AttackVisual
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -123,6 +125,182 @@ ModelImporter:
       takeName: Take 001
       firstFrame: 74
       lastFrame: 98
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Hip
+        weight: 1
+      - path: Hip/LeftThigh
+        weight: 1
+      - path: Hip/LeftThigh/LeftKnee
+        weight: 1
+      - path: Hip/LeftThigh/LeftLeg
+        weight: 1
+      - path: Hip/RightThigh
+        weight: 1
+      - path: Hip/RightThigh/RightKnee
+        weight: 1
+      - path: Hip/RightThigh/RightLeg
+        weight: 1
+      - path: Hip/SpineLower
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Head
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Head/Jaw
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Head/Nosle
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Head/WolfHead01
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/LeftShoulder
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/LeftShoulder/LeftArm
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/LeftShoulder/LeftElbow
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/RightShoulder
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/RightShoulder/RightArm
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/RightShoulder/RightElbow
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Zipper
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Zipper/ZipperHandle
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Zipper/ZipperTip
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/ZipperBack
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/ZipperLoop
+        weight: 1
+      - path: Hip/SpineLower/Torso
+        weight: 1
+      - path: Hip/Tail
+        weight: 1
+      - path: Hip/Tail/Tail 1
+        weight: 1
+      - path: Hip/Tail/TailTip
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Take 0010
+      takeName: Take 001
+      firstFrame: 77
+      lastFrame: 77
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Hip
+        weight: 1
+      - path: Hip/LeftThigh
+        weight: 1
+      - path: Hip/LeftThigh/LeftKnee
+        weight: 1
+      - path: Hip/LeftThigh/LeftLeg
+        weight: 1
+      - path: Hip/RightThigh
+        weight: 1
+      - path: Hip/RightThigh/RightKnee
+        weight: 1
+      - path: Hip/RightThigh/RightLeg
+        weight: 1
+      - path: Hip/SpineLower
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Head
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Head/Jaw
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Head/Nosle
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Head/WolfHead01
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/LeftShoulder
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/LeftShoulder/LeftArm
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/LeftShoulder/LeftElbow
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/RightShoulder
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/RightShoulder/RightArm
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/RightShoulder/RightElbow
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Zipper
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Zipper/ZipperHandle
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/Neck/Zipper/ZipperTip
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/ZipperBack
+        weight: 1
+      - path: Hip/SpineLower/SpineUpper/ZipperLoop
+        weight: 1
+      - path: Hip/SpineLower/Torso
+        weight: 1
+      - path: Hip/Tail
+        weight: 1
+      - path: Hip/Tail/Tail 1
+        weight: 1
+      - path: Hip/Tail/TailTip
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: AttackVisual
+      takeName: Take 001
+      firstFrame: 76
+      lastFrame: 77
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

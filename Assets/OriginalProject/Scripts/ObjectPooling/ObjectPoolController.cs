@@ -56,9 +56,9 @@ namespace ObjectPooling
 	{
 		private ObjectPoolManager _objectPoolManager;
 
-		public override void Awake()
+		 void Awake()
 		{
-			base.Awake ();
+			//base.Awake ();
 
 			_objectPoolManager = GetComponent<ObjectPoolManager>();
 

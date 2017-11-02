@@ -33,9 +33,9 @@ public class SoundManager : UnitySingleton <SoundManager>
 	private int _currentBaa = 0;		//for random sheep baas
 	private List <GameObject> _npSheep;	//for random sheep baas
 
-	public override void Awake()
+	void Awake()
 	{
-		base.Awake ();	//singleton
+		//base.Awake ();	//singleton
 		AudioListener.pause = false;	//make sur the Audio is on.
 
 		#if (UNITY_EDITOR)

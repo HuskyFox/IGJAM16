@@ -17,8 +17,8 @@ public class ControllerVibration : MonoBehaviour
 
 	void Update()
 	{
-		if (_isWolf)
-			_controller.Vibrate (_wolfVibrationIntensity);
+		if (_isWolf && !_gamePaused)
+		 	_controller.Vibrate (_wolfVibrationIntensity);
 		else
 			if(!_isKilled)_controller.StopVibration ();
 	}
@@ -29,11 +29,12 @@ public class ControllerVibration : MonoBehaviour
 	public void PauseToggle ()
 	{
 		_gamePaused = !_gamePaused;
-
+		/*
 		if (_gamePaused)
 			_controller.StopVibration ();
 		else if (_isWolf)
 			WolfVibration ();
+			*/
 	}
 		
 	public void WolfVibration()

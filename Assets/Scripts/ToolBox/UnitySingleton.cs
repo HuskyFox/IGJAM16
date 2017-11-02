@@ -41,12 +41,12 @@ public class UnitySingleton <T> : MonoBehaviour
 		}
 	}
 
-	public virtual void Awake ()
+	/*public virtual void Awake ()
 	{
 		//DontDestroyOnLoad (this.gameObject);
 		if (instance == null)
 			instance = this as T;
 		else
 			Destroy (gameObject);
-	}
+	}*/
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TitleScreenObject : MonoBehaviour {
 
@@ -17,24 +18,38 @@ public class TitleScreenObject : MonoBehaviour {
 	private float forceTimerLimit = 2f;
 	private float forceTimer;
 
+	private Image image;
+
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
+		//image = (GetComponent<Image> () != null) ? GetComponent<Image> () : null;
+		image = GetComponent<Image> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (mustMove) {
-			Vector3 currentPosition = transform.position;
-			currentPosition.x += moveSpeed.x * Time.deltaTime;
-			currentPosition.y += moveSpeed.y * Time.deltaTime;
-			currentPosition.z += moveSpeed.z * Time.deltaTime;
-			transform.position = currentPosition;
+//			Vector3 currentPosition = transform.position;
+//			currentPosition.x += moveSpeed.x * Time.deltaTime;
+//			currentPosition.y += moveSpeed.y * Time.deltaTime;
+//			currentPosition.z += moveSpeed.z * Time.deltaTime;
+//			transform.position = currentPosition;
+
+			if (image != null) 
+			{
+				Vector2 currentPos = image.rectTransform.anchoredPosition;
+				currentPos.x += moveSpeed.x * Time.deltaTime;
+				image.rectTransform.anchoredPosition = currentPos;
+				print (currentPos); 
+			}
 		}
 
 		if (mustRotate) {
 			Vector3 currentRotation = transform.localEulerAngles;
 			currentRotation.z += rotateSpeed * Time.deltaTime;
 			transform.localEulerAngles = currentRotation;
+		
 		}
 
 		if (mustApplyForce) {

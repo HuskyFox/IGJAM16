@@ -18,7 +18,13 @@ public class TimeManager : MonoBehaviour
 	void Awake()
 	{
 		_countdownTimer.countdownTime = _initialCountdown;
-		_gameTimer.gameTimeInSec = _gameTimeInSeconds;
 		_wolfTimer.wolfCountdown = _wolfCountdown;
+	}
+
+	//called by the GameManager, assign the game duration depending on what the players chose in the menu (Controller Registration).
+	public void GameDuration(float newDuration)
+	{
+		_gameTimeInSeconds = newDuration;
+		_gameTimer.gameTimeInSec = _gameTimeInSeconds;
 	}
 }

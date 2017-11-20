@@ -231,8 +231,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6299d196a5db840b38ac9640a57b34a9, type: 3}
   - {fileID: 8300000, guid: 968d42f26befa4c9ea42f09c2875da61, type: 3}
   _musics:
-  - {fileID: 8300000, guid: 5d421f26f5bb0439e99eb6cb12650ec3, type: 3}
-  - {fileID: 8300000, guid: 1e3af3129a6934a23ac409473f2fc558, type: 3}
+  - {fileID: 8300000, guid: ab59dd247865549eb98a815f590187b5, type: 3}
+  - {fileID: 8300000, guid: 3192ea95367dc4c7fbc80ad956a0c7f4, type: 3}
   - {fileID: 8300000, guid: 6d1922140f81f4141a225128f0d1a018, type: 3}
   _heartBeat: {fileID: 8300000, guid: 9782b2494205d436c805cf2b5e3609b0, type: 3}
   _musicPlayer: {fileID: 82000013698688354}

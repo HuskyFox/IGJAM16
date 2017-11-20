@@ -85,13 +85,18 @@ public class GameStateManager : MonoBehaviour
 		}
 	}
 
+	void Awake()
+	{
+		_gameData = GameObject.Find ("GameData").GetComponent<GameData> ();
+		GetComponent <TimeManager> ().GameDuration (_gameData._gameDuration);	//assign game duration chosen by the players.
+	}
+
 	void Start()
 	{
 		_score = GetComponent<ScoreManager> ();
 		_newWolf = GetComponent<NewWolfManager> ();
 		_howlMan = GetComponent<HowlManager> ();
 
-		_gameData = GameObject.Find ("GameData").GetComponent<GameData> ();
 		StartCoroutine (InitGame ());
 	}
 

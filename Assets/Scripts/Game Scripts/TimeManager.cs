@@ -24,7 +24,8 @@ public class TimeManager : MonoBehaviour
 	//called by the GameManager, assign the game duration depending on what the players chose in the menu (Controller Registration).
 	public void GameDuration(float newDuration)
 	{
-		_gameTimeInSeconds = newDuration;
+		if(newDuration != 0) _gameTimeInSeconds = newDuration;
 		_gameTimer.gameTimeInSec = _gameTimeInSeconds;
+		_gameTimer.ResetTimer ();
 	}
 }

@@ -85,11 +85,11 @@ public class GameStateManager : MonoBehaviour
 		}
 	}
 
-	void Awake()
-	{
-		_gameData = GameObject.Find ("GameData").GetComponent<GameData> ();
-		GetComponent <TimeManager> ().GameDuration (_gameData._gameDuration);	//assign game duration chosen by the players.
-	}
+//	void Awake()
+//	{
+//		_gameData = GameObject.Find ("GameData").GetComponent<GameData> ();
+//		GetComponent <TimeManager> ().GameDuration (_gameData._gameDuration);	//assign game duration chosen by the players.
+//	}
 
 	void Start()
 	{
@@ -97,11 +97,14 @@ public class GameStateManager : MonoBehaviour
 		_newWolf = GetComponent<NewWolfManager> ();
 		_howlMan = GetComponent<HowlManager> ();
 
+		_gameData = GameObject.Find ("GameData").GetComponent<GameData> ();
 		StartCoroutine (InitGame ());
 	}
 
 	IEnumerator InitGame()
 	{
+		GetComponent <TimeManager> ().GameDuration (_gameData._gameDuration);	//assign game duration chosen by the players.
+
 		//Are we playtesting in the game scene ?
 		#if (UNITY_EDITOR)
 		GameObject playtest = GameObject.Find("PlaytestInit(Clone)");
